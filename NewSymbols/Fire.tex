@@ -1,0 +1,70 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[naustrian]{scrartcl}
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage{tikzsymbols}
+
+\ExplSyntaxOn
+\makeatletter
+\NewDocumentCommand { \myFire } { O{1} }
+  {
+    \begin{tikzpicture}
+        [
+          x=1ex, y=1ex, scale=#1, line ~ width=0.07ex* #1 ,
+        ]
+              \fill (-0.05,0) -- (0.05,0) -- (0.05,0.95) -- (-0.05,0.95) -- cycle;
+              \fill (-0.74,0.7) -- (0.19,0.7) -- (0.19,0.8) -- (-0.74,0.8) -- cycle;
+              \fill[rotate=-20, xshift=-1.3, yshift=-0.1] 
+                (-0.05,0.07) -- (0.05,0.07) -- (0.05,0.9) -- (-0.05,0.9) -- cycle;
+              \fill[rotate=-70, xshift=-3.3, yshift=-2.3]
+                (-0.05,0.07) -- (0.05,0.07) -- (0.05,0.9) -- (-0.05,0.9) -- cycle;
+              \fill[rotate=135, xshift=2.5, yshift=-3.8] 
+                (-0.05,0.07) -- (0.05,0.07) -- (0.05,0.9) -- (-0.05,0.9) -- cycle;
+              \draw
+                [
+                  rotate=-45, xshift=-2.6, yshift=1.5,
+                  line ~ width=0.04ex* #1 , x=0.5ex, y=0.5ex
+                ] 
+                (-0.1,0.29) .. controls (-0.7,0.6) and (0,1.2) ..  (0.05,1.7);
+              \draw
+                [
+                  rotate=-45, xshift=-2.1,yshift=1.5,
+                  line ~ width=0.04ex* #1 , x=0.5ex, y=0.5ex
+                ] 
+                (-0.1,0.29) .. controls (0.7,0.6) and (-0.1,1.2) ..  (-0.15,1.7);
+              \draw[rotate=-45, xshift=-2.5] (-0.1,0.29) .. controls 
+                (-0.7,0.6) and (0,1.2) ..  (0,1.5);
+              \draw[rotate=-45, xshift=-2] (-0.1,0.29) .. controls 
+                (0.7,0.6) and (-0.1,1.2) ..  (-0.1,1.5);
+    
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        [
+          x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 , 
+        ]
+%        \draw (0,0) -- (0,1);
+%        \draw (0,0.8) circle (0.1pt);
+%        \draw (-0.5,0) -- (0.1,0.95);
+%              \fill (-0.05,0) -- (0.05,0) -- (0.05,0.95) -- (-0.05,0.95) -- cycle;
+              \draw (0,0) -- (0,0.95);
+              \draw[ rotate \space around={  45\tl_to_str:N :(0,0.7)} ] (0,0) -- (0,0.95);
+              \draw[ rotate \space around={  25\tl_to_str:N :(0,0.7)} ] (0,0) -- (0,0.95);
+              \draw[ rotate \space around={-45\tl_to_str:N :(0,0.7)} ] (0,0) -- (0,0.95);
+              \draw[ rotate \space around={-25\tl_to_str:N :(0,0.7)} ] (0,0) -- (0,0.95);
+%              \draw[rotate \space around={40\tl_to_str:N :(0,0)},] (-0.74,0.75)  -- (0.19,0.75);
+    \end{tikzpicture}%
+  }
+
+
+
+\ExplSyntaxOff
+
+\begin{document}
+
+\Fire[10]\myFire[10]Hallo Welt!
+
+\end{document}
+

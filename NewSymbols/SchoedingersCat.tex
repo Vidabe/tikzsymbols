@@ -1,0 +1,72 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[naustrian]{scrartcl}
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage{tikzsymbols}
+
+\ExplSyntaxOn
+\makeatletter
+\cs_new:Npn \@@_create_draftbox:nn #1#2
+  {
+    \group_begin: 
+    \vbadness=\c_max_dim
+    \fp_set:Nn \l_tmpa_fp {#1}
+    \fp_set:Nn \l_tmpb_fp {#2}
+    \frame
+      {
+        \vbox_to_ht:nn { \fp_to_dim:N \l_tmpb_fp } 
+          {
+            \hbox_to_wd:nn { \fp_to_dim:N \l_tmpa_fp } { }
+          }
+      }
+    \group_end: 
+  }
+
+\DeclareDocumentCommand \SchoedingersCat { O{1} m }
+  {
+            \begin{tikzpicture}
+              [
+                x=2.33ex,y=2.33ex, line ~ width=0.093ex* #1 ,scale=#1
+              ]
+              \draw (0,0) circle (0.3);
+              \foreach \xi/\xii in { 0.3/0.35 }
+                {
+                  \draw[rounded ~ corners=0.163ex* #1 ] 
+                    (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
+                }
+                
+%              \fill (-0.15,.15) circle (0.05);
+%              \fill (0.15,.15) circle (0.05);
+%              \foreach \x in { 0.1 , -0.1 }
+%                \draw[rounded ~ corners=0.175ex* #1 ,yshift=-0.12ex] 
+%                   (0,0) -- (0,-0.1) -- (\x,-0.07);
+%              \draw[rounded ~ corners=.12ex* #1 ,yshift=-.15ex,
+%                       line ~ width=0.03em*0.9* #1 ] 
+%                 (-0.1,0.1) -- (0,0) -- (0.1,0.1) -- cycle ;
+              \node (0,0) {?};
+                 
+              \foreach \a/\b/\c/\d in 
+                { 0.1/0.25/0.35/0.4 , -0.1/-0.25/-0.35/-0.4 }
+                \foreach \yi/\yii/\yiii in 
+                  { 0/0/-0.05 , -0.01/-0.09/-0.14 , -0.045/-0.13/-0.23 }
+                  {
+                    \draw[line ~ width=0.035ex* #1 ]
+                       (\a,-0.05)..controls(\b,\yi)and(\c,\yii).. (\d,\yiii);           
+                  }
+            \end{tikzpicture}%
+  }
+
+
+
+\ExplSyntaxOff
+
+\begin{document}
+
+\SchoedingersCat{} x
+
+
+\end{document}
+

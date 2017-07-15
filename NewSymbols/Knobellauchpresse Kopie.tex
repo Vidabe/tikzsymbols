@@ -1,0 +1,131 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[naustrian]{scrartcl}
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage{tikzsymbols}
+
+\ExplSyntaxOn
+\makeatletter
+\cs_new:Npn \@@_create_draftbox:nn #1#2
+  {
+    \group_begin: 
+    \vbadness=\c_max_dim
+    \fp_set:Nn \l_tmpa_fp {#1}
+    \fp_set:Nn \l_tmpb_fp {#2}
+    \frame
+      {
+        \vbox_to_ht:nn { \fp_to_dim:N \l_tmpb_fp } 
+          {
+            \hbox_to_wd:nn { \fp_to_dim:N \l_tmpa_fp } { }
+          }
+      }
+    \group_end: 
+  }
+
+\NewDocumentCommand { \testKnobellauchpresse } { O{1} }
+  {
+    \begin{tikzpicture}
+      [
+        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
+      ]
+      %% Hände:
+%      \draw (1, 0) rectangle (4,-0.2);
+      \draw (1, 0) .. controls (2, 0) and (4, 0) .. (4, -0.4) 
+        -- (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
+%      \draw[red] (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
+%      \draw (0, 0.3) rectangle (4,0.5);
+      \draw (0, 0.5) .. controls (2, 0.5) and (4, 0.5) .. (4, 0.1) 
+        -- (4, 0) .. controls (4, 0.3) and (2, 0.3) .. (0, 0.3) -- cycle;
+      %% Pressekorb
+      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
+      % Verbindung:
+      \draw (1,0) -- (0,0) ;
+      \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.5) -- (0, 0.5) -- cycle;
+      %% Presse
+      \draw (0.25, 0) rectangle +(0.5, 0.3);
+    \end{tikzpicture}
+
+\par
+    \begin{tikzpicture}
+      [
+        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
+      ]
+      %% Hände:
+%      \draw (1, 0) rectangle (4,-0.2);
+      \draw (1, 0) .. controls (2, 0) and (4, 0) .. (4, -0.4) 
+        -- (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
+%      \draw[red] (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
+%      \draw (0, 0.3) rectangle (4,0.5);
+      \draw (-0.1, 0.5) .. controls (2, 0.5) and (4, 0.5) .. (4, 0.1) 
+        -- (4, 0) .. controls (4, 0.3) and (2, 0.3) .. (0, 0.3) ;%-- cycle;
+      %% Pressekorb
+      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
+      % Verbindung:
+      \draw (1,0) -- (0,0) ;
+      \draw (0, 0.4) -- (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4) ;% -- (0, 0.5) -- cycle;
+      \draw (-0.1,0.4) circle (0.1);
+      %% Presse
+      \draw (0.25, 0) rectangle +(0.5, 0.3);
+    \end{tikzpicture}
+
+\par
+    \begin{tikzpicture}
+      [
+        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
+      ]
+      %% Hände:
+      \draw (1, 0) -- (4, 0) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
+      \draw (-0.1, 0.5) -- (4, 0.5) .. controls (4, 0.3) and (2, 0.3) .. (-0.1, 0.3);
+%      \draw (-0.1, 0.5) .. controls (2, 0.5) and (4, 0.5) .. (4, 0.1) 
+%        -- (4, 0) .. controls (4, 0.3) and (2, 0.3) .. (-0.1, 0.3); % -- cycle;
+      %% Pressekorb
+      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
+      % Verbindung:
+      \draw (1,0) -- (0,0) -- (0,0.4) ;
+      \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4);% -- (0, 0.5);% -- cycle;
+      \draw (-0.1,0.4) circle (0.1);
+      %% Presse
+      \draw (0.3, 0) rectangle +(0.4, 0.3);
+    \end{tikzpicture}
+
+\par
+    \begin{tikzpicture}
+      [
+        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
+      ]
+      %% Hände:
+      \draw[rounded ~ corners = 0.5pt*#1] (1, 0) -- (4, 0) -- (4,-0.2) -- (1, -0.2);
+      \draw[rounded ~ corners = 0.5pt*#1] (-0.1, 0.5) -- (4, 0.5) -- (4,0.3) -- (0, 0.3);
+      %% Pressekorb
+      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
+      % Verbindung:
+      \draw (1,0) -- (0,0) -- (0,0.4) ;
+      \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4);% -- (0, 0.5);% -- cycle;
+      \draw (-0.1,0.4) circle (0.1);
+      %% Presse
+      \draw (0.3, 0) rectangle +(0.4, 0.3);
+    \end{tikzpicture}
+  }
+
+\NewDocumentCommand { \testdraftKnobellauchpresse } { O{1} }
+  {
+    \@@_create_draftbox:nn
+%      { 1.25ex*0.8 + 0.01*0.8ex + 0.8*4.25ex + 0.01*0.8ex + 0.2ex }
+      { 4.508ex } %% (1.26ex + 4.25ex)*0.8 + 0.1ex
+      { 0.9ex }
+  }
+
+
+
+\ExplSyntaxOff
+
+\begin{document}
+
+\testKnobellauchpresse[1] x
+
+
+\end{document}
+
