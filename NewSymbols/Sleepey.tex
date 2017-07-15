@@ -7,6 +7,7 @@
 \usepackage{xparse}
 \usepackage{tikzsymbols}
 
+
 \ExplSyntaxOn
 \makeatletter
 \cs_new:Npn \@@_create_draftbox:nn #1#2
@@ -25,89 +26,80 @@
     \group_end: 
   }
 
-\NewDocumentCommand { \testKnobellauchpresse } { O{1} }
+\NewDocumentCommand { \testKnobellauchpresse } { O{1} O{none} }
   {
+%    \begin{tikzpicture}
+%      [
+%        x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
+%      ]
+%        \draw [rounded ~ corners=0.01 * #1]
+%          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
+%        \draw (-0.33,0) arc[start~angle=180,end~angle=0,radius=0.5] 
+%          arc[start~angle=0,end~angle=180,radius=0.17] ;
+%        \filldraw (0.67,-0.05) circle[radius=0.05];
+%        \filldraw (0,-0.2) circle [radius=0.025];
+%        \draw (-0.1,-0.05)  arc[start~angle=0, end~angle=-180, radius=0.06] ;
+%        \draw (0.1,-0.05)  arc[start~angle=180, end~angle=360, radius=0.06] ;
+%    \end{tikzpicture}
+%    
+%    \space
+    
     \begin{tikzpicture}
       [
-        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
+        x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
       ]
-      %% Hände:
-%      \draw (1, 0) rectangle (4,-0.2);
-      \draw (1, 0) .. controls (2, 0) and (4, 0) .. (4, -0.4) 
-        -- (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
-%      \draw[red] (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
-%      \draw (0, 0.3) rectangle (4,0.5);
-      \draw (0, 0.5) .. controls (2, 0.5) and (4, 0.5) .. (4, 0.1) 
-        -- (4, 0) .. controls (4, 0.3) and (2, 0.3) .. (0, 0.3) -- cycle;
-      %% Pressekorb
-      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
-      % Verbindung:
-      \draw (1,0) -- (0,0) ;
-      \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.5) -- (0, 0.5) -- cycle;
-      %% Presse
-      \draw (0.25, 0) rectangle +(0.5, 0.3);
-    \end{tikzpicture}
+        \draw [rounded ~ corners=0.01 * #1]
+          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
+        \draw (-0.33,0) arc[start~angle=180,end~angle=0,radius=0.5] 
+          arc[start~angle=0,end~angle=180,radius=0.17] ;
+%        \draw (0.67,0) arc[start~angle=0,end~angle=180,radius=0.5] 
+%          -- (0.33,0)
+%          arc[start~angle=180,end~angle=0,radius=0.17] 
+%          -- cycle ;
+%        \draw[line~width=0.5] (0.67,-0.1) -- (0.675,0) --  (0.665,0) -- cycle;
+        \filldraw (0.67,-0.07) circle[radius=0.06];
+%        \draw[decorate,decoration={bumps,segment~length=0.06,amplitude=0.1}] %, segment~length=0.1
+%          (0.61,-0.07) -- (0.66,-0.01) -- (0.73,-0.07) -- (0.66,-0.13) -- cycle;
+          (0.61,-0.07) -- (0.67,-0.01) -- (0.73,-0.07);% -- (0.66,-0.13) -- cycle;
+%        \draw[decorate,decoration={bumps}] %, segment~length=0.1
+%%          (0.61,-0.07) -- (0.66,-0.01) -- (0.73,-0.07) -- (0.66,-0.13) -- cycle;
+%           (0.66,-0.01) -- (0.73,-0.07) ;
+%        \draw 
+%        [decorate, 
+%          decoration=  { 
+%            snake , amplitude=1*#1 , segment ~ length=0.1 * #1 
+%          }] 
+%          (0.67,-0.07) -- (0.8,0); % arc[start~angle=0,end~angle=180,radius=0.4];
+%          (0.76,-0.07) -- (0.67,0.0);
 
-\par
-    \begin{tikzpicture}
-      [
-        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
-      ]
-      %% Hände:
-%      \draw (1, 0) rectangle (4,-0.2);
-      \draw (1, 0) .. controls (2, 0) and (4, 0) .. (4, -0.4) 
-        -- (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
-%      \draw[red] (4, -0.5) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
-%      \draw (0, 0.3) rectangle (4,0.5);
-      \draw (-0.1, 0.5) .. controls (2, 0.5) and (4, 0.5) .. (4, 0.1) 
-        -- (4, 0) .. controls (4, 0.3) and (2, 0.3) .. (0, 0.3) ;%-- cycle;
-      %% Pressekorb
-      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
-      % Verbindung:
-      \draw (1,0) -- (0,0) ;
-      \draw (0, 0.4) -- (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4) ;% -- (0, 0.5) -- cycle;
-      \draw (-0.1,0.4) circle (0.1);
-      %% Presse
-      \draw (0.25, 0) rectangle +(0.5, 0.3);
+%  \draw %[decorate, decoration=snake]
+%        [decorate, 
+%          decoration=  { 
+%            snake , amplitude=0.0001*#1 , segment ~ length=0.0001 * #1 
+%          }] 
+%    (0.61,-0.07) .. controls (0.61,-0.0367) and (0.6367,-0.01) .. (0.67,-0.01)
+%               .. controls (0.7033,-0.01) and (0.73,-0.0367) .. (0.73,-0.07);        
+                 
+        \filldraw (0,-0.225) circle [radius=0.025];
+        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.08] ;
+        \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.08] ;
     \end{tikzpicture}
-
-\par
-    \begin{tikzpicture}
-      [
-        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
-      ]
-      %% Hände:
-      \draw (1, 0) -- (4, 0) .. controls (4, -0.2) and (2, -0.2) .. (1, -0.2);
-      \draw (-0.1, 0.5) -- (4, 0.5) .. controls (4, 0.3) and (2, 0.3) .. (-0.1, 0.3);
-%      \draw (-0.1, 0.5) .. controls (2, 0.5) and (4, 0.5) .. (4, 0.1) 
-%        -- (4, 0) .. controls (4, 0.3) and (2, 0.3) .. (-0.1, 0.3); % -- cycle;
-      %% Pressekorb
-      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
-      % Verbindung:
-      \draw (1,0) -- (0,0) -- (0,0.4) ;
-      \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4);% -- (0, 0.5);% -- cycle;
-      \draw (-0.1,0.4) circle (0.1);
-      %% Presse
-      \draw (0.3, 0) rectangle +(0.4, 0.3);
-    \end{tikzpicture}
-
-\par
-    \begin{tikzpicture}
-      [
-        x=1ex, y=1ex, scale=#1, line ~ width=0.1ex* #1 ,
-      ]
-      %% Hände:
-      \draw[rounded ~ corners = 0.5pt*#1] (1, 0) -- (4, 0) -- (4,-0.2) -- (1, -0.2);
-      \draw[rounded ~ corners = 0.5pt*#1] (-0.1, 0.5) -- (4, 0.5) -- (4,0.3) -- (0, 0.3);
-      %% Pressekorb
-      \draw [rounded ~ corners = 1pt*#1] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
-      % Verbindung:
-      \draw (1,0) -- (0,0) -- (0,0.4) ;
-      \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4);% -- (0, 0.5);% -- cycle;
-      \draw (-0.1,0.4) circle (0.1);
-      %% Presse
-      \draw (0.3, 0) rectangle +(0.4, 0.3);
-    \end{tikzpicture}
+    
+%    \space
+%    
+%    \begin{tikzpicture}
+%      [
+%        x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
+%      ]
+%        \draw [rounded ~ corners=0.01 * #1]
+%          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
+%        \draw (-0.33,0) arc[start~angle=180,end~angle=0,radius=0.5] 
+%          arc[start~angle=0,end~angle=180,radius=0.17] ;
+%        \filldraw (0.67,-0.05) circle[radius=0.05];
+%        \filldraw (0,-0.2) circle [radius=0.025];
+%        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.09] ;
+%        \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.09] ;
+%    \end{tikzpicture}
   }
 
 \NewDocumentCommand { \testdraftKnobellauchpresse } { O{1} }
@@ -124,7 +116,12 @@
 
 \begin{document}
 
-\testKnobellauchpresse[1] x
+X\testKnobellauchpresse[1] x
+
+\begin{tikzpicture}
+ \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm)
+   arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+\end{tikzpicture}
 
 
 \end{document}
