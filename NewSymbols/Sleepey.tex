@@ -52,11 +52,6 @@
           (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
         \draw (-0.33,0) arc[start~angle=180,end~angle=0,radius=0.5] 
           arc[start~angle=0,end~angle=180,radius=0.17] ;
-%        \draw (0.67,0) arc[start~angle=0,end~angle=180,radius=0.5] 
-%          -- (0.33,0)
-%          arc[start~angle=180,end~angle=0,radius=0.17] 
-%          -- cycle ;
-%        \draw[line~width=0.5] (0.67,-0.1) -- (0.675,0) --  (0.665,0) -- cycle;
         
         \def\xmid{0.67}
         \def\ymid{-0.07}
@@ -66,53 +61,36 @@
           {
             \filldraw ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)}) circle[radius=0.02019595];
           }
-%        \filldraw (0.73,-0.07) circle[radius=0.02019595];
-%        \filldraw (0.7124264,-0.02757359) circle[radius=0.02019595];
-%        \filldraw (0.67,-0.01) circle[radius=0.02019595];
-%        \filldraw (0.61,-0.07) circle[radius=0.02019595];
-        
-%        \draw[decorate,decoration={bumps,segment~length=0.06,amplitude=0.1}] %, segment~length=0.1
-%          (0.61,-0.07) -- (0.66,-0.01) -- (0.73,-0.07) -- (0.66,-0.13) -- cycle;
-%          (0.61,-0.07) -- (0.67,-0.01) -- (0.73,-0.07);% -- (0.66,-0.13) -- cycle;
-%        \draw[decorate,decoration={bumps}] %, segment~length=0.1
-%%          (0.61,-0.07) -- (0.66,-0.01) -- (0.73,-0.07) -- (0.66,-0.13) -- cycle;
-%           (0.66,-0.01) -- (0.73,-0.07) ;
-%        \draw 
-%        [decorate, 
-%          decoration=  { 
-%            snake , amplitude=1*#1 , segment ~ length=0.1 * #1 
-%          }] 
-%          (0.67,-0.07) -- (0.8,0); % arc[start~angle=0,end~angle=180,radius=0.4];
-%          (0.76,-0.07) -- (0.67,0.0);
-
-%  \draw %[decorate, decoration=snake]
-%        [decorate, 
-%          decoration=  { 
-%            snake , amplitude=0.0001*#1 , segment ~ length=0.0001 * #1 
-%          }] 
-%    (0.61,-0.07) .. controls (0.61,-0.0367) and (0.6367,-0.01) .. (0.67,-0.01)
-%               .. controls (0.7033,-0.01) and (0.73,-0.0367) .. (0.73,-0.07);        
                  
-        \filldraw (0,-0.225) circle [radius=0.025];
+        \fill (0,-0.225) circle [radius=0.04];
         \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.08] ;
         \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.08] ;
     \end{tikzpicture}
     
-%    \space
+    \space
 %    
-%    \begin{tikzpicture}
-%      [
-%        x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
-%      ]
-%        \draw [rounded ~ corners=0.01 * #1]
-%          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
-%        \draw (-0.33,0) arc[start~angle=180,end~angle=0,radius=0.5] 
-%          arc[start~angle=0,end~angle=180,radius=0.17] ;
-%        \filldraw (0.67,-0.05) circle[radius=0.05];
-%        \filldraw (0,-0.2) circle [radius=0.025];
-%        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.09] ;
-%        \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.09] ;
-%    \end{tikzpicture}
+    \begin{tikzpicture}
+      [
+        x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
+      ]
+        \draw [rounded ~ corners=0.01 * #1]
+          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
+        \draw (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.5,y~radius=0.45] 
+          arc[start~angle=0,end~angle=180,x~radius=0.17,y~radius=0.13] ;
+        
+        \def\xmid{0.67}
+        \def\ymid{-0.07}
+        \def\r{0.06}
+        \filldraw (\xmid,\ymid) circle[radius=\r];
+        \foreach \angle in {0,30,60,...,360}
+          {
+            \filldraw ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)}) circle[radius=0.02019595];
+          }
+                 
+        \fill (0,-0.225) circle [radius=0.04];
+        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.08] ;
+        \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.08] ;
+    \end{tikzpicture}
   }
 
 \NewDocumentCommand { \testdraftKnobellauchpresse } { O{1} }
@@ -129,7 +107,7 @@
 
 \begin{document}
 
-X\testKnobellauchpresse[10] x
+X\testKnobellauchpresse[1] x
 
 \begin{tikzpicture}
  \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm)
