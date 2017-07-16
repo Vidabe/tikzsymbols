@@ -57,10 +57,23 @@
 %          arc[start~angle=180,end~angle=0,radius=0.17] 
 %          -- cycle ;
 %        \draw[line~width=0.5] (0.67,-0.1) -- (0.675,0) --  (0.665,0) -- cycle;
-        \filldraw (0.67,-0.07) circle[radius=0.06];
+        
+        \def\xmid{0.67}
+        \def\ymid{-0.07}
+        \def\r{0.06}
+        \filldraw (\xmid,\ymid) circle[radius=\r];
+        \foreach \angle in {0,30,60,...,360}
+          {
+            \filldraw ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)}) circle[radius=0.02019595];
+          }
+%        \filldraw (0.73,-0.07) circle[radius=0.02019595];
+%        \filldraw (0.7124264,-0.02757359) circle[radius=0.02019595];
+%        \filldraw (0.67,-0.01) circle[radius=0.02019595];
+%        \filldraw (0.61,-0.07) circle[radius=0.02019595];
+        
 %        \draw[decorate,decoration={bumps,segment~length=0.06,amplitude=0.1}] %, segment~length=0.1
 %          (0.61,-0.07) -- (0.66,-0.01) -- (0.73,-0.07) -- (0.66,-0.13) -- cycle;
-          (0.61,-0.07) -- (0.67,-0.01) -- (0.73,-0.07);% -- (0.66,-0.13) -- cycle;
+%          (0.61,-0.07) -- (0.67,-0.01) -- (0.73,-0.07);% -- (0.66,-0.13) -- cycle;
 %        \draw[decorate,decoration={bumps}] %, segment~length=0.1
 %%          (0.61,-0.07) -- (0.66,-0.01) -- (0.73,-0.07) -- (0.66,-0.13) -- cycle;
 %           (0.66,-0.01) -- (0.73,-0.07) ;
@@ -116,7 +129,7 @@
 
 \begin{document}
 
-X\testKnobellauchpresse[1] x
+X\testKnobellauchpresse[10] x
 
 \begin{tikzpicture}
  \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm)

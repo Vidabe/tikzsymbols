@@ -46,7 +46,15 @@
 %              \draw[rounded ~ corners=.12ex* #1 ,yshift=-.15ex,
 %                       line ~ width=0.03em*0.9* #1 ] 
 %                 (-0.1,0.1) -- (0,0) -- (0.1,0.1) -- cycle ;
-              \node (0,0) {?};
+
+%              \draw (-0.15,.15) arc[start ~angle=180, end ~angle=-90, radius=0.1]
+%                arc[start ~angle=90, end ~angle=360, radius=0.1] ;
+                
+              \fill (0,-0.18)  circle [radius=0.04];
+              \def\GGGGG{0.06}
+              \def\RRRRRR{0.075}
+              \draw (0,\GGGGG) arc[start ~angle=-90, end ~angle=180, radius=\RRRRRR]
+               (0,\GGGGG) arc[start ~angle=90, end ~angle=360, radius=\RRRRRR];
                  
               \foreach \a/\b/\c/\d in 
                 { 0.1/0.25/0.35/0.4 , -0.1/-0.25/-0.35/-0.4 }
