@@ -7,6 +7,7 @@
 \usepackage{xparse}
 \usepackage{tikzsymbols}
 
+\usetikzlibrary{shapes.geometric}
 
 \ExplSyntaxOn
 \makeatletter
@@ -44,39 +45,78 @@
 %    
 %    \space
     
-    \begin{tikzpicture}
-      [
-        x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
-      ]
-        \draw [rounded ~ corners=0.01 * #1]
-          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
-        \draw (-0.33,0) arc[start~angle=180,end~angle=0,radius=0.5] 
-          arc[start~angle=0,end~angle=180,radius=0.17] ;
-        
-        \def\xmid{0.67}
-        \def\ymid{-0.07}
-        \def\r{0.06}
-        \filldraw (\xmid,\ymid) circle[radius=\r];
-        \foreach \angle in {0,30,60,...,360}
-          {
-            \filldraw ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)}) circle[radius=0.02019595];
-          }
-                 
-        \fill (0,-0.225) circle [radius=0.04];
-        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.08] ;
-        \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.08] ;
-    \end{tikzpicture}
-    
-    \space
+%    \begin{tikzpicture}
+%      [
+%        x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
+%      ]
+%        \draw [rounded ~ corners=0.01 * #1]
+%          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
+%        \draw (-0.33,0) arc[start~angle=180,end~angle=0,radius=0.5] 
+%          arc[start~angle=0,end~angle=180,radius=0.17] ;
+%        
+%        \def\xmid{0.67}
+%        \def\ymid{-0.07}
+%        \def\r{0.06}
+%        \filldraw (\xmid,\ymid) circle[radius=\r];
+%        \foreach \angle in {0,30,60,...,360}
+%          {
+%            \filldraw ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)}) circle[radius=0.02019595];
+%          }
+%                 
+%        \fill (0,-0.225) circle [radius=0.04];
+%        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.08] ;
+%        \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.08] ;
+%    \end{tikzpicture}
+%    
+%    \space
 %    
     \begin{tikzpicture}
       [
         x=2.4ex, y=2.4ex, line ~ width=0.12ex* #1 , scale=#1
       ]
-        \draw [rounded ~ corners=0.01 * #1]
+        \draw [rounded ~ corners=0.01ex * #1]
           (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
         \draw (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.5,y~radius=0.45] 
           arc[start~angle=0,end~angle=180,x~radius=0.17,y~radius=0.13] ;
+
+        \def\r{0.07}
+        \def\xmid{-0.12}
+        \def\ymid{0.15}
+        \draw [line~width=0.05ex* #1]
+        \foreach \angle in {0,45,90,...,360}
+          {
+             (\xmid,\ymid) -- ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)})
+          }
+          ;
+        \def\xmid{0.17}
+        \def\ymid{0.12}
+        \draw [line~width=0.05ex* #1]
+        \foreach \angle in {0,45,90,...,360}
+          {
+             (\xmid,\ymid) -- ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)})
+          }
+          ;
+        \def\xmid{0.07}
+        \def\ymid{0.32}
+        \draw [line~width=0.05ex* #1]
+        \foreach \angle in {0,45,90,...,360}
+          {
+             (\xmid,\ymid) -- ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)})
+          }
+          ;
+        \def\xmid{0.35}
+        \def\ymid{0.25}
+        \draw [line~width=0.05ex* #1]
+        \foreach \angle in {0,45,90,...,360}
+          {
+             (\xmid,\ymid) -- ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)})
+          }
+          ;
+%%        \node [star, star~ point~ height=0.01, minimum ~size=0.1, draw] (0,0) {};
+%        \node [red,star, star~ point~ height=0.1, 
+%         ,inner ~xsep=10,draw] (0,0) {};
+%%        \node [star, minimum ~size=0.1cm, draw] (0,0) {};
+        
         
         \def\xmid{0.67}
         \def\ymid{-0.07}
@@ -84,12 +124,14 @@
         \filldraw (\xmid,\ymid) circle[radius=\r];
         \foreach \angle in {0,30,60,...,360}
           {
-            \filldraw ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)}) circle[radius=0.02019595];
+            \draw ({\xmid+\r*cos(\angle)},{\ymid+\r*sin(\angle)}) circle[radius=0.02019595];
           }
                  
         \fill (0,-0.225) circle [radius=0.04];
-        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180, x~radius=0.06,y~radius=0.08] ;
-        \draw (0.1,-0.06)  arc[start~angle=180, end~angle=360,x~radius=0.06,y~radius=0.08] ;
+        \draw (-0.1,-0.06)  arc[start~angle=0, end~angle=-180,
+          x~radius=0.06,y~radius=0.08] ;
+        \draw (0.1,-0.06)  arc[start~angle=180, 
+          end~angle=360,x~radius=0.06,y~radius=0.08] ;
     \end{tikzpicture}
   }
 
@@ -106,7 +148,7 @@
 \ExplSyntaxOff
 
 \begin{document}
-
+%\Huge
 X\testKnobellauchpresse[1] x
 
 \begin{tikzpicture}
