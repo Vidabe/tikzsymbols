@@ -12,6 +12,7 @@
 *.toc
 *.zip
 *.synctex
+*.org
 
 .DS_Store
 .swp
