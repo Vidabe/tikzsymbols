@@ -11,6 +11,7 @@
 *.ilg
 *.toc
 *.zip
+*.synctex
 
 .DS_Store
 .swp
