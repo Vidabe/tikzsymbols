@@ -76,47 +76,47 @@
 
 
 
-    \begin{tikzpicture}
-      [ x=1.92ex, y=1.92ex, line ~ width=0.096ex* #1 , scale=#1 ]
-        \draw [rounded ~ corners=0.001ex * #1]
-          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
-        \draw
-          (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.45,y~radius=0.4] 
-          -- ++(0,-0.2) -- ++(0,0.09)
-          %% smaller
-%          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24] ;
-          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.15] ;
-        %% Pommel
-        \def\xmid{0.55}
-        \def\ymid{-0.15}
-        \def\shift{1.2}
-        \def\xshift{\shift}
-        \def\yshift{\shift}
-        \def\r{0.06}
-        \fill (\xmid,\ymid) circle[radius=\r];
-        \foreach \angle in {0,30,60,...,360}
-          {
-            \draw ({\xmid+\r*cos(\angle)*\xshift},{\ymid+\r*sin(\angle)*\yshift}) 
-              circle[radius=0.02019595];
-          }
-        %% Stars
-        \foreach \xmid/\ymid in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
-          {
-            \draw [line~width=0.04ex* #1]
-            \foreach \angle in { 0,45,90,...,360 }
-              {
-                (\xmid,\ymid) -- ({\xmid+0.07*cos(\angle)},{\ymid+0.07*sin(\angle)})
-              }
-            ;
-          }
-        %% Mouth
-        \fill (0,-0.225) circle [radius=0.04];
-        %% Eyes
-        \draw (-0.1,-0.09)  arc[start~angle=0, end~angle=-180,
-          x~radius=0.06,y~radius=0.08] ;
-        \draw (0.1,-0.09)  arc[start~angle=180, 
-          end~angle=360,x~radius=0.06,y~radius=0.08] ;
-    \end{tikzpicture}
+%    \begin{tikzpicture}
+%      [ x=1.92ex, y=1.92ex, line ~ width=0.096ex* #1 , scale=#1 ]
+%        \draw [rounded ~ corners=0.001ex * #1]
+%          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
+%        \draw
+%          (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.45,y~radius=0.4] 
+%          -- ++(0,-0.2) -- ++(0,0.09)
+%          %% smaller
+%%          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24] ;
+%          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.15] ;
+%        %% Pommel
+%        \def\xmid{0.55}
+%        \def\ymid{-0.15}
+%        \def\shift{1.2}
+%        \def\xshift{\shift}
+%        \def\yshift{\shift}
+%        \def\r{0.06}
+%        \fill (\xmid,\ymid) circle[radius=\r];
+%        \foreach \angle in {0,30,60,...,360}
+%          {
+%            \draw ({\xmid+\r*cos(\angle)*\xshift},{\ymid+\r*sin(\angle)*\yshift}) 
+%              circle[radius=0.02019595];
+%          }
+%        %% Stars
+%        \foreach \xmid/\ymid in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
+%          {
+%            \draw [line~width=0.04ex* #1]
+%            \foreach \angle in { 0,45,90,...,360 }
+%              {
+%                (\xmid,\ymid) -- ({\xmid+0.07*cos(\angle)},{\ymid+0.07*sin(\angle)})
+%              }
+%            ;
+%          }
+%        %% Mouth
+%        \fill (0,-0.225) circle [radius=0.04];
+%        %% Eyes
+%        \draw (-0.1,-0.09)  arc[start~angle=0, end~angle=-180,
+%          x~radius=0.06,y~radius=0.08] ;
+%        \draw (0.1,-0.09)  arc[start~angle=180, 
+%          end~angle=360,x~radius=0.06,y~radius=0.08] ;
+%    \end{tikzpicture}
 
 
 %    \begin{tikzpicture}
