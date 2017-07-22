@@ -75,24 +75,37 @@
     \end{tikzpicture}
 
 
-
     \begin{tikzpicture}
       [ x=1.92ex, y=1.92ex, line ~ width=0.096ex* #1 , scale=#1 ]
         \draw [rounded ~ corners=0.001ex * #1]
           (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
-        \draw %[red]
+
+        \draw[red]
           (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.45,y~radius=0.4] 
           -- ++(0,-0.2)
           %% smaller
           arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24] ;
-        \draw
-          (-0.33,0) 
-          arc[start~angle=180,end~angle=90,x~radius=0.45,y~radius=0.4]  --
-          ++(0,0) .. controls ++(0,-0.05) and ++(0.05,-0.05) .. ++(0.3,-0.1)
-%          -- ++(0,-0.2)
-          %% smaller
-%          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24] 
-;
+
+  \def\xmid{0.12}
+  \def\ymid{0}
+  \def\xr{0.45}
+  \def\yr{0.4}
+  \def \one{\xmid-\xr,0}
+  \def \two{\xmid-1*\xr, 0.555*\yr}
+  \def \three{\xmid - 0.555*\xr,  1*\yr}
+  \def \four{\xmid,1*\yr}
+  \def \five{ \xmid + 0.555*\xr, 1*\yr}
+  \def \six{\xmid + 1*\xr, 0.555*\yr}
+  \def \seven{\xmid + \xr,0}
+
+  \draw %[rounded ~ corners=0.001ex * #1 ] 
+    (\one) .. controls (\two) and (\three) .. (\four)
+              .. controls (\five) and (\six) .. (\seven);
+
+          
+          
+          
+          
         %% Pommel
         \def\xmid{0.55}
         \def\ymid{-0.15}
@@ -125,64 +138,6 @@
           end~angle=360,x~radius=0.06,y~radius=0.08] ;
     \end{tikzpicture}
 
-
-%    \begin{tikzpicture}
-%      [ x=1.92ex, y=1.92ex, line ~ width=0.096ex* #1 , scale=#1 ]
-%        \draw [rounded ~ corners=0.001ex * #1]
-%          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] --cycle ;
-%          
-%        \draw 
-%          (-0.33,0) 
-%          [
-%            decoration=
-%              {
-%                snake,
-%                amplitude=0.1ex,
-%                segment~length = (1.92*0.45*3.14),%ex,
-%                %%
-%%                pre~length=0.2cm,
-%%                pre=curveto,
-%%                post~length=0.1cm,
-%              }, 
-%              decorate
-%          ]
-%          arc[start~angle=180,end~angle=0,x~radius=0.45,y~radius=0.4] 
-%          -- ++(0,-0.2)
-%          %% smaller
-%          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24] ;
-%        %% Pommel
-%        \def\xmid{0.55}
-%        \def\ymid{-0.15}
-%        \def\shift{1.2}
-%        \def\xshift{\shift}
-%        \def\yshift{\shift}
-%        \def\r{0.06}
-%        \fill (\xmid,\ymid) circle[radius=\r];
-%        \foreach \angle in {0,30,60,...,360}
-%          {
-%            \draw ({\xmid+\r*cos(\angle)*\xshift},{\ymid+\r*sin(\angle)*\yshift}) 
-%              circle[radius=0.02019595];
-%          }
-%        %% Stars
-%        \foreach \xmid/\ymid in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
-%          {
-%            \draw [line~width=0.04ex* #1]
-%            \foreach \angle in { 0,45,90,...,360 }
-%              {
-%                (\xmid,\ymid) -- ({\xmid+0.07*cos(\angle)},{\ymid+0.07*sin(\angle)})
-%              }
-%            ;
-%          }
-%        %% Mouth
-%        \fill (0,-0.225) circle [radius=0.04];
-%        %% Eyes
-%        \draw (-0.1,-0.09)  arc[start~angle=0, end~angle=-180,
-%          x~radius=0.06,y~radius=0.08] ;
-%        \draw (0.1,-0.09)  arc[start~angle=180, 
-%          end~angle=360,x~radius=0.06,y~radius=0.08] ;
-%    \end{tikzpicture}
-
-
   }
 
 \NewDocumentCommand { \testdraftKnobellauchpresse } { O{1} }
@@ -201,12 +156,35 @@
 %\Huge
 
 
-X\testSleepey[1.1]X
+X\testSleepey[20]X
 
 %\begin{tikzpicture}
 % \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm)
 %   arc [start angle=0, end angle=30, radius=3mm] -- cycle;
 %\end{tikzpicture}
+
+
+  \def\xrad{0.45*100}
+  \def\yrad{0.4*100}
+\begin{tikzpicture}[x=\xrad,y=\yrad]
+  \def \one{-1,0}
+  \def \two{-1,0.555}
+  \def \three{-0.555,0.9}
+  \def \four{0,1}
+  \def \five{0.6,0.95}
+  \def \six{1,0.555}
+  \def \seven{1,0}
+  \filldraw [gray] (\one) circle [radius=2pt]
+      (\two) circle [radius=2pt]
+      (\three) circle [radius=2pt]
+      (\four) circle [radius=2pt]
+      (\five) circle [radius=2pt]
+      (\six) circle [radius=2pt]
+      (\seven) circle [radius=2pt];
+  \draw [rounded corners=1ex ] (\one) .. controls (\two) and (\three) .. (\four)
+                 .. controls (\five) and (\six) .. (\seven);
+    \end{tikzpicture}
+
 
 
 \end{document}
