@@ -30,9 +30,6 @@
 
 \NewDocumentCommand { \testSleepey } { O{1} O{none} O{none} O{black} }
   {
-    %%
-    %% Fillcolor!
-    %%
     \begin{tikzpicture}
       [ x=2.04ex, y=2.04ex, line ~ width=0.102ex* #1 , scale=#1 ]
         \filldraw [fill=#3]
@@ -87,7 +84,7 @@
 
 \begin{document}
 
-X\testSleepey[1][white][blue][yellow!90!black] x 
+X\testSleepey[1][white][blue][yellow!95!black] x 
 
 \end{document}
 
