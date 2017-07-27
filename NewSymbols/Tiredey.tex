@@ -27,24 +27,35 @@
     \group_end: 
   }
 
-\NewDocumentCommand { \testSleepey } { O{1} }
+\NewDocumentCommand { \testSleepey } { O{1} O{none} }
   {
-                \begin{tikzpicture}
-                  [
-                    /@@ ,
-                    x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl , scale=#1
-                  ]
-                  \filldraw[fill=#2] (0,0) circle (0.33);
-                  \fill (-0.1,0.1) circle (0.05);
-                  \fill (0.1,0.1) circle (0.05);
-                  \draw (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
-                \end{tikzpicture}%
+    \begin{tikzpicture}
+      [
+        x=2.4ex, y=2.4ex, line ~ width=0.12ex * #1 , scale=#1
+      ]
+      %% Körper
+      \filldraw[fill=#2] (0,0) circle (0.33);
+      %% Augen
+      \def\angle{170}
+      \fill ({0.1+cos(\angle)*0.05},{0.1+sin(\angle)*0.05}) arc [ start~angle = \angle, end~angle={360+(180-\angle)}, radius=0.05 ];
+      \fill (-0.1,0.1) circle (0.05);
+      %% Mund
+%      \draw (-0.2,-0.08) .. controls (-0.0,-0.2) and (0.0,0) .. (0.2,-0.12);
+%      \draw (-0.2,-0.12) .. controls (-0.0,-0) and (0.0,-0.2) .. (0.2,-0.08);
+      \def\ybase{-0.12}
+      \def\ympl{0.05}
+      \draw (-0.2,\ybase) -- (-0.2,\ybase) sin (-0.1,{\ybase+\ympl}) cos (0,\ybase) 
+        sin (0.1,{\ybase-\ympl}) cos (0.2,\ybase) ;
+      %% Blasen
+      \draw[line~width=0.08ex*#1] (0.45,0.15) circle [radius=0.05];
+      \draw[line~width=0.08ex*#1] (0.65,0) circle [radius=0.05];
+      \draw[line~width=0.08ex*#1] (0.8,0.25) circle [radius=0.05];
+    \end{tikzpicture}%
   }
 
 \NewDocumentCommand { \testdraftSleepey } { O{1} }
   {
     \@@_create_draftbox:nn
-%      { 1.25ex*0.8 + 0.01*0.8ex + 0.8*4.25ex + 0.01*0.8ex + 0.2ex }
       { 2.0604ex * #1 } %% (0.33 + 0.55 + 0.06 + 0.02)*2.04 + 0.102
       { 1.5912ex * #1 }
   }
@@ -55,6 +66,6 @@
 
 \begin{document}
 
-X\testSleepey[9]X $ \mathbb{R}$
+X\testSleepey[1]X 
 \end{document}
 
