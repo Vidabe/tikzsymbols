@@ -28,19 +28,19 @@
     \group_end: 
   }
 
-\NewDocumentCommand { \testSleepey } { O{1} }
+\NewDocumentCommand { \testSleepey } { O{1} O{none} O{none} O{black} }
   {
     %%
     %% Fillcolor!
     %%
     \begin{tikzpicture}
       [ x=2.04ex, y=2.04ex, line ~ width=0.102ex* #1 , scale=#1 ]
-        \draw [rounded ~ corners=0.001ex * #1]
-          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] -- cycle ;
-        \draw
+        \filldraw [fill=#3]
           (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.45,y~radius=0.4] 
           -- ++(0,-0.2) 
-          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24] ;
+          arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24];
+        \filldraw [fill=#2,rounded ~ corners=0.001ex * #1]
+          (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] -- cycle ;
         %% Pommel
         \def\xmid{0.55}
         \def\ymid{-0.15}
@@ -57,7 +57,7 @@
         %% Stars
         \foreach \xmid/\ymid in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
           {
-            \draw [line~width=0.04ex* #1]
+            \draw [line~width=0.04ex* #1,#4]
             \foreach \angle in { 0,45,90,...,360 }
               {
                 (\xmid,\ymid) -- ({\xmid+0.07*cos(\angle)},{\ymid+0.07*sin(\angle)})
@@ -87,7 +87,7 @@
 
 \begin{document}
 
-X\testdraftSleepey x 
+X\testSleepey[1][white][blue][yellow!90!black] x 
 
 \end{document}
 
