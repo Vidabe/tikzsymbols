@@ -27,6 +27,10 @@
 
 \DeclareDocumentCommand \SchoedingersCat { O{1} m }
   {
+    \ifdim#2pt=1pt\relax
+      \Cat[#1]
+    \fi
+    \ifdim#2pt=0pt\relax
             \begin{tikzpicture}
               [
                 x=2.33ex,y=2.33ex, line ~ width=0.093ex* #1 ,scale=#1
@@ -37,24 +41,12 @@
                   \draw[rounded ~ corners=0.163ex* #1 ] 
                     (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
                 }
-                
-%              \fill (-0.15,.15) circle (0.05);
-%              \fill (0.15,.15) circle (0.05);
-%              \foreach \x in { 0.1 , -0.1 }
-%                \draw[rounded ~ corners=0.175ex* #1 ,yshift=-0.12ex] 
-%                   (0,0) -- (0,-0.1) -- (\x,-0.07);
-%              \draw[rounded ~ corners=.12ex* #1 ,yshift=-.15ex,
-%                       line ~ width=0.03em*0.9* #1 ] 
-%                 (-0.1,0.1) -- (0,0) -- (0.1,0.1) -- cycle ;
-
-%              \draw (-0.15,.15) arc[start ~angle=180, end ~angle=-90, radius=0.1]
-%                arc[start ~angle=90, end ~angle=360, radius=0.1] ;
-                
               \fill (0,-0.18)  circle [radius=0.04];
               \def\GGGGG{0.06}
               \def\RRRRRR{0.075}
-              \draw (0,\GGGGG) arc[start ~angle=-90, end ~angle=180, radius=\RRRRRR]
-               (0,\GGGGG) arc[start ~angle=90, end ~angle=360, radius=\RRRRRR];
+              \draw %[rounded~corners=0.15ex]
+                (0,\GGGGG) arc[start ~angle=-90, end ~angle=180, radius=\RRRRRR]
+                (0,\GGGGG) arc[start ~angle=90, end ~angle=360, radius=\RRRRRR];
                  
               \foreach \a/\b/\c/\d in 
                 { 0.1/0.25/0.35/0.4 , -0.1/-0.25/-0.35/-0.4 }
@@ -65,6 +57,63 @@
                        (\a,-0.05)..controls(\b,\yi)and(\c,\yii).. (\d,\yiii);           
                   }
             \end{tikzpicture}%
+        \fi
+    \ifdim#2pt=-1pt\relax
+            \begin{tikzpicture}
+              [
+                x=2.33ex,y=2.33ex, line ~ width=0.093ex * #1 ,scale=#1
+              ]
+              \draw (0,0) circle (0.3);
+              \foreach \xi/\xii in { 0.3/0.35 }
+                {
+                  \draw[rounded ~ corners=0.163ex* #1 ] 
+                    (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
+                }
+              \def\r{0.05}
+              \draw
+              \foreach \angle in { 45,135,225,315 }
+                {
+                   (-0.15,0.15) -- ({-0.15+\r*cos(\angle)},{0.15+\r*sin(\angle)})
+                }
+              ;
+              \draw
+              \foreach \angle in { 45,135,225,315 }
+                {
+                   (0.15,0.15) -- ({0.15+\r*cos(\angle)},{0.15+\r*sin(\angle)})
+                }
+              ;
+%              \fill (-0.15,.15) circle (0.05);
+%              \fill (0.15,.15) circle (0.05);
+              
+              \foreach \case in { 1,-1 }
+                \draw[rounded ~ corners=0.175ex* #1 ,yshift=-0.12ex] 
+                   (0,0) -- (0,-0.08)   -- ({0.09*\case},-0.12);
+                   
+%              \draw[rounded ~ corners=.12ex* #1 ,yshift=-.15ex,
+%                       line ~ width=0.03em*0.9* #1 ] 
+%                 (-0.1,0.1) -- (0,0) -- (0.1,0.1) -- cycle ;
+                 
+              \draw[rounded ~ corners=.12ex* #1 ,yshift=-.15ex,
+                       line ~ width=0.03em*0.9* #1 ] 
+                  (0,0) -- (0.1,0.07)  -- (0,0.1)-- (-0.1,0.07) -- cycle ;
+                 
+              \foreach \case in {-1,1}
+%              \foreach \a/\b/\c/\d in 
+%                { 0.1/0.25/0.35/0.4 , -0.1/-0.25/-0.35/-0.4 }
+                \foreach \yi/\yii/\yiii in 
+                  { 
+                    -0.02/-0.07/-0.13 , 
+                    -0.03/-0.16/-0.21 , 
+                    -0.065/-0.20/-0.30 
+                  }
+                  {
+                    \draw[line ~ width=0.035ex* #1 ]
+                       ({0.1*\case},-0.05) 
+                       .. controls ({0.18*\case},\yi) and ({0.28*\case},\yii) .. 
+                       ({0.33*\case},\yiii);           
+                  }
+            \end{tikzpicture}%
+        \fi
   }
 
 
@@ -72,8 +121,9 @@
 \ExplSyntaxOff
 
 \begin{document}
-
-\SchoedingersCat{} x
+\SchoedingersCat[5]{1}
+\SchoedingersCat[5]{0}
+\SchoedingersCat[5]{-1} x
 
 
 \end{document}
