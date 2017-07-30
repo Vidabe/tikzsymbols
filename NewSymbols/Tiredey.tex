@@ -27,7 +27,7 @@
     \group_end: 
   }
 
-\NewDocumentCommand { \testSleepey } { O{1} O{none} }
+\NewDocumentCommand { \testTiredey } { O{1} O{none} }
   {
     \begin{tikzpicture}
       [
@@ -36,7 +36,7 @@
       %% Körper
       \filldraw[fill=#2] (0,0) circle (0.33);
       %% Augen
-      \def\angle{170}
+      \def\angle{150}
       \fill ({0.1+cos(\angle)*0.05},{0.1+sin(\angle)*0.05}) arc [ start~angle = \angle, end~angle={360+(180-\angle)}, radius=0.05 ];
       \fill (-0.1,0.1) circle (0.05);
       %% Mund
@@ -53,7 +53,29 @@
     \end{tikzpicture}%
   }
 
-\NewDocumentCommand { \testdraftSleepey } { O{1} }
+\NewDocumentCommand { \testTiredeyII } { O{1} O{none} }
+  {
+    \begin{tikzpicture}
+      [
+        x=2.4ex, y=2.4ex, line ~ width=0.12ex * #1 , scale=#1
+      ]
+      %% Körper
+      \filldraw[fill=#2] (0,0) circle (0.33);
+      %% Augen
+      \draw (-0.2,0.17) -- ++(0.15,0);
+      \draw (0.2,0.17) -- ++(-0.15,0);
+      \draw (0,-0.075) ellipse [y~radius=0.15, x~radius=0.14];
+%      \draw (0,-0.075) circle [radius=0.15];
+%      \fill (-0.1,0.1) circle (0.05);
+%      \fill (0.1,0.1) circle (0.05);
+      %% Blasen
+      \draw[line~width=0.08ex*#1] (0.45,0.15) circle [radius=0.05];
+      \draw[line~width=0.08ex*#1] (0.65,0) circle [radius=0.05];
+      \draw[line~width=0.08ex*#1] (0.8,0.25) circle [radius=0.05];
+    \end{tikzpicture}%
+  }
+
+\NewDocumentCommand { \testdraftTiredey } { O{1} }
   {
     \@@_create_draftbox:nn
       { 2.0604ex * #1 } %% (0.33 + 0.55 + 0.06 + 0.02)*2.04 + 0.102
@@ -66,6 +88,8 @@
 
 \begin{document}
 
-X\testSleepey[1]X 
+X\testTiredey[1]X 
+
+X\testTiredeyII[1]X 
 \end{document}
 
