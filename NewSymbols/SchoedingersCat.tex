@@ -27,6 +27,13 @@
 
 \DeclareDocumentCommand \SchoedingersCat { O{1} m }
   {
+    \int_case:nnTF {#2}
+      {
+        { 1 } { }
+        { 0 } { }
+        { -1 } { }
+      }
+      {} {}
     \ifdim#2pt=1pt\relax
       \Cat[#1]
     \fi
@@ -39,14 +46,13 @@
               \foreach \xi/\xii in { 0.3/0.35 }
                 {
                   \draw[rounded ~ corners=0.163ex* #1 ] 
-                    (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
+                    (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  
+                    (0,\xi) -- (\xii,0.5) -- (\xi,0);
                 }
               \fill (0,-0.18)  circle [radius=0.04];
-              \def\GGGGG{0.06}
-              \def\RRRRRR{0.075}
               \draw
-                (0,\GGGGG) arc[start ~angle=-90, end ~angle=180, radius=\RRRRRR]
-                (0,\GGGGG) arc[start ~angle=90, end ~angle=360, radius=\RRRRRR];
+                (0,0.06) arc[start ~angle=-90, end ~angle=180, radius=0.075]
+                (0,0.06) arc[start ~angle=90, end ~angle=360, radius=0.075];
               \foreach \case in { 1,-1 }
                 \foreach \yi/\yii/\yiii in 
                   { 
@@ -70,22 +76,13 @@
               \foreach \case in { 1,-1 }
                 {
                   \draw[rounded ~ corners=0.163ex* #1 ] 
-                    ({\case*0.3},0) -- ({\case*0.35},0.5) 
-                    -- (0,0.3);
+                    ({\case*0.3},0) -- ({\case*0.35},0.5) -- (0,0.3);
                 }
-              \def\r{0.07}
-              \def\xmiddle{0.13}
-              \def\ymiddle{0.13}
               \draw
               \foreach \angle in { 45,135,225,315 }
                 {
-                   (-\xmiddle,\ymiddle) -- ({-\xmiddle+\r*cos(\angle)},{\ymiddle+\r*sin(\angle)})
-                }
-              ;
-              \draw
-              \foreach \angle in { 45,135,225,315 }
-                {
-                   (\xmiddle,\ymiddle) -- ({\xmiddle+\r*cos(\angle)},{\ymiddle+\r*sin(\angle)})
+                   (0.13,0.13) -- ({0.13+0.07*cos(\angle)},{0.13+0.07*sin(\angle)})
+                   (-0.13,0.13) -- ({-0.13+0.07*cos(\angle)},{0.13+0.07*sin(\angle)})
                 }
               ;
               \foreach \case in { 1,-1 }
