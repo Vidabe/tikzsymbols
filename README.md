@@ -50,6 +50,7 @@ Changes
 * v4.02     Added option "baseline=true/false" to fix a bug occuring with 'todonotes'
             New Symbols: \cChangey and \dcChangey
 * v4.03     New Emoticon: \(d)Sleepey.
+* v4.04     New Emoticon: \SchrodingersCat.
             
 
 Requirements 

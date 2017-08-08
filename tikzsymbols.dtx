@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 % !TEX encoding = UTF-8 Unicode
-% a
+%
 % \fi
 %
 % \iffalse meta-comment 
@@ -35,7 +35,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage[tree=false]{tikzsymbols} 
+\usepackage{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -616,6 +616,7 @@
 %     \Walley,
 %     \rWalley,
 %     \Cat,
+%     \SchrodingersCat,
 %     \Ninja,
 %     \Sleepey,
 %     \NiceReapey
@@ -661,12 +662,12 @@
 %   \Makro{Walley}& \oarg{scale}\oarg{color}\oarg{wall color} & \Walley \\
 %   \Makro{rWalley}\marginnote{\enquote{r} for \enquote{random generated cracks}.}& \oarg{scale}\oarg{color}\oarg{wall color} & \rWalley \\
 %   \Makro{Cat}& \oarg{scale}& \Cat \\
+%   \Makro{SchrodingersCat}& \oarg{scale}\marg{case}& \SchrodingersCat{0} \\
 %   \Makro{Ninja}& \oarg{scale}\oarg{color}\oarg{headband color}\oarg{eye color}& \Ninja \\
 %   \Makro{Sleepey}& \oarg{scale}\oarg{color}\oarg{cap color}\oarg{star color}& \Sleepey \\
 %   \Makro{NiceReapey} & \oarg{scale} & \NiceReapey \\
 %    \bottomrule
 % \end{longtable}
-%
 %
 %
 %
@@ -687,6 +688,10 @@
 % \verb|\textcolor{blue}{\Sey}| \textcolor{blue}{\Sey}
 %
 % \CreateExample{Sleepey} {[1][white][blue][yellow!95!black]}
+%
+% \CreateExample{SchrodingersCat} {{1}}
+% \CreateExample{SchrodingersCat} {{0}}
+% \CreateExample{SchrodingersCat} {{-1}}
 %
 % \CreateExample{Changey} {{-2}}
 % \CreateExample{Changey} {{-1.367}}
@@ -1136,7 +1141,9 @@
 % \changes{v4.02}{2017/05/14}{Added option 'baseline=true/false' to fix a some strange 
 % behaviors with \pkg{todonotes}.}
 % \changes{v4.02}{2017/05/14}{Defined the tikz-style '/\_\_tikzsymbols' which is used to implement 'baseline'.}
+%
 % \changes{v4.03}{2017/08/08}{New symbols: \cs{Sleepey} and \cs{dSleepey}.}
+% \changes{v4.04}{2017/08/08}{New symbol: \cs{SchrodingersCat}.}
 %
 % The first lines are always the same: What do I need, what is the
 % package named.
@@ -1157,7 +1164,7 @@
 \ProvidesExplPackage
   {tikzsymbols}
   {2018/08/08}
-  {4.03}
+  {4.04}
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
@@ -1457,6 +1464,20 @@
     obsolete. \ Please \ use \ the \ option \  'after-symbol' \ instead.
   }{
     \exp_not:N\tikzsymbolsaftersymbolinput  is \ not \ supported \ anymore.
+    \msg_see_documentation_text:n { tikzsymbols } 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ SchrodingersCat  }
+% \changes{v3.95}{2016/03/20}{New}
+%    \begin{macrocode}
+\msg_new:nnnn { tikzsymbols } { SchrodingersCat  } 
+  {  
+    \SchrodingersCat\ only \ accepts \ '-1' \ (dead), \ '0'\ (unknown)\ or \ '1'\
+    (alive) \ for \ its \ mandatroy \ argument. \ You \ have \ given \ '#1'.
+  }{
+    Your \ input \ number \ is \ not \ allowed.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
 %    \end{macrocode}
@@ -4156,9 +4177,96 @@
 %\end{macro}
 %
 %
-%
-%
-%
+% \begin{macro}{ \@@_Cat:n, \@@_Cat_unknown:n, \@@_Cat_dead:n }
+%    \begin{macrocode}
+\cs_new:Npn \@@_Cat:n #1 
+  {
+    \draw (0,0) circle (0.3);
+    \foreach \xi/\xii in { 0.3/0.35 }
+      {
+        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
+          (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
+      }
+    \fill (-0.15,.15) circle (0.05);
+    \fill (0.15,.15) circle (0.05);
+    \foreach \x in { 0.1 , -0.1 }
+      \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_tl ,yshift=-0.12ex] 
+        (0,0) -- (0,-0.1) -- (\x,-0.095);
+    \draw[rounded ~ corners=.12ex* \l_@@_scale_abs_tl ,yshift=-.15ex,
+      line ~ width=0.03em*0.9* \l_@@_scale_abs_tl ] 
+      (-0.1,0.1) -- (0,0) -- (0.1,0.1) -- cycle ;
+    \foreach \a/\b/\c/\d in 
+      { 0.1/0.25/0.35/0.4 , -0.1/-0.25/-0.35/-0.4 }
+        \foreach \yi/\yii/\yiii in 
+          { 0/0/-0.05 , -0.01/-0.09/-0.14 , -0.045/-0.13/-0.23 }
+          {
+            \draw[line ~ width=0.035ex* \l_@@_scale_abs_tl ]
+              (\a,-0.05)..controls(\b,\yi)and(\c,\yii).. (\d,\yiii);           
+          }
+  }
+\cs_new:Npn \@@_Cat_unknown:n #1 
+  {
+    \draw (0,0) circle (0.3);
+    \foreach \xi/\xii in { 0.3/0.35 }
+      {
+        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
+          (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  
+          (0,\xi) -- (\xii,0.5) -- (\xi,0);
+      }
+    \fill (0,-0.18)  circle [radius=0.04];
+    \draw
+      (0,0.06) arc[start ~angle=-90, end ~angle=180, radius=0.075]
+      (0,0.06) arc[start ~angle=90, end ~angle=360, radius=0.075];
+    \foreach \case in { 1,-1 }
+      \foreach \yi/\yii/\yiii in 
+        { 
+          -0.01/-0.05/-0.08 , 
+          -0.02/-0.12/-0.16 , 
+          -0.055/-0.15/-0.25 
+        }{
+          \draw[line ~ width=0.035ex* \l_@@_scale_abs_tl ]
+            ({0.1*\case},-0.05)..controls({\case*0.25},\yi)
+            and({0.35*\case},\yii).. ({0.4*\case},\yiii);           
+        }
+  }
+\cs_new:Npn \@@_Cat_dead:n #1 
+  {
+              \draw (0,0) circle (0.3);
+              \foreach \case in { 1,-1 }
+                {
+                  \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
+                    ({\case*0.3},0) -- ({\case*0.35},0.5) -- (0,0.3);
+                }
+              \draw
+              \foreach \angle in { 45,135,225,315 }
+                {
+                   (0.13,0.13) -- ({0.13+0.07*cos(\angle)},{0.13+0.07*sin(\angle)})
+                   (-0.13,0.13) -- ({-0.13+0.07*cos(\angle)},{0.13+0.07*sin(\angle)})
+                }
+              ;
+              \foreach \case in { 1,-1 }
+                \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_tl ,yshift=-0.12ex] 
+                   (0,0) -- (0,-0.08)   -- ({0.09*\case},-0.12);
+              \draw[rounded ~ corners=.12ex* \l_@@_scale_abs_tl ,yshift=-.15ex,
+                       line ~ width=0.03em*0.9* \l_@@_scale_abs_tl ] 
+                  (0,0) -- (0.1,0.07)  -- (0,0.1)-- (-0.1,0.07) -- cycle ;
+              \foreach \case in {-1,1}
+                \foreach \yi/\yii/\yiii in 
+                  { 
+                    -0.04/-0.09/-0.15 , 
+                    -0.05/-0.18/-0.23,
+                    -0.085/-0.22/-0.31
+                  }
+                  {
+                    \draw[line ~ width=0.035ex* \l_@@_scale_abs_tl ]
+                       ({0.1*\case},-0.05) 
+                       .. controls ({0.18*\case},\yi) and ({0.28*\case},\yii) .. 
+                       ({0.33*\case},\yiii);           
+                  }
+              \draw [transparent,line ~ width=0.035ex*\l_@@_scale_abs_tl] (-0.4,0) -- (0.4,0);
+  }
+%    \end{macrocode}
+% \end{macro}
 %
 %\begin{macro}{ \Cat }
 % It is a Ket! (sic!)
@@ -4179,28 +4287,7 @@
                 /@@ ,
                 x=2.33ex,y=2.33ex, line ~ width=0.093ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \draw (0,0) circle (0.3);
-              \foreach \xi/\xii in { 0.3/0.35 }
-                {
-                  \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
-                    (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
-                }
-              \fill (-0.15,.15) circle (0.05);
-              \fill (0.15,.15) circle (0.05);
-              \foreach \x in { 0.1 , -0.1 }
-                \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_tl ,yshift=-0.12ex] 
-                   (0,0) -- (0,-0.1) -- (\x,-0.095);
-              \draw[rounded ~ corners=.12ex* \l_@@_scale_abs_tl ,yshift=-.15ex,
-                       line ~ width=0.03em*0.9* \l_@@_scale_abs_tl ] 
-                 (-0.1,0.1) -- (0,0) -- (0.1,0.1) -- cycle ;
-              \foreach \a/\b/\c/\d in 
-                { 0.1/0.25/0.35/0.4 , -0.1/-0.25/-0.35/-0.4 }
-                \foreach \yi/\yii/\yiii in 
-                  { 0/0/-0.05 , -0.01/-0.09/-0.14 , -0.045/-0.13/-0.23 }
-                  {
-                    \draw[line ~ width=0.035ex* \l_@@_scale_abs_tl ]
-                       (\a,-0.05)..controls(\b,\yi)and(\c,\yii).. (\d,\yiii);           
-                  }
+              \@@_Cat:n {#1}
             \end{tikzpicture}%
           }
       }
@@ -4208,6 +4295,40 @@
 %    \end{macrocode}
 %\end{macro}
 %
+%
+%
+%\begin{macro}{ \SchrodingersCat }
+% It is a Ket! (sic!)
+%    \begin{macrocode}
+\@@_Declare_Document_Command:nnn { SchrodingersCat } { O{1} m }
+  {
+    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { SchrodingersCat_#1_#2 }
+      {
+        \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \g_@@_if_opt_draft_bool
+          {
+            \@@_create_draftbox:nn 
+              { 1.899ex * \l_@@_scale_abs_tl } 
+              { 1.957ex * \l_@@_scale_abs_tl } 
+          }{
+            \begin{tikzpicture}
+              [
+                /@@ ,
+                x=2.33ex,y=2.33ex, line ~ width=0.093ex* \l_@@_scale_abs_tl ,scale=#1
+              ]
+              \int_case:nnF {#2}
+                {
+                  { 1 } { \@@_Cat:n {#1} }
+                  { 0 } { \@@_Cat_unknown:n {#1} }
+                  { -1 } { \@@_Cat_dead:n {#1} }
+                }
+                { \msg_error:nnn { tikzsymbols } { SchrodingersCat } {#2} }
+            \end{tikzpicture}%
+          }
+      }
+  }
+%    \end{macrocode}
+%\end{macro}
 %
 %
 %
