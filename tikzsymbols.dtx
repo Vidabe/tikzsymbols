@@ -35,7 +35,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage{tikzsymbols} 
+\usepackage[tree=false]{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -617,6 +617,7 @@
 %     \rWalley,
 %     \Cat,
 %     \Ninja,
+%     \Sleepey,
 %     \NiceReapey
 %  }
 %
@@ -661,6 +662,7 @@
 %   \Makro{rWalley}\marginnote{\enquote{r} for \enquote{random generated cracks}.}& \oarg{scale}\oarg{color}\oarg{wall color} & \rWalley \\
 %   \Makro{Cat}& \oarg{scale}& \Cat \\
 %   \Makro{Ninja}& \oarg{scale}\oarg{color}\oarg{headband color}\oarg{eye color}& \Ninja \\
+%   \Makro{Sleepey}& \oarg{scale}\oarg{color}\oarg{cap color}\oarg{star color}& \Sleepey \\
 %   \Makro{NiceReapey} & \oarg{scale} & \NiceReapey \\
 %    \bottomrule
 % \end{longtable}
@@ -683,6 +685,8 @@
 % \verb|\colorbox{yellow}{\Winkey \Annoey[-1]\Neutrey}|\colorbox{yellow}{\Winkey \Annoey [-1]\Neutrey}
 % 
 % \verb|\textcolor{blue}{\Sey}| \textcolor{blue}{\Sey}
+%
+% \CreateExample{Sleepey} {[1][white][blue][yellow!95!black]}
 %
 % \CreateExample{Changey} {{-2}}
 % \CreateExample{Changey} {{-1.367}}
@@ -731,6 +735,7 @@
 %     \dVomey,
 %     \dNursey,
 %     \dTongey,
+%     \dSleepey,
 %     \olddWinkey
 %   }
 %
@@ -776,6 +781,7 @@
 %   \Makro{dWalley}& \oarg{scale}\oarg{color}\oarg{wall color} & \dWalley  \\
 %   \Makro{drWalley}\marginnote{\enquote{r} for \enquote{random generated cracks}.}& \oarg{scale}\oarg{color}\oarg{wall color}& \drWalley \\
 %   \Makro{dNinja}& \oarg{scale}\oarg{color}\oarg{headband color}\oarg{eye color} & \dNinja  \\
+%   \Makro{dSleepey}& \oarg{scale}\oarg{color}\oarg{cap color}\oarg{star color}& \dSleepey \\
 %    \bottomrule
 % \end{longtable}
 %
@@ -1130,6 +1136,7 @@
 % \changes{v4.02}{2017/05/14}{Added option 'baseline=true/false' to fix a some strange 
 % behaviors with \pkg{todonotes}.}
 % \changes{v4.02}{2017/05/14}{Defined the tikz-style '/\_\_tikzsymbols' which is used to implement 'baseline'.}
+% \changes{v4.03}{2017/08/08}{New symbols: \cs{Sleepey} and \cs{dSleepey}.}
 %
 % The first lines are always the same: What do I need, what is the
 % package named.
@@ -1149,8 +1156,8 @@
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2017/05/14}
-  {4.02}
+  {2018/08/08}
+  {4.03}
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
@@ -2772,7 +2779,8 @@
                 (3,0.75) -- (3.25,0.6) -- (3.75,0.7) -- (4.25,0.6)
                 (3,0.25) -- ( 3.25,0.4 ) -- (3.75,0.3) -- (4.25,0.4);
               \draw (4.25,0.5) ellipse [x ~ radius=0.01, y ~ radius=0.1];
-              \draw[rounded ~ corners=0.15ex*#1] (-0,0.75) -- (-0.25,0.6) -- (-0.75,0.7)
+              \draw[rounded ~ corners=0.15ex*\l_@@_scale_abs_tl] 
+                (-0,0.75) -- (-0.25,0.6) -- (-0.75,0.7)
                 -- (-1.25,0.6)
                 (-0,0.25) -- ( -0.25,0.4 ) -- (-0.75,0.3) -- (-1.25,0.4);
               \draw (-1.25,0.5) ellipse [x ~ radius=0.01, y ~ radius=0.1];
@@ -4267,7 +4275,7 @@
 %\end{macro}
 %
 %
-%\begin{macro}{ \Ninja }
+%\begin{macro}{ \dNinja }
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dNinja } { O{1} O{black} O{red} O{white} }
   {
@@ -4329,6 +4337,128 @@
 %
 %
 %
+%
+% \begin{macro}{ \Sleepey }
+% It is sleeping.
+%    \begin{macrocode}
+\@@_Declare_Document_Command:nnn { Sleepey } { O{1} O{none} O{none} O{black} }
+  {
+    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sleepey_#1_#2_#3_#4 }
+      {
+        \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \g_@@_if_opt_draft_bool
+          {
+            \@@_create_draftbox:nn 
+              { 2.084866ex * \l_@@_scale_abs_tl } 
+              { 1.5912ex * \l_@@_scale_abs_tl } 
+          }{
+            \begin{tikzpicture}
+              [
+                /@@ ,
+                x=2.04ex, y=2.04ex, line ~ width=0.102ex* \l_@@_scale_abs_tl ,
+                scale=#1
+              ]
+%              %% Hat
+              \filldraw [fill=#3]
+                (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.45,y~radius=0.4] 
+                -- ++(0,-0.2) 
+                arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24];
+%              %% face
+              \filldraw [fill=#2,rounded ~ corners=0.001ex * \l_@@_scale_abs_tl]
+                (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] -- cycle ;
+%              %% Pommel
+              \fill (0.55,-0.15) circle [radius=0.06];
+              \foreach \l_@@_angle_tl in {0,30,60,...,360}
+                {
+                  \draw ({0.55+0.06*cos(\l_@@_angle_tl)*1.2},
+                    {-0.15+0.06*sin(\l_@@_angle_tl)*1.2}) 
+                    circle[radius=0.02];
+                }
+%              %% Stars
+              \foreach \l_tmpa_tl/\l_tmpb_tl in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
+                {
+                  \draw [line~width=0.04ex*\l_@@_scale_abs_tl ,#4]
+                  \foreach \l_@@_angle_tl in { 0,45,90,...,360 }
+                    {
+                      (\l_tmpa_tl,\l_tmpb_tl) -- ({\l_tmpa_tl+0.07*cos(\l_@@_angle_tl)},
+                      {\l_tmpb_tl+0.07*sin(\l_@@_angle_tl)})
+                    }
+                  ;
+                }
+%              %% Mouth
+              \fill (0,-0.225) circle [radius=0.04];
+%              %% Eyes
+              \draw (-0.1,-0.09)  arc[start~angle=0, end~angle=-180,
+                x~radius=0.06,y~radius=0.08] ;
+              \draw (0.1,-0.09)  arc[start~angle=180, 
+                end~angle=360,x~radius=0.06,y~radius=0.08] ;
+            \end{tikzpicture}%
+          }
+      }
+  }
+%    \end{macrocode}
+%\end{macro}
+%
+% \begin{macro}{ \dSleepey }
+% It is sleeping.
+%    \begin{macrocode}
+\@@_Declare_Document_Command:nnn { dSleepey } { O{1} O{yellow} O{blue} O{black} }
+  {
+    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSleepey_#1_#2_#3_#4 }
+      {
+        \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \g_@@_if_opt_draft_bool
+          {
+            \@@_create_draftbox:nn 
+              { 2.084866ex * \l_@@_scale_abs_tl } 
+              { 1.5912ex * \l_@@_scale_abs_tl } 
+          }{
+            \begin{tikzpicture}
+              [
+                /@@ ,
+                x=2.04ex, y=2.04ex, line ~ width=0.102ex* \l_@@_scale_abs_tl ,
+                scale=#1
+              ]
+%              %% Hat
+              \shade [ball ~ color=#3]
+                (-0.33,0) arc[start~angle=180,end~angle=0,x~radius=0.45,y~radius=0.4] 
+                -- ++(0,-0.2) 
+                arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24];
+%              %% face
+              \shade [ball ~ color=#2,rounded ~ corners=0.001ex * \l_@@_scale_abs_tl]
+                (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] -- cycle ;
+%              %% Pommel
+              \fill (0.55,-0.15) circle [radius=0.06];
+              \foreach \l_@@_angle_tl in {0,30,60,...,360}
+                {
+                  \draw ({0.55+0.06*cos(\l_@@_angle_tl)*1.2},
+                    {-0.15+0.06*sin(\l_@@_angle_tl)*1.2}) 
+                    circle[radius=0.02];
+                }
+%              %% Stars
+              \foreach \l_tmpa_tl/\l_tmpb_tl in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
+                {
+                  \draw [line~width=0.04ex* \l_@@_scale_abs_tl,#4]
+                  \foreach \l_@@_angle_tl in { 0,45,90,...,360 }
+                    {
+                      (\l_tmpa_tl,\l_tmpb_tl) -- ({\l_tmpa_tl+0.07*cos(\l_@@_angle_tl)},
+                      {\l_tmpb_tl+0.07*sin(\l_@@_angle_tl)})
+                    }
+                  ;
+                }
+%              %% Mouth
+              \fill (0,-0.225) circle [radius=0.04];
+%              %% Eyes
+              \draw (-0.1,-0.09)  arc[start~angle=0, end~angle=-180,
+                x~radius=0.06,y~radius=0.08] ;
+              \draw (0.1,-0.09)  arc[start~angle=180, 
+                end~angle=360,x~radius=0.06,y~radius=0.08] ;
+            \end{tikzpicture}%
+          }
+      }
+  }
+%    \end{macrocode}
+%\end{macro}
 %
 %
 %

@@ -49,6 +49,7 @@ Changes
             	New Symbol: \rollingpin (and of course the german equivalent \Nudelholz)
 * v4.02     Added option "baseline=true/false" to fix a bug occuring with 'todonotes'
             New Symbols: \cChangey and \dcChangey
+* v4.03     New Emoticon: \(d)Sleepey.
             
 
 Requirements 
