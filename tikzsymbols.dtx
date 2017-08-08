@@ -1254,7 +1254,10 @@
 \tl_gset:Nn \l_@@_tikzsymbols_after_symbol_tl { \xspace }
 %    \end{macrocode}
 %
-%
+%    \begin{macrocode}
+\fp_new:N \l_@@_global_scale_fp
+\fp_set:Nn \l_@@_global_scale_fp { 1.0 }
+%    \end{macrocode}
 %
 %
 % \begin{macro}{\tikzsymbolsaftersymbolinput}
@@ -1630,6 +1633,12 @@
     baseline / false .code:n = { \pgfkeys{ /@@/.style={ } } } ,
     baseline .default:n = { true } ,
 %    \end{macrocode}
+%
+% \begin{macro}{ global-scale }
+%    \begin{macrocode}
+    global-scale .fp_set:N: = \l_@@_global_scale_fp ,
+    global-scale .default:n = { 1 } ,
+%    \end{macrocode}
 % \end{macro}
 %
 %
@@ -1799,6 +1808,15 @@
       { \tl_set:Nn \ProcessedArgument {#1} }
       { \tl_set:Nn \ProcessedArgument {#2} }
   }
+\cs_new:Npn \@@_scale_if_empty:Tn #1#2
+  {
+    \fp_set:Nn \l_tmpa_fp 
+      {
+        \tl_if_empty:nTF {#2} {#1} {#2}
+        * \l_@@_global_scale_fp 
+      }
+    \tl_set:NV \ProcessedArgument \l_tmpa_fp
+  }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1850,6 +1868,17 @@
 \cs_new_protected:Npn \@@_parse_option_type_O:w #1#2
   {
     \clist_put_right:Nn \l_tmpa_clist { >{ \@@_if_empty:Tn {#2} } O{#2}  }
+    \@@_parse_command_options:N
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ \@@_parse_option_type_S:w }
+%   The |S|  stands for \enquote{Scale}.
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_parse_option_type_S:w #1
+  {
+    \clist_put_right:Nn \l_tmpa_clist { >{ \@@_if_empty:Tn {#2} } O{1}  }
     \@@_parse_command_options:N
   }
 %    \end{macrocode}
