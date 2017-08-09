@@ -1,8 +1,6 @@
 % \iffalse meta-comment
 % !TEX encoding = UTF-8 Unicode
 %
-% Entferne some von den token listen.
-%
 % \fi
 %
 % \iffalse meta-comment 
@@ -488,16 +486,24 @@
 % \end{function}
 % 
 %
-% \subsubsection{global-scale (number)}
+% \subsubsection{global-scale (\arg{number}) \\ symbol-scale (\arg{symbol=number,\dots})}
 % \label{sec:global-scale}
 % 
-% \begin{function}{global-scale}
+% \begin{function}{global-scale, symbol-scale}
 %   \begin{syntax}
 %     global-scale = \marg{number}
+%     symbol-scale = \marg{symbol=number,\dots}
 %   \end{syntax}
-%   This option can be used to scale \emph{all} commands by \marg{number}.
-%   If a local scale is given (e.g.\ \verb|\Smiley[2]|) and \opt{global-scale=3}
+%   \opt{global-scale} can be used to scale \emph{all} commands by \marg{number}.
+%
+%   If only a specific symbol should be scaled globally you can use the second option.
+%
+%  Examples: If only \cs{Schneebesen} and \cs{Smiley} should be scaled you may use
+%  \verb|\tikzsymbolsset{symbol-scale={ Schneebesen=2, Smiley= 1.5 }}|.
+%
+%   If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
 %   the resulting scaling will be $2\cdot=6$.
+%
 % \end{function}
 % 
 % 
