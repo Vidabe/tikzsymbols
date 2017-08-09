@@ -66,6 +66,7 @@
 
 \newcommand{\Package}{\pkg}
 \newcommand{\Option}{\texttt}
+\newcommand{\opt}{\texttt}
 \newcommand{\Makro}{\cs}
 \newcommand{\makrouse}[1]{\use:c{#1}}
 \renewcommand{\arg}[1]{\texttt{<#1>}}
@@ -491,6 +492,20 @@
 % \end{function}
 % 
 %
+% \subsubsection{global-scale (number)}
+% \label{sec:global-scale}
+% 
+% \begin{function}{global-scale}
+%   \begin{syntax}
+%     global-scale = \marg{number}
+%   \end{syntax}
+%   This option can be used to scale \emph{all} commands by \marg{number}.
+%   If a local scale is given (e.g.\ \verb|\Smiley[2]|) and \opt{global-scale=3}
+%   the resulting scaling will be $2\cdot=6$.
+% \end{function}
+% 
+% 
+%
 % \subsubsection{baseline (true/false)}
 % \label{sec:baseline}
 % 
@@ -503,7 +518,6 @@
 %   the tikz option \Option{baseline=default}. If you do not want this, set this option
 %   to \Option{false}. It is set to \Option{true} by default.
 % \end{function}
-% 
 %
 %
 %
