@@ -37,7 +37,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage{tikzsymbols} 
+\usepackage[draft=true]{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -78,12 +78,6 @@
 \vbadness=\maxdimen
 \hbadness=\maxdimen
 
-\cs_set_eq:NN \Manipulate \exp_args:Nnx
-
-\cs_new:Npn \Manipulated
-  {
-    \clist_use:Nn \g_tikzsymbols_list_of_other_commands_clist { , \space ;;;;;\textbackslash }
-  }
 
 \cs_new:Npn \CreateExample #1#2
   {
@@ -1336,18 +1330,10 @@
 %
 % \begin{macro}
 %  {
-%    \g_tikzsymbols_list_of_commands_clist ,
-%    \g_tikzsymbols_list_of_english_commands_clist ,
 %  }
 %
 %    Store every command defined by this package. I may delete them.
 %    \begin{macrocode}
-\clist_new:N \l_@@_tmpa_clist
-\clist_new:N \g_tikzsymbols_list_of_commands_clist
-\clist_new:N \g_tikzsymbols_list_of_english_commands_clist
-\clist_new:N \g_tikzsymbols_list_of_cooking_commands_clist
-\clist_new:N \g_tikzsymbols_list_of_emoticons_commands_clist
-\clist_new:N \g_tikzsymbols_list_of_other_commands_clist
 \clist_new:N \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist
 %    \end{macrocode}
 % \end{macro}
@@ -1933,8 +1919,6 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_Declare_Document_Command:nnn #1#2#3
   {
-    \clist_put_right:Nn \g_tikzsymbols_list_of_commands_clist {#1}
-    \clist_put_right:Nn \l_@@_tmpa_clist {#1}
     \@@_parse_command_options:n {#2}
     \exp_args:Ncx \DeclareDocumentCommand 
       { \g_@@_command_prefix_tl #1 } 
@@ -1985,9 +1969,6 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_let:nn #1#2
   {
-    \clist_put_right:Nn \g_tikzsymbols_list_of_commands_clist {#1}
-    \clist_put_right:Nn \g_tikzsymbols_list_of_english_commands_clist {#1}
-    \clist_put_right:Nn \l_@@_tmpa_clist {#1}
     \cs_set_eq:cc { \g_@@_command_prefix_tl #1 } { \g_@@_command_prefix_tl #2 }
   }
 %    \end{macrocode}
@@ -2880,11 +2861,6 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% I may  will remove this, but for testing a list of commands is useful.
-%    \begin{macrocode}
-\clist_set_eq:NN \g_tikzsymbols_list_of_cooking_commands_clist \l_@@_tmpa_clist
-\clist_clear:N \l_@@_tmpa_clist
-%    \end{macrocode}
 %
 %
 %
@@ -4690,10 +4666,6 @@
 %    \end{macrocode}
 %\end{macro}
 %
-%    \begin{macrocode}
-\clist_set_eq:NN \g_tikzsymbols_list_of_emoticons_commands_clist \l_@@_tmpa_clist
-\clist_clear:N \l_@@_tmpa_clist
-%    \end{macrocode}
 %
 %
 % \subsection{Other symbols(s)}
@@ -5277,10 +5249,6 @@
 %\end{macro}
 %
 %
-%    \begin{macrocode}
-\clist_set_eq:NN \g_tikzsymbols_list_of_other_commands_clist \l_@@_tmpa_clist
-\clist_clear:N \l_@@_tmpa_clist
-%    \end{macrocode}
 %
 % \subsection{Trees}
 % Many great ideas are stolen.  Don't know who said that, but it's
