@@ -1353,8 +1353,7 @@
   { 
     Option \ '#1' \ is \ obsolete. \ 
     Please \ use \ '#2' \ instead. 
-  }
-  {
+  }{
     The \ option \ you \ used \ is \ obsolete.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
@@ -1368,8 +1367,7 @@
   {  
     Undefined \ Control \ sequence: \ '#1'. \
     Did \ you \ write \ the \ name \ correctly?
-  } 
-  { 
+  }{ 
     The \ command \ is \ not \ defined.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
@@ -1500,6 +1498,21 @@
     is \ '#1'.
   }{
     I \ apologize \ for \ that.
+    \msg_see_documentation_text:n { tikzsymbols } 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ package-option }
+% \changes{v4.05}{2017/08/09}{New}
+%    \begin{macrocode}
+\msg_new:nnnn { tikzsymbols } { package-option } 
+  {  
+    The \ option \ '#1' \ is \ only \ allowed \ as \ a \ package
+    \ option.
+  }{
+    This \ option \ is \ not \ allowed \ to \ be \ set \
+    using \ \tikzsymbolsset.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
 %    \end{macrocode}
@@ -5502,7 +5515,20 @@
 %    \begin{macrocode}
 \NewDocumentCommand \tikzsymbolsset { m }
   {
-    \keys_set_groups:nnn { tikzsymbols } { document } {#1}
+    \keys_set_filter:nnnN { tikzsymbols } { package } {#1} \l_tmpa_tl
+    \tl_if_empty:NF \l_tmpa_tl
+      {
+        \keyval_parse:NNV \@@_msg_I:n \@@_msg_II:nn \l_tmpa_tl
+      }
+  }
+\cs_generate_variant:Nn \keyval_parse:NNn { NNV }
+\cs_new:Npn \@@_msg_I:n #1
+  {
+    \@@_msg_II:nn {#1} {}
+  }
+\cs_new:Npn \@@_msg_II:nn #1#2
+  {
+    \msg_error:nnn { tikzsymbols } { package-option } {#1}
   }
 %\AtBeginDocument
 %  {
