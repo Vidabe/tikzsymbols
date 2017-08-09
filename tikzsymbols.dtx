@@ -1,6 +1,8 @@
 % \iffalse meta-comment
 % !TEX encoding = UTF-8 Unicode
 %
+% Entferne some von den token listen.
+%
 % \fi
 %
 % \iffalse meta-comment 
@@ -578,7 +580,6 @@
 %  \MapinTable   \bottomrule
 % \end{longtable}
 %
-% 
 % 
 %
 %
@@ -1473,7 +1474,6 @@
 % \end{macro}
 %
 % \begin{macro}{ SchrodingersCat  }
-% \changes{v3.95}{2016/03/20}{New}
 %    \begin{macrocode}
 \msg_new:nnnn { tikzsymbols } { SchrodingersCat  } 
   {  
@@ -1481,6 +1481,22 @@
     (alive) \ for \ its \ mandatroy \ argument. \ You \ have \ given \ '#1'.
   }{
     Your \ input \ number \ is \ not \ allowed.
+    \msg_see_documentation_text:n { tikzsymbols } 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ internal-message  }
+% \changes{v4.05}{2017/08/09}{New}
+%    \begin{macrocode}
+\msg_new:nnnn { tikzsymbols } { internal-message  } 
+  {  
+    This \ is \ an \ internal \ message \ and \ means \ that \
+    I \ (the \ package \ author) \ fucked \ up. \ If \ you \
+    stumble \ across \ this, \ the \ description \ message \
+    is \ '#1'.
+  }{
+    I \ apologize \ for \ that.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
 %    \end{macrocode}
@@ -1636,7 +1652,7 @@
 %
 % \begin{macro}{ global-scale }
 %    \begin{macrocode}
-    global-scale .fp_set:N: = \l_@@_global_scale_fp ,
+    global-scale .fp_set:N = \l_@@_global_scale_fp ,
     global-scale .default:n = { 1 } ,
 %    \end{macrocode}
 % \end{macro}
@@ -1845,7 +1861,11 @@
     \quark_if_recursion_tail_stop:N #1
     \tl_if_eq:NNTF #1 O
       { \@@_parse_option_type_O:w #1 }
-      { \@@_parse_option_type:w #1  }
+      { 
+        \tl_if_eq:NNTF #1 S
+          { \@@_parse_option_type_S:w #1 }
+          { \@@_parse_option_type:w #1 }
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1855,6 +1875,11 @@
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_parse_option_type:w #1
   {
+    \str_case:nnF {#1}
+      {
+        { m } { }
+      }
+      { \msg_error:nnn { tikzsymbols } { internal-message } { internal-parsing } }
     \clist_put_right:Nn \l_tmpa_clist {#1}
     \@@_parse_command_options:N
   }
@@ -1878,7 +1903,7 @@
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_parse_option_type_S:w #1
   {
-    \clist_put_right:Nn \l_tmpa_clist { >{ \@@_if_empty:Tn {#2} } O{1}  }
+    \clist_put_right:Nn \l_tmpa_clist { >{ \@@_if_empty:Tn { 1 } } O{ 1 }  }
     \@@_parse_command_options:N
   }
 %    \end{macrocode}
@@ -2143,7 +2168,7 @@
 %   the symbol doesn't change\footnote{English, B\"a\"ahh!}. The
 %   symbol is created using the 'tikzpicture' environment. Yup.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Kochtopf } { pot } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Kochtopf } { pot } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Kochtopf_#1 }
       {
@@ -2193,7 +2218,7 @@
 %   I think I wont add text to every command because I think a
 %   description is not really necessary.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Bratpfanne } { fryingpan } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Bratpfanne } { fryingpan } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Bratpfanne_#1 }
       {
@@ -2241,7 +2266,7 @@
 %
 % \begin{macro}{ \Schneebesen , \eggbeater }
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Schneebesen } { eggbeater } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Schneebesen } { eggbeater } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Schneebesen_#1 }
       {
@@ -2281,7 +2306,7 @@
 % of trigonometric functions and \Package{tikz}. Wasn't really
 % necessary, but I did it anyway.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Sieb } { sieve } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Sieb } { sieve } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sieb_#1 }
       {
@@ -2406,7 +2431,7 @@
 % \begin{macro}{ \Purierstab , \blender }
 %   Ein P\"urierstab \dots\ ja.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Purierstab } { blender } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Purierstab } { blender } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Purierstab_#1 }
       {
@@ -2440,7 +2465,7 @@
 % \begin{macro}{ \Dreizack , \trident }
 % A trident, an important tool to check if potatoes are cooked enough.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Dreizack } { trident } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Dreizack } { trident } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Dreizack_#1 }
       {
@@ -2474,7 +2499,7 @@
 % \begin{macro}{ \Backblech , \bakingplate }
 %   With holes.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Backblech } { bakingplate } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Backblech } { bakingplate } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Backblech_#1 }
       {
@@ -2510,7 +2535,7 @@
 % \begin{macro}{ \Ofen , \oven }
 %   Ein Ofen. Sieht eigentlich so aus wie der zu Hause.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Ofen } { oven } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Ofen } { oven } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Ofen_#1 }
       {
@@ -2545,7 +2570,7 @@
 % \begin{macro}{ \Pfanne , \pan }
 % A pan with a wave-decoration. Resembles the one at home.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Pfanne } { pan } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Pfanne } { pan } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Pfanne_#1 }
       {
@@ -2589,7 +2614,7 @@
 %   Needed to cook things. Is pretty much looks exactly like the one
 %   at home.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Herd } { cooker } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Herd } { cooker } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Herd_#1 }
       {
@@ -2624,7 +2649,7 @@
 % \begin{macro}{ \Saftpresse , \squeezer }
 %   We have one of these, I still think its useful.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Saftpresse } { squeezer } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Saftpresse } { squeezer } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Saftpresse_#1 }
       {
@@ -2669,7 +2694,7 @@
 %   A bowl. The edge was an accident, but I thought that it looks good
 %   and so I keeped it.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Schussel } { bowl } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Schussel } { bowl } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Schussel_#1 }
       {
@@ -2702,7 +2727,7 @@
 % \begin{macro}{ \Schaler , \peeler }
 %   Again an image of on I use to peel for example potatoes.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Schaler } { peeler } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Schaler } { peeler } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Schaler_#1 }
       {
@@ -2736,7 +2761,7 @@
 % \begin{macro}{ \Reibe , \grater }
 %   I get out of ideas to write.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Reibe } { grater } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Reibe } { grater } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Reibe_#1 }
       {
@@ -2770,7 +2795,7 @@
 % \begin{macro}{ \Flasche , \bottle }
 %   It's a bottle. Uhhhh\dots
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Flasche } { bottle } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Flasche } { bottle } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Flasche_#1 }
       {
@@ -2808,7 +2833,7 @@
 %
 % For the draftbox the calculation of the length is \verb|(1.26ex + 4.25ex)*0.8 + 0.1ex|.
 %    \begin{macrocode}
-\@@_Declare_Document_Commands:nnnn { Nudelholz } { rollingpin } { O{1} }
+\@@_Declare_Document_Commands:nnnn { Nudelholz } { rollingpin } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Nudelholz_#1 }
       {
@@ -2862,7 +2887,7 @@
 % \begin{macro}{ \Sadey }
 %   I don't know why Sadey is the first and not Smiley, probably for reasons.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Sadey } { O{1} O{none} }
+\@@_Declare_Document_Command:nnn { Sadey } { S O{none} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sadey_#1_#2 }
       {
@@ -2891,7 +2916,7 @@
 % \begin{macro}{ \dSadey }
 %   Coding the \enquote{3D} Sadey. Again, nothing special.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSadey } { O{1} O{yellow} }
+\@@_Declare_Document_Command:nnn { dSadey } { S O{yellow} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSadey_#1_#2 }
       {
@@ -2922,7 +2947,7 @@
 % \changes{v0.95}{2016/03/20}{New.}
 % Thanks to Marcel for the request.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Changey } { O{1} O{white} m }
+\@@_Declare_Document_Command:nnn { Changey } { S O{white} m }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Changey_#1_#2_#3 }
       {
@@ -2959,7 +2984,7 @@
 % \changes{v3.95}{2016/03/20}{New.}
 % Thanks to Marcel for the request.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dChangey } { O{1} O{yellow} m }
+\@@_Declare_Document_Command:nnn { dChangey } { S O{yellow} m }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dChangey_#1_#2_#3 }
       {
@@ -3008,7 +3033,7 @@
     \filldraw[fill=#2!#1!#3]
   }
 \cs_generate_variant:Nn \@@_cChangey_aux:nnn { x }
-\@@_Declare_Document_Command:nnn { cChangey } { O{1} O{red} O{yellow} O{green} m }
+\@@_Declare_Document_Command:nnn { cChangey } { S O{red} O{yellow} O{green} m }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT 
       { cChangey_#1_#2_#3_#4_#5 }
@@ -3069,7 +3094,7 @@
     \shade [ball ~ color=#2!#1!#3]
   }
 \cs_generate_variant:Nn \@@_dcChangey_aux:nnn { x }
-\@@_Declare_Document_Command:nnn { dcChangey } { O{1} O{red} O{yellow} O{green} m }
+\@@_Declare_Document_Command:nnn { dcChangey } { S O{red} O{yellow} O{green} m }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT 
       { dcChangey_#1_#2_#3_#4_#5 }
@@ -3123,7 +3148,7 @@
 %\begin{macro}{ \Annoey }
 % An annoyed Smiley. It's annoyed.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Annoey } { O{1} O{none} }
+\@@_Declare_Document_Command:nnn { Annoey } { S O{none} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Annoey_#1_#2 }
       {
@@ -3153,7 +3178,7 @@
 %\begin{macro}{ \dAnnoey }
 % It's annoyed about 3D.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dAnnoey } { O{1} O{yellow} }
+\@@_Declare_Document_Command:nnn { dAnnoey } { S O{yellow} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dAnnoey_#1_#2 }
       {
@@ -3189,7 +3214,7 @@
 %    \begin{macrocode}
 \bool_if:NF \g_@@_if_opt_marvosym_bool
   {
-    \@@_Declare_Document_Command:nnn { Smiley } { O{1} O{none} }
+    \@@_Declare_Document_Command:nnn { Smiley } { S O{none} }
       {
         \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Smiley_#1_#2 }
           {
@@ -3219,7 +3244,7 @@
 %\begin{macro}{ \dSmiley }
 % Again in \enquote{3D}. 
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSmiley } { O{1} O{yellow} }
+\@@_Declare_Document_Command:nnn { dSmiley } { S O{yellow} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSmiley_#1_#2 }
       {
@@ -3252,7 +3277,7 @@
 % \begin{macro}{ \Laughey }
 % It's laughing.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Laughey } { O{1} O{none} O{none} }
+\@@_Declare_Document_Command:nnn { Laughey } { S O{none} O{none} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Laughey_#1_#2_#3 }
       {
@@ -3283,7 +3308,7 @@
 %\begin{macro}{ \dLaughey }
 % Also in \emph{3D}!
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dLaughey } { O{1} O{yellow} O{red} }
+\@@_Declare_Document_Command:nnn { dLaughey } { S O{yellow} O{red} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dLaughey_#1_#2_#3 }
       {
@@ -3321,7 +3346,7 @@
 %
 %\begin{macro}{ \Neutrey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Neutrey } { O{1} O{none}  }
+\@@_Declare_Document_Command:nnn { Neutrey } { S O{none}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Neutrey_#1_#2 }
       {
@@ -3349,7 +3374,7 @@
 %
 %\begin{macro}{ \dNeutrey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dNeutrey } { O{1} O{yellow}  }
+\@@_Declare_Document_Command:nnn { dNeutrey } { S O{yellow}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Neutrey_#1_#2 }
       {
@@ -3381,7 +3406,7 @@
 %
 %\begin{macro}{ \Winkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Winkey } { O{1} O{none}  }
+\@@_Declare_Document_Command:nnn { Winkey } { S O{none}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Winkey_#1_#2 }
       {
@@ -3409,7 +3434,7 @@
 %
 %\begin{macro}{ \oldWinkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { oldWinkey } { O{1} O{none}  }
+\@@_Declare_Document_Command:nnn { oldWinkey } { S O{none}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { oldWinkey_#1_#2 }
       {
@@ -3437,7 +3462,7 @@
 %
 %\begin{macro}{ \dWinkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dWinkey } { O{1} O{yellow}  }
+\@@_Declare_Document_Command:nnn { dWinkey } { S O{yellow}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dWinkey_#1_#2 }
       {
@@ -3464,7 +3489,7 @@
 %
 %\begin{macro}{ \olddWinkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { olddWinkey } { O{1} O{yellow}  }
+\@@_Declare_Document_Command:nnn { olddWinkey } { S O{yellow}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { olddWinkey_#1_#2 }
       {
@@ -3496,7 +3521,7 @@
 %
 %\begin{macro}{ \Sey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Sey } { O{1} O{none}  }
+\@@_Declare_Document_Command:nnn { Sey } { S O{none}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sey_#1_#2 }
       {
@@ -3525,7 +3550,7 @@
 %
 %\begin{macro}{ \dSey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSey } { O{1} O{yellow}  }
+\@@_Declare_Document_Command:nnn { dSey } { S O{yellow}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSey_#1_#2 }
       {
@@ -3557,7 +3582,7 @@
 %
 %\begin{macro}{ \Xey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Xey } { O{1} O{none}  }
+\@@_Declare_Document_Command:nnn { Xey } { S O{none}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Xey_#1_#2 }
       {
@@ -3585,7 +3610,7 @@
 %
 %\begin{macro}{ \dXey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dXey } { O{1} O{yellow}  }
+\@@_Declare_Document_Command:nnn { dXey } { S O{yellow}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dXey_#1_#2 }
       {
@@ -3619,7 +3644,7 @@
 %
 %\begin{macro}{ \Innocey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Innocey } { O{1} O{none} O{yellow} }
+\@@_Declare_Document_Command:nnn { Innocey } { S O{none} O{yellow} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Innocey_#1_#2_#3 }
       {
@@ -3664,7 +3689,7 @@
 %  because otherwise the input of \Option{after-symbol}
 %  is inserted twice.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { wInnocey } { O{1} }
+\@@_Declare_Document_Command:nnn { wInnocey } { S }
   { 
     \group_begin:
     \tl_clear:N \l_@@_tikzsymbols_after_symbol_tl
@@ -3677,7 +3702,7 @@
 %
 %\begin{macro}{ \dInnocey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dInnocey } { O{1} O{yellow} O{yellow}  }
+\@@_Declare_Document_Command:nnn { dInnocey } { S O{yellow} O{yellow}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dInnocey_#1_#2_#3 }
       {
@@ -3722,7 +3747,7 @@
 %\begin{macro}{ \Cooley }
 %  It's the coolest Smiley around.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Cooley } { O{1} O{none}  }
+\@@_Declare_Document_Command:nnn { Cooley } { S O{none}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Cooley_#1_#2 }
       {
@@ -3754,7 +3779,7 @@
 %
 %\begin{macro}{ \dCooley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dCooley } { O{1} O{yellow}  }
+\@@_Declare_Document_Command:nnn { dCooley } { S O{yellow}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dCooley_#1_#2 }
       {
@@ -3792,7 +3817,7 @@
 % Habe mir vorgenommen das hier zu verbessern, wird aber wohl noch
 % etwas brauchen.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Tongey } { O{1} O{none} O{none} }
+\@@_Declare_Document_Command:nnn { Tongey } { S O{none} O{none} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Tongey_#1_#2_#3 }
       {
@@ -3827,7 +3852,7 @@
 %
 %\begin{macro}{ \dTongey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dTongey } { O{1} O{yellow} O{red} }
+\@@_Declare_Document_Command:nnn { dTongey } { S O{yellow} O{red} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dTongey_#1_#2_#3 }
       {
@@ -3866,7 +3891,7 @@
 %
 %\begin{macro}{ \Nursey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Nursey } { O{1} O{none} O{none} O{} }
+\@@_Declare_Document_Command:nnn { Nursey } { S O{none} O{none} O{} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Nursey_#1_#2_#3_#4 }
       {
@@ -3903,7 +3928,7 @@
 %
 %\begin{macro}{ \dNursey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dNursey } { O{1} O{yellow} O{white} O{red} }
+\@@_Declare_Document_Command:nnn { dNursey } { S O{yellow} O{white} O{red} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dNursey_#1_#2_#3_#4 }
       {
@@ -3949,7 +3974,7 @@
 %
 %\begin{macro}{ \Vomey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Vomey } { O{1} O{none} O{opacity=0} }
+\@@_Declare_Document_Command:nnn { Vomey } { S O{none} O{opacity=0} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Vomey_#1_#2_#3 }
       {
@@ -3993,7 +4018,7 @@
 %
 %\begin{macro}{ \dVomey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dVomey } { O{1} O{yellow} O{brown!10!olive}  }
+\@@_Declare_Document_Command:nnn { dVomey } { S O{yellow} O{brown!10!olive}  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dVomey_#1_#2_#3 }
       {
@@ -4042,7 +4067,7 @@
 %
 %\begin{macro}{ \Walley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Walley } { O{1} O{none} O{none} }
+\@@_Declare_Document_Command:nnn { Walley } { S O{none} O{none} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Walley_#1_#2_#3 }
       {
@@ -4089,7 +4114,7 @@
 %
 %\begin{macro}{ \rWalley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { rWalley } { O{1} O{none} O{none} }
+\@@_Declare_Document_Command:nnn { rWalley } { S O{none} O{none} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { rWalley_#1_#2_#3 }
       {
@@ -4127,7 +4152,7 @@
 %
 %\begin{macro}{ \dWalley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dWalley } { O{1} O{yellow} }
+\@@_Declare_Document_Command:nnn { dWalley } { S O{yellow} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dWalley_#1_#2 }
       {
@@ -4169,7 +4194,7 @@
 %
 %\begin{macro}{ \drWalley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { drWalley } { O{1} O{yellow} }
+\@@_Declare_Document_Command:nnn { drWalley } { S O{yellow} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { drWalley_#1_#2 }
       {
@@ -4300,7 +4325,7 @@
 %\begin{macro}{ \Cat }
 % It is a Ket! (sic!)
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Cat } { O{1} }
+\@@_Declare_Document_Command:nnn { Cat } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Cat_#1 }
       {
@@ -4329,7 +4354,7 @@
 %\begin{macro}{ \SchrodingersCat }
 % It is a Ket! (sic!)
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { SchrodingersCat } { O{1} m }
+\@@_Declare_Document_Command:nnn { SchrodingersCat } { S m }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { SchrodingersCat_#1_#2 }
       {
@@ -4366,7 +4391,7 @@
 % \begin{macro}{ \Ninja }
 % It can hide.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Ninja } { O{1} O{black} O{red} O{white} }
+\@@_Declare_Document_Command:nnn { Ninja } { S O{black} O{red} O{white} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Ninja_#1_#2_#3_#4 }
       {
@@ -4427,7 +4452,7 @@
 %
 %\begin{macro}{ \dNinja }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dNinja } { O{1} O{black} O{red} O{white} }
+\@@_Declare_Document_Command:nnn { dNinja } { S O{black} O{red} O{white} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dNinja_#1_#2_#3_#4 }
       {
@@ -4491,7 +4516,7 @@
 % \begin{macro}{ \Sleepey }
 % It is sleeping.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Sleepey } { O{1} O{none} O{none} O{black} }
+\@@_Declare_Document_Command:nnn { Sleepey } { S O{none} O{none} O{black} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sleepey_#1_#2_#3_#4 }
       {
@@ -4552,7 +4577,7 @@
 % \begin{macro}{ \dSleepey }
 % It is sleeping.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSleepey } { O{1} O{yellow} O{blue} O{black} }
+\@@_Declare_Document_Command:nnn { dSleepey } { S O{yellow} O{blue} O{black} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSleepey_#1_#2_#3_#4 }
       {
@@ -4615,7 +4640,7 @@
 % \begin{macro}{ \NiceReapey }
 % I wasn't able to create a good Grim Reaper. Well.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { NiceReapey } { O{1} O{black!20!white} }
+\@@_Declare_Document_Command:nnn { NiceReapey } { S O{black!20!white} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { NiceReapey_#1_#2 }
       {
@@ -4702,7 +4727,7 @@
 %\begin{macro}{ \Strichmaxerl }
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Strichmaxerl } 
-  { O{1} O{-22} O{22} O{27} O{-27} }
+  { S O{-22} O{22} O{27} O{-27} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT 
       { Strichmaxerl_#1_#2_#3_#4_#5 }
@@ -4846,7 +4871,7 @@
 %
 %\begin{macro}{ \Person }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Person } { O{1} O{-22} O{22} O{27} O{-27} }
+\@@_Declare_Document_Command:nnn { Person } { S O{-22} O{22} O{27} O{-27} }
   {
     \msg_error:nnnn 
       { tikzsymbols } 
@@ -4865,7 +4890,7 @@
 %
 %\begin{macro}{ \Candle }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Candle } { O{1} }
+\@@_Declare_Document_Command:nnn { Candle } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Candle_#1 }
       {
@@ -4901,7 +4926,7 @@
 %
 %\begin{macro}{ \Fire }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Fire } { O{1} }
+\@@_Declare_Document_Command:nnn { Fire } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Fire_#1 }
       {
@@ -4958,7 +4983,7 @@
 %    \begin{macrocode}
 \bool_if:NF \g_@@_if_opt_marvosym_bool
 {
-\@@_Declare_Document_Command:nnn { Coffeecup } { O{1} }
+\@@_Declare_Document_Command:nnn { Coffeecup } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Coffeecup_#1 }
       {
@@ -5001,7 +5026,7 @@
 %
 %\begin{macro}{ \Chair }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Chair } { O{1} }
+\@@_Declare_Document_Command:nnn { Chair } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Chair_#1 }
       {
@@ -5040,7 +5065,7 @@
 %
 %\begin{macro}{ \Bed }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Bed } { O{1} }
+\@@_Declare_Document_Command:nnn { Bed } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Bed_#1 }
       {
@@ -5077,7 +5102,7 @@
 %\begin{macro}{ \Tribar }
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Tribar } 
-  { O{1} O{opacity=0} O{opacity=0} O{opacity=0} }
+  { S O{opacity=0} O{opacity=0} O{opacity=0} }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Tribar_#1_#2_#3_#4 }
       {
@@ -5121,7 +5146,7 @@
 %
 %\begin{macro}{ \Moai }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Moai } { O{1} }
+\@@_Declare_Document_Command:nnn { Moai } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Moai_#1 }
       {
@@ -5182,7 +5207,7 @@
 % \begin{macro}{ \Snowman }
 % 
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Snowman } { O{1} }
+\@@_Declare_Document_Command:nnn { Snowman } { S }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Snowman_#1 }
       {
@@ -5279,7 +5304,7 @@
 % Well, thats the final \Makro{BasicTree} command.
 % More or less copy \& pasted from the \Package{tikz} manual.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { BasicTree } { O{1} m m m m }
+\@@_Declare_Document_Command:nnn { BasicTree } { S m m m m }
   {
     \@@_Basic_Tree:nnnnn {#1} {#2} {#3} {#4} {#5}
   }
