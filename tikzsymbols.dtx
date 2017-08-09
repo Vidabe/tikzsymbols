@@ -1556,7 +1556,7 @@
 %    \begin{macrocode}
     final .bool_gset_inverse:N = \g_@@_if_opt_draft_bool ,
     final .default:n = { true } ,
-    final .groups:n = { document } ,
+%    final .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1583,7 +1583,7 @@
           }
       } ,
     draft .default:n= { false } ,
-    draft .groups:n = { document } ,
+%    draft .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1597,7 +1597,7 @@
           { draftabsolute } { draft = true }
         \bool_gset_true:N \g_@@_if_opt_draft_bool
       } , 
-    draftabsolute .groups:n = { document } ,
+%    draftabsolute .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1644,7 +1644,7 @@
           { \bool_gset_false:N \g_@@_if_opt_tree_print_bool }
       } ,
     tree .default:n = { true } ,
-    tree .groups:n = { document } ,
+%    tree .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1655,7 +1655,7 @@
 %    \begin{macrocode}
     after-symbol .tl_set:N = \l_@@_tikzsymbols_after_symbol_tl ,
     after-symbol .default:n= { \xspace } ,
-    after-symbol .groups:n = { document } ,
+%    after-symbol .groups:n = { document } ,
 %    \end{macrocode}
 %
 % \begin{macro}{ baseline }
@@ -1664,20 +1664,20 @@
     baseline / true .code:n = { \pgfkeys{ /@@/.style={baseline=default} } } ,
     baseline / false .code:n = { \pgfkeys{ /@@/.style={ } } } ,
     baseline .default:n = { true } ,
-    baseline .groups:n = { document } ,
+%    baseline .groups:n = { document } ,
 %    \end{macrocode}
 %
 % \begin{macro}{ global-scale }
 %    \begin{macrocode}
     global-scale .fp_set:N = \l_@@_global_scale_fp ,
     global-scale .default:n = { 1 } ,
-    global-scale .groups:n = { document } ,
+%    global-scale .groups:n = { document } ,
 %    \end{macrocode}
 %
 % \begin{macro}{ symbol-scale }
 %    \begin{macrocode}
     symbol-scale .code:n = { \keyval_parse:NNn \@@_func_I:n \@@_func_II:nn {#1} } ,
-    symbol-scale .groups:n = { document } ,
+%    symbol-scale .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1707,7 +1707,7 @@
   {
     after-symbol .tl_gset:N = \l_@@_tikzsymbols_after_symbol_tl ,
     after-symbol .default:n= { \xspace } ,
-    after-symbol .groups:n = { document } ,
+%    after-symbol .groups:n = { document } ,
   }
 %    \end{macrocode}
 % \end{macro}
@@ -5524,19 +5524,12 @@
 \cs_generate_variant:Nn \keyval_parse:NNn { NNV }
 \cs_new:Npn \@@_msg_I:n #1
   {
-    \@@_msg_II:nn {#1} {}
+    \@@_msg_II:nn {#1} { }
   }
 \cs_new:Npn \@@_msg_II:nn #1#2
   {
     \msg_error:nnn { tikzsymbols } { package-option } {#1}
   }
-%\AtBeginDocument
-%  {
-%    \RenewDocumentCommand \tikzsymbolsset { }
-%      {
-%        \msg_error:nnn { tikzsymbols } { tikzsymbolsset }
-%      }
-%  }
 %    \end{macrocode}
 %\end{macro}
 %
