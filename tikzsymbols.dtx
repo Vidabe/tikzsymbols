@@ -37,7 +37,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage[draft=true]{tikzsymbols} 
+\usepackage[draft=true,global-scale=4]{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -114,6 +114,8 @@
 \newcommand{\preamble}{\marginpar{preamble}}
 \newcommand{\preload}{\marginpar{load-time and preamble}}
 
+
+\tikzsymbolsset { symbol-scale = { Schneebesen= 10 } }
 
 \ExplSyntaxOff
 \makeatother
@@ -396,7 +398,7 @@
 %
 %
 %
-% \subsection{Preamble Options}
+% \subsection{Further (Change!) Options}
 % \label{sec:pream-opt}
 % 
 % Most of these commands can be set either as package option or with
@@ -585,7 +587,8 @@
 %   \multicolumn{2}{l}{German \& English Commands} & Optional
 %   parameter(s) & Output \\\toprule\endhead
 %   \\ \bottomrule \endfoot
-%  \MapinTable   \bottomrule
+%  \MapinTable   
+%  \bottomrule
 % \end{longtable}
 %
 % 
@@ -1648,12 +1651,20 @@
     baseline / true .code:n = { \pgfkeys{ /@@/.style={baseline=default} } } ,
     baseline / false .code:n = { \pgfkeys{ /@@/.style={ } } } ,
     baseline .default:n = { true } ,
+    baseline .groups:n = { document } ,
 %    \end{macrocode}
 %
 % \begin{macro}{ global-scale }
 %    \begin{macrocode}
     global-scale .fp_set:N = \l_@@_global_scale_fp ,
     global-scale .default:n = { 1 } ,
+    global-scale .groups:n = { document } ,
+%    \end{macrocode}
+%
+% \begin{macro}{ symbol-scale }
+%    \begin{macrocode}
+    symbol-scale .code:n = { \keyval_parse:NNn \@@_func_I:n \@@_func_II:nn {#1} } ,
+    symbol-scale .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1694,6 +1705,29 @@
 % \label{sec:helping-commands}
 %
 % I define some macros which will help me  to write less.
+%
+%
+% \begin{macro}{ \@@_func_I:n , \@@_func_II:nn }
+%   Sets \Makro{l_@@_scale_abs_tl} to the absolute input value. I made
+%   this to write less which is always a good idea (mostly).
+%    \begin{macrocode}
+\cs_new:Npn \@@_func_I:n #1
+  {
+    \@@_func_II:nn {#1} { 1.0 }
+  }
+\cs_new:Npn \@@_func_II:nn #1#2
+  {
+    \prop_get:NnNTF \g_@@_english_commands_prop {#1} \l_tmpa_tl
+      {
+        \fp_set:cn { l_@@_ \l_tmpa_tl _scale_fp } {#2}
+      }{
+        \fp_if_exist:cTF { l_@@_#1_scale_fp }
+          { \fp_set:cn { l_@@_#1_scale_fp } {#2} }
+          { \ERROR }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{ \@@_set_scale_abs_tl:n }
 %   Sets \Makro{l_@@_scale_abs_tl} to the absolute input value. I made
@@ -1824,14 +1858,18 @@
       { \tl_set:Nn \ProcessedArgument {#1} }
       { \tl_set:Nn \ProcessedArgument {#2} }
   }
-\cs_new:Npn \@@_scale_if_empty:Tn #1#2
+\cs_new:Npn \@@_scale_if_empty:nTn #1#2#3
   {
-    \fp_set:Nn \l_tmpa_fp 
+    \tl_set:Nx \l_tmpa_tl
       {
-        \tl_if_empty:nTF {#2} {#1} {#2}
-        * \l_@@_global_scale_fp 
+        \fp_eval:n
+          {
+            \tl_if_empty:nTF {#3} {#2} {#3}
+            * \l_@@_global_scale_fp 
+            * \use:c { l_@@_#1_scale_fp }
+          }
       }
-    \tl_set:NV \ProcessedArgument \l_tmpa_fp
+    \tl_set:NV \ProcessedArgument \l_tmpa_tl
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1842,10 +1880,11 @@
 %   edited to fit my purpose. This command gets the input from the
 %   options-definition. 
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_parse_command_options:n #1
+\cs_new_protected:Npn \@@_parse_command_options:nn #1#2
   {
     \clist_clear:N \l_tmpa_clist
-    \@@_parse_command_options:N #1
+    \tl_set:Nn \l_tmpa_tl {#1}
+    \@@_parse_command_options:N #2
       \q_recursion_tail \q_recursion_tail \q_recursion_tail \q_recursion_stop
   }
 %    \end{macrocode}
@@ -1863,7 +1902,7 @@
       { \@@_parse_option_type_O:w #1 }
       { 
         \tl_if_eq:NNTF #1 S
-          { \@@_parse_option_type_S:w #1 }
+          { \@@_parse_option_type_S:Vw \l_tmpa_tl #1 }
           { \@@_parse_option_type:w #1 }
       }
   }
@@ -1901,11 +1940,12 @@
 % \begin{macro}{ \@@_parse_option_type_S:w }
 %   The |S|  stands for \enquote{Scale}.
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_parse_option_type_S:w #1
+\cs_new_protected:Npn \@@_parse_option_type_S:nw #1#2
   {
-    \clist_put_right:Nn \l_tmpa_clist { >{ \@@_if_empty:Tn { 1 } } O{ 1 }  }
+    \clist_put_right:Nn \l_tmpa_clist { >{ \@@_scale_if_empty:nTn {#1} { 1 } } O{ 1 }  }
     \@@_parse_command_options:N
   }
+\cs_generate_variant:Nn \@@_parse_option_type_S:nw { Vw }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1919,7 +1959,9 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_Declare_Document_Command:nnn #1#2#3
   {
-    \@@_parse_command_options:n {#2}
+    \fp_new:c { l_@@_#1_scale_fp }
+    \fp_set:cn { l_@@_#1_scale_fp } { 1.0 }
+    \@@_parse_command_options:nn {#1} {#2}
     \exp_args:Ncx \DeclareDocumentCommand 
       { \g_@@_command_prefix_tl #1 } 
       { \clist_use:Nn \l_tmpa_clist {} } 
@@ -1945,9 +1987,9 @@
   {
     \clist_put_right:Nn 
     \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist 
-    {
-      \cs{#1} & \cs{#2} & \oarg{scale} & \tikzsymbolsuse{#1} \\
-    }
+      {
+        \cs{#1} & \cs{#2} & \oarg{scale} & \tikzsymbolsuse{#1} \\
+      }
     \prop_gput:Nnn \g_@@_english_commands_prop {#2} {#1}
     \@@_Declare_Document_Command:nnn {#1} {#3} {#4}
     \@@_let:nn {#2} {#1}
