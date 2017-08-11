@@ -90,15 +90,6 @@
 
 \clist_new:N \printclist
 
-%\clist_map_inline:Nn
-%  \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist
-%  {
-%    \int_incr:N \l_tmpa_int
-%    \int_compare:nTF { \l_tmpa_int = 3 }
-%      { \clist_put_right:Nn \printclist { scale &  } \int_zero:N \l_tmpa_int }
-%      { \clist_put_right:Nn \printclist {#1} }
-%  }
-
 \cs_new:Npn \MapinTable
   {
     \clist_use:Nn \printclist { }
@@ -106,7 +97,7 @@
 
 \clist_set_eq:NN \printclist \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist
 
-\clist_if_exist:NF \printclist { \clist_new:N \printclist }
+\clist_if_exist:NF \printclist { \ERROR }
 
 \newcommand{\loadtime}{\marginpar{load-time}}
 \newcommand{\preamble}{\marginpar{preamble}}
@@ -496,13 +487,16 @@
 %   \end{syntax}
 %   \opt{global-scale} can be used to scale \emph{all} commands by \marg{number}.
 %
-%   If only a specific symbol should be scaled globally you can use the second option.
+%   If only some specific symbols should be scaled, you may use the second option.
 %
 %  Examples: If only \cs{Schneebesen} and \cs{Smiley} should be scaled you may use
 %  \verb|\tikzsymbolsset{symbol-scale={ Schneebesen=2, Smiley= 1.5 }}|.
 %
+%   \begin{mynote}
 %   If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
-%   the resulting scaling will be $2\cdot=6$.
+%   the resulting scaling will be $2\cdot=6$. Is furthermore the specific symbol
+%   is also scaled (e.g. by $1.1$), the resulting scaling will be $2\cdot 3 \cdot 1.1=6.6$.
+%   \end{mynote}
 %
 % \end{function}
 % 
