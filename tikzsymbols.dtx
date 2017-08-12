@@ -35,7 +35,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage[draft=true,global-scale=4]{tikzsymbols} 
+\usepackage[draft=true]{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -104,11 +104,18 @@
 \newcommand{\preload}{\marginpar{load-time and preamble}}
 
 
-\tikzsymbolsset { symbol-scale = { Schneebesen= 10 } }
 
 \NewDocumentEnvironment { myexample } { }
   {
+    \medskip
     \noindent\textbf{Examples:}
+  }{
+  
+  }
+\NewDocumentEnvironment { mynote } { }
+  {
+    \medskip
+    \noindent\textbf{Note:}
   }{
   
   }
@@ -492,12 +499,14 @@
 %     global-scale = \marg{number}
 %     symbol-scale = \marg{symbol=number,\dots}
 %   \end{syntax}
-%   \opt{global-scale} can be used to scale \emph{all} commands by \marg{number}.
+%   \opt{global-scale} can be used to scale \emph{all} commands by \meta{number}.
+%   If only some specific symbols should be scaled, you may use the second option
+%   and specify which symbol (name of the symbol without backslash) should be scaled.
 %
-%   If only some specific symbols should be scaled, you may use the second option.
-%
-%  Examples: If only \cs{Schneebesen} and \cs{Smiley} should be scaled you may use
-%  \verb|\tikzsymbolsset{symbol-scale={ Schneebesen=2, Smiley= 1.5 }}|.
+%   \begin{mynote}
+%   Note that using the english name (if it exists) does the same as if the german
+%   name is used.
+%   \end{mynote}
 %
 %   \begin{mynote}
 %   If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
@@ -507,7 +516,22 @@
 %
 % \end{function}
 % 
-% 
+%  \begin{myexample}
+%  \verb|\tikzsymbolsset{symbol-scale={ Smiley= 1.5 }}|
+%  \tikzsymbolsset{symbol-scale={ Smiley= 1.5 }}
+%  \Smiley \\
+%  \verb|\tikzsymbolsset{symbol-scale={ Smiley= 5 }}|
+%  \tikzsymbolsset{symbol-scale={ Smiley= 5 }}
+%  \Smiley \\
+%  \verb|\tikzsymbolsset{symbol-scale={ Smiley= 2, Schneebesen=2.1 }}|
+%  \tikzsymbolsset{symbol-scale={ Smiley= 2, Schneebesen=2.1 }}
+%  \Smiley \Schneebesen
+%  \end{myexample}
+%
+%   \begin{mynote}
+%   Using \enquote{eggbeater} instead of \enquote{Schneebesen} in the last example
+%   does the same thing.
+%   \end{mynote}
 %
 % \subsubsection{baseline (true/false)}
 % \label{sec:baseline}
