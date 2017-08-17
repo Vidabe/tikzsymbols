@@ -52,7 +52,9 @@ Changes
 * v4.05     New Emoticon: \(d)Sleepey.
             New Emoticon: \SchrodingersCat.
             New option: global-scale.
-            
+            New option: symbol-scale.
+            \tikzsymbolsset now raises a warning if a load-time option is used.
+            Some minor fixes.
 
 Requirements 
 ------------
@@ -74,7 +76,7 @@ This file contains
 
 License
 -------
-This ma­te­rial is sub­ject to the LATEX Project Public Li­cense 1.3c. See
+This ma­te­rial is sub­ject to the LATEX Project Public Li­cense 1.3. See
 
   http://www.ctan.org/tex-archive/help/Catalogue/licenses.lppl.html
 
