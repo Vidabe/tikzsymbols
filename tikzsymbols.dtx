@@ -123,6 +123,7 @@
 \ExplSyntaxOff
 \makeatother
 
+\tikzsymbolsset{symbol-scale={BasicTree=5, Autumntree=5}}
 
 \begin{document}
 \DocInput{tikzsymbols.dtx} 
@@ -1565,6 +1566,19 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{ package-option }
+% \changes{v4.05}{2017/08/09}{New}
+%    \begin{macrocode}
+\msg_new:nnnn { tikzsymbols } { symbol-name-unknown } 
+  {  
+    The \ symbol \ '#1' \ is \ not \ available \ by \ this \ package.
+  }{
+    Maybe \ you \ have \ misspelled it.
+    \msg_see_documentation_text:n { tikzsymbols } 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
 %
 %
 %
@@ -1783,7 +1797,7 @@
       }{
         \fp_if_exist:cTF { l_@@_#1_scale_fp }
           { \fp_set:cn { l_@@_#1_scale_fp } {#2} }
-          { \ERROR }
+          { \msg_error:nnn { tikzsymbols} { symbol-name-unknown } {#1} }
       }
   }
 %    \end{macrocode}
@@ -5402,7 +5416,7 @@
 %
 %\begin{macro}{ \WorstTree }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { WorstTree } { O{1}  }
+\@@_Declare_Document_Command:nnn { WorstTree } { S  }
   {
     \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { WorstTree_#1 }
       {
@@ -5449,7 +5463,7 @@
 %
 %\begin{macro}{ \Springtree }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Springtree } { O {1} }
+\@@_Declare_Document_Command:nnn { Springtree } { S }
   {
       \@@_Basic_Tree:nnnnn
       {#1}
@@ -5468,7 +5482,7 @@
 %
 %\begin{macro}{ \Summertree }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Summertree } { O {1} }
+\@@_Declare_Document_Command:nnn { Summertree } { S }
   {
       \@@_Basic_Tree:nnnnn
       {#1}
@@ -5487,7 +5501,7 @@
 %
 %\begin{macro}{ \Autumntree }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Autumntree } { O {1} }
+\@@_Declare_Document_Command:nnn { Autumntree } { S }
   {
       \@@_Basic_Tree:nnnnn
       {#1}
@@ -5506,7 +5520,7 @@
 %
 %\begin{macro}{ \Wintertree }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Wintertree } { O {1} }
+\@@_Declare_Document_Command:nnn { Wintertree } { S }
   {
       \@@_Basic_Tree:nnnnn
       {#1}
