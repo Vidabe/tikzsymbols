@@ -35,7 +35,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage[draft=true]{tikzsymbols} 
+\usepackage{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -115,7 +115,7 @@
 \NewDocumentEnvironment { mynote } { }
   {
     \medskip
-    \noindent\textbf{Note:}
+    \noindent\textbf{Note:}%
   }{
   
   }
@@ -177,7 +177,10 @@
 %
 % \title{The \Package{\jobname} package\thanks{This document corresponds to \textsf{\jobname}~\fileversion, dated~\filedate.}}
 %
-%\author{Ben Vitecek \\ \href{mailto:b.vitecek@gmx.at}{b.vitecek@gmx.at}} 
+%\author{Ben Vitecek \\ 
+%  \href{mailto:b.vitecek@gmx.at}{b.vitecek@gmx.at} \\
+%  \href{https://github.com/Vidabe/tikzsymbols}{GitHub}
+% } 
 %
 % \date{May 14, 2017} 
 %
@@ -401,7 +404,7 @@
 %   etc.
 %   \end{myexample}
 %
-% \subsection{Other Options}
+% \subsection{Normal Options}
 % \label{sec:pream-opt}
 % 
 % Most of these commands can be set either as package option or with
@@ -437,7 +440,8 @@
 %   While  working on the document it is recommended to set this option
 %   to \Option{true} because creating many symbols may takes some time
 %   to compile and by setting this option to \Option{true} the symbols
-%   are replaced by plain vanilla rectangles which are faster to
+%   are replaced by plain vanilla rectangles (with the same height and width as
+%   the symbols\footnote{At least I hope.}) which are faster to
 %   create.
 %
 %   The old option \Option{draft=absolute} is 
@@ -491,28 +495,35 @@
 % \end{function}
 % 
 %
-% \subsubsection{global-scale (\arg{number}) \\ symbol-scale (\arg{symbol=number,\dots})}
+% \subsubsection{global-scale (\arg{number}) \\ 
+%  symbol-scale (\arg{key-value list})}
 % \label{sec:global-scale}
 % 
 % \begin{function}{global-scale, symbol-scale}
 %   \begin{syntax}
 %     global-scale = \marg{number}
-%     symbol-scale = \marg{symbol=number,\dots}
+%     symbol-scale = \marg{symbol-1=number-1, symbol-2=number-2,\dots}
 %   \end{syntax}
-%   \opt{global-scale} can be used to scale \emph{all} commands by \meta{number}.
+%   \opt{global-scale} can be used to scale \emph{all} commands by given \meta{number}.
+%
 %   If only some specific symbols should be scaled, you may use the second option
 %   and specify which symbol (name of the symbol without backslash) should be scaled.
+%   Using the german name (if avaiable) has the same effect as using the  english one.
 %
 %   \begin{mynote}
-%   Note that using the english name (if it exists) does the same as if the german
-%   name is used.
-%   \end{mynote}
+%     You can scale the symbols in this package in three different ways: The first 
+%     is to scale \emph{all} symbols using \opt{global-scale}, the second is scaling
+%     specific symbols using \opt{symbol-scale} and the third is by using the
+%     optional argument provided by the symbols (which I call \opt{local-scale}; e.g.
+%     \verb|\Smiley[2]|).
+%     
+%     The important thing is that those scling methods \emph{do not} cancel each
+%     other, but behave multiplicative.
 %
-%   \begin{mynote}
-%   If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
-%   the resulting scaling will be $2\cdot=6$. Is furthermore the specific symbol
-%   is also scaled (e.g. by $1.1$), the resulting scaling will be $2\cdot 3 \cdot 1.1=6.6$.
-%   \end{mynote}
+%     If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
+%     the resulting scaling will be $3\cdot 2=6$. Is furthermore this specific symbol
+%     is also scaled (e.g. by $1.1$), the resulting scaling will be $3\cdot 1.1 \cdot 2=6.6$.
+%     \end{mynote}
 %
 % \end{function}
 % 
@@ -529,7 +540,7 @@
 %  \end{myexample}
 %
 %   \begin{mynote}
-%   Using \enquote{eggbeater} instead of \enquote{Schneebesen} in the last example
+%   Using \enquote{eggbeater} instead of \enquote{Schneebesen} 
 %   does the same thing.
 %   \end{mynote}
 %
@@ -561,7 +572,7 @@
 %
 %
 %
-% \subsection{cooking-symbols \texorpdfstring{\Kochtopf}{Kochtopf}}
+% \subsection{Cooking-symbols \texorpdfstring{\Kochtopf}{Kochtopf}}
 %
 % 
 % \begin{function} 
@@ -633,7 +644,7 @@
 %
 %\subsection{Emoticons \texorpdfstring{\Smiley}{Smiley}}
 %
-%\subsubsection{\enquote{normal} Emoticons \texorpdfstring{\Cat}{Cat}}
+%\subsubsection{\enquote{Normal} Emoticons \texorpdfstring{\Cat}{Cat}}
 %
 %
 %
@@ -678,6 +689,9 @@
 %
 % \Makro{Changey}'s \Meta{mood} has to be between $-2$ and $2$
 % ($1$ equals \Makro{Smiley}, $-1$ \Makro{Sadey} and $0$ \Makro{Neutrey}).
+%
+% \Makro{SchrodingersCat}'s \Meta{case} can either be $1$ (alive), $0$ (unknown)
+% or $-1$ (dead).
 % 
 % \begin{longtable}{llc} 
 %   Commands & (Optional) parameter(s) & Output \\\toprule\endhead
@@ -732,8 +746,8 @@
 %
 % \CreateExample{Sleepey} {[1][white][blue][yellow!95!black]}
 %
-% \CreateExample{SchrodingersCat} {{1}}
-% \CreateExample{SchrodingersCat} {{0}}
+% \CreateExample{SchrodingersCat} {{1}} \par
+% \CreateExample{SchrodingersCat} {{0}}\par
 % \CreateExample{SchrodingersCat} {{-1}}
 %
 % \CreateExample{Changey} {{-2}}
@@ -871,7 +885,7 @@
 % If you intent to change the color of \cs{dcChangey} you may define a new command
 % so that you do not have to write those brackets each time.
 %
-% \subsection{other Symbols \texorpdfstring{\Moai}{Moai}}
+% \subsection{Other Symbols \texorpdfstring{\Moai}{Moai}}
 %
 % \begin{function}
 %   {
@@ -1072,6 +1086,8 @@
 % This can also be the reason why I may need some time to answer 
 % the mail.
 %
+% You may also use GitHub.
+%
 % Suggestions are also welcome.
 %
 %^^A \section{making suggestions}
@@ -1091,7 +1107,7 @@
 %
 % \section{Changes}
 %
-% See the README.md file.
+% See the \enquote{README.md} file.
 %
 %
 % \end{documentation}
