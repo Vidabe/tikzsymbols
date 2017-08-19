@@ -24,12 +24,12 @@
 %
 % \iffalse 
 %<*driver> 
-\documentclass[onlydoc,11pt]{l3doc} 
+\documentclass[onlydoc,11pt,english]{l3doc} 
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} 
-\usepackage[english]{babel}
+\usepackage{babel}
 \usepackage{marvosym} 
 \usepackage{microtype}
 \usepackage{longtable}
@@ -207,7 +207,7 @@
 % \begin{comment}
 % As far as I can remember this package is a result of me writing a cooking book.
 % I wasn't able to find the symbols I wanted on CTAN and so I used \Package{tikz}
-% and my (sadly) very humble skills to develope the predecessor
+% and my (sadly) very humble skills to develop the predecessor
 % called \Package{somesymbols}.  Developing and making symbols 
 % was a lot of fun and suddenly I had (badly coded) Emoticons, cooking-symbols
 % and other symbols. Somehow I got the idea of uploading them to CTAN
@@ -508,7 +508,7 @@
 %
 %   If only some specific symbols should be scaled, you may use the second option
 %   and specify which symbol (name of the symbol without backslash) should be scaled.
-%   Using the german name (if avaiable) has the same effect as using the  english one.
+%   Using the german name (if available) has the same effect as using the  english one.
 %
 %   \begin{mynote}
 %     You can scale the symbols in this package in three different ways: The first 
@@ -517,7 +517,7 @@
 %     optional argument provided by the symbols (which I call \opt{local-scale}; e.g.
 %     \verb|\Smiley[2]|).
 %     
-%     The important thing is that those scling methods \emph{do not} cancel each
+%     The important thing is that those scaling methods \emph{do not} cancel each
 %     other, but behave multiplicative.
 %
 %     If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
@@ -1760,18 +1760,6 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%<*ignore>
-% \begin{macro}{ after-symbol }
-%    \begin{macrocode}
-\keys_define:nn { tikzsymbols }
-  {
-    after-symbol .tl_gset:N = \l_@@_tikzsymbols_after_symbol_tl ,
-    after-symbol .default:n= { \xspace } ,
-%    after-symbol .groups:n = { document } ,
-  }
-%    \end{macrocode}
-% \end{macro}
-%</ignore>
 %
 %
 % \subsection{Helping Commands}
