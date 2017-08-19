@@ -508,7 +508,7 @@
 %   \opt{global-scale} can be used to scale \emph{all} commands by given \meta{number}.
 %
 %   If only some specific symbols should be scaled, you may use the second option
-%   and specify which symbol (name of the symbol without backslash) should be scaled.
+%   and specify which symbol or symbols (name of the symbol without backslash) should be scaled.
 %   Using the german name (if available) has the same effect as using the  english one.
 %
 %   \begin{mynote}
@@ -518,7 +518,7 @@
 %     optional argument provided by the symbols (which I call \opt{local-scale}; e.g.
 %     \verb|\Smiley[2]|).
 %     
-%     The important thing is that those scaling methods \emph{do not} cancel each
+%     The important thing is that those scaling methods \emph{do not cancel} each
 %     other, but behave multiplicative.
 %
 %     If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
@@ -537,6 +537,9 @@
 %  \Smiley \\
 %  \verb|\tikzsymbolsset{symbol-scale={ Smiley= 2, Schneebesen=2.1 }}|
 %  \tikzsymbolsset{symbol-scale={ Smiley= 2, Schneebesen=2.1 }}
+%  \Smiley \Schneebesen \\
+%  \verb|\tikzsymbolsset{global-scale=3,symbol-scale={ Smiley= 2, Schneebesen=2.1 }}|
+%  \tikzsymbolsset{global-scale=3,symbol-scale={ Smiley= 2, Schneebesen=2.1 }}
 %  \Smiley \Schneebesen
 %  \end{myexample}
 %
@@ -981,7 +984,7 @@
 % or (better) \Option{draft=true} (see section
 % \cref{sec:draft} and \cref{sec:tree}) to make \LaTeX{} faster.
 %
-% Furthermore this trees are pretty much stolen from the 
+% Furthermore those trees are pretty much stolen from the 
 % \Package{tikz} manual.
 %
 % \begin{center}
@@ -1078,16 +1081,15 @@
 %
 % \section{Nobody is perfect}
 %
-% If you find a bug please send me a mail 
+% If you find a bug please send me a mail (or report it on GitHub)
 % involving a \emph{minimal example}   
-% showing the bug and a short description. Please mention
+% showing the bug and a short description. Please mention (if you are writing 
+% a mail)
 % \enquote{\Package{tikzsymbols}} in the header, \enquote{gmx} has
 % a habit of putting mails into the spam-folder
 % and it helps me to recognize those mails faster.
 % This can also be the reason why I may need some time to answer 
 % the mail.
-%
-% You may also use GitHub.
 %
 % Suggestions are also welcome.
 %
@@ -1223,8 +1225,8 @@
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2018/08/08}
-  {4.04}
+  {2018/08/19}
+  {4.06a}
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
@@ -1560,7 +1562,7 @@
     \ option.
   }{
     This \ option \ is \ not \ allowed \ to \ be \ set \
-    using \ \tikzsymbolsset.
+    using \ \tikzsymbolsset{}.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
 %    \end{macrocode}
@@ -1573,7 +1575,7 @@
   {  
     The \ symbol \ '#1' \ is \ not \ available \ by \ this \ package.
   }{
-    Maybe \ you \ have \ misspelled it.
+    Perhaps \ you \ have \ misspelled it.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
 %    \end{macrocode}
