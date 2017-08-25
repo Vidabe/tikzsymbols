@@ -1755,25 +1755,7 @@
 \pgfkeys{ /@@/.style={baseline=default} }
 %    \end{macrocode}
 %
-%
-%  We process all options. 
-% \begin{macro}{ ProcessKeyOptions }
-%    \begin{macrocode}
-\ProcessKeysOptions { tikzsymbols }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-%
-% \subsection{Helping Commands}
-% \label{sec:helping-commands}
-%
-% I define some macros which will help me  to write less.
-%
-%
 % \begin{macro}{ \@@_func_I:n , \@@_func_II:nn }
-%   Sets \Makro{l_@@_scale_abs_tl} to the absolute input value. I made
-%   this to write less which is always a good idea (mostly).
 %    \begin{macrocode}
 \cs_new:Npn \@@_func_I:n #1
   {
@@ -1792,6 +1774,22 @@
   }
 %    \end{macrocode}
 % \end{macro}
+%
+%  We process all options. 
+% \begin{macro}{ ProcessKeyOptions }
+%    \begin{macrocode}
+\ProcessKeysOptions { tikzsymbols }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \subsection{Helping Commands}
+% \label{sec:helping-commands}
+%
+% I define some macros which will help me  to write less.
+%
+%
 %
 % \begin{macro}{ \@@_set_scale_abs_tl:n }
 %   Sets \Makro{l_@@_scale_abs_tl} to the absolute input value. I made
