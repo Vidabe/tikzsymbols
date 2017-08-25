@@ -35,7 +35,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage{tikzsymbols} 
+\usepackage[symbol-scale={Sleepey=6}]{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -1317,6 +1317,10 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
+\tl_new:N \l_@@_used_only_once_because_no_better_idea_tl
+%    \end{macrocode}
+%
+%    \begin{macrocode}
 \fp_new:N \l_@@_global_scale_fp
 \fp_set:Nn \l_@@_global_scale_fp { 1.0 }
 %    \end{macrocode}
@@ -1366,10 +1370,7 @@
 %
 %
 %
-% \begin{macro}
-%  {
-%    \l_@@_Moai_thickness_dim ,
-%  }
+% \begin{macro} { \l_@@_Moai_thickness_dim }
 %
 %    It  is used inside \Makro{Moai}. I figured that depending
 %    on the scaling the line-thickness of \Makro{Moai}  should change
@@ -1381,13 +1382,16 @@
 % \end{macro}
 %
 %
-% \begin{macro}
-%  {
-%  }
-%
+% \begin{macro} { \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist }
 %    Store every command defined by this package. I may delete them.
 %    \begin{macrocode}
 \clist_new:N \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ \g_@@_english_commands_prop }
+%    \begin{macrocode}
+\prop_new:N \g_@@_english_commands_prop
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1739,8 +1743,13 @@
 %
 % \begin{macro}{ symbol-scale }
 %    \begin{macrocode}
-    symbol-scale .code:n = { \keyval_parse:NNn \@@_func_I:n \@@_func_II:nn {#1} } ,
-%    symbol-scale .groups:n = { document } ,
+    symbol-scale .code:n =
+      {
+        \tl_set:Nn \l_@@_used_only_once_because_no_better_idea_tl
+          {
+            symbol-scale = {#1} ,
+          }
+      } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1752,16 +1761,16 @@
 %
 % To make this package \pkg{todonotes} safe:
 %    \begin{macrocode}
-\pgfkeys{ /@@/.style={baseline=default} }
+\pgfkeys{ /@@/.style= { baseline=default } }
 %    \end{macrocode}
 %
-% \begin{macro}{ \@@_func_I:n , \@@_func_II:nn }
+% \begin{macro}{ \@@_symbol_scale_i:n , \@@_symbol_scale_ii:nn }
 %    \begin{macrocode}
-\cs_new:Npn \@@_func_I:n #1
+\cs_new:Npn \@@_symbol_scale_i:n #1
   {
-    \@@_func_II:nn {#1} { 1.0 }
+    \@@_symbol_scale_ii:nn {#1} { 1.0 }
   }
-\cs_new:Npn \@@_func_II:nn #1#2
+\cs_new:Npn \@@_symbol_scale_ii:nn #1#2
   {
     \prop_get:NnNTF \g_@@_english_commands_prop {#1} \l_tmpa_tl
       {
@@ -1782,6 +1791,14 @@
 %    \end{macrocode}
 % \end{macro}
 %
+%\begin{macro}{ symbol-scale }
+%    \begin{macrocode}
+\keys_define:nn { tikzsymbols }
+  {
+    symbol-scale .code:n = { \keyval_parse:NNn \@@_symbol_scale_i:n \@@_symbol_scale_ii:nn {#1} }
+  }
+%    \end{macrocode}
+%\end{macro}
 %
 %
 % \subsection{Helping Commands}
@@ -2044,7 +2061,6 @@
 %   Needed for cooking-symbols. Automatically defines the english name
 %   given in the second argument.
 %    \begin{macrocode}
-\prop_new:N \g_@@_english_commands_prop
 \cs_new:Npn \@@_Declare_Document_Commands:nnnn #1#2#3#4
   {
     \clist_put_right:Nn 
@@ -5522,7 +5538,6 @@
 %
 %
 %
-%
 % Checks if the Package \Package{marvosym} is loaded
 % if the \Option{marvosym} is set true.
 %    \begin{macrocode}
@@ -5567,18 +5582,22 @@
     \keys_set_filter:nnnN { tikzsymbols } { package } {#1} \l_tmpa_tl
     \tl_if_empty:NF \l_tmpa_tl
       {
-        \keyval_parse:NNV \@@_msg_I:n \@@_msg_II:nn \l_tmpa_tl
+        \keyval_parse:NNV 
+          \@@_tikzsymbols_scale_msg_i:n 
+          \@@_tikzsymbols_scale_msg_ii:nn 
+          \l_tmpa_tl
       }
   }
 \cs_generate_variant:Nn \keyval_parse:NNn { NNV }
-\cs_new:Npn \@@_msg_I:n #1
+\cs_new:Npn \@@_tikzsymbols_scale_msg_i:n #1
   {
-    \@@_msg_II:nn {#1} { }
+    \@@_tikzsymbols_scale_msg_ii:nn {#1} { }
   }
-\cs_new:Npn \@@_msg_II:nn #1#2
+\cs_new:Npn \@@_tikzsymbols_scale_msg_ii:nn #1#2
   {
     \msg_error:nnn { tikzsymbols } { package-option } {#1}
   }
+\exp_args:NV \tikzsymbolsset \l_@@_used_only_once_because_no_better_idea_tl
 %    \end{macrocode}
 %\end{macro}
 %
