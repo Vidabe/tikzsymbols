@@ -1785,7 +1785,7 @@
               { 
                 \msg_error:nnnn { tikzsymbols } { obsolete-option } 
                   { draft = absolute } { draft = true } 
-                  \bool_gset_true:N \g_@@_if_opt_draft_bool 
+                \bool_gset_true:N \g_@@_if_opt_draft_bool 
               }
           }
       } ,
@@ -1871,6 +1871,7 @@
     after-symbol .tl_set:N = \l_@@_tikzsymbols_after_symbol_tl ,
     after-symbol .default:n= { \xspace } ,
 %    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{ baseline }
 %    \begin{macrocode}
@@ -1879,12 +1880,14 @@
     baseline / false .code:n = { \pgfkeys{ /@@/.style={ } } } ,
     baseline .default:n = { true } ,
 %    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{ global-scale }
 %    \begin{macrocode}
     global-scale .fp_set:N = \l_@@_global_scale_fp ,
     global-scale .default:n = { 1 } ,
 %    \end{macrocode}
+% \end{macro}
 %
 % This command has to be set later as
 % the command names have not been defined yet.
