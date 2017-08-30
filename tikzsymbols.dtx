@@ -35,7 +35,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
-\usepackage[symbol-scale={Sleepey=6}]{tikzsymbols} 
+\usepackage{tikzsymbols} 
 \usepackage{xparse}
 \usepackage{marginnote}
 
@@ -1476,19 +1476,6 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{ tikzsymbolsset }
-%    \begin{macrocode}
-%\msg_new:nnnn { tikzsymbols } { tikzsymbolsset } 
-%  {  
-%    You \ can \ use \ \tikzsymbolsset  only \ in \ the \
-%    Preamble. 
-%  }{
-%    You \ have \ to \ set \ options \ either \ while \ loading \
-%    the \ package \ or \ in \ the \ Preamble.
-%    \msg_see_documentation_text:n { tikzsymbols } 
-%  }
-%    \end{macrocode}
-% \end{macro}
 %
 % \begin{macro}{ Changey-number-too-large }
 % \changes{v3.95}{2016/03/20}{New}
@@ -1939,7 +1926,17 @@
   }
 \cs_new:Npn \@@_scale_if_empty:nTn #1#2#3
   {
-    \tl_set:Nx \l_tmpa_tl
+%    \tl_set:Nx \l_tmpa_tl
+%      {
+%        \fp_eval:n
+%          {
+%            \tl_if_empty:nTF {#3} {#2} {#3}
+%            * \l_@@_global_scale_fp 
+%            * \use:c { l_@@_#1_scale_fp }
+%          }
+%      }
+%    \tl_set:NV \ProcessedArgument \l_tmpa_tl
+    \tl_set:Nx \ProcessedArgument
       {
         \fp_eval:n
           {
@@ -1948,7 +1945,6 @@
             * \use:c { l_@@_#1_scale_fp }
           }
       }
-    \tl_set:NV \ProcessedArgument \l_tmpa_tl
   }
 %    \end{macrocode}
 % \end{macro}
