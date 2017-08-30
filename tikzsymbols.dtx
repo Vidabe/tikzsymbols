@@ -1858,7 +1858,7 @@
     tree .choices:nn = 
       { true , on , false , off }
       {
-        \int_compare:nTF { \l_keys_choice_int <= 2 }
+        \int_compare:nNnTF { \l_keys_choice_int } < { 3 }
           { \bool_gset_true:N \g_@@_if_opt_tree_print_bool }
           { \bool_gset_false:N \g_@@_if_opt_tree_print_bool }
       } ,
