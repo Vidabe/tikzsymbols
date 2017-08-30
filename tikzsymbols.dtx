@@ -1764,7 +1764,6 @@
 %    \begin{macrocode}
     final .bool_gset_inverse:N = \g_@@_if_opt_draft_bool ,
     final .default:n = { true } ,
-%    final .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1791,7 +1790,6 @@
           }
       } ,
     draft .default:n= { false } ,
-%    draft .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1805,7 +1803,6 @@
           { draftabsolute } { draft = true }
         \bool_gset_true:N \g_@@_if_opt_draft_bool
       } , 
-%    draftabsolute .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1863,7 +1860,6 @@
           { \bool_gset_false:N \g_@@_if_opt_tree_print_bool }
       } ,
     tree .default:n = { true } ,
-%    tree .groups:n = { document } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1874,7 +1870,6 @@
 %    \begin{macrocode}
     after-symbol .tl_set:N = \l_@@_tikzsymbols_after_symbol_tl ,
     after-symbol .default:n= { \xspace } ,
-%    after-symbol .groups:n = { document } ,
 %    \end{macrocode}
 %
 % \begin{macro}{ baseline }
@@ -1883,14 +1878,12 @@
     baseline / true .code:n = { \pgfkeys{ /@@/.style={ baseline=default } } } ,
     baseline / false .code:n = { \pgfkeys{ /@@/.style={ } } } ,
     baseline .default:n = { true } ,
-%    baseline .groups:n = { document } ,
 %    \end{macrocode}
 %
 % \begin{macro}{ global-scale }
 %    \begin{macrocode}
     global-scale .fp_set:N = \l_@@_global_scale_fp ,
     global-scale .default:n = { 1 } ,
-%    global-scale .groups:n = { document } ,
 %    \end{macrocode}
 %
 % This command has to be set later as
@@ -1904,6 +1897,7 @@
             symbol-scale = {#1} ,
           }
       } ,
+    symbol-scale .default:n = { } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1944,7 +1938,7 @@
 % be able to write \Makro{Command}[] (note the empty brackets, you
 % don't need to insert a '1' inside, it is done automatically).
 %
-% \begin{macro}{ \@@_if_empty:Tn }
+% \begin{macro}{ \@@_if_empty:Tn , \@@_scale_if_empty:nTn }
 %   This command is used in \Makro{DeclareDocumentCommand} to help
 %   setting the options with \verb|>{ \@@_if_empty:Tn } O{1}|. If the
 %   brackets are empty the value of the option is inserted. Example:
