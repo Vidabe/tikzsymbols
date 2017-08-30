@@ -2307,13 +2307,13 @@
 %    \end{macrocode}
 % Now the bubbles are printed.
 %    \begin{macrocode}
-              \draw (0.45,0.1) circle (0.04);
-              \draw (0.7,0.11) circle (0.04);
-              \draw (0.13, 0.125) circle (0.04);
-              \draw (0.3,0.2) circle (0.04);
-              \draw (0.88,0.2) circle (0.04);
-              \draw (0.1,0.25) circle (0.04);
-              \draw (0.6,0.25) circle (0.04);
+              \draw (0.45,0.1) circle [radius=0.04];
+              \draw (0.7,0.11) circle [radius=0.04];
+              \draw (0.13, 0.125) circle [radius=0.04];
+              \draw (0.3,0.2) circle [radius=0.04];
+              \draw (0.88,0.2) circle [radius=0.04];
+              \draw (0.1,0.25) circle [radius=0.04];
+              \draw (0.6,0.25) circle [radius=0.04];
             \end{tikzpicture}
           }
       }
@@ -2630,7 +2630,7 @@
                    (\xI,0) -- (\xII,0) -- (\xII,0.3) -- (\xI,0.3);
               \foreach \@@_BackblechlochX in { 0.007 , 0.293 }
                 \foreach \@@_BackblechlochY in { 0.007 , 0.293 }
-                  \fill[white] (\@@_BackblechlochX, \@@_BackblechlochY) circle (0.02ex);
+                  \fill[white] (\@@_BackblechlochX, \@@_BackblechlochY) circle [radius=0.02ex];
             \end{tikzpicture}%
           }
       }
@@ -2663,7 +2663,7 @@
               \draw (0,0) rectangle (4,3);
               \draw (0.25,0.25) rectangle (3.75,2);
               \foreach \@@_Ofenschalter in {0.5,1.1,2.9,3.5}
-                \fill (\@@_Ofenschalter,2.5) circle (0.22);
+                \fill (\@@_Ofenschalter,2.5) circle [radius=0.22];
               \draw (1.5,2.28) rectangle  (2.5,2.72);
               \draw[line ~ width=0.05ex * \l_@@_scale_abs_tl] (1,1.75) -- (3,1.75);
             \end{tikzpicture}%
@@ -2741,9 +2741,9 @@
               ]
               \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) rectangle (2,1.5);
               \foreach \y/\radius in { 0.45/0.35 , 0.45/0.2 , 1.15/0.21 }
-                \draw (0.5,\y) circle (\radius);
-              \draw (1.45,1.15) circle (0.15);
-              \draw (1.45,0.45) circle (0.3);
+                \draw (0.5,\y) circle [radius=\radius];
+              \draw (1.45,1.15) circle [radius=0.15];
+              \draw (1.45,0.45) circle [radius=0.3];
               \draw (1.05,0.95) rectangle (1.85,1.35);
             \end{tikzpicture}%
           }
@@ -2890,7 +2890,7 @@
               \draw[rounded ~ corners=0.04ex] (0.05,1.2) rectangle (0.95,1.5);
               \foreach\x in { 0.2, 0.4 , 0.6 , 0.8}
                 \foreach\y in { 0.2 , 0.4, 0.6 , 0.8, 1}
-                  \fill (\x,\y) circle (0.05ex);
+                  \fill (\x,\y) circle [radius=0.05ex];
             \end{tikzpicture}%
           }
       }
@@ -3005,9 +3005,9 @@
                 /@@ ,
                 x=2.4ex , y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_tl , scale = #1
               ]
-              \filldraw[fill=#2, line ~ width=0.1ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
-              \fill (0.1,0.1) circle (0.05);
-              \fill (-0.1,0.1) circle (0.05);
+              \filldraw[fill=#2, line ~ width=0.1ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
+              \fill (0.1,0.1) circle [radius=0.05];
+              \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.15) .. controls (-0.1,-0.06) and (0.1,-0.06) .. (0.2,-0.15);
             \end{tikzpicture}
           }
@@ -3034,9 +3034,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_tl , scale = #1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
               \draw[black] (-0.2,-0.15) .. controls (-0.1,-0.06) and (0.1,-0.06) .. (0.2,-0.15);
             \end{tikzpicture}%
           }
@@ -3067,9 +3067,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2] (0,0) circle (0.33);
-              \fill (-0.1,0.1) circle (0.05);
-              \fill (0.1,0.1) circle (0.05);
+              \filldraw[fill=#2] (0,0) circle [radius=0.33];
+              \fill (-0.1,0.1) circle [radius=0.05];
+              \fill (0.1,0.1) circle [radius=0.05];
               \pgfmathsetmacro \l_tmpa_tl { -0.125 + 0.025*#3  }
               \pgfmathsetmacro \l_tmpb_tl { \l_tmpa_tl - 0.1*#3 }
               \draw 
@@ -3104,9 +3104,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \pgfmathsetmacro \l_tmpa_tl { -0.125 + 0.025*#3  }
               \pgfmathsetmacro \l_tmpb_tl { \l_tmpa_tl - 0.1*#3 }
               \draw[black]
@@ -3157,19 +3157,19 @@
               \fp_compare:nNnT {#5} < { \c_zero }
                 {
                   \@@_cChangey:nnn {#5} {#2} {#3}
-                  (0,0) circle (0.33);
+                  (0,0) circle [radius=0.33];
                 }
               \fp_compare:nNnT {#5} > { \c_zero }
                 {
                   \@@_cChangey:nnn {#5} {#4} {#3} 
-                  (0,0) circle (0.33);
+                  (0,0) circle [radius=0.33];
                 }
               \fp_compare:nNnT {#5} = { \c_zero }
                 {
-                  \filldraw [fill=#3] (0,0) circle (0.33);
+                  \filldraw [fill=#3] (0,0) circle [radius=0.33];
                 }
-              \fill (-0.1,0.1) circle (0.05);
-              \fill (0.1,0.1) circle (0.05);
+              \fill (-0.1,0.1) circle [radius=0.05];
+              \fill (0.1,0.1) circle [radius=0.05];
               \pgfmathsetmacro \l_tmpa_tl { -0.125 + 0.025*#5  }
               \pgfmathsetmacro \l_tmpb_tl { \l_tmpa_tl - 0.1*#5 }
               \draw 
@@ -3218,19 +3218,19 @@
               \fp_compare:nNnT {#5} < { \c_zero }
                 {
                   \@@_dcChangey:nnn {#5} {#2} {#3}
-                  (0,0) circle (0.33);
+                  (0,0) circle [radius=0.33];
                 }
               \fp_compare:nNnT {#5} > { \c_zero }
                 {
                   \@@_dcChangey:nnn {#5} {#4} {#3} 
-                  (0,0) circle (0.33);
+                  (0,0) circle [radius=0.33];
                 }
               \fp_compare:nNnT {#5} = { \c_zero }
                 {
-                  \shade[ball ~ color=#3] (0,0) circle (0.33);
+                  \shade[ball ~ color=#3] (0,0) circle [radius=0.33];
                 }
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \pgfmathsetmacro \l_tmpa_tl { -0.125 + 0.025*#5  }
               \pgfmathsetmacro \l_tmpb_tl { \l_tmpa_tl - 0.1*#5 }
               \draw[black]
@@ -3266,7 +3266,7 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
+              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \draw (0.08,0.1) -- (0.22,0.1);
               \draw (-0.08,0.1) -- (-0.22,0.1);
               \draw (-0.2,-0.1) -- (0.2,-0.1);
@@ -3296,7 +3296,7 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.08,0.1) -- (0.22,0.1);
               \draw[black] (-0.08,0.1) -- (-0.22,0.1);
               \draw[black] (-0.2,-0.1) -- (0.2,-0.1);
@@ -3332,9 +3332,9 @@
                     /@@ ,
                     x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl , scale=#1
                   ]
-                  \filldraw[fill=#2] (0,0) circle (0.33);
-                  \fill (-0.1,0.1) circle (0.05);
-                  \fill (0.1,0.1) circle (0.05);
+                  \filldraw[fill=#2] (0,0) circle [radius=0.33];
+                  \fill (-0.1,0.1) circle [radius=0.05];
+                  \fill (0.1,0.1) circle [radius=0.05];
                   \draw (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
                 \end{tikzpicture}%
               }
@@ -3362,9 +3362,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.1ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \draw[black] (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
             \end{tikzpicture}%
           }
@@ -3395,7 +3395,7 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
+              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \draw (-0.09,0.06) .. controls (-0.11,0.16) and (-0.17,0.16) .. +(-0.1,0);
               \draw (0.09,0.06) .. controls (0.11,0.16) and (0.17,0.16) .. +(0.1,0);
               \filldraw[fill=#3,rounded ~ corners=0.1ex* \l_@@_scale_abs_tl , yshift=-0.5] 
@@ -3427,7 +3427,7 @@
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1,
                 black
               ]
-              \fill[ball ~ color=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
+              \fill[ball ~ color=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \draw (-0.09,0.06) .. controls (-0.11,0.16) and (-0.17,0.16) .. +(-0.1,0);
               \draw (0.09,0.06) .. controls (0.11,0.16) and (0.17,0.16) .. +(0.1,0);
               \shade
@@ -3464,9 +3464,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
-              \fill (0.1,0.1) circle (0.05);
-              \fill (-0.1,0.1) circle (0.05);
+              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
+              \fill (0.1,0.1) circle [radius=0.05];
+              \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.1) -- (0.2,-0.1);
             \end{tikzpicture}%
           }
@@ -3492,9 +3492,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
               \draw[black] (-0.2,-0.1) -- (0.2,-0.1);
             \end{tikzpicture}%
           }
@@ -3524,9 +3524,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2] (0,0) circle (0.33);
+              \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \draw(0.17,0.1) -- (0.05,0.1);
-              \fill (-0.1,0.1) circle (0.05);
+              \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.15,-0.15) .. controls (-0.05,-0.2) and (0.15,-0.2) .. (0.19,0);
             \end{tikzpicture}%
           }
@@ -3552,9 +3552,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2] (0,0) circle (0.33);
+              \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \draw(0.17,0.1) -- (0.05,0.1);
-              \fill (-0.1,0.1) circle (0.05);
+              \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.15,-0.2) .. (0.2,0);
             \end{tikzpicture}%
           }
@@ -3580,9 +3580,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.17,0.1) -- (0.05,0.1);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
               \draw[black] (-0.15,-0.15) .. controls (-0.05,-0.2) and (0.15,-0.2) .. (0.19,0);
             \end{tikzpicture}%
           }
@@ -3607,9 +3607,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.17,0.1) -- (0.05,0.1);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
               \draw[black] (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.15,-0.2) .. (0.2,0);
             \end{tikzpicture}
           }
@@ -3639,9 +3639,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
-              \fill (0.1,0.1) circle (0.05);
-              \fill (-0.1,0.1) circle (0.05);
+              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
+              \fill (0.1,0.1) circle [radius=0.05];
+              \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.08) .. controls (-0.0,-0.2) and (0.0,0) .. (0.2,-0.12);
             \end{tikzpicture}%
           }
@@ -3668,9 +3668,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
               \draw[black] (-0.2,-0.08) .. controls (-0.0,-0.2) and (0.0,0) .. (0.2,-0.12);
             \end{tikzpicture}%
           }
@@ -3700,7 +3700,7 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
+              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \foreach \xi in { 0.05 , -0.15 }
                   \draw (\xi,0.05) -- ++ (0.1,0.1) (-\xi,0.05) -- ++ (-0.1,0.1);
               \draw (-0.2,-0.15) .. controls (-0.1,-0.06) and (0.1,-0.06) .. (0.2,-0.15);
@@ -3730,7 +3730,7 @@
                 black
               ]
               \fill[ball ~ color=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] 
-                (0,0) circle (0.33);
+                (0,0) circle [radius=0.33];
               \foreach \xi in { 0.05 , -0.15 }
                   \draw (\xi,0.05) -- ++ (0.1,0.1) (-\xi,0.05) -- ++ (-0.1,0.1);
               \draw (-0.2,-0.15) .. controls (-0.1,-0.06) and (0.1,-0.06) .. (0.2,-0.15);
@@ -3764,9 +3764,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2] (0,0) circle (0.33);
-              \fill (-0.1,0.1) circle (0.05);
-              \fill (0.1,0.1) circle (0.05);
+              \filldraw[fill=#2] (0,0) circle [radius=0.33];
+              \fill (-0.1,0.1) circle [radius=0.05];
+              \fill (0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
 %    \end{macrocode}
 % Draws the colored halo inside, the next two are drawing the black
@@ -3823,9 +3823,9 @@
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1,
                 black
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \draw[black] (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
 %    \end{macrocode}
 % Same as above (I think).
@@ -3865,7 +3865,7 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2] (0,0) circle (0.33);
+              \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \foreach \xi/\xii in { 0.24/0.01 , -0.24/-0.01 }
                 \fill[rounded ~ corners=0.1ex* \l_@@_scale_abs_tl ] 
                    (\xi,0.15) -- (\xii,0.15) -- (\xii,0) -- (\xi,0) -- cycle;
@@ -3897,7 +3897,7 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.02,0.1) -- (-0.02,0.1);
               \draw[black] (-0.2,0.1) -- (-0.295,0.146);
               \draw[black] (0.2,0.1) -- (0.295,0.146);
@@ -3935,9 +3935,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2] (0,0) circle (0.33);
-              \fill (-0.1,0.1) circle (0.05);
-              \fill (0.1,0.1) circle (0.05);
+              \filldraw[fill=#2] (0,0) circle [radius=0.33];
+              \fill (-0.1,0.1) circle [radius=0.05];
+              \fill (0.1,0.1) circle [radius=0.05];
               \filldraw
                 [
                   fill=#3, line ~ width=0.058ex* \l_@@_scale_abs_tl , 
@@ -3970,9 +3970,9 @@
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.33);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \shadedraw
                 [
                   ball ~ color=#3, draw=black,line ~ width=0.058ex* \l_@@_scale_abs_tl , 
@@ -4013,9 +4013,9 @@
               ]
               \fill[fill=#3,rounded ~ corners=.023ex* \l_@@_scale_abs_tl ] 
                  (-0.3,0) -- (-0.3,0.3) -- (0,0.6) -- (0.3,0.3) -- (0.3,0);
-              \filldraw[fill=#2] (0,0) circle (0.3);
-              \fill (-0.1,0.1) circle (0.05);
-              \fill (0.1,0.1) circle (0.05);
+              \filldraw[fill=#2] (0,0) circle [radius=0.3];
+              \fill (-0.1,0.1) circle [radius=0.05];
+              \fill (0.1,0.1) circle [radius=0.05];
               \draw[line ~ width=0.09ex* \l_@@_scale_abs_tl , yshift=0.07ex] 
                  (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
               \draw[rounded ~ corners=.023ex* \l_@@_scale_abs_tl ] 
@@ -4048,9 +4048,9 @@
                 /@@ ,
                 x=2.3ex, y=2.3ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \shade[ball ~ color=#2] (0,0) circle (0.3);
-              \shade[ball ~ color=black] (-0.1,0.1) circle (0.05);
-              \shade[ball ~ color=black] (0.1,0.1) circle (0.05);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.3];
+              \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
+              \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \draw[black, line ~ width=0.09ex* \l_@@_scale_abs_tl , yshift=0.07ex] 
                  (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
               \shade
@@ -4193,7 +4193,7 @@
                     amplitude=0.1ex* \l_@@_scale_abs_tl 
                   }
               ]
-              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle (0.28);
+              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.28];
               \filldraw[fill=#3] (0.28,-0.33) rectangle (0.66,0.33);
               \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                 (0.28,0) --++(0.05,0.07) --++(0.03,0.02) --+
@@ -4239,7 +4239,7 @@
                     amplitude=0.1ex* \l_@@_scale_abs_tl 
                   }
               ]
-              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle (0.28);
+              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.28];
               \filldraw[fill=#3] (0.28,-0.33) rectangle (0.66,0.33);
               \foreach \x/\y in { 0.5/0.25 , 0.6/0 , 0.5/-0.25 }
                 \draw[decorate, line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
@@ -4285,7 +4285,7 @@
                 (0.28,0) --++(0.03,-0.02)  --++(0.03,-0.07)  --++
                 (0.03,-0.01)  --++(0.01,-0.07)  --++
                 (0.06,0.01)  --++(0.03,-0.08)   -- (0.5,0.-0.25);
-              \shade[ball ~ color=#2] (-0.01,0) circle (0.31);
+              \shade[ball ~ color=#2] (-0.01,0) circle [radius=0.31];
               \draw[rotate=-20] (0.12,0.1) -- (0.2,0.05);
               \draw[rotate=-20] (0.283,-0.1) .. controls (0.2,-0.072) 
                 and (0.1,-0.06) .. (0,-0.1);
@@ -4323,7 +4323,7 @@
               \foreach \x/\y in { 0.5/0.25 , 0.6/0 , 0.5/-0.25 }
                 \draw[decorate, line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                   (0.298,0) -- (\x,\y);
-              \shade[ball ~ color=#2] (-0.01,0) circle (0.31);
+              \shade[ball ~ color=#2] (-0.01,0) circle [radius=0.31];
               \draw[rotate=-20] (0.12,0.1) -- (0.2,0.05);
               \draw[rotate=-20] (0.283,-0.1) .. controls (0.2,-0.072) 
                 and (0.1,-0.06) .. (0.,-0.1);
@@ -4339,14 +4339,14 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_Cat:n #1 
   {
-    \draw (0,0) circle (0.3);
+    \draw (0,0) circle [radius=0.3];
     \foreach \xi/\xii in { 0.3/0.35 }
       {
         \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
           (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
       }
-    \fill (-0.15,.15) circle (0.05);
-    \fill (0.15,.15) circle (0.05);
+    \fill (-0.15,.15) circle [radius=0.05];
+    \fill (0.15,.15) circle [radius=0.05];
     \foreach \x in { 0.1 , -0.1 }
       \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_tl ,yshift=-0.12ex] 
         (0,0) -- (0,-0.1) -- (\x,-0.095);
@@ -4364,7 +4364,7 @@
   }
 \cs_new:Npn \@@_Cat_unknown:n #1 
   {
-    \draw (0,0) circle (0.3);
+    \draw (0,0) circle [radius=0.3];
     \foreach \xi/\xii in { 0.3/0.35 }
       {
         \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
@@ -4389,7 +4389,7 @@
   }
 \cs_new:Npn \@@_Cat_dead:n #1 
   {
-    \draw (0,0) circle (0.3);
+    \draw (0,0) circle [radius=0.3];
     \foreach \case in { 1,-1 }
       {
         \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
@@ -4516,13 +4516,13 @@
                   }
               ]
               \tl_set:Nn \l_tmpa_tl {#2}
-              \fill[#2] (0,0) circle (0.33);
+              \fill[#2] (0,0) circle [radius=0.33];
               \fill[decoration={random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_tl ,
                 amplitude=0.01ex* \l_@@_scale_abs_tl }, decorate,#3] 
               (-0.33,0) -- (0.33,0)  -- (0.23,0.23) -- (-0.23,0.23) -- cycle;
               \tl_if_eq:NNT \c_@@_black_tl \l_tmpa_tl 
                 {
-                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
+                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
                 }
               \fill[#3] (0,0.1) -- (-0.33,0) -- (-0.26,0.23);
               \fill[#3] (0.3465,0) arc [start ~ angle=0, end ~ angle=42, x ~ radius=0.34, y~ radius=0.345]  -- 
@@ -4543,7 +4543,7 @@
                 (0.26,0.21) -- \x;
               \tl_if_eq:NNF \c_@@_black_tl \l_tmpa_tl 
                 {
-                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle (0.33);
+                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
                 }
             \end{tikzpicture}%
           }
@@ -4586,7 +4586,7 @@
                       } , decorate, #3!50!black
                   ] 
                   \coord -- (0.26,0.21);
-              \shade[ball ~ color=#2] (0,0) circle (0.347);
+              \shade[ball ~ color=#2] (0,0) circle [radius=0.347];
               \fill
                 [
                   decoration=
@@ -4766,12 +4766,13 @@
               \filldraw[fill=#2] (3,-3) -- (3,3) .. controls (5,3) and 
                 (6,2) .. (7,1.5) -- (3,1.5) -- cycle;
               \draw (0,-1.5) circle (1 ~ and ~ 0.5);
+              \draw (0,-1.5) circle [ x~radius=1 , y~radius= 0.5];
               \foreach  \x in { 0.2 , 0.6 }
                 \draw[line ~ width=0.04ex* \l_@@_scale_abs_tl ] 
                   (\x,-1) -- (\x,-2)  (-\x,-1) -- (-\x,-2)  ;
               \draw[line ~ width=0.04ex* \l_@@_scale_abs_tl ] (-1,-1.5) -- (1,-1.5);
-              \fill (1.25,1.25) circle ( 0.5 ~ and ~ 0.75);
-              \fill (-1.25,1.25) circle ( 0.5 ~ and ~ 0.75);
+              \fill (1.25,1.25) circle [ x~radius=0.5 , y~radius= 0.75];
+              \fill (-1.25,1.25) circle [ x~radius=0.5 , y~radius= 0.75];
             \end{tikzpicture}%
           }
       }
@@ -4957,7 +4958,7 @@
               \draw[rotate \space around={ #3 \token_to_str:N : ( 0.15 , 0.4) } ] (0.15,0.4) -- (0.42,0.4);
               \draw[rotate \space around={ #2 \token_to_str:N : ( 0.15 , 0.4) } ] (0.15,0.4) -- (-0.12,0.4);
               \draw (.15, .4) -- (.15, .53);
-              \draw (.15,.8) circle (0.18);
+              \draw (.15,.8) circle [radius=0.18];
             \end{tikzpicture}%
 %              }
           }
@@ -5340,13 +5341,13 @@
                 ]
                 (-0.2,1.19) arc  [start ~ angle=270, end ~ angle=90, radius=0.1];
               \foreach \y in { 0.78 , 0.63 , 0.48 }
-                \fill (0,\y) circle (0.04);
+                \fill (0,\y) circle [radius=0.04];
               \foreach \y in { 0.2 , 0 , -0.2 }
-                \fill (0,\y) circle (0.05);
-              \fill (-0.06,1.18) circle (0.045);
-              \fill (0.06,1.18) circle (0.045);
+                \fill (0,\y) circle [radius=0.05];
+              \fill (-0.06,1.18) circle [radius=0.045];
+              \fill (0.06,1.18) circle [radius=0.045];
               \foreach \x/\y in { 0.1/1.08 , 0.06/1.055 , 0.02/1.039}
-                \fill (\x,\y) circle (0.015)  (-\x,\y) circle (0.015) ;
+                \fill (\x,\y) circle [radius=0.015]  (-\x,\y) circle [radius=0.015] ;
               \draw (-0.3,0.7) -- (-0.6,0.8); 
               \draw (0.3,0.7) -- (0.6,0.8); 
               \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] (-0.65,0) -- (-0.65,1);
@@ -5442,9 +5443,9 @@
                  controls (-0.3, 1.6) and (-0.1,1.6) .. (0.1,1.5) .. 
                  controls (0.3,1.8) and (0.6,1.6) ..  (0.7,1.5) .. controls (1.1, 1.6) and (1,1.4) ..
                  (1,1.2) .. controls (1.2,1) and (1.2,0.7) .. (0.8,0.8) -- (0.486,0.8);
-              \fill[red] (0,1) circle (0.1);
-              \fill[red] (0.4,1.2) circle (0.1);
-              \fill[red] (0.8,1.1) circle (0.1);
+              \fill[red] (0,1) circle [radius=0.1];
+              \fill[red] (0.4,1.2) circle [radius=0.1];
+              \fill[red] (0.8,1.1) circle [radius=0.1];
             \end{tikzpicture}%
           }
       }
@@ -5605,7 +5606,7 @@
 \draw (0.05,0.4) -- (0.3,0.3) -- (0.1,0.1);
 \draw (0.3,0.8) -- (0.5,0.61);
 \draw (0.49,0.61) -- (0.8,0.65);
-\draw (0.65,0.9) circle (0.17);
+\draw (0.65,0.9) circle [radius=0.17];
 \end{tikzpicture}%
 \tikzsymbolsaftersymbolinput%
 }
@@ -5617,7 +5618,7 @@
 \draw (.15,.4) -- (.4,.5);% Rechter Arm
 \draw (.15,.4) -- (-0.1,.5);% Linker Arm
 \draw (.15, .4) -- (.15, .53);% Hals
-\draw (.15,.8) circle (0.18);% Kopf
+\draw (.15,.8) circle [radius=0.18];% Kopf
 \end{tikzpicture}%
 \tikzsymbolsaftersymbolinput%
 }
