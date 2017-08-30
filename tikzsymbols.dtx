@@ -696,7 +696,7 @@
 %
 % \Makro{SchrodingersCat}'s \Meta{case} can either be $1$ (alive), $0$ (unknown)
 % or $-1$ (dead).
-% 
+%
 % \begin{longtable}{llc} 
 %   Commands & (Optional) parameter(s) & Output \\\toprule\endhead
 %  
@@ -1248,7 +1248,6 @@
 %   \g_@@_if_opt_tree_print_bool ,
 %   \g_@@_if_opt_draft_bool ,
 %   \g_@@_if_opt_marvosym_bool , 
-%   \g_@@_if_opt_usebox_bool ,
 %  }
 % Booleans we later need, \cs{l_@@_if_scale_negative_bool} is set true
 % in symbols which need some extra code if the scaling is negative
@@ -1259,14 +1258,12 @@
 \bool_new:N \g_@@_if_opt_tree_print_bool 
 \bool_new:N \g_@@_if_opt_draft_bool
 \bool_new:N \g_@@_if_opt_marvosym_bool 
-\bool_new:N \g_@@_if_opt_usebox_bool
 %    \end{macrocode}
 % \end{macro}
 %  
 % Setting some of them to true by default.
 %    \begin{macrocode}
 \bool_gset_true:N \g_@@_if_opt_tree_print_bool
-\bool_gset_true:N \g_@@_if_opt_usebox_bool
 %    \end{macrocode}
 %
 %
@@ -1581,6 +1578,12 @@
 %
 %
 %
+% \subsection{Helping Commands}
+% \label{sec:helping-commands}
+%
+% I define some macros which will help me  to write less.
+%
+%
 %
 % \begin{macro}{ \@@_Basic_Tree_aux:nnnnn }
 %   I am still using a similar construction as in the \LaTeXe\
@@ -1588,10 +1591,155 @@
 %   \Makro{@@_Basic_Tree_on:nnnnn} or \Makro{@@_Basic_Tree_off:nnnnn}
 %   depending on the package options.
 %    \begin{macrocode}
-\cs_new:Npn \@@_Basic_Tree_aux:nnnnn {  }
+%\cs_new:Npn \@@_Basic_Tree_aux:nnnnn {  }
+\cs_set:Npn \@@_Basic_Tree_aux:nnnnn
+  {
+    \bool_if:NTF \g_@@_if_opt_tree_print_bool
+      { \@@_Basic_Tree_on:nnnnn }
+      { \@@_Basic_Tree_off:nnnnn }
+  }
 %    \end{macrocode}
 % \end{macro}
 %
+%^^A The command \Makro{BasicTree} is split up into two commands, named
+%^^A \texttt{on} and \texttt{off}. The helper command
+%^^A \Makro{@@_Basic_Tree_aux:nnnnn} is redefined accordingly.
+%^^A    \begin{macrocode}
+%^^A    \end{macrocode}
+%
+%
+% \begin{macro}{ \@@_symbol_scale_i:n , \@@_symbol_scale_ii:nn }
+%    \begin{macrocode}
+\cs_new:Npn \@@_symbol_scale_i:n #1
+  {
+    \@@_symbol_scale_ii:nn {#1} { 1.0 }
+  }
+\cs_new:Npn \@@_symbol_scale_ii:nn #1#2
+  {
+    \prop_get:NnNTF \g_@@_english_commands_prop {#1} \l_tmpa_tl
+      {
+        \fp_set:cn { l_@@_ \l_tmpa_tl _scale_fp } {#2}
+      }{
+        \fp_if_exist:cTF { l_@@_#1_scale_fp }
+          { \fp_set:cn { l_@@_#1_scale_fp } {#2} }
+          { \msg_error:nnn { tikzsymbols} { symbol-name-unknown } {#1} }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{ \@@_set_scale_abs_tl:n }
+%   Sets \Makro{l_@@_scale_abs_tl} to the absolute input value. I made
+%   this to write less which is always a good idea (mostly).
+%    \begin{macrocode}
+\cs_new:Npn \@@_set_scale_abs_tl:n #1
+  {
+    \tl_set:Nx \l_@@_scale_abs_tl { \fp_eval:n { abs (#1) } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{ \@@_create_draftbox:nn }
+%   Creating the command to print the plain vanilla draft-boxes. The
+%   group is needed because I am setting \Makro{vbadness} to
+%   \Makro{c_max_dimen} to suppress underfull-hbox messages. The input
+%   is evaluated because we need it for the height and the length of
+%   the draftbox. The draftbox itself contains just the vbox and hbox
+%   commands to set the height and length of the box surrounded by a
+%   frame.
+%    \begin{macrocode}
+\cs_new:Npn \@@_create_draftbox:nn #1#2
+  {
+    \group_begin: 
+    \vbadness=\c_max_dim
+    \fp_set:Nn \l_tmpa_fp {#1}
+    \fp_set:Nn \l_tmpb_fp {#2}
+    \frame
+      {
+        \vbox_to_ht:nn { \fp_to_dim:N \l_tmpb_fp } 
+          {
+            \hbox_to_wd:nn { \fp_to_dim:N \l_tmpa_fp } { }
+          }
+      }
+    \group_end: 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ \@@_create_squared_draftbox:n }
+%   Again a command to write less. This command is used if the drat-box
+%   is a square.
+%    \begin{macrocode}
+\cs_new:Npn \@@_create_squared_draftbox:n #1 
+  { 
+    \@@_create_draftbox:nn {#1} {#1} 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{ \@@_if_savebox_undefined_aux:nT }
+%   I may misuse the naming scheme because the command ends with
+%   \texttt{nT}, but is not a conditional
+%   function. \Makro{l_@@_current_situation_tl} is used here. The box
+%   is only defined if it not defined yet. I don't know how those
+%   boxes work, but if the same box (alias the same command in the
+%   same font size and the same color and same options) is used again
+%   the output (maybe) doesn't need to be calculated again. Its
+%   faster, somehow, but it's faster. I am using the old commands
+%   \Makro{global} and \Makro{sbox} because I didn't find the \LaTeX3
+%   equivalents.
+%    \begin{macrocode}
+\cs_new:Npn \@@_if_savebox_undefined:nT #1#2
+  {
+    \tl_set:Nx \l_@@_current_situation_tl 
+      { 
+        \bool_if:NTF \g_@@_if_opt_draft_bool { T } { F } _ 
+        \current@color _ \f@size  
+      }
+    \box_if_exist:cF { g_@@_savebox_ \l_@@_current_situation_tl _ #1  _box }
+      { 
+        \box_new:c { g_@@_savebox_ \l_@@_current_situation_tl _ #1  _box } 
+        \exp_args:NNc \global \sbox 
+           { g_@@_savebox_ \l_@@_current_situation_tl _ #1 _box } {#2}
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+%
+% \begin{macro}{ \@@_use_savebox_aux:n }
+%   Use the defined \Makro{sbox}-box.
+%    \begin{macrocode}
+\cs_new:Npn \@@_use_savebox:n #1
+  {
+    \exp_args:Nc \usebox 
+      { g_@@_savebox_ \l_@@_current_situation_tl _ #1 _box }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+%
+% \begin{macro}{\@@_provide_savebox_and_use:nT}
+% Again to support my laziness. It creates the box (if it isn't
+% defined yet) and uses the box immediately afterwards.
+%    \begin{macrocode}
+\cs_new:Npn \@@_provide_savebox_and_use_aux:nT #1#2
+  {
+    \@@_if_savebox_undefined:nT {#1} {#2}
+    \@@_use_savebox:n {#1}
+  }
+\cs_set_eq:NN 
+  \@@_provide_savebox_and_use:nT 
+  \@@_provide_savebox_and_use_aux:nT
+%    \end{macrocode}
+% \end{macro}
 %
 % 
 % \subsection{Keys}
@@ -1668,9 +1816,20 @@
 %   Don't want to speed up the code due to random reasons? Set this
 %   option to 'false'. 
 %    \begin{macrocode}
-    usebox .bool_gset:N = \g_@@_if_opt_usebox_bool ,
+    usebox .choice: , 
+    usebox/true .code:n = 
+      { 
+        \cs_set_eq:NN 
+          \@@_provide_savebox_and_use:nT
+          \@@_provide_savebox_and_use_aux:nT
+      } ,
+    usebox/false .code:n = 
+      { 
+        \cs_set_eq:NN 
+          \@@_provide_savebox_and_use:nT
+          \use_ii:nn
+      } ,
     usebox .default:n = { true } ,
-    usebox .groups:n = { package } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1751,25 +1910,6 @@
 \pgfkeys{ /@@/.style= { baseline=default } }
 %    \end{macrocode}
 %
-% \begin{macro}{ \@@_symbol_scale_i:n , \@@_symbol_scale_ii:nn }
-%    \begin{macrocode}
-\cs_new:Npn \@@_symbol_scale_i:n #1
-  {
-    \@@_symbol_scale_ii:nn {#1} { 1.0 }
-  }
-\cs_new:Npn \@@_symbol_scale_ii:nn #1#2
-  {
-    \prop_get:NnNTF \g_@@_english_commands_prop {#1} \l_tmpa_tl
-      {
-        \fp_set:cn { l_@@_ \l_tmpa_tl _scale_fp } {#2}
-      }{
-        \fp_if_exist:cTF { l_@@_#1_scale_fp }
-          { \fp_set:cn { l_@@_#1_scale_fp } {#2} }
-          { \msg_error:nnn { tikzsymbols} { symbol-name-unknown } {#1} }
-      }
-  }
-%    \end{macrocode}
-% \end{macro}
 %
 %  We process all options. 
 % \begin{macro}{ ProcessKeyOptions }
@@ -1778,124 +1918,17 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%\begin{macro}{ symbol-scale }
+% \begin{macro}{ symbol-scale }
 %    \begin{macrocode}
 \keys_define:nn { tikzsymbols }
   {
-    symbol-scale .code:n = { \keyval_parse:NNn \@@_symbol_scale_i:n \@@_symbol_scale_ii:nn {#1} }
-  }
-%    \end{macrocode}
-%\end{macro}
-%
-%
-% \subsection{Helping Commands}
-% \label{sec:helping-commands}
-%
-% I define some macros which will help me  to write less.
-%
-%
-%
-% \begin{macro}{ \@@_set_scale_abs_tl:n }
-%   Sets \Makro{l_@@_scale_abs_tl} to the absolute input value. I made
-%   this to write less which is always a good idea (mostly).
-%    \begin{macrocode}
-\cs_new:Npn \@@_set_scale_abs_tl:n #1
-  {
-    \tl_set:Nx \l_@@_scale_abs_tl { \fp_to_tl:n { abs (#1) } }
+    symbol-scale .code:n = 
+      { \keyval_parse:NNn \@@_symbol_scale_i:n \@@_symbol_scale_ii:nn {#1} }
   }
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{ \@@_create_draftbox:nn }
-%   Creating the command to print the plain vanilla draft-boxes. The
-%   group is needed because I am setting \Makro{vbadness} to
-%   \Makro{c_max_dimen} to suppress underfull-hbox messages. The input
-%   is evaluated because we need it for the height and the length of
-%   the draftbox. The draftbox itself contains just the vbox and hbox
-%   commands to set the height and length of the box surrounded by a
-%   frame.
-%    \begin{macrocode}
-\cs_new:Npn \@@_create_draftbox:nn #1#2
-  {
-    \group_begin: 
-    \vbadness=\c_max_dim
-    \fp_set:Nn \l_tmpa_fp {#1}
-    \fp_set:Nn \l_tmpb_fp {#2}
-    \frame
-      {
-        \vbox_to_ht:nn { \fp_to_dim:N \l_tmpb_fp } 
-          {
-            \hbox_to_wd:nn { \fp_to_dim:N \l_tmpa_fp } { }
-          }
-      }
-    \group_end: 
-  }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{ \@@_create_squared_draftbox:n }
-%   Again a command to write less. This command is used if the drat-box
-%   is a square.
-%    \begin{macrocode}
-\cs_new:Npn \@@_create_squared_draftbox:n #1 
-  { 
-    \@@_create_draftbox:nn {#1} {#1} 
-  }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{ \@@_if_savebox_undefined:nT }
-%   I may misuse the naming scheme because the command ends with
-%   \texttt{nT}, but is not a conditional
-%   function. \Makro{l_@@_current_situation_tl} is used here. The box
-%   is only defined if it not defined yet. I don't know how those
-%   boxes work, but if the same box (alias the same command in the
-%   same font size and the same color and same options) is used again
-%   the output (maybe) doesn't need to be calculated again. Its
-%   faster, somehow, but it's faster. I am using the old commands
-%   \Makro{global} and \Makro{sbox} because I didn't find the \LaTeX3
-%   equivalents.
-%    \begin{macrocode}
-\cs_new:Npn \@@_if_savebox_undefined:nT #1#2
-  {
-    \tl_set:Nx \l_@@_current_situation_tl { \current@color _ \f@size  }
-    \box_if_exist:cF { g_@@_savebox_ \l_@@_current_situation_tl _ #1  _box }
-      { 
-        \box_new:c { g_@@_savebox_ \l_@@_current_situation_tl _ #1  _box } 
-        \exp_args:NNc \global \sbox 
-           { g_@@_savebox_ \l_@@_current_situation_tl _ #1 _box } {#2}
-      }
-  }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{
-% \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT }
-% Again to support my laziness. It creates the box (if it isn't
-% defined yet) and uses the box immediately afterwards.
-%    \begin{macrocode}
-\cs_new:Npn \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT #1#2
-  {
-    \@@_if_savebox_undefined:nT {#1} {#2}
-    \@@_use_savebox:n {#1}
-  }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{ \@@_use_savebox:n }
-%   Use the defined \Makro{sbox}-box.
-%    \begin{macrocode}
-\cs_new:Npn \@@_use_savebox:n #1
-  {
-    \exp_args:Nc \usebox 
-      { g_@@_savebox_ \l_@@_current_situation_tl _ #1 _box }
-  }
-%    \end{macrocode}
-% \end{macro}
 %
 %
 % \subsubsection{DeclareDocumentCommand Helpers}
@@ -1926,16 +1959,6 @@
   }
 \cs_new:Npn \@@_scale_if_empty:nTn #1#2#3
   {
-%    \tl_set:Nx \l_tmpa_tl
-%      {
-%        \fp_eval:n
-%          {
-%            \tl_if_empty:nTF {#3} {#2} {#3}
-%            * \l_@@_global_scale_fp 
-%            * \use:c { l_@@_#1_scale_fp }
-%          }
-%      }
-%    \tl_set:NV \ProcessedArgument \l_tmpa_tl
     \tl_set:Nx \ProcessedArgument
       {
         \fp_eval:n
@@ -2091,29 +2114,6 @@
 % \end{macro}
 %
 %
-% If the option \Option{usebox} is set to false the code inside is
-% executed, it redefines the commands to create and use the draft-boxes.
-%    \begin{macrocode}
-\AtBeginDocument
-  {
-    \bool_if:NF \g_@@_if_opt_usebox_bool
-      {
-        \cs_set_eq:NN \@@_if_savebox_undefined:nT \use_ii:nn
-        \cs_set_eq:NN \@@_use_savebox:n \use_none:n
-      }
-  }
-%    \end{macrocode}
-% The command \Makro{BasicTree} is split up into two commands, named
-% \texttt{on} and \texttt{off}. The helper command
-% \Makro{@@_Basic_Tree_aux:nnnnn} is redefined accordingly.
-%    \begin{macrocode}
-\cs_set:Npn \@@_Basic_Tree_aux:nnnnn
-  {
-    \bool_if:NTF \g_@@_if_opt_tree_print_bool
-      { \@@_Basic_Tree_on:nnnnn }
-      { \@@_Basic_Tree_off:nnnnn }
-  }
-%    \end{macrocode}
 %
 %
 %
@@ -2281,7 +2281,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Kochtopf } { pot } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Kochtopf_#1 }
+    \@@_provide_savebox_and_use:nT { Kochtopf_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2331,7 +2331,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Bratpfanne } { fryingpan } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Bratpfanne_#1 }
+    \@@_provide_savebox_and_use:nT { Bratpfanne_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2379,7 +2379,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Schneebesen } { eggbeater } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Schneebesen_#1 }
+    \@@_provide_savebox_and_use:nT { Schneebesen_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2419,7 +2419,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Sieb } { sieve } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sieb_#1 }
+    \@@_provide_savebox_and_use:nT { Sieb_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2544,7 +2544,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Purierstab } { blender } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Purierstab_#1 }
+    \@@_provide_savebox_and_use:nT { Purierstab_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2578,7 +2578,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Dreizack } { trident } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Dreizack_#1 }
+    \@@_provide_savebox_and_use:nT { Dreizack_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2612,7 +2612,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Backblech } { bakingplate } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Backblech_#1 }
+    \@@_provide_savebox_and_use:nT { Backblech_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2648,7 +2648,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Ofen } { oven } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Ofen_#1 }
+    \@@_provide_savebox_and_use:nT { Ofen_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2683,7 +2683,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Pfanne } { pan } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Pfanne_#1 }
+    \@@_provide_savebox_and_use:nT { Pfanne_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2727,7 +2727,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Herd } { cooker } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Herd_#1 }
+    \@@_provide_savebox_and_use:nT { Herd_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2762,7 +2762,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Saftpresse } { squeezer } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Saftpresse_#1 }
+    \@@_provide_savebox_and_use:nT { Saftpresse_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2807,7 +2807,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Schussel } { bowl } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Schussel_#1 }
+    \@@_provide_savebox_and_use:nT { Schussel_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2840,7 +2840,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Schaler } { peeler } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Schaler_#1 }
+    \@@_provide_savebox_and_use:nT { Schaler_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2874,7 +2874,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Reibe } { grater } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Reibe_#1 }
+    \@@_provide_savebox_and_use:nT { Reibe_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2908,7 +2908,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Flasche } { bottle } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Flasche_#1 }
+    \@@_provide_savebox_and_use:nT { Flasche_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2946,7 +2946,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Nudelholz } { rollingpin } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Nudelholz_#1 }
+    \@@_provide_savebox_and_use:nT { Nudelholz_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2995,7 +2995,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Sadey } { S O{none} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sadey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Sadey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3024,7 +3024,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSadey } { S O{yellow} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSadey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dSadey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3055,7 +3055,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Changey } { S O{white} m }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Changey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { Changey_#1_#2_#3 }
       {
         \fp_compare:nT { abs(#3) > 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
@@ -3092,7 +3092,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dChangey } { S O{yellow} m }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dChangey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { dChangey_#1_#2_#3 }
       {
         \fp_compare:nT { abs(#3) > 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
@@ -3141,7 +3141,7 @@
 \cs_generate_variant:Nn \@@_cChangey_aux:nnn { x }
 \@@_Declare_Document_Command:nnn { cChangey } { S O{red} O{yellow} O{green} m }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT 
+    \@@_provide_savebox_and_use:nT 
       { cChangey_#1_#2_#3_#4_#5 }
       {
         \fp_compare:nT { abs(#5) > 2 } 
@@ -3202,7 +3202,7 @@
 \cs_generate_variant:Nn \@@_dcChangey_aux:nnn { x }
 \@@_Declare_Document_Command:nnn { dcChangey } { S O{red} O{yellow} O{green} m }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT 
+    \@@_provide_savebox_and_use:nT 
       { dcChangey_#1_#2_#3_#4_#5 }
       {
         \fp_compare:nT { abs(#5) > 2 } 
@@ -3256,7 +3256,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Annoey } { S O{none} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Annoey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Annoey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3286,7 +3286,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dAnnoey } { S O{yellow} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dAnnoey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dAnnoey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3322,7 +3322,7 @@
   {
     \@@_Declare_Document_Command:nnn { Smiley } { S O{none} }
       {
-        \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Smiley_#1_#2 }
+        \@@_provide_savebox_and_use:nT { Smiley_#1_#2 }
           {
             \@@_set_scale_abs_tl:n {#1}
             \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3352,7 +3352,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSmiley } { S O{yellow} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSmiley_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dSmiley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3385,7 +3385,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Laughey } { S O{none} O{none} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Laughey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { Laughey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3416,7 +3416,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dLaughey } { S O{yellow} O{red} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dLaughey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { dLaughey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3454,7 +3454,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Neutrey } { S O{none}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Neutrey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Neutrey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3482,7 +3482,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dNeutrey } { S O{yellow}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Neutrey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Neutrey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3514,7 +3514,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Winkey } { S O{none}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Winkey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Winkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3542,7 +3542,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { oldWinkey } { S O{none}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { oldWinkey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { oldWinkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3570,7 +3570,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dWinkey } { S O{yellow}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dWinkey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dWinkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3597,7 +3597,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { olddWinkey } { S O{yellow}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { olddWinkey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { olddWinkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3629,7 +3629,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Sey } { S O{none}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Sey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3658,7 +3658,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSey } { S O{yellow}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dSey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3690,7 +3690,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Xey } { S O{none}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Xey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Xey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3718,7 +3718,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dXey } { S O{yellow}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dXey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dXey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3752,7 +3752,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Innocey } { S O{none} O{yellow} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Innocey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { Innocey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3810,7 +3810,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dInnocey } { S O{yellow} O{yellow}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dInnocey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { dInnocey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3855,7 +3855,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Cooley } { S O{none}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Cooley_#1_#2 }
+    \@@_provide_savebox_and_use:nT { Cooley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3887,7 +3887,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dCooley } { S O{yellow}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dCooley_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dCooley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3925,7 +3925,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Tongey } { S O{none} O{none} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Tongey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { Tongey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3960,7 +3960,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dTongey } { S O{yellow} O{red} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dTongey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { dTongey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3999,7 +3999,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Nursey } { S O{none} O{none} O{} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Nursey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nT { Nursey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4036,7 +4036,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dNursey } { S O{yellow} O{white} O{red} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dNursey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nT { dNursey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4082,7 +4082,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Vomey } { S O{none} O{opacity=0} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Vomey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { Vomey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4126,7 +4126,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dVomey } { S O{yellow} O{brown!10!olive}  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dVomey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { dVomey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4175,7 +4175,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Walley } { S O{none} O{none} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Walley_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { Walley_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4222,7 +4222,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { rWalley } { S O{none} O{none} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { rWalley_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nT { rWalley_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4260,7 +4260,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dWalley } { S O{yellow} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dWalley_#1_#2 }
+    \@@_provide_savebox_and_use:nT { dWalley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4302,7 +4302,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { drWalley } { S O{yellow} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { drWalley_#1_#2 }
+    \@@_provide_savebox_and_use:nT { drWalley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4433,7 +4433,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Cat } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Cat_#1 }
+    \@@_provide_savebox_and_use:nT { Cat_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4462,7 +4462,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { SchrodingersCat } { S m }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { SchrodingersCat_#1_#2 }
+    \@@_provide_savebox_and_use:nT { SchrodingersCat_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4499,7 +4499,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Ninja } { S O{black} O{red} O{white} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Ninja_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nT { Ninja_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4560,7 +4560,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dNinja } { S O{black} O{red} O{white} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dNinja_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nT { dNinja_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4624,7 +4624,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Sleepey } { S O{none} O{none} O{black} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Sleepey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nT { Sleepey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4685,7 +4685,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSleepey } { S O{yellow} O{blue} O{black} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { dSleepey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nT { dSleepey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4748,7 +4748,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { NiceReapey } { S O{black!20!white} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { NiceReapey_#1_#2 }
+    \@@_provide_savebox_and_use:nT { NiceReapey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4831,7 +4831,7 @@
 \@@_Declare_Document_Command:nnn { Strichmaxerl } 
   { S O{-22} O{22} O{27} O{-27} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT 
+    \@@_provide_savebox_and_use:nT 
       { Strichmaxerl_#1_#2_#3_#4_#5 }
       {
         \@@_set_scale_abs_tl:n {#1}
@@ -4994,7 +4994,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Candle } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Candle_#1 }
+    \@@_provide_savebox_and_use:nT { Candle_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5030,7 +5030,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Fire } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Fire_#1 }
+    \@@_provide_savebox_and_use:nT { Fire_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5087,7 +5087,7 @@
 {
 \@@_Declare_Document_Command:nnn { Coffeecup } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Coffeecup_#1 }
+    \@@_provide_savebox_and_use:nT { Coffeecup_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5130,7 +5130,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Chair } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Chair_#1 }
+    \@@_provide_savebox_and_use:nT { Chair_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5169,7 +5169,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Bed } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Bed_#1 }
+    \@@_provide_savebox_and_use:nT { Bed_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5206,7 +5206,7 @@
 \@@_Declare_Document_Command:nnn { Tribar } 
   { S O{opacity=0} O{opacity=0} O{opacity=0} }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Tribar_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nT { Tribar_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5250,7 +5250,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Moai } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Moai_#1 }
+    \@@_provide_savebox_and_use:nT { Moai_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \fp_compare:nTF { abs (#1) < 2 }
@@ -5311,7 +5311,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Snowman } { S }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { Snowman_#1 }
+    \@@_provide_savebox_and_use:nT { Snowman_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5380,7 +5380,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_Basic_Tree:nnnnn #1#2#3#4#5
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT 
+    \@@_provide_savebox_and_use:nT 
       { BasicTree_#1_#2_#3_#4_#5 }
       {
         \tl_set:Nn \l_tmpa_tl {#5}
@@ -5418,7 +5418,7 @@
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { WorstTree } { S  }
   {
-    \@@_if_savebox_undefined_define_fi_and_use_it_afterwards:nT { WorstTree_#1 }
+    \@@_provide_savebox_and_use:nT { WorstTree_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
