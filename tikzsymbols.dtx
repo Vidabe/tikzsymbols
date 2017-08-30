@@ -4765,7 +4765,7 @@
                  arc [start ~ angle=260, end ~ angle=100, x ~ radius=-1.3, y ~ radius=-2] -- cycle;
               \filldraw[fill=#2] (3,-3) -- (3,3) .. controls (5,3) and 
                 (6,2) .. (7,1.5) -- (3,1.5) -- cycle;
-              \draw (0,-1.5) circle (1 ~ and ~ 0.5);
+              \draw (0,-1.5) circle [ x~radius=1 , y~radius= 0.5];
               \draw (0,-1.5) circle [ x~radius=1 , y~radius= 0.5];
               \foreach  \x in { 0.2 , 0.6 }
                 \draw[line ~ width=0.04ex* \l_@@_scale_abs_tl ] 
