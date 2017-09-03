@@ -244,26 +244,25 @@
 % \section{Important changes}
 % \label{sec:important-changes}
 %
-%^^A There should be no differences between the old (\LaTeXe) and new release (\LaTeX3)
-%^^A except for the choices listed below. 
 % The packages should behave the same way as the \enquote{old} \LaTeXe\ release.
-%^^A The only difference I was able
-%^^A to find is that now you can always use  empty
-%^^A brackets and the default value is still inputted while in 
-%^^A the old version an empty bracket sometimes leads to an
-%^^A error message. 
 %
-% The option \Option{draft=absolute} is now
-% obsolete and replaced by the much simpler option \Option{draft=true}.
-%
+% \begin{description}
+%  \item[2017] Option \Option{usebox} can be used during the document.
 % Furthermore the horribly named command
 % \Makro{tikzsymbolsaftersymbolinput} is not defined anymore by this
 % package. 
 % Please use the new option \Option{after-symbol}, 
 % in combination with the new command \Makro{tikzsymbolsset}, 
 % see \cref{sec:options} for more information.
+%  \item[very old]
+% The option \Option{draft=absolute} is now
+% obsolete and replaced by the much simpler option \Option{draft=true}.
+%  \item[old]
+% \end{description}
+%
 %
 %^^A And a new Emoticon: \Makro{Changey} (and \Makro{dChangey}).
+%
 %
 % \section{Options}
 % \label{sec:options}
@@ -336,18 +335,6 @@
 %
 % You may also use the option \Option{prefix} (\cref{sec:prefix}).
 %
-% \subsubsection{usebox (true/false)}
-% \label{sec:usebox}
-% 
-% In \Package{tikzsymbols} all symbols are stored inside boxes
-% (\Makro{sbox}) and while I still have no idea what exactly happens,
-% it shortens the compilation time of the document. By
-% default this option is \Option{true}. 
-%
-% The drawback is that \LaTeX\ has only a limited number of box
-% registers. If you come across an error message regarding boxes try setting \Option{usebox=false}. 
-%
-% Can only be  set as load-time option. 
 %
 % \subsubsection{prefix (\arg{string})}
 % \label{sec:prefix}
@@ -561,6 +548,22 @@
 %   to \Option{false}. It is set to \Option{true} by default.
 % \end{function}
 %
+%
+% \subsubsection{usebox (true/false)}
+% \label{sec:usebox}
+% 
+% \begin{function}{usebox}
+%   \begin{syntax}
+%     usebox = \marg{true/false}
+%   \end{syntax}
+% In \Package{tikzsymbols} all symbols are stored inside boxes
+% (\Makro{sbox}) and while I still have no idea what exactly happens,
+% it shortens the compilation time of the document. By
+% default this option is \Option{true}. 
+% \end{function}
+%
+% The drawback is that \LaTeX\ has only a limited number of box
+% registers. If you come across an error message regarding boxes try setting \Option{usebox=false}. 
 %
 %
 %
@@ -1225,8 +1228,8 @@
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2018/08/19}
-  {4.06a}
+  {2018/09/01}
+  {4.07}
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
