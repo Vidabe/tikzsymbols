@@ -25,8 +25,7 @@ Changes
   - Did something else, I can't remember.
 * v2.25		Changed some code
 * v2.5
-  - New option: draftabsolute (symbols are replaced by text and LateX
-  - becomes faster again). Changed manual a bit. 
+  - New option: draftabsolute (symbols are replaced by text and LateX becomes faster again). Changed manual a bit. 
 * v3.0
   - Symbols are stored inside a save-box and are used via \\usebox{}, 
   - New option: `draft=absolute` (old option is still useable but obsolete),
@@ -54,13 +53,14 @@ Changes
 * v4.02
   - Added option `baseline=true/false` to fix a bug occuring with `todonotes`
   - New Symbols: `\\cChangey` and `\\dcChangey`
-* v4.05
+* v4.06
   - New Emoticon: `\\(d)Sleepey`.
   - New Emoticon: `\\SchrodingersCat`.
   - New option: `global-scale`.
   - New option: `symbol-scale`.
   - `\\tikzsymbolsset` now raises a warning if a load-time option is used.
   - Some minor fixes.
+* v4.07 Option `usebox` is now usable in the document.
 
 Requirements 
 ------------
