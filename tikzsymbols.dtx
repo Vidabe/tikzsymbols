@@ -196,7 +196,7 @@
 %
 %   English is (still) not my native language so there (still) might be some
 %   errors\footnote{They are -- of course -- on purpose (expect for 
-%    \enquote{avaiable} (sic!).}. \Winkey.
+%    \enquote{avaiable} (sic!)).} \Winkey.
 % \end{abstract}
 %
 % \tableofcontents
@@ -237,18 +237,18 @@
 % Well, let's hope my code (and grammar) is better this time\footnote{Looking at own risk.
 %  You have been warned.}.
 %
-% Well \dots\ thats it, have fun!
+% Well \dots\ that's it, have fun!
 %
 %
 %
 % \section{Important changes}
 % \label{sec:important-changes}
 %
-% The packages should behave the same way as the \enquote{old} \LaTeXe\ release.
+% The package should behave the same way as the \enquote{old} \LaTeXe\ release.
 %
 % \begin{description}
 %  \item[2017] Option \Option{usebox} can be used during the document.
-% Furthermore the horribly named command
+%  \item[old]  The horribly named command
 % \Makro{tikzsymbolsaftersymbolinput} is not defined anymore by this
 % package. 
 % Please use the new option \Option{after-symbol}, 
@@ -257,7 +257,6 @@
 %  \item[very old]
 % The option \Option{draft=absolute} is now
 % obsolete and replaced by the much simpler option \Option{draft=true}.
-%  \item[old]
 % \end{description}
 %
 %
@@ -395,27 +394,8 @@
 % \subsection{Normal Options}
 % \label{sec:pream-opt}
 % 
-% Most of these commands can be set either as package option or with
+% Most of these options can be set either as a package-option or with
 % \Makro{tikzsymbolsset}.
-%
-%
-% \subsubsection{final (true/false)}
-% \label{sec:final}
-% 
-% \begin{function}{final}
-%  \begin{syntax}
-%    final= \arg{true/false}
-%  \end{syntax}
-%
-% This key has the opposite behavior of the option \Option{draft}.
-%
-% It is a boolean key and therefore accepts only \Option{true} or
-% \Option{false} and is set to \Option{true} by default. Setting it to
-% \Option{true} prints all symbols normally. Setting it to
-% \Option{false} prints plain vanilla draft-boxes instead which speeds
-% up the compile-process.
-%
-% \end{function}
 %
 % \subsubsection{draft (true/false)}
 % \label{sec:draft}
@@ -436,6 +416,25 @@
 %   obsolete and should therefore not be used.
 %
 % \end{function}
+%
+% \subsubsection{final (true/false)}
+% \label{sec:final}
+% 
+% \begin{function}{final}
+%  \begin{syntax}
+%    final= \arg{true/false}
+%  \end{syntax}
+%
+% This key has the opposite behavior of the option \Option{draft}.
+%
+% It is a boolean key and therefore accepts only \Option{true} or
+% \Option{false} and is set to \Option{true} by default. Setting it to
+% \Option{true} prints all symbols normally. Setting it to
+% \Option{false} prints plain vanilla draft-boxes instead which speeds
+% up the compile-process.
+%
+% \end{function}
+%
 % 
 %
 %
@@ -448,11 +447,11 @@
 %  \end{syntax}
 %
 % This key accepts \Option{true}, \Option{false} and furthermore
-% \Option{on} and \Option{off}. The latter do exactly the same as the
+% \Option{on} and \Option{off} (for historical reasons). The latter do exactly the same as the
 % first ones. 
 %
 % This option   has only an effect on the command \Makro{BasicTree}
-% and his derivates (\Makro{Springtree}, \Makro{Summertree},
+% and its derivates (\Makro{Springtree}, \Makro{Summertree},
 % \Makro{Autumntree} and \Makro{Wintertree}) and substitutes them with
 % \Package{tikz} drawn boxes. 
 %
@@ -510,7 +509,8 @@
 %
 %     If a local scale is given (e.g.\ \verb|\Smiley[2]|) with \opt{global-scale=3}
 %     the resulting scaling will be $3\cdot 2=6$. Is furthermore this specific symbol
-%     is also scaled (e.g. by $1.1$), the resulting scaling will be $3\cdot 1.1 \cdot 2=6.6$.
+%     is also scaled (e.g. by $1.1$), the resulting scaling 
+%     (for this symbol) will be $3\cdot 1.1 \cdot 2=6.6$.
 %     \end{mynote}
 %
 % \end{function}
@@ -543,7 +543,7 @@
 %     baseline = \marg{true/false}
 %   \end{syntax}
 %   This option mainly exists to let the commands of this package work inside
-%   \pkg{todonotes} \cs{todo} command. If \Option{true} adds to each symbol of this package
+%   \pkg{todonotes}' \cs{todo} command. If set to \Option{true} it adds to each symbol of this package
 %   the tikz option \Option{baseline=default}. If you do not want this, set this option
 %   to \Option{false}. It is set to \Option{true} by default.
 % \end{function}
@@ -560,10 +560,11 @@
 % (\Makro{sbox}) and while I still have no idea what exactly happens,
 % it shortens the compilation time of the document. By
 % default this option is \Option{true}. 
-% \end{function}
 %
 % The drawback is that \LaTeX\ has only a limited number of box
 % registers. If you come across an error message regarding boxes try setting \Option{usebox=false}. 
+% \end{function}
+%
 %
 %
 %
@@ -1086,7 +1087,8 @@
 %
 % If you find a bug please send me a mail (or report it on GitHub)
 % involving a \emph{minimal example}   
-% showing the bug and a short description. Please mention (if you are writing 
+% showing the bug and a short description (english or german). 
+% Please mention (if you are writing 
 % a mail)
 % \enquote{\Package{tikzsymbols}} in the header, \enquote{gmx} has
 % a habit of putting mails into the spam-folder
@@ -1096,9 +1098,6 @@
 %
 % Suggestions are also welcome.
 %
-%^^A \section{making suggestions}
-%
-%^^A Not only bug reports but also suggestions are most welcome.
 % 
 %
 %
@@ -1228,7 +1227,7 @@
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2018/09/01}
+  {2017/09/01}
   {4.07}
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
