@@ -5583,17 +5583,17 @@
     \tl_if_empty:NF \l_tmpa_tl
       {
         \keyval_parse:NNV 
-          \@@_tikzsymbols_scale_msg_i:n 
-          \@@_tikzsymbols_scale_msg_ii:nn 
+          \@@_tikzsymbolsset_msg_i:n 
+          \@@_tikzsymbolsset_msg_ii:nn 
           \l_tmpa_tl
       }
   }
 \cs_generate_variant:Nn \keyval_parse:NNn { NNV }
-\cs_new:Npn \@@_tikzsymbols_scale_msg_i:n #1
+\cs_new:Npn \@@_tikzsymbolsset_msg_i:n #1
   {
-    \@@_tikzsymbols_scale_msg_ii:nn {#1} { }
+    \@@_tikzsymbolsset_msg_ii:nn {#1} { }
   }
-\cs_new:Npn \@@_tikzsymbols_scale_msg_ii:nn #1#2
+\cs_new:Npn \@@_tikzsymbolsset_msg_ii:nn #1#2
   {
     \msg_error:nnn { tikzsymbols } { package-option } {#1}
   }
