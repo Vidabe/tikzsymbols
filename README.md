@@ -4,7 +4,7 @@ tikzsymbols
 Overview
 --------
 
-The `tiksymbols` package v4.06a (August 19, 2017) contains symbols created using tikz.
+The `tiksymbols` package v4.07 (September 05, 2017) contains symbols created using tikz.
 
 This package provides: 
  * various emoticons
@@ -60,7 +60,7 @@ Changes
   - New option: `symbol-scale`.
   - `\\tikzsymbolsset` now raises a warning if a load-time option is used.
   - Some minor fixes.
-* v4.07 Option `usebox` is now usable in the document.
+* v4.07 Option `usebox` is now usable during the document.
 
 Requirements 
 ------------
