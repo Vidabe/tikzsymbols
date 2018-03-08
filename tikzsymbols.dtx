@@ -1,31 +1,160 @@
-% \iffalse meta-comment
+% \iffalse  meta-comment
 % !TEX encoding = UTF-8 Unicode
+% !TEX program  = pdfLaTeX
 %
-% \fi
 %
-% \iffalse meta-comment 
-% 
-% Copyright (C) 2013--2017 by Ben Vitecek (current Maintainer)
-% 
-% This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3c
-% of this license or (at your option) any later version.
-% The latest version of this license is in
-%   http://www.latex-project.org/lppl.txt
-% and version 1.3c or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
-% 
-% This work has the LPPL maintenance status `maintained'.
-%
-% This work consists of the files README.md, tikzsymbols.dtx, 
-% tikzsymbols.ins and the derived files tikzsymbols.sty.
-%
-% \fi
-%
-% \iffalse 
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+
+tikzsymbols
+===========
+
+Overview
+--------
+
+The `tiksymbols` package v4.07 (September 05, 2017) contains symbols created using tikz.
+
+This package provides: 
+ * various emoticons
+ * cooking symbols
+ * trees
+ * other symbols (e.g. Penrose-Triangle (Triban), chair, coffeecup, etc.)
+
+Changes
+-------
+* v1.6  Several bugs fixed and some options added.
+* v1.7  New symbols and some `bugs` fixed
+* v2.0
+  - Bug fixed, now option `tree=on/off` is working again, 
+  - new symbols: `Triban`, improved BasicTree code.
+  - New option: `marvsoym` (see documentation for more details).
+* v2.2
+  - Included `\\@ifpackageloaded`, now symbols can have negative scale,
+  - Did something else, I can't remember.
+* v2.25  Changed some code
+* v2.5
+  - New option: draftabsolute (symbols are replaced by text and LateX becomes faster again). Changed manual a bit. 
+* v3.0
+  - Symbols are stored inside a save-box and are used via \\usebox{}, 
+  - New option: `draft=absolute` (old option is still useable but obsolete),
+  - Changed output of `draft=absolute`,
+  - New option: `prefix=<prefix>`, adds a `<prefix>` to all commands,
+  - New option: `usebox=true/false` If false the symbols aren't stored inside a box,
+  - See manual for more changes.
+* v3.0a  New cookingsymbols: `\\grater`, `\\bottle`
+* v3.0b  Deleted some non-ASCII characters.
+* v3.0g
+  - Removed a bug caused by me messing up with commands.
+  - Removed package `calc` and replaced `\\setlength` with `\\pgfmathsetlength`
+  - Reworked some code of the symbols.
+  - Did not change the manual.
+* v3.0h  Created a bug in the process of fixing the last bug, added the forgotten `\\fi`.
+* v3.01alpha Copied the 2e code and started rewriting the code in LaTeX3.
+* v3.38  Nearly finished rewriting.
+* v3.40  Now everything is coded in LaTeX3.
+* v3.40-v0.95 Various fixes and changes.
+* v3.95  New emoticon `\\(d)Changey`.
+* v4.0  Finished reworking the code.
+* v4.01
+  - Added a known problem to the documentation.
+  - New Symbol: \\rollingpin (and of course the german equivalent `\\Nudelholz`)
+* v4.02
+  - Added option `baseline=true/false` to fix a bug occuring with `todonotes`
+  - New Symbols: `\\cChangey` and `\\dcChangey`
+* v4.06
+  - New Emoticon: `\\(d)Sleepey`.
+  - New Emoticon: `\\SchrodingersCat`.
+  - New option: `global-scale`.
+  - New option: `symbol-scale`.
+  - `\\tikzsymbolsset` now raises a warning if a load-time option is used.
+  - Some minor fixes.
+* v4.07 Option `usebox` is now usable during the document.
+
+Requirements 
+------------
+
+ * expl3 & xparse
+ * tikz
+ * xcolor
+ * xspace
+ * l3keys2e
+
+
+This file contains
+------------------
+
+ * README
+ * tikzsymbols.pdf
+ * tikzsymbols.dtx
+ * tikzsymbols.ins
+
+License
+-------
+This ma­te­rial is sub­ject to the LATEX Project Public Li­cense 1.3c. See
+
+  http://www.ctan.org/tex-archive/help/Catalogue/licenses.lppl.html
+
+for the details of that license.
+
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input l3docstrip.tex
+%\keepsilent
+\askforoverwritefalse
+\preamble
+
+ Copyright (C) 2013--2018 by Ben Vitecek (current Maintainer)
+ 
+ This work may be distributed and/or modified under the
+ conditions of the LaTeX Project Public License, either version 1.3c
+ of this license or (at your option) any later version.
+ The latest version of this license is in
+   http://www.latex-project.org/lppl.txt
+ and version 1.3c or later is part of all distributions of LaTeX
+ version 2005/12/01 or later.
+ 
+ This work has the LPPL maintenance status `maintained'.
+
+ This work consists of the files README.md, tikzsymbols.dtx, 
+ tikzsymbols.ins and the derived files tikzsymbols.sty.
+
+\endpreamble
+%\postamble
+
+%\endpostamble
+\usedir{tex/latex/tikzsymbols}
+\generate{
+  \file{\jobname.sty}{\from{\jobname.dtx}{package}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/tikzsymbols}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble 
+\usedir{doc/latex/tikzsymbols}
+\generate{
+  \file{README.md}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
 %<*driver> 
 \documentclass[onlydoc,11pt,english]{l3doc} 
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} 
@@ -120,12 +249,15 @@
   
   }
 
+
+
 \ExplSyntaxOff
 \makeatother
 
 
+
 \begin{document}
-\DocInput{tikzsymbols.dtx} 
+\DocInput{\jobname.dtx} 
 \end{document} 
 %</driver> 
 % \fi
@@ -157,7 +289,7 @@
 %
 %
 %
-% \GetFileInfo{tikzsymbols.sty}
+% \GetFileInfo{\jobname.sty}
 %
 % \iffalse meta-comment
 %: DoNotIndex
@@ -1083,6 +1215,20 @@
 % \end{verbatim}
 % to your preamble. This should (hopefully) fix the problem. 
 %
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 % \section{Nobody is perfect}
 %
 % If you find a bug please send me a mail (or report it on GitHub)
@@ -1143,6 +1289,11 @@
 %    \begin{macrocode}
 %<@@=tikzsymbols> 
 %    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*package> 
+%    \end{macrocode}
+%
 %
 %\changes {v1.0} {2013/01/19} {Initial version}
 %\changes {v1.05} {2013/02/13} {Deleted a \enquote{t} in the BasicTree-code, shortened the trunk from the tree a bit, renamed some codes,  made an index}
@@ -1905,6 +2056,8 @@
     symbol-scale .default:n = { } ,
 %    \end{macrocode}
 % \end{macro}
+%
+%
 %
 %
 % Now we end the key definitions.
@@ -5630,17 +5783,19 @@
 %</ignore>
 %\fi
 % 
-%
-%
+%    \begin{macrocode}
+%</package>      
+%    \end{macrocode}
 %
 % \end{implementation}
 %
-% \iffalse meta-comment
-%: Final
+%
 %
 % \endinput
+%
+%
+%
 % Local Variables:
 % mode: doctex
 % TeX-master: t
 % End:
-% \fi
