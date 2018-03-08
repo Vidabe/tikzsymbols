@@ -249,6 +249,7 @@ for the details of that license.
   
   }
 
+%\tikzsymbolsset {append-style = {red} }
 
 
 \ExplSyntaxOff
@@ -1897,7 +1898,9 @@ for the details of that license.
 %
 % To make this package \pkg{todonotes} safe:
 %    \begin{macrocode}
-\pgfkeys{ /@@/.style= { baseline=default } }
+\pgfkeys{ /@@/baseline /.style= { baseline=default } }
+\pgfkeys{ /@@/remember-picture /.style= { remember~picture={#1} } }
+\pgfkeys{ /@@/.style= { /@@/baseline , /@@/remember-picture=false  } }
 %    \end{macrocode}
 %
 % 
@@ -2026,12 +2029,28 @@ for the details of that license.
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{ append-style }
+%    \begin{macrocode}
+    append-style .code:n = { \pgfkeys{ /@@/.append ~ style= {#1} } } ,
+    append-style .default:n = { } ,
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{ baseline }
 %    \begin{macrocode}
     baseline .choice: ,
-    baseline / true .code:n = { \pgfkeys{ /@@/.style={ baseline=default } } } ,
-    baseline / false .code:n = { \pgfkeys{ /@@/.style={ } } } ,
+    baseline / true .code:n = { \pgfkeys{ /@@/baseline /.style={ baseline=default } } } ,
+    baseline / false .code:n = { \pgfkeys{ /@@/baseline /.style={ } } } ,
     baseline .default:n = { true } ,
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ remember-picture }
+%    \begin{macrocode}
+    remember-picture .choice: ,
+    remember-picture / true .meta:n = { append-style = { /@@/remember-picture = true } } ,
+    remember-picture / false .meta:n = { append-style = { /@@/remember-picture = false } } ,
+    remember-picture .default:n = { false } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -5754,7 +5773,7 @@ for the details of that license.
 %\end{macro}
 %
 %
-%\iffalse
+%^^A\iffalse
 %<*ignore>
 \tkzsymbls@Declare@Robust@Command{@@@@@@@@Keep@Cool@@@@I}{%
 \begin{tikzpicture}[ /@@ ,x=1em, y=1em, line ~ width=0.03em]
@@ -5781,7 +5800,7 @@ for the details of that license.
 \tikzsymbolsaftersymbolinput%
 }
 %</ignore>
-%\fi
+%^^A\fi
 % 
 %    \begin{macrocode}
 %</package>      
