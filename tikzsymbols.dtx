@@ -154,7 +154,8 @@ for the details of that license.
 \fi
 %</internal>
 %<*driver> 
-\documentclass[onlydoc,11pt,english]{l3doc} 
+\documentclass[onlydoc,11pt,english,draft=true]{l3doc} 
+%: documentclass
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} 
@@ -176,7 +177,6 @@ for the details of that license.
 \RecordChanges 
 \AtEndDocument { \PrintChanges \PrintIndex }
 
-%: Ganz oben
 \makeatletter
 \ExplSyntaxOn
 
@@ -668,6 +668,17 @@ for the details of that license.
 %   does the same thing.
 %   \end{mynote}
 %
+%
+%
+% \subsubsection{append-style (tikz' keyval)}
+% \label{sec:append-style}
+% 
+% \begin{function}{append-style}
+%   \begin{syntax}
+%     append-style = \marg{tikz' keyval}
+%   \end{syntax}
+% \end{function}
+%
 % \subsubsection{baseline (true/false)}
 % \label{sec:baseline}
 % 
@@ -677,9 +688,21 @@ for the details of that license.
 %   \end{syntax}
 %   This option mainly exists to let the commands of this package work inside
 %   \pkg{todonotes}' \cs{todo} command. If set to \Option{true} it adds to each symbol of this package
+%   \pkg{todonotes}' \cs{todo} command. If set to \Option{true} it adds to each 
 %   the tikz option \Option{baseline=default}. If you do not want this, set this option
 %   to \Option{false}. It is set to \Option{true} by default.
 % \end{function}
+%
+% \subsubsection{remember-picture (true/false)}
+% \label{sec:rem-picture}
+% 
+% \begin{function}{remember-picture}
+%   \begin{syntax}
+%     remember-picture = \marg{true/false}
+%   \end{syntax}
+%   This option exists
+% \end{function}
+%
 %
 %
 % \subsubsection{usebox (true/false)}
