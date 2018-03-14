@@ -13,6 +13,10 @@ This package provides:
  * trees
  * other symbols (e.g. Penrose-Triangle (Triban), chair, coffeecup, etc.)
 
+FAQ
+-------
+See documentation
+
 Changes
 -------
 * v1.6  Several bugs fixed and some options added.
