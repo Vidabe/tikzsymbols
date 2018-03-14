@@ -2407,8 +2407,10 @@ for the details of that license.
 %    \begin{macrocode}
 \tl_const:Nn \c_@@_tikz_set_tl
   {
-    \tikzset
+    \pgfkeys
+%    \tikzset
       {
+        /tikz/.cd ,
         @@_ld/.style={ level ~ distance=#1ex },
         @@_lw/.style={ line ~ width=#1ex },
         level ~ 1/.style={ @@_ld=0.60, @@_trunk,                   @@_lw=0.1 ,sibling ~ angle=60 },
