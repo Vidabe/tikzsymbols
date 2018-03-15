@@ -1848,7 +1848,6 @@ for the details of that license.
 %   \Makro{@@_Basic_Tree_on:nnnnn} or \Makro{@@_Basic_Tree_off:nnnnn}
 %   depending on the package options.
 %    \begin{macrocode}
-%\cs_new:Npn \@@_Basic_Tree_aux:nnnnn {  }
 \cs_set:Npn \@@_Basic_Tree_aux:nnnnn
   {
     \bool_if:NTF \g_@@_if_opt_tree_print_bool
@@ -2412,7 +2411,7 @@ for the details of that license.
         /tikz/.cd ,
         @@_ld/.style={ level ~ distance=#1ex },
         @@_lw/.style={ line ~ width=#1ex },
-        level ~ 1/.style={ @@_ld=0.60, @@_trunk,                   @@_lw=0.1 ,sibling ~ angle=60 },
+        level ~ 1/.style={ @@_ld=0.60, @@_trunk, @@_lw=0.1 ,sibling ~ angle=60 },
         level ~ 2/.style={ @@_ld=0.20, @@_trunk!80!@@_leaf ~ a, @@_lw=.073,sibling ~ angle=70 },
         level ~ 3/.style={ @@_ld=0.25, @@_trunk!60!@@_leaf ~ a, @@_lw=.05,sibling ~ angle=70 }, 
         level ~ 4/.style={ @@_ld=0.10, @@_trunk!40!@@_leaf ~ a, @@_lw=.025,sibling ~ angle=60 },
