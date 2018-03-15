@@ -159,7 +159,7 @@ for the details of that license.
 \fi
 %</internal>
 %<*driver> 
-\documentclass[onlydoc,11pt,english]{l3doc} 
+\documentclass[onlydoc,11pt,english,draft=true]{l3doc} 
 %: documentclass
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -5662,15 +5662,11 @@ for the details of that license.
       { BasicTree_#1_#2_#3_#4_#5 }
       {
         \tl_set:Nn \l_tmpa_tl {#5}
-        \bool_if:nTF 
-          { 
-            \tl_if_eq_p:NN \l_tmpa_tl \c_@@_leaf_tl || 
-            \tl_if_empty_p:n {#5} 
-          }{ 
-            \@@_Basic_Tree_aux:nnnnn {#1} {#2} {#3} {#4} {#5}
-          }{
-            \msg_error:nnn { tikzsymbols } { tree } {#5}
-          }
+        \bool_lazy_or:nnTF
+          { \tl_if_eq_p:NN \l_tmpa_tl \c_@@_leaf_tl }
+          { \tl_if_empty_p:n {#5} }
+          { \@@_Basic_Tree_aux:nnnnn {#1} {#2} {#3} {#4} {#5} }
+          { \msg_error:nnn { tikzsymbols } { tree } {#5} }
       }
   }
 %    \end{macrocode}
