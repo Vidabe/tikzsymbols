@@ -1842,20 +1842,6 @@ for the details of that license.
 %
 %
 %
-% \begin{macro}{ \@@_Basic_Tree_aux:nnnnn }
-%   I am still using a similar construction as in the \LaTeXe\
-%   code. Inside this command is safed either
-%   \Makro{@@_Basic_Tree_on:nnnnn} or \Makro{@@_Basic_Tree_off:nnnnn}
-%   depending on the package options.
-%    \begin{macrocode}
-\cs_set:Npn \@@_Basic_Tree_aux:nnnnn
-  {
-    \bool_if:NTF \g_@@_if_opt_tree_print_bool
-      { \@@_Basic_Tree_on:nnnnn }
-      { \@@_Basic_Tree_off:nnnnn }
-  }
-%    \end{macrocode}
-% \end{macro}
 %
 %^^A The command \Makro{BasicTree} is split up into two commands, named
 %^^A \texttt{on} and \texttt{off}. The helper command
@@ -2423,6 +2409,20 @@ for the details of that license.
 % \end{macro}
 %
 %
+% \begin{macro}{ \@@_Basic_Tree_aux:nnnnn }
+%   I am still using a similar construction as in the \LaTeXe\
+%   code. Inside this command is safed either
+%   \Makro{@@_Basic_Tree_on:nnnnn} or \Makro{@@_Basic_Tree_off:nnnnn}
+%   depending on the package options.
+%    \begin{macrocode}
+\cs_set:Npn \@@_Basic_Tree_aux:nnnnn
+  {
+    \bool_if:NTF \g_@@_if_opt_tree_print_bool
+      { \@@_Basic_Tree_on:nnnnn }
+      { \@@_Basic_Tree_off:nnnnn }
+  }
+%    \end{macrocode}
+% \end{macro}
 %
 %
 % \begin{macro}{ \@@_Basic_Tree_off:nnnnn }
