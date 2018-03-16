@@ -477,16 +477,16 @@ for the details of that license.
 % \subsubsection{prefix (\arg{string})}
 % \label{sec:prefix}
 % 
-% This option takes a string as value:  \Option{prefix=\arg{string}} and
+% This option takes a string as value:  \Option{prefix=\meta{string}} and
 % adds this prefix to every command defined by this package. So
-% setting \Option{prefix=<prefix>} adds \arg{prefix} to all commands of
-% this package: \Makro{<prefix>command}.
+% setting \Option{prefix=\meta{prefix}} adds \meta{prefix} to all commands of
+% this package: \Makro{\meta{prefix}command}.
 %
-%\arg{prefix} should neither contain
+%\meta{prefix} should neither contain
 % any special characters (e.g., \"a, \"u, \ss, etc.) nor  spaces.
 %
 % By default it is empty, so no prefix is given, if this option is given
-% without an argument \arg{prefix} is set to \Option{tikzsymbols}.
+% without an argument \meta{prefix} is set to \Option{tikzsymbols}.
 %
 % Can only be set as a load-time option.
 %
@@ -509,7 +509,7 @@ for the details of that license.
 %   This command takes the name of the symbol  \emph{without}
 %   backslash and prints the symbol (or raises an error if the symbol
 %   is not defined). Using this command you don't have to worry about
-%   a \arg{prefix}, just write the command name and this command adds
+%   a \meta{prefix}, just write the command name and this command adds
 %   automatically the given prefix to the command name.
 %
 % 
@@ -541,7 +541,7 @@ for the details of that license.
 % 
 % \begin{function}{draft}
 %   \begin{syntax}
-%     draft = \arg{true/false}
+%     draft = \meta{true/false}
 %   \end{syntax}
 %
 %   While  working on the document it is recommended to set this option
@@ -561,7 +561,7 @@ for the details of that license.
 % 
 % \begin{function}{final}
 %  \begin{syntax}
-%    final= \arg{true/false}
+%    final= \meta{true/false}
 %  \end{syntax}
 %
 % This key has the opposite behavior of the option \Option{draft}.
@@ -582,7 +582,7 @@ for the details of that license.
 % 
 % \begin{function}{tree}
 %  \begin{syntax}
-%    tree= \arg{true/on/false/off}
+%    tree= \meta{true/on/false/off}
 %  \end{syntax}
 %
 % This key accepts \Option{true}, \Option{false} and furthermore
@@ -606,7 +606,7 @@ for the details of that license.
 %
 % 
 %
-% \subsubsection{after-symbol (\arg{string or command})}
+% \subsubsection{after-symbol (\meta{string or command})}
 % \label{sec:after-symbol}
 % 
 % \begin{function}{after-symbol}
@@ -621,8 +621,8 @@ for the details of that license.
 % \end{function}
 % 
 %
-% \subsubsection{global-scale (\arg{number}) \\ 
-%  symbol-scale (\arg{key-value list})}
+% \subsubsection{global-scale (\meta{number}) \\ 
+%  symbol-scale (\meta{key-value list})}
 % \label{sec:global-scale}
 % 
 % \begin{function}{global-scale, symbol-scale}
@@ -676,13 +676,22 @@ for the details of that license.
 %
 %
 %
-% \subsubsection{append-style (tikz' keyval)}
+% \subsubsection{append-style (\meta{tikz' keyval})}
 % \label{sec:append-style}
 % 
 % \begin{function}{append-style}
 %   \begin{syntax}
 %     append-style = \marg{tikz' keyval}
 %   \end{syntax}
+%
+% With this option you can append \pkg{tikz}' \meta{keyval}
+% to \pkg{tikzsymbols} internal style.
+%
+% \begin{mynote}
+%  The style is called \verb|__tikzsymbols| and while the name
+%  will probably not change, you are discouraged to use it directly
+%  unless it is \emph{really} necessary).
+% \end{mynote}
 % \end{function}
 %
 % \subsubsection{baseline (true/false)}
@@ -706,7 +715,11 @@ for the details of that license.
 %   \begin{syntax}
 %     remember-picture = \marg{true/false}
 %   \end{syntax}
-%   This option exists
+%   
+%   Adds to each symbol created by this package the \pkg{tikz}
+%   option \opt{remember picture=\meta{true/false}}. 
+%  It is set to \opt{false} by default.
+%
 % \end{function}
 %
 %
@@ -1304,11 +1317,13 @@ for the details of that license.
 % a look at option \opt{prefix}.
 %
 %
-% \subsection{Why is it important to know that this package stores symbols in boxes
+%^^A \subsection{Why is it important to know that this package stores symbols in boxes
+%^^A and reuses them instead of creating a new picture every time?}
+% \subsection{Does this package store symbols in boxes
 % and reuses them instead of creating a new picture every time?}
 % \label{sec:Q:store-symbol}
 %
-% Well, it can become a problem if \LaTeX\ runs out of boxes. If this happens,
+% Yes, it does. It can become a problem if \LaTeX\ runs out of boxes. If this happens,
 % use \opt{usebox=false}. 
 %
 % Another problem is that if a label is added to a symbol 
