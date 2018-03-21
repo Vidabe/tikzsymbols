@@ -76,6 +76,11 @@ Changes
   - `\\tikzsymbolsset` now raises a warning if a load-time option is used.
   - Some minor fixes.
 * v4.07 Option `usebox` is now usable during the document.
+* vNEWv 
+  - New option: `append-style`.
+  - New option: `remember-picture`.
+  - Added FAQ.
+  - All files are now derived from the .dtx file.
 
 Requirements 
 ------------
@@ -159,7 +164,7 @@ for the details of that license.
 \fi
 %</internal>
 %<*driver> 
-\documentclass[onlydoc,11pt,english,draft=true]{l3doc} 
+\documentclass[onlydoc,11pt,english]{l3doc} 
 %: documentclass
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -1478,6 +1483,10 @@ for the details of that license.
 %
 % \changes{v4.03}{2017/08/08}{New symbols: \cs{Sleepey} and \cs{dSleepey}.}
 % \changes{v4.04}{2017/08/08}{New symbol: \cs{SchrodingersCat}.}
+%
+% \changes{vNEWv}{vDATEv}{New option: \opt{append-style}.}
+% \changes{vNEWv}{vDATEv}{New option: \opt{remember-picture}.}
+% \changes{vNEWv}{vDATEv}{Change how \opt{baseline} works (internal).}
 %
 % The first lines are always the same: What do I need, what is the
 % package named.

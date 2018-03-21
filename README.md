@@ -66,6 +66,11 @@ Changes
   - `\\tikzsymbolsset` now raises a warning if a load-time option is used.
   - Some minor fixes.
 * v4.07 Option `usebox` is now usable during the document.
+* vNEWv
+  - New option: `append-style`.
+  - New option: `remember-picture`.
+  - Added FAQ.
+  - All files are now derived from the .dtx file.
 
 Requirements
 ------------
