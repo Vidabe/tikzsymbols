@@ -207,7 +207,6 @@ for the details of that license.
 \newcommand{\Makro}{\cs}
 \newcommand{\mycs}{\cs}
 \newcommand{\makrouse}[1]{\use:c{#1}}
-\renewcommand{\arg}[1]{\texttt{<#1>}}
 \newcommand{\Meta}[1]{\meta{#1}}
 
 
@@ -1404,10 +1403,6 @@ for the details of that license.
 %
 % \section{\LaTeX3 code}
 %
-%\iffalse
-% !TEX root = tikzsymbols.dtx
-% !TEX encoding = UTF-8 Unicode
-%\fi
 %
 %
 %    \begin{macrocode}
@@ -2010,8 +2005,8 @@ for the details of that license.
 %
 % To make this package \pkg{todonotes} safe:
 %    \begin{macrocode}
-\pgfkeys{ /@@/baseline /.style= { baseline=default } }
-\pgfkeys{ /@@/remember-picture /.style= { remember~picture={#1} } }
+\pgfkeys{ /@@/baseline /.code= { baseline=default } }
+\pgfkeys{ /@@/remember-picture /.code= { remember~picture={#1} } }
 \pgfkeys{ /@@/.style= { /@@/baseline , /@@/remember-picture=false  } }
 %    \end{macrocode}
 %
@@ -2151,8 +2146,8 @@ for the details of that license.
 % \begin{macro}{ baseline }
 %    \begin{macrocode}
     baseline .choice: ,
-    baseline / true .code:n = { \pgfkeys{ /@@/baseline /.style={ baseline=default } } } ,
-    baseline / false .code:n = { \pgfkeys{ /@@/baseline /.style={ } } } ,
+    baseline / true .code:n = { \pgfkeys{ /@@/baseline/.style={ baseline=default } } } ,
+    baseline / false .code:n = { \pgfkeys{ /@@/baseline/.style={ } } } ,
     baseline .default:n = { true } ,
 %    \end{macrocode}
 % \end{macro}
