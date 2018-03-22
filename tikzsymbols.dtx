@@ -2089,18 +2089,18 @@ for the details of that license.
 %    \begin{macrocode}
     usebox .choice: , 
     usebox/true .code:n = 
-      { 
+      {
         \cs_set_eq:NN 
           \@@_provide_savebox_and_use:nT
           \@@_provide_savebox_and_use_aux:nT
       } ,
     usebox/false .code:n = 
-      { 
+      {
         \cs_set_eq:NN 
           \@@_provide_savebox_and_use:nT
           \use_ii:nn
       } ,
-    usebox .default:n = { true } ,
+    usebox .default:n = { true } ,
 %    \end{macrocode}
 % \end{macro}
 %
