@@ -1230,7 +1230,7 @@ for the details of that license.
 % \end{verbatim}
 %
 %
-%
+% \begin{comment}
 % \section{Known errors \& Problems}
 %
 % \subsection*{marvosym}
@@ -1262,7 +1262,7 @@ for the details of that license.
 % \end{verbatim}
 % to your preamble. This should (hopefully) fix the problem. 
 %
-%
+% \end{comment}
 %
 %
 %
@@ -1330,14 +1330,20 @@ for the details of that license.
 % Yes, it does. It can become a problem if \LaTeX\ runs out of boxes. If this happens,
 % use \opt{usebox=false}. 
 %
-% Another problem is that if a label is added to a symbol 
-% (for example by the \pkg{tikz} option \opt{remember picture})
-% then this label is repeated every time the symbol is used. If you have
-% already used the symbol \emph{before} the label is added,  nothing happens
-% as a copy of the symbol without the label is used. If it is used the first time,
-% then the label is also stored and repeated every time the symbol is used later.
-% This behavior can also be fixed by \opt{usebox=false} or adding
-% a \pkg{tiikz} style by \opt{append-style}.
+% Furthermore, \pkg{tikz} allows to reference pictures using e.g.\
+% \opt{remember picture}. This also influences the symbols
+% of \pkg{tikzsymbols}. As those symbols are stored and exact
+% copies are printed, labels attached to the symbols get repeated.
+% In this case, also try using \opt{usebox=false}
+%
+%^^A Another problem is that if a label is added to a symbol 
+%^^A (for example by the \pkg{tikz} option \opt{remember picture})
+%^^A then this label is repeated every time the symbol is used. If you have
+%^^A already used the symbol \emph{before} the label is added,  nothing happens
+%^^A as a copy of the symbol without the label is used. If it is used the first time,
+%^^A then the label is also stored and repeated every time the symbol is used later.
+%^^A This behavior can also be fixed by \opt{usebox=false} or adding
+%^^A a \pkg{tiikz} style by \opt{append-style}.
 %
 %
 % \subsection{Are the symbols created with the environment \texttt{tikzpicture}?}
