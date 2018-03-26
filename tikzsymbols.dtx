@@ -2011,7 +2011,7 @@ for the details of that license.
 %
 % To make this package \pkg{todonotes} safe:
 %    \begin{macrocode}
-\pgfkeys{ /@@/baseline /.code= { baseline=default } }
+\pgfkeys{ /@@/baseline /.style= { baseline=default } }
 \pgfkeys{ /@@/remember-picture /.code= { remember~picture={#1} } }
 \pgfkeys{ /@@/.style= { /@@/baseline , /@@/remember-picture=false  } }
 %    \end{macrocode}
