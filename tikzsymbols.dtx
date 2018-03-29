@@ -1509,6 +1509,7 @@ for the details of that license.
   {tikzsymbols}
   {2017/09/05}
   {4.07}
+  {4.07} %% 4.07
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
@@ -1596,7 +1597,7 @@ for the details of that license.
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\tl_new:N \l_@@_used_only_once_because_no_better_idea_tl
+\tl_new:N \l_@@_save_global_scale_for_later_because_no_better_idea_tl
 %    \end{macrocode}
 %
 %    \begin{macrocode}
@@ -2180,7 +2181,7 @@ for the details of that license.
 %    \begin{macrocode}
     symbol-scale .code:n =
       {
-        \tl_set:Nn \l_@@_used_only_once_because_no_better_idea_tl
+        \tl_set:Nn \l_@@_save_global_scale_for_later_because_no_better_idea_tl
           {
             symbol-scale = {#1} ,
           }
@@ -5892,7 +5893,7 @@ for the details of that license.
   {
     \msg_error:nnn { tikzsymbols } { package-option } {#1}
   }
-\exp_args:NV \tikzsymbolsset \l_@@_used_only_once_because_no_better_idea_tl
+\exp_args:NV \tikzsymbolsset \l_@@_save_global_scale_for_later_because_no_better_idea_tl
 %    \end{macrocode}
 %\end{macro}
 %
