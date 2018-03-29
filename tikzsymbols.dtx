@@ -795,7 +795,8 @@ for the details of that license.
 %     \Flasche, 
 %     \bottle,
 %     \Nudelholz, 
-%     \rollingpin 
+%     \rollingpin ,
+%     \Knoblauchpresse , \garlicpress
 %   }
 %     
 %     The following table shows all available cooking-symbols and their
@@ -3280,6 +3281,44 @@ for the details of that license.
 %    \end{macrocode}
 % \end{macro}
 %
+%
+% \begin{macro}{ \Knoblauchpresse \garlicpress }
+% I always forget that the line width is added only once to the 
+% draft box.
+%    \begin{macrocode}
+\@@_Declare_Document_Commands:nnnn { Knoblauchpresse } { garlicpress } { S }
+  {
+    \@@_provide_savebox_and_use:nT { Knoblauchpresse_#1 }
+      {
+        \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \g_@@_if_opt_draft_bool
+          {
+            \@@_create_draftbox:nn 
+              { 4.3ex * \l_@@_scale_abs_tl }%% 
+              { 1.6ex * \l_@@_scale_abs_tl }
+          }{
+            \begin{tikzpicture}
+              [
+                /@@ ,
+                x=1ex, y=1ex, scale=#1, line ~ width=0.1ex * \l_@@_scale_abs_tl ,
+              ]
+      %% Hände
+      \draw[rounded ~ corners = 0.1ex*\l_@@_scale_abs_tl] (1, 0) -- (4, 0) -- (4,-0.2) -- (1, -0.2);
+      \draw[rounded ~ corners = 0.1ex*\l_@@_scale_abs_tl] (-0.1, 0.5) -- (4, 0.5) -- (4,0.3) -- (0, 0.3);
+      %% Pressekorb
+      \draw [rounded ~ corners = 0.21ex*\l_@@_scale_abs_tl] (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
+      % Verbindung
+      \draw (1,0) -- (0,0) -- (0,0.4) ;
+      \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4);% -- (0, 0.5);% -- cycle;
+      \draw (-0.1,0.4) circle (0.1);
+      %% Presse
+      \draw (0.3, 0) rectangle +(0.4, 0.3);
+            \end{tikzpicture}
+          }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
 %
 %
 %
