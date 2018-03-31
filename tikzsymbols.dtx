@@ -167,7 +167,7 @@ for the details of that license.
 \fi
 %</internal>
 %<*driver> 
-\documentclass[onlydoc,11pt,english]{l3doc} 
+\documentclass[onlydoc,11pt,english,draft=true]{l3doc} 
 %: documentclass
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -262,7 +262,7 @@ for the details of that license.
   
   }
 
-%\tikzsymbolsset {append-style = {red} }
+%\tikzsymbolsset { marvosym=true }
 
 
 \ExplSyntaxOff
@@ -1681,6 +1681,17 @@ for the details of that license.
 % \end{macro}
 %
 %
+% \begin{macro}{\l_@@_tmpa_tl ,  \l_@@_tmpa_clist }
+% Some scratch variables
+%    \begin{macrocode}
+\dim_new:N \l_@@_tmpa_dim
+\dim_new:N \l_@@_tmpb_dim
+\tl_new:N \l_@@_tmpa_tl
+\clist_new:N \l_@@_tmpa_clist
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \subsection{Messages}
 %
 % Nothing special happens in this subsection.
@@ -1922,6 +1933,8 @@ for the details of that license.
 %   the draftbox. The draftbox itself contains just the vbox and hbox
 %   commands to set the height and length of the box surrounded by a
 %   frame.
+%
+%   Note to self: DO NOT USE DIM! Multiplications do not work.
 %    \begin{macrocode}
 \cs_new:Npn \@@_create_draftbox:nn #1#2
   {
