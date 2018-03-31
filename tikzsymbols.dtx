@@ -2461,7 +2461,7 @@ for the details of that license.
   {
     \group_begin:
     \@@_set_scale_abs_tl:n {#1}
-    \dim_set:Nn \l_tmpa_dim { \fp_to_dim:n { abs( #1 + 0.02 ex ) } }
+    \dim_set:Nn \l_tmpa_dim { \dim_abs:n { #1pt + 0.02ex } }
     \tl_set:Nn \l_tmpa_tl {#5}
     \bool_if:NTF \g_@@_if_opt_draft_bool
       {
