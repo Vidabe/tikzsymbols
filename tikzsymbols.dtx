@@ -2463,24 +2463,24 @@ for the details of that license.
 \cs_new:Npn \@@_Basic_Tree_off:nnnnn #1#2#3#4#5
   {
     \group_begin:
-    \@@_set_scale_abs_tl:n {#1}
-    \dim_set:Nn \l_tmpa_dim { \dim_abs:n { #1pt + 0.02ex } }
+    \@@_set_scale_abs_tl:n { #1pt + 0.02ex }
+%    \dim_set:Nn \l_tmpa_dim { \dim_abs:n { #1pt + 0.02ex } }
     \tl_set:Nn \l_tmpa_tl {#5}
     \bool_if:NTF \g_@@_if_opt_draft_bool
       {
         \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
           {
             \@@_create_draftbox:nn 
-              { (1.6772ex+0.4pt) * \l_tmpa_dim }
-              { (1.42ex-0.2pt+0.4pt) * \l_tmpa_dim }
+              { (1.6772ex+0.4pt) * \l_@@_scale_abs_tl }
+              { (1.42ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
           }{
             \@@_create_draftbox:nn 
-              { (1.3996ex+0.4pt) * \l_tmpa_dim }
-              { (1.28ex-0.2pt+0.4pt) * \l_tmpa_dim }
+              { (1.3996ex+0.4pt) * \l_@@_scale_abs_tl }
+              { (1.28ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
           }
       }{
         \begin{tikzpicture}[ /@@ , scale=#1+0.02ex,x=1ex,y=1ex, 
-          line ~ width=0.4pt * \l_tmpa_dim]
+          line ~ width=0.4pt * \l_@@_scale_abs_tl]
           \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
             {
               \draw[#2] (-0.8386,0+0.2pt) -- (-0.8386,1.42);
