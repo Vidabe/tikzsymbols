@@ -1905,7 +1905,7 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new:Npn \@@_set_scale_abs_tl:n #1
   {
-    \tl_set:Nx \l_@@_scale_abs_tl { \fp_eval:n { abs (#1) } }
+    \tl_set:Nf \l_@@_scale_abs_tl { \fp_abs:n {#1} }
   }
 %    \end{macrocode}
 % \end{macro}
