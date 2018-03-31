@@ -1950,10 +1950,8 @@ for the details of that license.
 % \end{macro}
 %
 %
-% \begin{macro}{ \@@_if_savebox_undefined_aux:nT }
-%   I may misuse the naming scheme because the command ends with
-%   \texttt{nT}, but is not a conditional
-%   function. \Makro{l_@@_current_situation_tl} is used here. The box
+% \begin{macro}{ \@@_provide_savebox:nn }
+%   \Makro{l_@@_current_situation_tl} is used here. The box
 %   is only defined if it not defined yet. I don't know how those
 %   boxes work, but if the same box (alias the same command in the
 %   same font size and the same color and same options) is used again
@@ -1962,7 +1960,7 @@ for the details of that license.
 %   \Makro{global} and \Makro{sbox} because I didn't find the \LaTeX3
 %   equivalents.
 %    \begin{macrocode}
-\cs_new:Npn \@@_if_savebox_undefined:nT #1#2
+\cs_new:Npn \@@_provide_savebox:nn #1#2
   {
     \tl_set:Nx \l_@@_current_situation_tl 
       { 
@@ -1996,18 +1994,18 @@ for the details of that license.
 %
 %
 %
-% \begin{macro}{\@@_provide_savebox_and_use:nT}
+% \begin{macro}{\@@_provide_savebox_and_use_default:nn, 
+%    \@@_provide_savebox_and_use:nn }
 % Again to support my laziness. It creates the box (if it isn't
 % defined yet) and uses the box immediately afterwards.
 %    \begin{macrocode}
-\cs_new:Npn \@@_provide_savebox_and_use_aux:nT #1#2
+\cs_new:Npn \@@_provide_savebox_and_use_default:nn #1#2
   {
-    \@@_if_savebox_undefined:nT {#1} {#2}
+    \@@_provide_savebox:nn {#1} {#2}
     \@@_use_savebox:n {#1}
   }
-\cs_set_eq:NN 
-  \@@_provide_savebox_and_use:nT 
-  \@@_provide_savebox_and_use_aux:nT
+\cs_set_eq:NN \@@_provide_savebox_and_use:nn 
+  \@@_provide_savebox_and_use_default:nn
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2095,13 +2093,13 @@ for the details of that license.
     usebox/true .code:n = 
       {
         \cs_set_eq:NN 
-          \@@_provide_savebox_and_use:nT
-          \@@_provide_savebox_and_use_aux:nT
+          \@@_provide_savebox_and_use:nn
+          \@@_provide_savebox_and_use_default:nn
       } ,
     usebox/false .code:n = 
       {
         \cs_set_eq:NN 
-          \@@_provide_savebox_and_use:nT
+          \@@_provide_savebox_and_use:nn
           \use_ii:nn
       } ,
     usebox .default:n = { true } ,
@@ -2587,7 +2585,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Kochtopf } { pot } { S }
   {
-    \@@_provide_savebox_and_use:nT { Kochtopf_#1 }
+    \@@_provide_savebox_and_use:nn { Kochtopf_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2637,7 +2635,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Bratpfanne } { fryingpan } { S }
   {
-    \@@_provide_savebox_and_use:nT { Bratpfanne_#1 }
+    \@@_provide_savebox_and_use:nn { Bratpfanne_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2685,7 +2683,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Schneebesen } { eggbeater } { S }
   {
-    \@@_provide_savebox_and_use:nT { Schneebesen_#1 }
+    \@@_provide_savebox_and_use:nn { Schneebesen_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2725,7 +2723,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Sieb } { sieve } { S }
   {
-    \@@_provide_savebox_and_use:nT { Sieb_#1 }
+    \@@_provide_savebox_and_use:nn { Sieb_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2850,7 +2848,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Purierstab } { blender } { S }
   {
-    \@@_provide_savebox_and_use:nT { Purierstab_#1 }
+    \@@_provide_savebox_and_use:nn { Purierstab_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2884,7 +2882,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Dreizack } { trident } { S }
   {
-    \@@_provide_savebox_and_use:nT { Dreizack_#1 }
+    \@@_provide_savebox_and_use:nn { Dreizack_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2918,7 +2916,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Backblech } { bakingplate } { S }
   {
-    \@@_provide_savebox_and_use:nT { Backblech_#1 }
+    \@@_provide_savebox_and_use:nn { Backblech_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2954,7 +2952,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Ofen } { oven } { S }
   {
-    \@@_provide_savebox_and_use:nT { Ofen_#1 }
+    \@@_provide_savebox_and_use:nn { Ofen_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -2989,7 +2987,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Pfanne } { pan } { S }
   {
-    \@@_provide_savebox_and_use:nT { Pfanne_#1 }
+    \@@_provide_savebox_and_use:nn { Pfanne_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3033,7 +3031,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Herd } { cooker } { S }
   {
-    \@@_provide_savebox_and_use:nT { Herd_#1 }
+    \@@_provide_savebox_and_use:nn { Herd_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3068,7 +3066,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Saftpresse } { squeezer } { S }
   {
-    \@@_provide_savebox_and_use:nT { Saftpresse_#1 }
+    \@@_provide_savebox_and_use:nn { Saftpresse_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3113,7 +3111,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Schussel } { bowl } { S }
   {
-    \@@_provide_savebox_and_use:nT { Schussel_#1 }
+    \@@_provide_savebox_and_use:nn { Schussel_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3146,7 +3144,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Schaler } { peeler } { S }
   {
-    \@@_provide_savebox_and_use:nT { Schaler_#1 }
+    \@@_provide_savebox_and_use:nn { Schaler_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3180,7 +3178,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Reibe } { grater } { S }
   {
-    \@@_provide_savebox_and_use:nT { Reibe_#1 }
+    \@@_provide_savebox_and_use:nn { Reibe_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3214,7 +3212,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Flasche } { bottle } { S }
   {
-    \@@_provide_savebox_and_use:nT { Flasche_#1 }
+    \@@_provide_savebox_and_use:nn { Flasche_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3252,7 +3250,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Nudelholz } { rollingpin } { S }
   {
-    \@@_provide_savebox_and_use:nT { Nudelholz_#1 }
+    \@@_provide_savebox_and_use:nn { Nudelholz_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3290,7 +3288,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Commands:nnnn { Knoblauchpresse } { garlicpress } { S }
   {
-    \@@_provide_savebox_and_use:nT { Knoblauchpresse_#1 }
+    \@@_provide_savebox_and_use:nn { Knoblauchpresse_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3337,7 +3335,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Sadey } { S O{none} }
   {
-    \@@_provide_savebox_and_use:nT { Sadey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Sadey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3366,7 +3364,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSadey } { S O{yellow} }
   {
-    \@@_provide_savebox_and_use:nT { dSadey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dSadey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3397,7 +3395,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Changey } { S O{white} m }
   {
-    \@@_provide_savebox_and_use:nT { Changey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { Changey_#1_#2_#3 }
       {
         \fp_compare:nT { abs(#3) > 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
@@ -3434,7 +3432,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dChangey } { S O{yellow} m }
   {
-    \@@_provide_savebox_and_use:nT { dChangey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { dChangey_#1_#2_#3 }
       {
         \fp_compare:nT { abs(#3) > 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
@@ -3483,7 +3481,7 @@ for the details of that license.
 \cs_generate_variant:Nn \@@_cChangey_aux:nnn { x }
 \@@_Declare_Document_Command:nnn { cChangey } { S O{red} O{yellow} O{green} m }
   {
-    \@@_provide_savebox_and_use:nT 
+    \@@_provide_savebox_and_use:nn 
       { cChangey_#1_#2_#3_#4_#5 }
       {
         \fp_compare:nT { abs(#5) > 2 } 
@@ -3544,7 +3542,7 @@ for the details of that license.
 \cs_generate_variant:Nn \@@_dcChangey_aux:nnn { x }
 \@@_Declare_Document_Command:nnn { dcChangey } { S O{red} O{yellow} O{green} m }
   {
-    \@@_provide_savebox_and_use:nT 
+    \@@_provide_savebox_and_use:nn 
       { dcChangey_#1_#2_#3_#4_#5 }
       {
         \fp_compare:nT { abs(#5) > 2 } 
@@ -3598,7 +3596,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Annoey } { S O{none} }
   {
-    \@@_provide_savebox_and_use:nT { Annoey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Annoey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3628,7 +3626,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dAnnoey } { S O{yellow} }
   {
-    \@@_provide_savebox_and_use:nT { dAnnoey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dAnnoey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3664,7 +3662,7 @@ for the details of that license.
   {
     \@@_Declare_Document_Command:nnn { Smiley } { S O{none} }
       {
-        \@@_provide_savebox_and_use:nT { Smiley_#1_#2 }
+        \@@_provide_savebox_and_use:nn { Smiley_#1_#2 }
           {
             \@@_set_scale_abs_tl:n {#1}
             \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3694,7 +3692,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSmiley } { S O{yellow} }
   {
-    \@@_provide_savebox_and_use:nT { dSmiley_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dSmiley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3727,7 +3725,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Laughey } { S O{none} O{none} }
   {
-    \@@_provide_savebox_and_use:nT { Laughey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { Laughey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3758,7 +3756,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dLaughey } { S O{yellow} O{red} }
   {
-    \@@_provide_savebox_and_use:nT { dLaughey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { dLaughey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3796,7 +3794,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Neutrey } { S O{none}  }
   {
-    \@@_provide_savebox_and_use:nT { Neutrey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3824,7 +3822,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dNeutrey } { S O{yellow}  }
   {
-    \@@_provide_savebox_and_use:nT { Neutrey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3856,7 +3854,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Winkey } { S O{none}  }
   {
-    \@@_provide_savebox_and_use:nT { Winkey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Winkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3884,7 +3882,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { oldWinkey } { S O{none}  }
   {
-    \@@_provide_savebox_and_use:nT { oldWinkey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { oldWinkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3912,7 +3910,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dWinkey } { S O{yellow}  }
   {
-    \@@_provide_savebox_and_use:nT { dWinkey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dWinkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3939,7 +3937,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { olddWinkey } { S O{yellow}  }
   {
-    \@@_provide_savebox_and_use:nT { olddWinkey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { olddWinkey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3971,7 +3969,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Sey } { S O{none}  }
   {
-    \@@_provide_savebox_and_use:nT { Sey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Sey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4000,7 +3998,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSey } { S O{yellow}  }
   {
-    \@@_provide_savebox_and_use:nT { dSey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dSey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4032,7 +4030,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Xey } { S O{none}  }
   {
-    \@@_provide_savebox_and_use:nT { Xey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Xey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4060,7 +4058,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dXey } { S O{yellow}  }
   {
-    \@@_provide_savebox_and_use:nT { dXey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dXey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4094,7 +4092,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Innocey } { S O{none} O{yellow} }
   {
-    \@@_provide_savebox_and_use:nT { Innocey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { Innocey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4152,7 +4150,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dInnocey } { S O{yellow} O{yellow}  }
   {
-    \@@_provide_savebox_and_use:nT { dInnocey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { dInnocey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4197,7 +4195,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Cooley } { S O{none}  }
   {
-    \@@_provide_savebox_and_use:nT { Cooley_#1_#2 }
+    \@@_provide_savebox_and_use:nn { Cooley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4229,7 +4227,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dCooley } { S O{yellow}  }
   {
-    \@@_provide_savebox_and_use:nT { dCooley_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dCooley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4267,7 +4265,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Tongey } { S O{none} O{none} }
   {
-    \@@_provide_savebox_and_use:nT { Tongey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { Tongey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4302,7 +4300,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dTongey } { S O{yellow} O{red} }
   {
-    \@@_provide_savebox_and_use:nT { dTongey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { dTongey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4341,7 +4339,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Nursey } { S O{none} O{none} O{} }
   {
-    \@@_provide_savebox_and_use:nT { Nursey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nn { Nursey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4378,7 +4376,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dNursey } { S O{yellow} O{white} O{red} }
   {
-    \@@_provide_savebox_and_use:nT { dNursey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nn { dNursey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4424,7 +4422,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Vomey } { S O{none} O{opacity=0} }
   {
-    \@@_provide_savebox_and_use:nT { Vomey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { Vomey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4468,7 +4466,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dVomey } { S O{yellow} O{brown!10!olive}  }
   {
-    \@@_provide_savebox_and_use:nT { dVomey_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { dVomey_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4517,7 +4515,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Walley } { S O{none} O{none} }
   {
-    \@@_provide_savebox_and_use:nT { Walley_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { Walley_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4564,7 +4562,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { rWalley } { S O{none} O{none} }
   {
-    \@@_provide_savebox_and_use:nT { rWalley_#1_#2_#3 }
+    \@@_provide_savebox_and_use:nn { rWalley_#1_#2_#3 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4602,7 +4600,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dWalley } { S O{yellow} }
   {
-    \@@_provide_savebox_and_use:nT { dWalley_#1_#2 }
+    \@@_provide_savebox_and_use:nn { dWalley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4644,7 +4642,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { drWalley } { S O{yellow} }
   {
-    \@@_provide_savebox_and_use:nT { drWalley_#1_#2 }
+    \@@_provide_savebox_and_use:nn { drWalley_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4774,7 +4772,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Cat } { S }
   {
-    \@@_provide_savebox_and_use:nT { Cat_#1 }
+    \@@_provide_savebox_and_use:nn { Cat_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4803,7 +4801,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { SchrodingersCat } { S m }
   {
-    \@@_provide_savebox_and_use:nT { SchrodingersCat_#1_#2 }
+    \@@_provide_savebox_and_use:nn { SchrodingersCat_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4840,7 +4838,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Ninja } { S O{black} O{red} O{white} }
   {
-    \@@_provide_savebox_and_use:nT { Ninja_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nn { Ninja_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4901,7 +4899,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dNinja } { S O{black} O{red} O{white} }
   {
-    \@@_provide_savebox_and_use:nT { dNinja_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nn { dNinja_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -4965,7 +4963,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Sleepey } { S O{none} O{none} O{black} }
   {
-    \@@_provide_savebox_and_use:nT { Sleepey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nn { Sleepey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5026,7 +5024,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { dSleepey } { S O{yellow} O{blue} O{black} }
   {
-    \@@_provide_savebox_and_use:nT { dSleepey_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nn { dSleepey_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5089,7 +5087,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { NiceReapey } { S O{black!20!white} }
   {
-    \@@_provide_savebox_and_use:nT { NiceReapey_#1_#2 }
+    \@@_provide_savebox_and_use:nn { NiceReapey_#1_#2 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5173,7 +5171,7 @@ for the details of that license.
 \@@_Declare_Document_Command:nnn { Strichmaxerl } 
   { S O{-22} O{22} O{27} O{-27} }
   {
-    \@@_provide_savebox_and_use:nT 
+    \@@_provide_savebox_and_use:nn 
       { Strichmaxerl_#1_#2_#3_#4_#5 }
       {
         \@@_set_scale_abs_tl:n {#1}
@@ -5336,7 +5334,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Candle } { S }
   {
-    \@@_provide_savebox_and_use:nT { Candle_#1 }
+    \@@_provide_savebox_and_use:nn { Candle_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5372,7 +5370,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Fire } { S }
   {
-    \@@_provide_savebox_and_use:nT { Fire_#1 }
+    \@@_provide_savebox_and_use:nn { Fire_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5429,7 +5427,7 @@ for the details of that license.
 {
 \@@_Declare_Document_Command:nnn { Coffeecup } { S }
   {
-    \@@_provide_savebox_and_use:nT { Coffeecup_#1 }
+    \@@_provide_savebox_and_use:nn { Coffeecup_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5472,7 +5470,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Chair } { S }
   {
-    \@@_provide_savebox_and_use:nT { Chair_#1 }
+    \@@_provide_savebox_and_use:nn { Chair_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5511,7 +5509,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Bed } { S }
   {
-    \@@_provide_savebox_and_use:nT { Bed_#1 }
+    \@@_provide_savebox_and_use:nn { Bed_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5548,7 +5546,7 @@ for the details of that license.
 \@@_Declare_Document_Command:nnn { Tribar } 
   { S O{opacity=0} O{opacity=0} O{opacity=0} }
   {
-    \@@_provide_savebox_and_use:nT { Tribar_#1_#2_#3_#4 }
+    \@@_provide_savebox_and_use:nn { Tribar_#1_#2_#3_#4 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5592,7 +5590,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Moai } { S }
   {
-    \@@_provide_savebox_and_use:nT { Moai_#1 }
+    \@@_provide_savebox_and_use:nn { Moai_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \fp_compare:nTF { abs (#1) < 2 }
@@ -5653,7 +5651,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Snowman } { S }
   {
-    \@@_provide_savebox_and_use:nT { Snowman_#1 }
+    \@@_provide_savebox_and_use:nn { Snowman_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5722,7 +5720,7 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new:Npn \@@_Basic_Tree:nnnnn #1#2#3#4#5
   {
-    \@@_provide_savebox_and_use:nT 
+    \@@_provide_savebox_and_use:nn 
       { BasicTree_#1_#2_#3_#4_#5 }
       {
         \tl_set:Nn \l_tmpa_tl {#5}
@@ -5756,7 +5754,7 @@ for the details of that license.
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { WorstTree } { S  }
   {
-    \@@_provide_savebox_and_use:nT { WorstTree_#1 }
+    \@@_provide_savebox_and_use:nn { WorstTree_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
