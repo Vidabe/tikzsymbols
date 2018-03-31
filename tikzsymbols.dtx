@@ -2081,7 +2081,7 @@ for the details of that license.
 %    \begin{macrocode}    
     marvosym .bool_gset:N = \g_@@_if_opt_marvosym_bool ,
     marvosym .default:n = { true } ,
-    marvosym .groups:n = { package } ,
+    marvosym .groups:n = { only-package } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2113,7 +2113,7 @@ for the details of that license.
 %    \begin{macrocode}
     prefix .tl_gset:N =  \g_@@_command_prefix_tl ,
     prefix .default:n = { tikzsymbols } ,
-    prefix .groups:n = { package } ,
+    prefix .groups:n = { only-package } ,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -5911,7 +5911,7 @@ for the details of that license.
 %    \begin{macrocode}
 \NewDocumentCommand \tikzsymbolsset { m }
   {
-    \keys_set_filter:nnnN { tikzsymbols } { package } {#1} \l_tmpa_tl
+    \keys_set_filter:nnnN { tikzsymbols } { only-package } {#1} \l_tmpa_tl
     \tl_if_empty:NF \l_tmpa_tl
       {
         \keyval_parse:NNV 
