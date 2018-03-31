@@ -2527,7 +2527,7 @@ for the details of that license.
       { \@@_Basic_Tree_off:nnnnn {#1} {#2} {#3} {#4} {#5} }
       {
         \@@_set_scale_abs_tl:n {#1}
-        \fp_compare:nT { #1 < 0 } { \bool_set_true:N \l_@@_scale_negative_bool }
+        \fp_compare:nNnT {#1} < { 0 } { \bool_set_true:N \l_@@_scale_negative_bool }
         \tl_set:Nn \l_tmpa_tl {#5}
         \tl_use:N \c_@@_tikz_set_tl
         \colorlet { @@_trunk } {#2}
@@ -3415,7 +3415,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Changey_#1_#2_#3 }
       {
-        \fp_compare:nT { abs(#3) > 2 } 
+        \fp_compare:nNnT { abs(#3) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3452,7 +3452,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dChangey_#1_#2_#3 }
       {
-        \fp_compare:nT { abs(#3) > 2 } 
+        \fp_compare:nNnT { abs(#3) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3502,7 +3502,7 @@ for the details of that license.
     \@@_provide_savebox_and_use:nn 
       { cChangey_#1_#2_#3_#4_#5 }
       {
-        \fp_compare:nT { abs(#5) > 2 } 
+        \fp_compare:nNnT { abs(#5) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { cChangey-number-too-large } {#5}  }
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -3563,7 +3563,7 @@ for the details of that license.
     \@@_provide_savebox_and_use:nn 
       { dcChangey_#1_#2_#3_#4_#5 }
       {
-        \fp_compare:nT { abs(#5) > 2 } 
+        \fp_compare:nNnT { abs(#5) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { cChangey-number-too-large } {#5}  }
         \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
@@ -5149,14 +5149,14 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new:Npn \@@_Strichmaxerl_x_check:N #1
   {
-    \fp_compare:nTF { #1 > 0 }
+    \fp_compare:nNnTF {#1} > { 0 }
       {
-        \fp_compare:nTF { #1 < 0.18 }
+        \fp_compare:nNnTF {#1} < { 0.18 }
           { \fp_zero:N #1  }
           { \fp_set:Nn #1 { #1 - 0.18 } }
       }
       {
-        \fp_compare:nTF { #1 > - 0.18 }
+        \fp_compare:nNnTF {#1} > { - 0.18 }
           { \fp_zero:N #1  }
           { \fp_set:Nn #1 { #1 + 0.18 } }
       }
@@ -5174,7 +5174,7 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new:Npn \@@_Strichmaxerl_if_smaller_zero_set_zero:N #1
   {
-    \fp_compare:nT { #1 < 0 } { \fp_zero:N #1 }
+    \fp_compare:nNnT {#1} < { 0 } { \fp_zero:N #1 }
   }
 %    \end{macrocode}
 %\end{macro}
@@ -5495,7 +5495,7 @@ for the details of that license.
               { 0.97ex * \l_@@_scale_abs_tl } 
               { 1.69ex * \l_@@_scale_abs_tl } 
           }{
-            \fp_compare:nT { #1 < 0 } { \bool_set_true:N \l_@@_if_scale_negative_bool }
+            \fp_compare:nNnT {#1} < { 0 } { \bool_set_true:N \l_@@_if_scale_negative_bool }
             \begin{tikzpicture}
               [
                 /@@ ,
