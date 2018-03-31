@@ -5598,11 +5598,11 @@ for the details of that license.
     \@@_provide_savebox_and_use:nn { Moai_#1 }
       {
         \@@_set_scale_abs_tl:n {#1}
-        \fp_compare:nTF { abs (#1) < 2 }
+        \fp_compare:nNnTF { \l_@@_scale_abs_tl } < { 2 }
           {
             \dim_set:Nn \l_@@_Moai_thickness_dim { 0.05ex }
           }{
-            \fp_compare:nTF { abs (#1) < 5 }
+            \fp_compare:nNnTF { \l_@@_scale_abs_tl } < { 5 }
               { \dim_set:Nn \l_@@_Moai_thickness_dim { 0.035ex } }
               { \dim_set:Nn \l_@@_Moai_thickness_dim { 0.03ex } }
           }
