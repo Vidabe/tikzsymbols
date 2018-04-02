@@ -73,7 +73,7 @@ Changes
   - New option: `remember-picture`.
   - Internal change: `baseline`.
   - Deleted invisible sign.
-  - New symbolpair: \cs{Knoblauchpresse} and \cs{garlicpress}.
+  - New symbolpair: `\Knoblauchpresse` and `\garlicpress`.
 
 Requirements
 ------------
