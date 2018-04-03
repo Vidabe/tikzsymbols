@@ -1561,7 +1561,7 @@ for the details of that license.
 %  \g_@@_command_prefix_tl ,
 %  \l_@@_tikzsymbols_after_symbol_tl ,
 %  \g_@@_current_situation_tl ,
-%  \g_@@_scale_abs_fp ,
+%  \g_@@_scale_abs_tl ,
 %  \c_@@_leaf_tl ,
 %  \c_@@_black_tl ,
 %  }
@@ -1578,7 +1578,7 @@ for the details of that license.
 %    current font-size and color-configurations which is needed when
 %    defining boxes.
 %
-%    \Makro{l_@@_scale_abs_fp} safes absolute scaling of a symbol;
+%    \Makro{l_@@_scale_abs_tl} safes absolute scaling of a symbol;
 %    could have used \Makro{l_tmpa_tl}. It is a \texttt{tl} because
 %    using a \texttt{fp} would have required me to use
 %    \Makro{fp_use:N} every time. I'm lazy, I know.
@@ -1589,7 +1589,7 @@ for the details of that license.
 \tl_clear_new:N \g_@@_command_prefix_tl
 \tl_new:N \l_@@_tikzsymbols_after_symbol_tl 
 \tl_new:N \l_@@_current_situation_tl
-\tl_new:N \l_@@_scale_abs_fp
+\tl_new:N \l_@@_scale_abs_tl
 \tl_const:Nn \c_@@_leaf_tl { leaf }
 \tl_const:Nn \c_@@_black_tl { black }
 %    \end{macrocode}
@@ -1915,13 +1915,13 @@ for the details of that license.
 % \end{macro}
 %
 %
-% \begin{macro}{ \@@_set_scale_abs_fp:n }
-%   Sets \Makro{l_@@_scale_abs_fp} to the absolute input value. I made
+% \begin{macro}{ \@@_set_scale_abs_tl:n }
+%   Sets \Makro{l_@@_scale_abs_tl} to the absolute input value. I made
 %   this to write less which is always a good idea (mostly).
 %    \begin{macrocode}
-\cs_new:Npn \@@_set_scale_abs_fp:n #1
+\cs_new:Npn \@@_set_scale_abs_tl:n #1 
   {
-    \fp_set:Nn \l_@@_scale_abs_fp { abs (#1) }
+    \tl_set:Nn \l_@@_scale_abs_tl { \fp_abs:n {#1} }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2480,23 +2480,23 @@ for the details of that license.
 \cs_new:Npn \@@_Basic_Tree_off:nnnnn #1#2#3#4#5
   {
     \group_begin:
-    \@@_set_scale_abs_fp:n { #1pt + 0.02ex }
+    \@@_set_scale_abs_tl:n { #1pt + 0.02ex }
     \tl_set:Nn \l_tmpa_tl {#5}
     \bool_if:NTF \g_@@_if_opt_draft_bool
       {
         \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
           {
             \@@_create_draftbox:nn 
-              { (1.6772ex+0.4pt) * \l_@@_scale_abs_fp }
-              { (1.42ex-0.2pt+0.4pt) * \l_@@_scale_abs_fp }
+              { (1.6772ex+0.4pt) * \l_@@_scale_abs_tl }
+              { (1.42ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
           }{
             \@@_create_draftbox:nn 
-              { (1.3996ex+0.4pt) * \l_@@_scale_abs_fp }
-              { (1.28ex-0.2pt+0.4pt) * \l_@@_scale_abs_fp }
+              { (1.3996ex+0.4pt) * \l_@@_scale_abs_tl }
+              { (1.28ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
           }
       }{
         \begin{tikzpicture}[ /@@ , scale=#1+0.02ex,x=1ex,y=1ex, 
-          line ~ width=0.4pt * \l_@@_scale_abs_fp]
+          line ~ width=0.4pt * \l_@@_scale_abs_tl]
           \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
             {
               \draw[#2] (-0.8386,0+0.2pt) -- (-0.8386,1.42);
@@ -2529,7 +2529,7 @@ for the details of that license.
     \bool_if:NTF \g_@@_if_opt_draft_bool
       { \@@_Basic_Tree_off:nnnnn {#1} {#2} {#3} {#4} {#5} }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \fp_compare:nNnT {#1} < { 0 } { \bool_set_true:N \l_@@_scale_negative_bool }
         \tl_set:Nn \l_tmpa_tl {#5}
         \tl_use:N \c_@@_tikz_set_tl
@@ -2547,10 +2547,10 @@ for the details of that license.
             }
           \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl 
             { 
-              \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_fp ] 
+              \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_tl ] 
                 (-0.8386,0+0.2pt) rectangle (0.8386, 1.42);
             }{
-              \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_fp ] 
+              \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_tl ] 
                 (-0.6998,0+0.2pt) rectangle (0.6998,0.68+0.6);
             }
         \pgflowlevel { \pgftransformscale { #1 + 0.02ex } }
@@ -2606,19 +2606,19 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Kochtopf_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.47ex * \l_@@_scale_abs_fp } 
-              { 1.577ex * \l_@@_scale_abs_fp }
+              { 2.47ex * \l_@@_scale_abs_tl } 
+              { 1.577ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}[ /@@ , x=2ex,y=2.2ex, line ~ width=0.07ex *
-              \l_@@_scale_abs_fp , scale=#1 ]
+              \l_@@_scale_abs_tl , scale=#1 ]
 %    \end{macrocode}
 % Let's draw the pot.
 %    \begin{macrocode}
-              \draw[rounded ~ corners=0.2ex * \l_@@_scale_abs_fp] (0,0.5) -- (0,0) -- (1,0) -- (1,0.5);
+              \draw[rounded ~ corners=0.2ex * \l_@@_scale_abs_tl] (0,0.5) -- (0,0) -- (1,0) -- (1,0.5);
               \draw (0,0.4)  arc [start ~ angle=90, end ~ angle=270, radius=0.1];
               \draw (1,0.4) arc [start ~ angle=90, end ~ angle=-90, radius=0.1];
               \draw (0,0.5) -- (1,0.5) .. controls (1,0.6) and (0,0.6) .. (0,0.5);
@@ -2627,7 +2627,7 @@ for the details of that license.
 % Let's draw the water.
 %    \begin{macrocode}
               \draw[decorate, decoration=
-                { snake , amplitude=0.12ex*\l_@@_scale_abs_fp , segment ~ length=0.93ex * \l_@@_scale_abs_fp } ]
+                { snake , amplitude=0.12ex*\l_@@_scale_abs_tl , segment ~ length=0.93ex * \l_@@_scale_abs_tl } ]
                 (0,0.35) -- (1,0.35);
 %    \end{macrocode}
 % Now the bubbles are printed.
@@ -2656,38 +2656,38 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Bratpfanne_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 3.5535ex * \l_@@_scale_abs_fp } 
-              { 1.4525ex * \l_@@_scale_abs_fp }
+              { 3.5535ex * \l_@@_scale_abs_tl } 
+              { 1.4525ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.7ex , y=1.4ex , line ~ width=0.07ex * \l_@@_scale_abs_fp, 
+                x=0.7ex , y=1.4ex , line ~ width=0.07ex * \l_@@_scale_abs_tl, 
                 scale=#1 , decoration=
                   { 
-                    snake , amplitude = 0.05ex * \l_@@_scale_abs_fp , 
-                    segment ~ length = 0.408ex * \l_@@_scale_abs_fp
+                    snake , amplitude = 0.05ex * \l_@@_scale_abs_tl , 
+                    segment ~ length = 0.408ex * \l_@@_scale_abs_tl
                   }
               ]
 %    \end{macrocode}
 % Drawing the actual fryingpan.
 %    \begin{macrocode}              
-              \draw[rounded ~ corners = 0.07ex * \l_@@_scale_abs_fp]
+              \draw[rounded ~ corners = 0.07ex * \l_@@_scale_abs_tl]
                 (-1,0) -- (1,0) -- (1.5,0.4) -- (-1.5,0.4) -- cycle;
-              \draw[line ~ width = 0.037ex * \l_@@_scale_abs_fp , rounded ~ corners=0.023ex * \l_@@_scale_abs_fp]
+              \draw[line ~ width = 0.037ex * \l_@@_scale_abs_tl , rounded ~ corners=0.023ex * \l_@@_scale_abs_tl]
                 (-1.4,0.3) -- (-3.5,0.3) -- (-3.5,0.25) -- (-1.3,0.25);
-              \draw[line ~ width=0.023ex * \l_@@_scale_abs_fp ]
+              \draw[line ~ width=0.023ex * \l_@@_scale_abs_tl ]
                 (-1.1,0.1) -- (1.1,0.1);
 %    \end{macrocode}
 % The following code prints the \dots\ ahm \dots\ Hitzwellen die aus
 % der Pfanne aufsteigen (oder so).
 %    \begin{macrocode}
               \foreach \l_tmpa_tl in { -0.3, 0.3, -1 , 1 }
-                \draw[line ~ width=0.035ex * \l_@@_scale_abs_fp, decorate] ( \l_tmpa_tl , 0.5 ) -- ( \l_tmpa_tl , 1 );
+                \draw[line ~ width=0.035ex * \l_@@_scale_abs_tl, decorate] ( \l_tmpa_tl , 0.5 ) -- ( \l_tmpa_tl , 1 );
             \end{tikzpicture}%
           }
       }
@@ -2704,25 +2704,25 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Schneebesen_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 0.5697ex * \l_@@_scale_abs_fp } 
-              { 1.57985ex * \l_@@_scale_abs_fp }
+              { 0.5697ex * \l_@@_scale_abs_tl } 
+              { 1.57985ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
                 y=2.1ex,x=1.4ex, scale=#1,
-                line ~ width = 0.01ex * \l_@@_scale_abs_fp * 0.97
+                line ~ width = 0.01ex * \l_@@_scale_abs_tl * 0.97
               ]
               \foreach \l_tmpa_fp in { -0.2 , -0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15, 0.2 } 
                 \draw  (0,0) .. controls ( \l_tmpa_fp , 0.0) and  ( \l_tmpa_fp ,0.2) ..  (0,0.4);
               \fill
                 [
-                  line ~ width = 0.05ex * \l_@@_scale_abs_fp , 
-                  rounded ~ corners=0.07ex* \l_@@_scale_abs_fp 
+                  line ~ width = 0.05ex * \l_@@_scale_abs_tl , 
+                  rounded ~ corners=0.07ex* \l_@@_scale_abs_tl 
                 ]
                 (-0.05,0.37) -- (0.05,0.37) -- (0.05,0.75) -- (-0.05,0.75) -- cycle;
             \end{tikzpicture}%
@@ -2744,22 +2744,22 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sieb_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 3.478ex * \l_@@_scale_abs_fp } 
-              { 1.175ex * \l_@@_scale_abs_fp }
+              { 3.478ex * \l_@@_scale_abs_tl } 
+              { 1.175ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.8ex, y=2.8ex,line ~ width=0.02ex * \l_@@_scale_abs_fp  , scale=#1
+                x=2.8ex, y=2.8ex,line ~ width=0.02ex * \l_@@_scale_abs_tl  , scale=#1
               ]
 %    \end{macrocode}
 % Drawing a simple line to hold the sieve.
 %    \begin{macrocode}
-              \draw[line ~ width=0.09ex* \l_@@_scale_abs_fp ] (-0.2,0) -- (1.01,0);
+              \draw[line ~ width=0.09ex* \l_@@_scale_abs_tl ] (-0.2,0) -- (1.01,0);
 %    \end{macrocode}
 % Drawing halved circles with decreasing radius.
 %    \begin{macrocode}
@@ -2869,21 +2869,21 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Purierstab_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 0.76ex * \l_@@_scale_abs_fp } 
-              { 1.575ex * \l_@@_scale_abs_fp }
+              { 0.76ex * \l_@@_scale_abs_tl } 
+              { 1.575ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.3ex , y=2.2ex, line ~ width=0.07ex * \l_@@_scale_abs_fp ,scale = #1
+                x=2.3ex , y=2.2ex, line ~ width=0.07ex * \l_@@_scale_abs_tl ,scale = #1
               ]
-              \draw[rounded ~ corners=0.07ex* \l_@@_scale_abs_fp ] 
+              \draw[rounded ~ corners=0.07ex* \l_@@_scale_abs_tl ] 
                 (0,0) -- (0.3,0) --  (0.15,0.1) --cycle;
-              \fill[rounded ~ corners=0.07ex* \l_@@_scale_abs_fp ] 
+              \fill[rounded ~ corners=0.07ex* \l_@@_scale_abs_tl ] 
                 (0.15,0.3) -- (0.24,0.4) -- (0.24,0.7) -- (0.06,0.7) -- (0.06,0.4) -- cycle;
               \draw (0.15,0.4) -- (0.15,0.1);
             \end{tikzpicture}%
@@ -2903,22 +2903,22 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Dreizack_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 0.265ex * \l_@@_scale_abs_fp } 
-              { 1.575ex * \l_@@_scale_abs_fp }
+              { 0.265ex * \l_@@_scale_abs_tl } 
+              { 1.575ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.3ex , y=2.2ex , line ~ width=0.035ex * \l_@@_scale_abs_fp , scale = #1
+                x=2.3ex , y=2.2ex , line ~ width=0.035ex * \l_@@_scale_abs_tl , scale = #1
               ]
-              \fill[ rounded ~ corners=0.07ex * \l_@@_scale_abs_fp * 0.99 ]
+              \fill[ rounded ~ corners=0.07ex * \l_@@_scale_abs_tl * 0.99 ]
                 (0,0) -- (0,0.4)  -- (0.1,0.4) -- (0.1,0.0) -- cycle;
               \draw (0.05,0) -- (0.05,0.7);
-              \draw[rounded ~ corners=0.07ex * \l_@@_scale_abs_fp *( 1 - \l_@@_scale_abs_fp /50 ]
+              \draw[rounded ~ corners=0.07ex * \l_@@_scale_abs_tl *( 1 - \l_@@_scale_abs_tl /50 ]
                 (0,0.7) -- (0,0.55)  -- (0.05,0.55) -- (0.1,0.55) --  (0.1,0.7);
             \end{tikzpicture}%
           }
@@ -2937,21 +2937,21 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Backblech_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.3155ex * \l_@@_scale_abs_fp } 
-              { 1.57ex * \l_@@_scale_abs_fp }
+              { 2.3155ex * \l_@@_scale_abs_tl } 
+              { 1.57ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=6.53ex , y=5ex , line ~ width=0.07ex * \l_@@_scale_abs_fp , scale = #1
+                x=6.53ex , y=5ex , line ~ width=0.07ex * \l_@@_scale_abs_tl , scale = #1
               ]
-              \filldraw[rounded ~ corners=0.09ex * \l_@@_scale_abs_fp ] (0,0) rectangle (0.3,0.3);
+              \filldraw[rounded ~ corners=0.09ex * \l_@@_scale_abs_tl ] (0,0) rectangle (0.3,0.3);
               \foreach \xI/\xII in { 0.1/-0.025 , 0.2/0.325 }
-                \draw[rounded ~ corners=0.07ex * \l_@@_scale_abs_fp , line ~ width=0.03ex* \l_@@_scale_abs_fp ]
+                \draw[rounded ~ corners=0.07ex * \l_@@_scale_abs_tl , line ~ width=0.03ex* \l_@@_scale_abs_tl ]
                    (\xI,0) -- (\xII,0) -- (\xII,0.3) -- (\xI,0.3);
               \foreach \@@_BackblechlochX in { 0.007 , 0.293 }
                 \foreach \@@_BackblechlochY in { 0.007 , 0.293 }
@@ -2973,24 +2973,24 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Ofen_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.07ex * \l_@@_scale_abs_fp } 
-              { 1.57ex * \l_@@_scale_abs_fp }
+              { 2.07ex * \l_@@_scale_abs_tl } 
+              { 1.57ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.50ex , y=0.5ex , line ~ width=0.07ex * \l_@@_scale_abs_fp , scale=#1
+                x=0.50ex , y=0.5ex , line ~ width=0.07ex * \l_@@_scale_abs_tl , scale=#1
               ]
               \draw (0,0) rectangle (4,3);
               \draw (0.25,0.25) rectangle (3.75,2);
               \foreach \@@_Ofenschalter in {0.5,1.1,2.9,3.5}
                 \fill (\@@_Ofenschalter,2.5) circle [radius=0.22];
               \draw (1.5,2.28) rectangle  (2.5,2.72);
-              \draw[line ~ width=0.05ex * \l_@@_scale_abs_fp] (1,1.75) -- (3,1.75);
+              \draw[line ~ width=0.05ex * \l_@@_scale_abs_tl] (1,1.75) -- (3,1.75);
             \end{tikzpicture}%
           }
       }
@@ -3008,19 +3008,19 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Pfanne_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 3.034ex * \l_@@_scale_abs_fp } 
-              { 0.78ex * \l_@@_scale_abs_fp }
+              { 3.034ex * \l_@@_scale_abs_tl } 
+              { 0.78ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.3ex , y=2.3ex , line ~ width=0.09ex * \l_@@_scale_abs_fp , scale=#1
+                x=2.3ex , y=2.3ex , line ~ width=0.09ex * \l_@@_scale_abs_tl , scale=#1
               ]
-              \draw [rounded ~ corners = 0.023ex * \l_@@_scale_abs_fp ]
+              \draw [rounded ~ corners = 0.023ex * \l_@@_scale_abs_tl ]
                  (0,0) -- (0.9,0) -- (1,0.3) -- (-0.1,0.3) -- cycle;
               \draw (-0.2,0.22) -- (-0.08,0.22);
               \draw (0.97,0.22) -- (1.08,0.22);
@@ -3028,10 +3028,10 @@ for the details of that license.
                 [
                   decorate , decoration=
                     {
-                      snake,amplitude =.046ex* \l_@@_scale_abs_fp ,
-                      segment ~ length = 0.82ex* \l_@@_scale_abs_fp 
+                      snake,amplitude =.046ex* \l_@@_scale_abs_tl ,
+                      segment ~ length = 0.82ex* \l_@@_scale_abs_tl 
                     },
-                 line ~ width=0.05ex* \l_@@_scale_abs_fp 
+                 line ~ width=0.05ex* \l_@@_scale_abs_tl 
                  ]
                  (-0.05,0.1) -- (0.95,0.1);
             \end{tikzpicture}%
@@ -3052,19 +3052,19 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Herd_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.08ex * \l_@@_scale_abs_fp } 
-              { 1.58ex * \l_@@_scale_abs_fp }
+              { 2.08ex * \l_@@_scale_abs_tl } 
+              { 1.58ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex , y=1ex , line ~ width= 0.04ex * \l_@@_scale_abs_fp , scale = #1
+                x=1ex , y=1ex , line ~ width= 0.04ex * \l_@@_scale_abs_tl , scale = #1
               ]
-              \draw[line ~ width=0.08ex* \l_@@_scale_abs_fp ] (0,0) rectangle (2,1.5);
+              \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) rectangle (2,1.5);
               \foreach \y/\radius in { 0.45/0.35 , 0.45/0.2 , 1.15/0.21 }
                 \draw (0.5,\y) circle [radius=\radius];
               \draw (1.45,1.15) circle [radius=0.15];
@@ -3087,31 +3087,31 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Saftpresse_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.87ex * \l_@@_scale_abs_fp } 
-              { 1.62ex * \l_@@_scale_abs_fp }
+              { 1.87ex * \l_@@_scale_abs_tl } 
+              { 1.62ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1.2ex , y=1ex, line ~ width=0.07ex * \l_@@_scale_abs_fp ,scale=#1
+                x=1.2ex , y=1ex, line ~ width=0.07ex * \l_@@_scale_abs_tl ,scale=#1
               ]
-              \draw[rounded ~ corners=0.1ex * \l_@@_scale_abs_fp ]
+              \draw[rounded ~ corners=0.1ex * \l_@@_scale_abs_tl ]
                  (0,0) rectangle (1.5,0.85) -- cycle;
               \draw (0,0.7) -- (1.5,0.7);
               \foreach \xi/\xii in { 0.3/1.2 , 0.45/1.05 , 0.65/0.85 }
-                \draw[rounded ~ corners=0.1ex* \l_@@_scale_abs_fp ] 
+                \draw[rounded ~ corners=0.1ex* \l_@@_scale_abs_tl ] 
                   (\xi,0.7) -- (0.75,1.55) -- (\xii,0.7);  
               \draw
                 [
-                  line ~ width=0.05ex* \l_@@_scale_abs_fp , decorate,
+                  line ~ width=0.05ex* \l_@@_scale_abs_tl , decorate,
                   decoration=
                    {
-                     snake,amplitude=0.05ex * \l_@@_scale_abs_fp ,
-                     segment ~ length=0.48ex * \l_@@_scale_abs_fp 
+                     snake,amplitude=0.05ex * \l_@@_scale_abs_tl ,
+                     segment ~ length=0.48ex * \l_@@_scale_abs_tl 
                    }
                  ]  (0,0.3) -- (1.5,0.3);
             \end{tikzpicture}%
@@ -3132,19 +3132,19 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Schussel_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.32ex * \l_@@_scale_abs_fp } 
-              { 1.47ex * \l_@@_scale_abs_fp }
+              { 2.32ex * \l_@@_scale_abs_tl } 
+              { 1.47ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex , y=1ex , line ~ width=0.07ex * \l_@@_scale_abs_fp , scale=#1
+                x=1ex , y=1ex , line ~ width=0.07ex * \l_@@_scale_abs_tl , scale=#1
               ]
-              \draw[rounded ~ corners=0.5ex* \l_@@_scale_abs_fp ]
+              \draw[rounded ~ corners=0.5ex* \l_@@_scale_abs_tl ]
                  (-0.02,1.4) -- (0,1.4) -- (0,0.05) -- (1.5,0.05) -- (1.5,1.4) -- (1.52,1.4);
               \draw (0.35,0) -- (1.15,0);
               \draw[transparent] (-0.4,0) -- (1.85,0); 
@@ -3165,23 +3165,23 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Schaler_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.15ex * \l_@@_scale_abs_fp } 
-              { 1.565ex * \l_@@_scale_abs_fp }
+              { 1.15ex * \l_@@_scale_abs_tl } 
+              { 1.565ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.7ex , y=2.3ex , line ~ width=0.07ex * \l_@@_scale_abs_fp , scale=#1
+                x=2.7ex , y=2.3ex , line ~ width=0.07ex * \l_@@_scale_abs_tl , scale=#1
               ]
-              \draw[rounded ~ corners=0.07ex* \l_@@_scale_abs_fp ]
+              \draw[rounded ~ corners=0.07ex* \l_@@_scale_abs_tl ]
                  (0,0.4) -- (0,0.1) arc [start ~ angle=0, end ~ angle=180, radius=-0.1] -- (0.2,0.4) -- 
                  (0.3,0.5) -- (0.3,0.65) -- (0.2,0.65) -- (0.2,0.5) -- (0,0.5) -- (0,0.65) --
                  (-0.1,0.65) -- (-0.1,0.5)  -- cycle;
-              \draw[line ~ width=0.03ex* \l_@@_scale_abs_fp ] (0,0.58) rectangle (0.2,0.6);
+              \draw[line ~ width=0.03ex* \l_@@_scale_abs_tl ] (0,0.58) rectangle (0.2,0.6);
             \end{tikzpicture}%
           }
       }
@@ -3199,17 +3199,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Reibe_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn
-              { 1.08ex * \l_@@_scale_abs_fp } 
-              { 1.58ex * \l_@@_scale_abs_fp }
+              { 1.08ex * \l_@@_scale_abs_tl } 
+              { 1.58ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex , y=1ex , line ~ width=0.08ex * \l_@@_scale_abs_fp , scale=#1
+                x=1ex , y=1ex , line ~ width=0.08ex * \l_@@_scale_abs_tl , scale=#1
               ]
               \draw (0,0) rectangle (1,1.2);
               \draw[rounded ~ corners=0.04ex] (0.05,1.2) rectangle (0.95,1.5);
@@ -3233,18 +3233,18 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Flasche_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 0.78ex * \l_@@_scale_abs_fp } 
-              { 1.58ex * \l_@@_scale_abs_fp }
+              { 0.78ex * \l_@@_scale_abs_tl } 
+              { 1.58ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex,y=1ex, line ~ width=0.08ex* \l_@@_scale_abs_fp , 
-                rounded ~ corners=0.08ex* \l_@@_scale_abs_fp , scale=#1
+                x=1ex,y=1ex, line ~ width=0.08ex* \l_@@_scale_abs_tl , 
+                rounded ~ corners=0.08ex* \l_@@_scale_abs_tl , scale=#1
               ]
               \draw (0, 1.5) -- (0,1.2) -- (-0.15,0.8) -- (-0.15,0) --++ 
                 (0.6,0) --++ (0,0.8) --++ (-0.15,0.4) --++ (0,0.3) -- cycle;
@@ -3271,24 +3271,24 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Nudelholz_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 4.508ex * \l_@@_scale_abs_fp }%% 
-              { 0.9ex * \l_@@_scale_abs_fp }
+              { 4.508ex * \l_@@_scale_abs_tl }%% 
+              { 0.9ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.8ex, y=0.8ex, scale=#1, line ~ width=0.1ex * \l_@@_scale_abs_fp ,
+                x=0.8ex, y=0.8ex, scale=#1, line ~ width=0.1ex * \l_@@_scale_abs_tl ,
               ]
-              \draw[rounded ~ corners=0.10ex*\l_@@_scale_abs_fp] (0,0) rectangle (3,1);
-              \draw[rounded ~ corners=0.15ex*\l_@@_scale_abs_fp] 
+              \draw[rounded ~ corners=0.10ex*\l_@@_scale_abs_tl] (0,0) rectangle (3,1);
+              \draw[rounded ~ corners=0.15ex*\l_@@_scale_abs_tl] 
                 (3,0.75) -- (3.25,0.6) -- (3.75,0.7) -- (4.25,0.6)
                 (3,0.25) -- ( 3.25,0.4 ) -- (3.75,0.3) -- (4.25,0.4);
               \draw (4.25,0.5) ellipse [x ~ radius=0.01, y ~ radius=0.1];
-              \draw[rounded ~ corners=0.15ex*\l_@@_scale_abs_fp] 
+              \draw[rounded ~ corners=0.15ex*\l_@@_scale_abs_tl] 
                 (-0,0.75) -- (-0.25,0.6) -- (-0.75,0.7)
                 -- (-1.25,0.6)
                 (-0,0.25) -- ( -0.25,0.4 ) -- (-0.75,0.3) -- (-1.25,0.4);
@@ -3311,22 +3311,22 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Knoblauchpresse_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 4.3ex * \l_@@_scale_abs_fp }
-              { 1.6ex * \l_@@_scale_abs_fp }
+              { 4.3ex * \l_@@_scale_abs_tl }
+              { 1.6ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex, y=1ex, scale=#1, line ~ width=0.1ex * \l_@@_scale_abs_fp ,
+                x=1ex, y=1ex, scale=#1, line ~ width=0.1ex * \l_@@_scale_abs_tl ,
               ]
-              \draw[rounded ~ corners = 0.1ex*\l_@@_scale_abs_fp] 
+              \draw[rounded ~ corners = 0.1ex*\l_@@_scale_abs_tl] 
                 (1, 0) -- (4, 0) -- (4,-0.2) -- (1, -0.2)
                 (-0.1, 0.5) -- (4, 0.5) -- (4,0.3) -- (0, 0.3);
-              \draw [rounded ~ corners = 0.21ex*\l_@@_scale_abs_fp] 
+              \draw [rounded ~ corners = 0.21ex*\l_@@_scale_abs_tl] 
                 (0,0) -- (0,-1) -- (1,-1)  -- (1,0);
               \draw (1,0) -- (0,0) -- (0,0.4) ;
               \draw (0,-0.85) -- (-0.2, -0.6) -- (-0.2, 0.4);
@@ -3358,17 +3358,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sadey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex , y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_fp , scale = #1
+                x=2.4ex , y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_tl , scale = #1
               ]
-              \filldraw[fill=#2, line ~ width=0.1ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+              \filldraw[fill=#2, line ~ width=0.1ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \fill (0.1,0.1) circle [radius=0.05];
               \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.15) .. controls (-0.1,-0.06) and (0.1,-0.06) .. (0.2,-0.15);
@@ -3387,15 +3387,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSadey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_fp , scale = #1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_tl , scale = #1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
@@ -3420,15 +3420,15 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#3) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \fill (-0.1,0.1) circle [radius=0.05];
@@ -3457,15 +3457,15 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#3) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
@@ -3507,15 +3507,15 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#5) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { cChangey-number-too-large } {#5}  }
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \fp_compare:nNnT {#5} < { \c_zero }
                 {
@@ -3568,15 +3568,15 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#5) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { cChangey-number-too-large } {#5}  }
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \fp_compare:nNnT {#5} < { \c_zero }
                 {
@@ -3619,17 +3619,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Annoey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex * \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \draw (0.08,0.1) -- (0.22,0.1);
               \draw (-0.08,0.1) -- (-0.22,0.1);
               \draw (-0.2,-0.1) -- (0.2,-0.1);
@@ -3649,15 +3649,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dAnnoey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.08,0.1) -- (0.22,0.1);
@@ -3685,15 +3685,15 @@ for the details of that license.
       {
         \@@_provide_savebox_and_use:nn { Smiley_#1_#2 }
           {
-            \@@_set_scale_abs_fp:n {#1}
+            \@@_set_scale_abs_tl:n {#1}
             \bool_if:NTF \g_@@_if_opt_draft_bool
               {
-                \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+                \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
               }{
                 \begin{tikzpicture}
                   [
                     /@@ ,
-                    x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp , scale=#1
+                    x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl , scale=#1
                   ]
                   \filldraw[fill=#2] (0,0) circle [radius=0.33];
                   \fill (-0.1,0.1) circle [radius=0.05];
@@ -3715,15 +3715,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSmiley_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.1ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.1ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
@@ -3748,20 +3748,20 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Laughey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \draw (-0.09,0.06) .. controls (-0.11,0.16) and (-0.17,0.16) .. +(-0.1,0);
               \draw (0.09,0.06) .. controls (0.11,0.16) and (0.17,0.16) .. +(0.1,0);
-              \filldraw[fill=#3,rounded ~ corners=0.1ex* \l_@@_scale_abs_fp , yshift=-0.5] 
+              \filldraw[fill=#3,rounded ~ corners=0.1ex* \l_@@_scale_abs_tl , yshift=-0.5] 
                 (-0.22,-0.0) .. controls (-0.13,-0.23) and (0.13,-0.23) .. (0.22,-0.0) -- cycle;
 
             \end{tikzpicture}%
@@ -3779,23 +3779,23 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dLaughey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1,
                 black
               ]
-              \fill[ball ~ color=#2,line ~ width=0.12ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+              \fill[ball ~ color=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \draw (-0.09,0.06) .. controls (-0.11,0.16) and (-0.17,0.16) .. +(-0.1,0);
               \draw (0.09,0.06) .. controls (0.11,0.16) and (0.17,0.16) .. +(0.1,0);
               \shade
                 [
-                  ball ~ color=#3, rounded ~ corners=0.1ex* \l_@@_scale_abs_fp , 
+                  ball ~ color=#3, rounded ~ corners=0.1ex* \l_@@_scale_abs_tl , 
                   yshift=-0.3
                 ]
                 (-0.25,-0.0) .. controls (-0.13,-0.26) and (0.13,-0.26) .. (0.25,-0.0) -- cycle;
@@ -3817,17 +3817,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+              \filldraw[fill=#2,line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \fill (0.1,0.1) circle [radius=0.05];
               \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.1) -- (0.2,-0.1);
@@ -3845,15 +3845,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
@@ -3877,15 +3877,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Winkey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \draw(0.17,0.1) -- (0.05,0.1);
@@ -3905,15 +3905,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { oldWinkey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \draw(0.17,0.1) -- (0.05,0.1);
@@ -3933,15 +3933,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dWinkey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.17,0.1) -- (0.05,0.1);
@@ -3960,15 +3960,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { olddWinkey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.17,0.1) -- (0.05,0.1);
@@ -3992,17 +3992,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \fill (0.1,0.1) circle [radius=0.05];
               \fill (-0.1,0.1) circle [radius=0.05];
               \draw (-0.2,-0.08) .. controls (-0.0,-0.2) and (0.0,0) .. (0.2,-0.12);
@@ -4021,15 +4021,15 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
@@ -4053,17 +4053,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Xey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+              \filldraw[fill=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
               \foreach \xi in { 0.05 , -0.15 }
                   \draw (\xi,0.05) -- ++ (0.1,0.1) (-\xi,0.05) -- ++ (-0.1,0.1);
               \draw (-0.2,-0.15) .. controls (-0.1,-0.06) and (0.1,-0.06) .. (0.2,-0.15);
@@ -4081,18 +4081,18 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dXey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1,
                 black
               ]
-              \fill[ball ~ color=#2, line ~ width=0.12ex* \l_@@_scale_abs_fp ] 
+              \fill[ball ~ color=#2, line ~ width=0.12ex* \l_@@_scale_abs_tl ] 
                 (0,0) circle [radius=0.33];
               \foreach \xi in { 0.05 , -0.15 }
                   \draw (\xi,0.05) -- ++ (0.1,0.1) (-\xi,0.05) -- ++ (-0.1,0.1);
@@ -4115,17 +4115,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Innocey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.73ex * \l_@@_scale_abs_fp } 
-              { 1.909ex * \l_@@_scale_abs_fp }
+              { 1.73ex * \l_@@_scale_abs_tl } 
+              { 1.909ex * \l_@@_scale_abs_tl }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \fill (-0.1,0.1) circle [radius=0.05];
@@ -4135,13 +4135,13 @@ for the details of that license.
 % Draws the colored halo inside, the next two are drawing the black
 % lines surrounding the colored line and completing the halo.
 %    \begin{macrocode}
-              \draw[#3, line ~ width=0.095ex* \l_@@_scale_abs_fp ] 
+              \draw[#3, line ~ width=0.095ex* \l_@@_scale_abs_tl ] 
                  (0.32,0.31) arc 
                    [start ~ angle=0, end ~ angle=360, x ~ radius = 0.32 , y ~ radius=0.1];
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] 
                 (0.3,0.31) arc 
                   [start ~ angle=0, end ~ angle=360, x ~ radius = 0.3 , y ~ radius=0.07];
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] 
                 (0.35,0.31) arc 
                   [start ~ angle=0, end ~ angle=360, x ~ radius = 0.35 , y ~ radius=0.12];
             \end{tikzpicture}%
@@ -4173,17 +4173,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dInnocey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.73ex * \l_@@_scale_abs_fp } 
-              { 1.849ex * \l_@@_scale_abs_fp } 
+              { 1.73ex * \l_@@_scale_abs_tl } 
+              { 1.849ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1,
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1,
                 black
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
@@ -4193,11 +4193,11 @@ for the details of that license.
 %    \end{macrocode}
 % Same as above (I think).
 %    \begin{macrocode}
-              \draw[color=#3!97!black, line ~ width=0.1ex* \l_@@_scale_abs_fp ] 
+              \draw[color=#3!97!black, line ~ width=0.1ex* \l_@@_scale_abs_tl ] 
                  (0.32,0.31) arc [start ~ angle=0, end ~ angle=360, x ~ radius = 0.32 , y ~ radius=0.1];
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] 
                 (0.3,0.31) arc [start ~ angle=0, end ~ angle=360, x ~ radius = 0.3 , y ~ radius=0.07];
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] 
                 (0.35,0.31) arc [start ~ angle=0, end ~ angle=360, x ~ radius = 0.35 , y ~ radius=0.12];
             \end{tikzpicture}%
           }
@@ -4218,19 +4218,19 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Cooley_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \foreach \xi/\xii in { 0.24/0.01 , -0.24/-0.01 }
-                \fill[rounded ~ corners=0.1ex* \l_@@_scale_abs_fp ] 
+                \fill[rounded ~ corners=0.1ex* \l_@@_scale_abs_tl ] 
                    (\xi,0.15) -- (\xii,0.15) -- (\xii,0) -- (\xi,0) -- cycle;
               \draw (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
               \draw (0.02,0.1) -- (-0.02,0.1);
@@ -4250,22 +4250,22 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dCooley_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \draw[black] (0.02,0.1) -- (-0.02,0.1);
               \draw[black] (-0.2,0.1) -- (-0.295,0.146);
               \draw[black] (0.2,0.1) -- (0.295,0.146);
               \foreach \xi/\xii in { 0.24/0.01 , -0.24/-0.01 }
-                \shade[ball ~ color=black,rounded ~ corners=0.1ex* \l_@@_scale_abs_fp ] 
+                \shade[ball ~ color=black,rounded ~ corners=0.1ex* \l_@@_scale_abs_tl ] 
                    (\xi,0.15) -- (\xii,0.15) -- (\xii,0) -- (\xi,0) -- cycle;
               \draw[black] (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
             \end{tikzpicture}%
@@ -4288,26 +4288,26 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Tongey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \filldraw[fill=#2] (0,0) circle [radius=0.33];
               \fill (-0.1,0.1) circle [radius=0.05];
               \fill (0.1,0.1) circle [radius=0.05];
               \filldraw
                 [
-                  fill=#3, line ~ width=0.058ex* \l_@@_scale_abs_fp , 
-                  rounded ~ corners=0.12ex* \l_@@_scale_abs_fp 
+                  fill=#3, line ~ width=0.058ex* \l_@@_scale_abs_tl , 
+                  rounded ~ corners=0.12ex* \l_@@_scale_abs_tl 
                 ] 
                  (0,-0.09) -- (0.05,-0.2) -- (0.16,-0.23) -- (0.2,-0.15) -- (0.19,-0.03);
-              \draw[line ~ width=0.07ex* \l_@@_scale_abs_fp , yshift=0.21ex] 
+              \draw[line ~ width=0.07ex* \l_@@_scale_abs_tl , yshift=0.21ex] 
                  (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
             \end{tikzpicture}%
           }
@@ -4323,26 +4323,26 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dTongey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
-            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_fp } 
+            \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.33];
               \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
               \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \shadedraw
                 [
-                  ball ~ color=#3, draw=black,line ~ width=0.058ex* \l_@@_scale_abs_fp , 
-                  rounded ~ corners=0.12ex* \l_@@_scale_abs_fp 
+                  ball ~ color=#3, draw=black,line ~ width=0.058ex* \l_@@_scale_abs_tl , 
+                  rounded ~ corners=0.12ex* \l_@@_scale_abs_tl 
                 ] 
                  (0,-0.09) -- (0.05,-0.2) -- (0.16,-0.23) -- (0.2,-0.15) -- (0.19,-0.03);
-              \draw[black, line ~ width=0.07ex* \l_@@_scale_abs_fp , yshift=0.21ex] 
+              \draw[black, line ~ width=0.07ex* \l_@@_scale_abs_tl , yshift=0.21ex] 
                  (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
             \end{tikzpicture}%
           }
@@ -4362,28 +4362,28 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Nursey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.5ex * \l_@@_scale_abs_fp } 
-              { 2.19ex * \l_@@_scale_abs_fp } 
+              { 1.5ex * \l_@@_scale_abs_tl } 
+              { 2.19ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.3ex, y=2.3ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.3ex, y=2.3ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \fill[fill=#3,rounded ~ corners=.023ex* \l_@@_scale_abs_fp ] 
+              \fill[fill=#3,rounded ~ corners=.023ex* \l_@@_scale_abs_tl ] 
                  (-0.3,0) -- (-0.3,0.3) -- (0,0.6) -- (0.3,0.3) -- (0.3,0);
               \filldraw[fill=#2] (0,0) circle [radius=0.3];
               \fill (-0.1,0.1) circle [radius=0.05];
               \fill (0.1,0.1) circle [radius=0.05];
-              \draw[line ~ width=0.09ex* \l_@@_scale_abs_fp , yshift=0.07ex] 
+              \draw[line ~ width=0.09ex* \l_@@_scale_abs_tl , yshift=0.07ex] 
                  (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
-              \draw[rounded ~ corners=.023ex* \l_@@_scale_abs_fp ] 
+              \draw[rounded ~ corners=.023ex* \l_@@_scale_abs_tl ] 
                  (-0.3,0) -- (-0.3,0.3) -- (0,0.6) -- (0.3,0.3) -- (0.3,0);
-              \draw[#4,line ~ width=.046ex* \l_@@_scale_abs_fp ] 
+              \draw[#4,line ~ width=.046ex* \l_@@_scale_abs_tl ] 
                 (0,0.35) -- (0,0.5) (-0.05,0.45) -- (0.05,0.45) ;
             \end{tikzpicture}%
           }
@@ -4399,33 +4399,33 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dNursey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.38ex * \l_@@_scale_abs_fp } 
-              { 1.98ex * \l_@@_scale_abs_fp } 
+              { 1.38ex * \l_@@_scale_abs_tl } 
+              { 1.98ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.3ex, y=2.3ex, line ~ width=0.12ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.3ex, y=2.3ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade[ball ~ color=#2] (0,0) circle [radius=0.3];
               \shade[ball ~ color=black] (-0.1,0.1) circle [radius=0.05];
               \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
-              \draw[black, line ~ width=0.09ex* \l_@@_scale_abs_fp , yshift=0.07ex] 
+              \draw[black, line ~ width=0.09ex* \l_@@_scale_abs_tl , yshift=0.07ex] 
                  (-0.2,-0.1) .. controls (-0.1,-0.2) and (0.1,-0.2) .. (0.2,-0.1);
               \shade
                 [
-                  ball ~ color=#3, rounded ~ corners=.023ex* \l_@@_scale_abs_fp ,
+                  ball ~ color=#3, rounded ~ corners=.023ex* \l_@@_scale_abs_tl ,
                   yshift=-0.09ex
                 ] 
                  (-0.3,0) -- (-0.3,0.3) -- (0,0.6) -- (0.3,0.3) -- 
                  (0.3,0) arc [start ~ angle=0, end ~ angle=180, radius=0.3];
-              \shade[ball ~ color=#4,line ~ width=.046ex* \l_@@_scale_abs_fp ] 
+              \shade[ball ~ color=#4,line ~ width=.046ex* \l_@@_scale_abs_tl ] 
                  (-0.01,0.31) -- (-0.01,0.46) -- (0.01,0.46) -- (0.01,0.31)--cycle;
-              \shade[ball ~ color=#4,line ~ width=.046ex* \l_@@_scale_abs_fp ] 
+              \shade[ball ~ color=#4,line ~ width=.046ex* \l_@@_scale_abs_tl ] 
                  (-0.05,0.4) -- (0.05,0.4) -- (0.05,0.42) -- (-0.05,0.42) -- cycle;
             \end{tikzpicture}%
           }
@@ -4445,21 +4445,21 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Vomey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 3.0335ex * \l_@@_scale_abs_fp } 
-              { 1.743ex * \l_@@_scale_abs_fp } 
+              { 3.0335ex * \l_@@_scale_abs_tl } 
+              { 1.743ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.58ex,y=0.58ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=0.58ex,y=0.58ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \filldraw[fill=#2,rounded ~ corners=0.05ex* \l_@@_scale_abs_fp ]  
+              \filldraw[fill=#2,rounded ~ corners=0.05ex* \l_@@_scale_abs_tl ]  
                 (0,0)  arc [start ~ angle=15, end ~ angle=330, radius=1] -- (-0.6,-0.3) -- cycle;
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] (-0.5,0.3) -- (-0.3,0.1);
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] (-0.5,0.3) -- (-0.3,0.1);
               \fill (-0.45,0.27) arc [start ~ angle=100, end ~ angle=350, radius=0.1];
               \fill[#3] (1.8,-0.5) .. controls (2.5,-0.3) and (2.8,-0.7) .. (2.5,-1) .. 
                 controls (3,-1) and (3,-1.7) .. (2,-1.5) .. 
@@ -4470,7 +4470,7 @@ for the details of that license.
                 controls (0.8,-0.7) and (0.5,-0.5) .. (0,-0.4);
 %              \draw (0,-0.4) .. controls (1,0) and (2,-1) .. (2,-1);
 %              \draw (0,-0.4) .. controls (0.5,-0.5) and (0.8,-0.7) .. (1,-1);
-              \draw[rounded ~ corners=0.1ex* \l_@@_scale_abs_fp ] 
+              \draw[rounded ~ corners=0.1ex* \l_@@_scale_abs_tl ] 
                 (1,-1) .. controls (0.8,-0.7) and (0.5,-0.5) .. 
                 (0,-0.4) .. controls (1,0) and (2,-1) .. (2,-1);
               \draw (1.8,-0.5)  .. controls (2.5,-0.3) and (2.8,-0.7) .. (2.5,-1) .. 
@@ -4489,25 +4489,25 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dVomey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 3.2435ex * \l_@@_scale_abs_fp } 
-              { 1.653ex * \l_@@_scale_abs_fp } 
+              { 3.2435ex * \l_@@_scale_abs_tl } 
+              { 1.653ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.58ex,y=0.58ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1
+                x=0.58ex,y=0.58ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \shade
                 [
                   ball ~ color=#2!90!brown, 
-                  rounded ~ corners=0.03ex * \l_@@_scale_abs_fp ,
+                  rounded ~ corners=0.03ex * \l_@@_scale_abs_tl ,
                 ]  
                  (0,0) arc [start ~ angle=15, end ~ angle=330, radius=1] -- (-0.6,-0.3) -- cycle;
-              \draw[black, line ~ width=0.05ex* \l_@@_scale_abs_fp ] 
+              \draw[black, line ~ width=0.05ex* \l_@@_scale_abs_tl ] 
                 (-0.5,0.3) -- (-0.3,0.1);
               \shade[ball ~ color=black] 
                 (-0.45,0.27) arc [start ~ angle=100, end ~ angle=350, radius=0.1];
@@ -4538,34 +4538,34 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Walley_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.341ex * \l_@@_scale_abs_fp } 
-              { 1.674ex * \l_@@_scale_abs_fp } 
+              { 2.341ex * \l_@@_scale_abs_tl } 
+              { 1.674ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1,
                 decoration=
                   {
 %                    random ~ steps, 
-                    segment ~ length=0.15ex* \l_@@_scale_abs_fp , 
-                    amplitude=0.1ex* \l_@@_scale_abs_fp 
+                    segment ~ length=0.15ex* \l_@@_scale_abs_tl , 
+                    amplitude=0.1ex* \l_@@_scale_abs_tl 
                   }
               ]
-              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.28];
+              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.28];
               \filldraw[fill=#3] (0.28,-0.33) rectangle (0.66,0.33);
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                 (0.28,0) --++(0.05,0.07) --++(0.03,0.02) --+
                 +(0.03,-0.02) --++(0.03,0.1) --++(0.03,0.02) -- (0.5,0.25);
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                 (0.28,0) --++(0.06,-0.02) --++(0.04,0.06) --++
                 (0.0,-0.08) --++(0.08,0.06) --++(0.03,-0.02) --+
                 (0.08,0.02) -- (0.6,0.0);
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                 (0.28,0) --++(0.03,-0.02)  --++(0.03,-0.07)  --+
                 +(0.03,-0.01)  --++(0.01,-0.07)  --++(0.06,0.01)  --++
                 (0.03,-0.08) -- (0.5,0.-0.25);
@@ -4585,27 +4585,27 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { rWalley_#1_#2_#3 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.341ex * \l_@@_scale_abs_fp } 
-              { 1.674ex * \l_@@_scale_abs_fp } 
+              { 2.341ex * \l_@@_scale_abs_tl } 
+              { 1.674ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1,
                 decoration=
                   {
-                    random ~ steps, segment ~ length=0.15ex* \l_@@_scale_abs_fp , 
-                    amplitude=0.1ex* \l_@@_scale_abs_fp 
+                    random ~ steps, segment ~ length=0.15ex* \l_@@_scale_abs_tl , 
+                    amplitude=0.1ex* \l_@@_scale_abs_tl 
                   }
               ]
-              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.28];
+              \filldraw[fill=#2, line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.28];
               \filldraw[fill=#3] (0.28,-0.33) rectangle (0.66,0.33);
               \foreach \x/\y in { 0.5/0.25 , 0.6/0 , 0.5/-0.25 }
-                \draw[decorate, line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+                \draw[decorate, line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                   (0.28,0) -- (\x,\y);
               \draw[rotate=-20] (0.12,0.1) -- (0.2,0.05);
               \draw[rotate=-20] (0.27,-0.1) .. controls (0.2,-0.072) 
@@ -4623,28 +4623,28 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dWalley_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.4288ex * \l_@@_scale_abs_fp } 
-              { 1.6008ex * \l_@@_scale_abs_fp } 
+              { 2.4288ex * \l_@@_scale_abs_tl } 
+              { 1.6008ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,scale=#1,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,scale=#1,
                 black
               ]
               \shade[ball ~ color=orange!80!black] (0.298,-0.33) rectangle (0.692,0.337);
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                 (0.28,0) --++(0.05,0.07) --++(0.03,0.02) --+
                 +(0.03,-0.02) --++(0.03,0.1) --++(0.03,0.02) -- (0.5,0.25);
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                 (0.28,0) --++(0.06,-0.02) --++(0.04,0.06) --++
                 (0.0,-0.08) --++(0.08,0.06) --++(0.03,-0.02) --+
                 (0.08,0.02) -- (0.6,0.0);
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                 (0.28,0) --++(0.03,-0.02)  --++(0.03,-0.07)  --++
                 (0.03,-0.01)  --++(0.01,-0.07)  --++
                 (0.06,0.01)  --++(0.03,-0.08)   -- (0.5,0.-0.25);
@@ -4665,26 +4665,26 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { drWalley_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.4288ex * \l_@@_scale_abs_fp } 
-              { 1.6008ex * \l_@@_scale_abs_fp } 
+              { 2.4288ex * \l_@@_scale_abs_tl } 
+              { 1.6008ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,
                 scale=#1, black, decoration=
                   {
-                    random ~ steps,segment ~ length=0.15ex* \l_@@_scale_abs_fp , 
-                    amplitude=0.1ex* \l_@@_scale_abs_fp 
+                    random ~ steps,segment ~ length=0.15ex* \l_@@_scale_abs_tl , 
+                    amplitude=0.1ex* \l_@@_scale_abs_tl 
                   }
               ]
               \shade[ball ~ color=orange!80!black] (0.298,-0.33) rectangle (0.692,0.337);
               \foreach \x/\y in { 0.5/0.25 , 0.6/0 , 0.5/-0.25 }
-                \draw[decorate, line ~ width=0.06ex* \l_@@_scale_abs_fp ] 
+                \draw[decorate, line ~ width=0.06ex* \l_@@_scale_abs_tl ] 
                   (0.298,0) -- (\x,\y);
               \shade[ball ~ color=#2] (-0.01,0) circle [radius=0.31];
               \draw[rotate=-20] (0.12,0.1) -- (0.2,0.05);
@@ -4705,23 +4705,23 @@ for the details of that license.
     \draw (0,0) circle [radius=0.3];
     \foreach \xi/\xii in { 0.3/0.35 }
       {
-        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_fp ] 
+        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
           (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  (0,\xi) -- (\xii,0.5) -- (\xi,0);
       }
     \fill (-0.15,.15) circle [radius=0.05];
     \fill (0.15,.15) circle [radius=0.05];
     \foreach \x in { 0.1 , -0.1 }
-      \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_fp ,yshift=-0.12ex] 
+      \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_tl ,yshift=-0.12ex] 
         (0,0) -- (0,-0.1) -- (\x,-0.095);
-    \draw[rounded ~ corners=.12ex* \l_@@_scale_abs_fp ,yshift=-.15ex,
-      line ~ width=0.03em*0.9* \l_@@_scale_abs_fp ] 
+    \draw[rounded ~ corners=.12ex* \l_@@_scale_abs_tl ,yshift=-.15ex,
+      line ~ width=0.03em*0.9* \l_@@_scale_abs_tl ] 
       (-0.1,0.1) -- (0,0) -- (0.1,0.1) -- cycle ;
     \foreach \a/\b/\c/\d in 
       { 0.1/0.25/0.35/0.4 , -0.1/-0.25/-0.35/-0.4 }
         \foreach \yi/\yii/\yiii in 
           { 0/0/-0.05 , -0.01/-0.09/-0.14 , -0.045/-0.13/-0.23 }
           {
-            \draw[line ~ width=0.035ex* \l_@@_scale_abs_fp ]
+            \draw[line ~ width=0.035ex* \l_@@_scale_abs_tl ]
               (\a,-0.05)..controls(\b,\yi)and(\c,\yii).. (\d,\yiii);           
           }
   }
@@ -4730,7 +4730,7 @@ for the details of that license.
     \draw (0,0) circle [radius=0.3];
     \foreach \xi/\xii in { 0.3/0.35 }
       {
-        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_fp ] 
+        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
           (-\xi,0) -- (-\xii,0.5) -- (0,\xi)  
           (0,\xi) -- (\xii,0.5) -- (\xi,0);
       }
@@ -4745,7 +4745,7 @@ for the details of that license.
           -0.02/-0.12/-0.16 , 
           -0.055/-0.15/-0.25 
         }{
-          \draw[line ~ width=0.035ex* \l_@@_scale_abs_fp ]
+          \draw[line ~ width=0.035ex* \l_@@_scale_abs_tl ]
             ({0.1*\case},-0.05)..controls({\case*0.25},\yi)
             and({0.35*\case},\yii).. ({0.4*\case},\yiii);           
         }
@@ -4755,7 +4755,7 @@ for the details of that license.
     \draw (0,0) circle [radius=0.3];
     \foreach \case in { 1,-1 }
       {
-        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_fp ] 
+        \draw[rounded ~ corners=0.163ex* \l_@@_scale_abs_tl ] 
           ({\case*0.3},0) -- ({\case*0.35},0.5) -- (0,0.3);
       }
     \draw
@@ -4766,10 +4766,10 @@ for the details of that license.
         }
       ;
     \foreach \case in { 1,-1 }
-      \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_fp ,yshift=-0.12ex] 
+      \draw[rounded ~ corners=0.175ex* \l_@@_scale_abs_tl ,yshift=-0.12ex] 
         (0,0) -- (0,-0.08)   -- ({0.09*\case},-0.12);
-    \draw[rounded ~ corners=.12ex* \l_@@_scale_abs_fp ,yshift=-.15ex,
-      line ~ width=0.03em*0.9* \l_@@_scale_abs_fp ] 
+    \draw[rounded ~ corners=.12ex* \l_@@_scale_abs_tl ,yshift=-.15ex,
+      line ~ width=0.03em*0.9* \l_@@_scale_abs_tl ] 
       (0,0) -- (0.1,0.07)  -- (0,0.1)-- (-0.1,0.07) -- cycle ;
     \foreach \case in {-1,1}
       \foreach \yi/\yii/\yiii in 
@@ -4778,12 +4778,12 @@ for the details of that license.
           -0.05/-0.18/-0.23,
           -0.085/-0.22/-0.31
         }{
-          \draw[line ~ width=0.035ex* \l_@@_scale_abs_fp ]
+          \draw[line ~ width=0.035ex* \l_@@_scale_abs_tl ]
             ({0.1*\case},-0.05) 
             .. controls ({0.18*\case},\yi) and ({0.28*\case},\yii) .. 
             ({0.33*\case},\yiii);           
         }
-    \draw [transparent,line ~ width=0.035ex*\l_@@_scale_abs_fp] (-0.4,0) -- (0.4,0);
+    \draw [transparent,line ~ width=0.035ex*\l_@@_scale_abs_tl] (-0.4,0) -- (0.4,0);
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4795,17 +4795,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Cat_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.899ex * \l_@@_scale_abs_fp } 
-              { 1.957ex * \l_@@_scale_abs_fp } 
+              { 1.899ex * \l_@@_scale_abs_tl } 
+              { 1.957ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.33ex,y=2.33ex, line ~ width=0.093ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.33ex,y=2.33ex, line ~ width=0.093ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \@@_Cat:n {#1}
             \end{tikzpicture}%
@@ -4824,17 +4824,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { SchrodingersCat_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.899ex * \l_@@_scale_abs_fp } 
-              { 1.957ex * \l_@@_scale_abs_fp } 
+              { 1.899ex * \l_@@_scale_abs_tl } 
+              { 1.957ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.33ex,y=2.33ex, line ~ width=0.093ex* \l_@@_scale_abs_fp ,scale=#1
+                x=2.33ex,y=2.33ex, line ~ width=0.093ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \int_case:nnF {#2}
                 {
@@ -4861,31 +4861,31 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Ninja_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.149ex * \l_@@_scale_abs_fp } 
-              { 1.717ex * \l_@@_scale_abs_fp } 
+              { 2.149ex * \l_@@_scale_abs_tl } 
+              { 1.717ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,
                 scale=#1, decoration=
                   {
-                    random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_fp , 
-                    amplitude=0.1ex* \l_@@_scale_abs_fp 
+                    random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_tl , 
+                    amplitude=0.1ex* \l_@@_scale_abs_tl 
                   }
               ]
               \tl_set:Nn \l_tmpa_tl {#2}
               \fill[#2] (0,0) circle [radius=0.33];
-              \fill[decoration={random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_fp ,
-                amplitude=0.01ex* \l_@@_scale_abs_fp }, decorate,#3] 
+              \fill[decoration={random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_tl ,
+                amplitude=0.01ex* \l_@@_scale_abs_tl }, decorate,#3] 
               (-0.33,0) -- (0.33,0)  -- (0.23,0.23) -- (-0.23,0.23) -- cycle;
               \tl_if_eq:NNT \c_@@_black_tl \l_tmpa_tl 
                 {
-                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
                 }
               \fill[#3] (0,0.1) -- (-0.33,0) -- (-0.26,0.23);
               \fill[#3] (0.3465,0) arc [start ~ angle=0, end ~ angle=42, x ~ radius=0.34, y~ radius=0.345]  -- 
@@ -4899,14 +4899,14 @@ for the details of that license.
                 [
                   decorate,decoration=
                     {
-                      snake,amplitude=.1ex* \l_@@_scale_abs_fp ,
-                      segment ~ length=0.55ex* \l_@@_scale_abs_fp 
+                      snake,amplitude=.1ex* \l_@@_scale_abs_tl ,
+                      segment ~ length=0.55ex* \l_@@_scale_abs_tl 
                     } , #3
                 ] 
                 (0.26,0.21) -- \x;
               \tl_if_eq:NNF \c_@@_black_tl \l_tmpa_tl 
                 {
-                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_fp ] (0,0) circle [radius=0.33];
+                  \draw[line ~ width=0.08ex* \l_@@_scale_abs_tl ] (0,0) circle [radius=0.33];
                 }
             \end{tikzpicture}%
           }
@@ -4922,21 +4922,21 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dNinja_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.1498ex * \l_@@_scale_abs_fp } 
-              { 1.7178ex * \l_@@_scale_abs_fp } 
+              { 2.1498ex * \l_@@_scale_abs_tl } 
+              { 1.7178ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_fp ,
+                x=2.4ex, y=2.4ex, line ~ width=0.09ex* \l_@@_scale_abs_tl ,
                 scale=#1, decoration=
                   {
-                    random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_fp , 
-                    amplitude=0.1ex* \l_@@_scale_abs_fp 
+                    random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_tl , 
+                    amplitude=0.1ex* \l_@@_scale_abs_tl 
                   }
               ]
               \foreach \length/\coord in { 0.55/{(0.5,0.35)} , 0.5/{(0.53,0.1)} }
@@ -4944,8 +4944,8 @@ for the details of that license.
                   [
                     decorate,decoration=
                       {
-                        snake,amplitude=.1ex* \l_@@_scale_abs_fp ,
-                        segment ~ length=\length ex* \l_@@_scale_abs_fp 
+                        snake,amplitude=.1ex* \l_@@_scale_abs_tl ,
+                        segment ~ length=\length ex* \l_@@_scale_abs_tl 
                       } , decorate, #3!50!black
                   ] 
                   \coord -- (0.26,0.21);
@@ -4954,8 +4954,8 @@ for the details of that license.
                 [
                   decoration=
                     {
-                      random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_fp ,
-                      amplitude=0.01ex* \l_@@_scale_abs_fp 
+                      random ~ steps,segment ~ length=0.1ex* \l_@@_scale_abs_tl ,
+                      amplitude=0.01ex* \l_@@_scale_abs_tl 
                     } , ball ~ color=#3
                  ] 
               decorate  {(-0.33,0) -- (0.3465,0)  }
@@ -4986,17 +4986,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sleepey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.084866ex * \l_@@_scale_abs_fp } 
-              { 1.5912ex * \l_@@_scale_abs_fp } 
+              { 2.084866ex * \l_@@_scale_abs_tl } 
+              { 1.5912ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.04ex, y=2.04ex, line ~ width=0.102ex* \l_@@_scale_abs_fp ,
+                x=2.04ex, y=2.04ex, line ~ width=0.102ex* \l_@@_scale_abs_tl ,
                 scale=#1
               ]
 %              %% Hat
@@ -5005,7 +5005,7 @@ for the details of that license.
                 -- ++(0,-0.2) 
                 arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24];
 %              %% face
-              \filldraw [fill=#2,rounded ~ corners=0.001ex * \l_@@_scale_abs_fp]
+              \filldraw [fill=#2,rounded ~ corners=0.001ex * \l_@@_scale_abs_tl]
                 (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] -- cycle ;
 %              %% Pommel
               \fill (0.55,-0.15) circle [radius=0.06];
@@ -5018,7 +5018,7 @@ for the details of that license.
 %              %% Stars
               \foreach \l_tmpa_tl/\l_tmpb_tl in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
                 {
-                  \draw [line~width=0.04ex*\l_@@_scale_abs_fp ,#4]
+                  \draw [line~width=0.04ex*\l_@@_scale_abs_tl ,#4]
                   \foreach \l_@@_angle_tl in { 0,45,90,...,360 }
                     {
                       (\l_tmpa_tl,\l_tmpb_tl) -- ({\l_tmpa_tl+0.07*cos(\l_@@_angle_tl)},
@@ -5047,17 +5047,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSleepey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 2.033865ex * \l_@@_scale_abs_fp } 
-              { 1.489181ex * \l_@@_scale_abs_fp } 
+              { 2.033865ex * \l_@@_scale_abs_tl } 
+              { 1.489181ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=2.04ex, y=2.04ex, line ~ width=0.102ex* \l_@@_scale_abs_fp ,
+                x=2.04ex, y=2.04ex, line ~ width=0.102ex* \l_@@_scale_abs_tl ,
                 scale=#1
               ]
 %              %% Hat
@@ -5066,7 +5066,7 @@ for the details of that license.
                 -- ++(0,-0.2) 
                 arc[start~angle=0,end~angle=130,x~radius=0.15,y~radius=0.24];
 %              %% face
-              \shade [ball ~ color=#2,rounded ~ corners=0.001ex * \l_@@_scale_abs_fp]
+              \shade [ball ~ color=#2,rounded ~ corners=0.001ex * \l_@@_scale_abs_tl]
                 (0.33,0)  arc[start~angle=0, end~angle=-180, radius=0.33] -- cycle ;
 %              %% Pommel
               \fill (0.55,-0.15) circle [radius=0.06];
@@ -5079,7 +5079,7 @@ for the details of that license.
 %              %% Stars
               \foreach \l_tmpa_tl/\l_tmpb_tl in { -0.14/0.12 , 0.19/0.12 , 0.05/0.26 , 0.40/0.16 }
                 {
-                  \draw [line~width=0.04ex* \l_@@_scale_abs_fp,#4]
+                  \draw [line~width=0.04ex* \l_@@_scale_abs_tl,#4]
                   \foreach \l_@@_angle_tl in { 0,45,90,...,360 }
                     {
                       (\l_tmpa_tl,\l_tmpb_tl) -- ({\l_tmpa_tl+0.07*cos(\l_@@_angle_tl)},
@@ -5110,17 +5110,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { NiceReapey_#1_#2 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { (1.1067em+0.07ex) * \l_@@_scale_abs_fp } 
-              { (0.693em+0.07ex) * \l_@@_scale_abs_fp } 
+              { (1.1067em+0.07ex) * \l_@@_scale_abs_tl } 
+              { (0.693em+0.07ex) * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.11em,y=0.11em, line ~ width=0.07ex* \l_@@_scale_abs_fp ,scale=#1
+                x=0.11em,y=0.11em, line ~ width=0.07ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \draw[] (1.7,-1) arc [start ~ angle=360, end ~ angle=180, x ~ radius=1.7, y ~ radius=2]
                  arc [start ~ angle=260, end ~ angle=110, x ~ radius=1.5,y ~ radius=2] 
@@ -5131,9 +5131,9 @@ for the details of that license.
               \draw (0,-1.5) circle [ x~radius=1 , y~radius= 0.5];
               \draw (0,-1.5) circle [ x~radius=1 , y~radius= 0.5];
               \foreach  \x in { 0.2 , 0.6 }
-                \draw[line ~ width=0.04ex* \l_@@_scale_abs_fp ] 
+                \draw[line ~ width=0.04ex* \l_@@_scale_abs_tl ] 
                   (\x,-1) -- (\x,-2)  (-\x,-1) -- (-\x,-2)  ;
-              \draw[line ~ width=0.04ex* \l_@@_scale_abs_fp ] (-1,-1.5) -- (1,-1.5);
+              \draw[line ~ width=0.04ex* \l_@@_scale_abs_tl ] (-1,-1.5) -- (1,-1.5);
               \fill (1.25,1.25) circle [ x~radius=0.5 , y~radius= 0.75];
               \fill (-1.25,1.25) circle [ x~radius=0.5 , y~radius= 0.75];
             \end{tikzpicture}%
@@ -5195,7 +5195,7 @@ for the details of that license.
     \@@_provide_savebox_and_use:nn 
       { Strichmaxerl_#1_#2_#3_#4_#5 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
 %    \end{macrocode}
@@ -5303,15 +5303,15 @@ for the details of that license.
                 (
                   0.606ex+1.35ex * \@@_Strichmaxerl_x_max_fp
                   -1.35ex * \@@_Strichmaxerl_x_min_fp
-                ) * \l_@@_scale_abs_fp
+                ) * \l_@@_scale_abs_tl
               }{
-                ( 1.173ex + 1.35ex * \@@_Strichmaxerl_y_max) * \l_@@_scale_abs_fp
+                ( 1.173ex + 1.35ex * \@@_Strichmaxerl_y_max) * \l_@@_scale_abs_tl
               }
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                line ~ width=0.12ex* \l_@@_scale_abs_fp , scale=#1, x=1.35ex, y=1.35ex
+                line ~ width=0.12ex* \l_@@_scale_abs_tl , scale=#1, x=1.35ex, y=1.35ex
               ]
              \char_set_catcode_other:N  :
               \draw[rotate \space around= { #5 \token_to_str:N : ( 0.15 , 0.2 ) } ]  (0.15,0.2) -- (0.15,-0.14);
@@ -5355,23 +5355,23 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Candle_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 0.64ex * \l_@@_scale_abs_fp } 
-              { (1.255ex+2.2pt) * \l_@@_scale_abs_fp } 
+              { 0.64ex * \l_@@_scale_abs_tl } 
+              { (1.255ex+2.2pt) * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex, y=1ex, scale=#1, line ~ width=0.07ex* \l_@@_scale_abs_fp 
+                x=1ex, y=1ex, scale=#1, line ~ width=0.07ex* \l_@@_scale_abs_tl 
               ]
-              \draw[rounded ~ corners=0.04ex* \l_@@_scale_abs_fp ] 
+              \draw[rounded ~ corners=0.04ex* \l_@@_scale_abs_tl ] 
                 (0,0) -- (0.2,0) -- +(0,1) -- (0,1) -- cycle;
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] (0.1,1) -- (0.1,1.2);
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] (0.1,1) -- (0.1,1.2);
               \foreach \x in { -0.4 , 0.2 }
-                \draw[xshift=0.95, yshift=2.2, line ~ width=0.04ex* \l_@@_scale_abs_fp ] 
+                \draw[xshift=0.95, yshift=2.2, line ~ width=0.04ex* \l_@@_scale_abs_tl ] 
                   (-0.1,0.6) .. controls (\x,0.8) and (-0.1,1) ..  (-0.1,1.2);
             \end{tikzpicture}%
           }
@@ -5391,17 +5391,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Fire_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.576ex * \l_@@_scale_abs_fp } 
-              { 1.639ex * \l_@@_scale_abs_fp } 
+              { 1.576ex * \l_@@_scale_abs_tl } 
+              { 1.639ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex, y=1ex, scale=#1, line ~ width=0.07ex* \l_@@_scale_abs_fp ,
+                x=1ex, y=1ex, scale=#1, line ~ width=0.07ex* \l_@@_scale_abs_tl ,
                 rotate=45,
               ]
               \fill (-0.05,0) -- (0.05,0) -- (0.05,0.95) -- (-0.05,0.95) -- cycle;
@@ -5415,13 +5415,13 @@ for the details of that license.
               \draw
                 [
                   rotate=-45, xshift=-2.6, yshift=1.5,
-                  line ~ width=0.04ex* \l_@@_scale_abs_fp , x=0.5ex, y=0.5ex
+                  line ~ width=0.04ex* \l_@@_scale_abs_tl , x=0.5ex, y=0.5ex
                 ] 
                 (-0.1,0.29) .. controls (-0.7,0.6) and (0,1.2) ..  (0.05,1.7);
               \draw
                 [
                   rotate=-45, xshift=-2.1,yshift=1.5,
-                  line ~ width=0.04ex* \l_@@_scale_abs_fp , x=0.5ex, y=0.5ex
+                  line ~ width=0.04ex* \l_@@_scale_abs_tl , x=0.5ex, y=0.5ex
                 ] 
                 (-0.1,0.29) .. controls (0.7,0.6) and (-0.1,1.2) ..  (-0.15,1.7);
               \draw[rotate=-45, xshift=-2.5] (-0.1,0.29) .. controls 
@@ -5448,28 +5448,28 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Coffeecup_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.82ex * \l_@@_scale_abs_fp } 
-              { 1.705ex * \l_@@_scale_abs_fp } 
+              { 1.82ex * \l_@@_scale_abs_tl } 
+              { 1.705ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
                 x=0.7ex,y=0.7ex, scale=#1, 
-                line ~ width=0.07ex* \l_@@_scale_abs_fp , decoration=
+                line ~ width=0.07ex* \l_@@_scale_abs_tl , decoration=
                   {
-                    snake,amplitude=.05ex* \l_@@_scale_abs_fp ,
-                    segment ~ length=0.408ex* \l_@@_scale_abs_fp 
+                    snake,amplitude=.05ex* \l_@@_scale_abs_tl ,
+                    segment ~ length=0.408ex* \l_@@_scale_abs_tl 
                   }
               ]
               \draw (0,0) arc [start ~ angle=180, end ~ angle=270, x ~ radius=0.8,y ~ radius=1] --++
                 (0.5,0) arc [start ~ angle=270, end ~ angle=360, x ~ radius=0.8,y ~ radius=1] -- cycle;
               \draw (2.1,-0.15) -- (2.2,-0.15) arc [start ~ angle=90, end ~ angle=-90, radius=0.3] -- (1.85, -0.75);
               \foreach \x in {0.4,1,1.6}
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp , decorate]
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl , decorate]
                  (\x,0.3) -- +(0,1);
               \draw (0,-1.05) -- (2.1,-1.05);
             \end{tikzpicture}%
@@ -5491,21 +5491,21 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Chair_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 0.97ex * \l_@@_scale_abs_fp } 
-              { 1.69ex * \l_@@_scale_abs_fp } 
+              { 0.97ex * \l_@@_scale_abs_tl } 
+              { 1.69ex * \l_@@_scale_abs_tl } 
           }{
             \fp_compare:nNnT {#1} < { 0 } { \bool_set_true:N \l_@@_if_scale_negative_bool }
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.9ex,y=0.9ex, scale=#1, line ~ width=0.07ex* \l_@@_scale_abs_fp
+                x=0.9ex,y=0.9ex, scale=#1, line ~ width=0.07ex* \l_@@_scale_abs_tl
               ]
               \draw (0,-0.5) -- (0,0.7) -- (0.5,1) -- (0.5,0.25);
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] (0,0.4) -- (0.5,0.7);
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] (0,0.4) -- (0.5,0.7);
               \draw (0,0) -- (0.5,0.3) -- (1,0) --(1,-0.5);
               \bool_if:NT \l_@@_if_scale_negative_bool
                 { \draw (0.5,0.3) -- +(0,-0.5); }
@@ -5530,17 +5530,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Bed_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 3.08ex * \l_@@_scale_abs_fp } 
-              { 1.68ex * \l_@@_scale_abs_fp } 
+              { 3.08ex * \l_@@_scale_abs_tl } 
+              { 1.68ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex , y=1ex , scale=#1 , line ~ width=0.08ex*\l_@@_scale_abs_fp
+                x=1ex , y=1ex , scale=#1 , line ~ width=0.08ex*\l_@@_scale_abs_tl
               ]
               \draw (0,0) -- (0,1.6);
               \draw (3,0) -- (3,1.2);
@@ -5567,19 +5567,19 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Tribar_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.7175ex * \l_@@_scale_abs_fp } 
-              { 1.685ex * \l_@@_scale_abs_fp } 
+              { 1.7175ex * \l_@@_scale_abs_tl } 
+              { 1.685ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
                 x=0.65ex,y=0.65ex,scale=#1,
-                rounded ~ corners=0.03ex* \l_@@_scale_abs_fp , 
-                line ~ width=0.06ex* \l_@@_scale_abs_fp 
+                rounded ~ corners=0.03ex* \l_@@_scale_abs_tl , 
+                line ~ width=0.06ex* \l_@@_scale_abs_tl 
               ]
               \fill[#2] (0.15,0.3) -- (-0.15,-0.3) -- (1.75,-0.3) -- ++ (-0.15,-0.3) 
                  -- (-0.65,-0.6) -- (0.35,1.3) -- +(0.15,-0.3);
@@ -5611,38 +5611,38 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Moai_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
-        \fp_compare:nNnTF { \l_@@_scale_abs_fp } < { 2 }
+        \@@_set_scale_abs_tl:n {#1}
+        \fp_compare:nNnTF { \l_@@_scale_abs_tl } < { 2 }
           {
             \dim_set:Nn \l_@@_Moai_thickness_dim { 0.05ex }
           }{
-            \fp_compare:nNnTF { \l_@@_scale_abs_fp } < { 5 }
+            \fp_compare:nNnTF { \l_@@_scale_abs_tl } < { 5 }
               { \dim_set:Nn \l_@@_Moai_thickness_dim { 0.035ex } }
               { \dim_set:Nn \l_@@_Moai_thickness_dim { 0.03ex } }
           }
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { ( 1.001ex + \l_@@_Moai_thickness_dim ) * \l_@@_scale_abs_fp } 
-              { ( 1.664ex + \l_@@_Moai_thickness_dim ) * \l_@@_scale_abs_fp } 
+              { ( 1.001ex + \l_@@_Moai_thickness_dim ) * \l_@@_scale_abs_tl } 
+              { ( 1.664ex + \l_@@_Moai_thickness_dim ) * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=.13ex, y=.13ex, rounded ~ corners=0.01ex* \l_@@_scale_abs_fp , 
+                x=.13ex, y=.13ex, rounded ~ corners=0.01ex* \l_@@_scale_abs_tl , 
                 scale=#1, 
-                line ~ width= \dim_use:N \l_@@_Moai_thickness_dim * \l_@@_scale_abs_fp 
+                line ~ width= \dim_use:N \l_@@_Moai_thickness_dim * \l_@@_scale_abs_tl 
               ]
               \draw (-2.6,-4.25) --  (-2.5,-5.8) 
                 ..controls (-2,-6.8) and (1.5,-6.8) ..  (2.2,-5.8) -- (2.4,-3.95);
               \draw (-2.5,2.5) .. controls (-2.9,4.6) and (2,5) .. (3.3,2.5) -- (2.9,-3.4)
                 .. controls (2,-5) and (-4,-5) .. (-3.1,-3) -- cycle;
               \draw (-2.5,3) -- (-2,5) .. controls (0,6) and (2,5.8) .. (3.1,4.7) -- (3.3,2.5);
-              \draw[line ~ width=0.02ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.02ex* \l_@@_scale_abs_tl ] 
                  (-2.2,-1.8) .. controls (-1,-1.3) and (0,-1.7) .. (1,-2);
-              \draw[line ~ width=0.02ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.02ex* \l_@@_scale_abs_tl ] 
                  (-2.2,-1.8) .. controls (-1,-1) and (0,-1.4) .. (1,-2);
-              \draw[line ~ width=0.02ex* \l_@@_scale_abs_fp ] 
+              \draw[line ~ width=0.02ex* \l_@@_scale_abs_tl ] 
                  (-2.2,-1.8) .. controls (-1,-2) and (0,-2) .. (1,-2);
               \draw (-0.8,4) .. controls (-0.8,3) and (-0.8,2) ..  (-1.6,0.5) -- (-1.8,-0.4)
                  .. controls (-1,0.2) and (0,0.2) ..  (0.6,-0.4) -- (0.7,0.4)
@@ -5672,32 +5672,32 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Snowman_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.545ex * \l_@@_scale_abs_fp } 
-              { 1.772ex * \l_@@_scale_abs_fp } 
+              { 1.545ex * \l_@@_scale_abs_tl } 
+              { 1.772ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.9ex,y=0.9ex,line ~ width=0.07ex* \l_@@_scale_abs_fp , scale=#1 
+                x=0.9ex,y=0.9ex,line ~ width=0.07ex* \l_@@_scale_abs_tl , scale=#1 
               ]
               \draw (0,0) circle [x ~ radius = 0.4 , y~radius=0.35];
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] (0,0.64) circle [x ~ radius = 0.3 , y~radius=0.28];
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] (0,1.14) circle [x ~ radius = 0.2 , y~radius=0.2];
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] (0,0.64) circle [x ~ radius = 0.3 , y~radius=0.28];
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] (0,1.14) circle [x ~ radius = 0.2 , y~radius=0.2];
               \draw
                 [
-                  rounded ~ corners=0.1ex* \l_@@_scale_abs_fp ,
-                  line ~ width=0.05ex* \l_@@_scale_abs_fp ,
+                  rounded ~ corners=0.1ex* \l_@@_scale_abs_tl ,
+                  line ~ width=0.05ex* \l_@@_scale_abs_tl ,
                   rotate ~ around={-30 \token_to_str:N : (0,1.14)} , 
                ] 
                (-0.2,1.15) -- ++(0,0.35) -- +(0.4,0) -- (0.2,1.14);
               \draw
                 [
-                  rounded ~ corners=0.07ex * \l_@@_scale_abs_fp ,
-                  line ~ width=0.05ex * \l_@@_scale_abs_fp ,
+                  rounded ~ corners=0.07ex * \l_@@_scale_abs_tl ,
+                  line ~ width=0.05ex * \l_@@_scale_abs_tl ,
                   rotate ~ around={-30 \token_to_str:N : (0,1.14)} ,
                 ]
                 (-0.2,1.19) arc  [start ~ angle=270, end ~ angle=90, radius=0.1];
@@ -5711,9 +5711,9 @@ for the details of that license.
                 \fill (\x,\y) circle [radius=0.015]  (-\x,\y) circle [radius=0.015] ;
               \draw (-0.3,0.7) -- (-0.6,0.8); 
               \draw (0.3,0.7) -- (0.6,0.8); 
-              \draw[line ~ width=0.06ex* \l_@@_scale_abs_fp ] (-0.65,0) -- (-0.65,1);
+              \draw[line ~ width=0.06ex* \l_@@_scale_abs_tl ] (-0.65,0) -- (-0.65,1);
               \foreach\x in {-0.85, -0.75,-0.65,-0.55,-0.45}
-              \draw[line ~ width=0.05ex* \l_@@_scale_abs_fp ] (-0.65,1) -- (\x,1.3);
+              \draw[line ~ width=0.05ex* \l_@@_scale_abs_tl ] (-0.65,1) -- (\x,1.3);
               \foreach \y/\x/\z in { 0.7/0.75 , 0.9/0.8 , 1/0.6/0.55 }
                 \draw (0.6,0.8) -- (\x,\y)  (-0.6,0.8) -- (-\z,\y) ;
             \end{tikzpicture}%
@@ -5775,17 +5775,17 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { WorstTree_#1 }
       {
-        \@@_set_scale_abs_fp:n {#1}
+        \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \g_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.64ex * \l_@@_scale_abs_fp } 
-              { 1.84ex * \l_@@_scale_abs_fp } 
+              { 1.64ex * \l_@@_scale_abs_tl } 
+              { 1.84ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=1ex,y=1ex, line ~ width=0.04ex* \l_@@_scale_abs_fp ,scale=#1
+                x=1ex,y=1ex, line ~ width=0.04ex* \l_@@_scale_abs_tl ,scale=#1
               ]
               \fill[brown] (-0.3,0) .. controls (0.2,0.3) and (0.2,0.7) .. (0.2,1) -- (0.5,1) .. 
                  controls (0.5,0.7) and (0.5,0.3) .. (1,0);
