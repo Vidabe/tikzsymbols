@@ -2463,9 +2463,13 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_set:Npn \@@_Basic_Tree_aux:nnnnn
   {
-    \bool_if:NTF \g_@@_if_opt_tree_print_bool
-      { \@@_Basic_Tree_on:nnnnn }
-      { \@@_Basic_Tree_off:nnnnn }
+    \bool_if:NTF \g_@@_if_opt_draft_bool
+      { \@@_Basic_Tree_draft:nnnnn }
+      {
+        \bool_if:NTF \g_@@_if_opt_tree_print_bool
+          { \@@_Basic_Tree_on:nnnnn }
+          { \@@_Basic_Tree_off:nnnnn }
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2477,40 +2481,43 @@ for the details of that license.
 % lines. If the last argument is 'leaf', the box has a bottom line, if
 % it is empty the bottom line disappears.
 %    \begin{macrocode}
+\cs_new:Npn \@@_Basic_Tree_draft:nnnnn #1#2#3#4#5
+  {
+    \group_begin:
+    \@@_set_scale_abs_tl:n { #1pt + 0.02ex }
+    \tl_set:Nn \l_tmpa_tl {#5}
+    \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
+      {
+        \@@_create_draftbox:nn 
+          { (1.6772ex+0.4pt) * \l_@@_scale_abs_tl }
+          { (1.42ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
+      }{
+        \@@_create_draftbox:nn 
+          { (1.3996ex+0.4pt) * \l_@@_scale_abs_tl }
+          { (1.28ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
+      }
+    \group_end:
+  }
 \cs_new:Npn \@@_Basic_Tree_off:nnnnn #1#2#3#4#5
   {
     \group_begin:
     \@@_set_scale_abs_tl:n { #1pt + 0.02ex }
     \tl_set:Nn \l_tmpa_tl {#5}
-    \bool_if:NTF \g_@@_if_opt_draft_bool
-      {
-        \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
-          {
-            \@@_create_draftbox:nn 
-              { (1.6772ex+0.4pt) * \l_@@_scale_abs_tl }
-              { (1.42ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
-          }{
-            \@@_create_draftbox:nn 
-              { (1.3996ex+0.4pt) * \l_@@_scale_abs_tl }
-              { (1.28ex-0.2pt+0.4pt) * \l_@@_scale_abs_tl }
-          }
-      }{
-        \begin{tikzpicture}[ /@@ , scale=#1+0.02ex,x=1ex,y=1ex, 
-          line ~ width=0.4pt * \l_@@_scale_abs_tl]
-          \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
-            {
-              \draw[#2] (-0.8386,0+0.2pt) -- (-0.8386,1.42);
-              \draw[#3] (-0.8386,1.42) -- (0.8386,1.42);
-              \draw[#4] (0.8386,1.42) -- (0.8386,0+0.2pt);
-              \draw[#3] (0.8386,0+0.2pt) -- (0,0+0.2pt);
-              \draw[#4] (0,0+0.2pt) -- (-0.8386,0+0.2pt);
-            }{
-              \draw[#2] (-0.6998,0+0.2pt) -- (-0.6998,0.68+0.6);
-              \draw[#3] (-0.6998,0.68+0.6) -- (0.6998,0.68+0.6);
-              \draw[#4] (0.6998,0.68+0.6) -- (0.6998,0+0.2pt);
-            }
-        \end{tikzpicture}%
-      }
+    \begin{tikzpicture}[ /@@ , scale=#1+0.02ex,x=1ex,y=1ex, 
+      line ~ width=0.4pt * \l_@@_scale_abs_tl]
+      \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl
+        {
+          \draw[#2] (-0.8386,0+0.2pt) -- (-0.8386,1.42);
+          \draw[#3] (-0.8386,1.42) -- (0.8386,1.42);
+          \draw[#4] (0.8386,1.42) -- (0.8386,0+0.2pt);
+          \draw[#3] (0.8386,0+0.2pt) -- (0,0+0.2pt);
+          \draw[#4] (0,0+0.2pt) -- (-0.8386,0+0.2pt);
+        }{
+          \draw[#2] (-0.6998,0+0.2pt) -- (-0.6998,0.68+0.6);
+          \draw[#3] (-0.6998,0.68+0.6) -- (0.6998,0.68+0.6);
+          \draw[#4] (0.6998,0.68+0.6) -- (0.6998,0+0.2pt);
+        }
+    \end{tikzpicture}%
     \group_end:
   }
 %    \end{macrocode}
@@ -2526,56 +2533,52 @@ for the details of that license.
 \cs_new:Npn \@@_Basic_Tree_on:nnnnn #1#2#3#4#5
   {
     \group_begin:
-    \bool_if:NTF \g_@@_if_opt_draft_bool
-      { \@@_Basic_Tree_off:nnnnn {#1} {#2} {#3} {#4} {#5} }
-      {
-        \@@_set_scale_abs_tl:n {#1}
-        \fp_compare:nNnT {#1} < { 0 } { \bool_set_true:N \l_@@_scale_negative_bool }
-        \tl_set:Nn \l_tmpa_tl {#5}
-        \tl_use:N \c_@@_tikz_set_tl
-        \colorlet { @@_trunk } {#2}
-        \colorlet { @@_leaf ~ a } {#3}
-        \colorlet { @@_leaf ~ b } {#4}
-        \begin{tikzpicture}[ /@@ , x=1ex , y=1ex , line ~ width=0.07ex]
-          \pgfarrowsdeclare{leaf}{leaf}
-            { \pgfarrowsleftextend { -0.1ex } \pgfarrowsrightextend { -0.05ex } }
-            {
-              \pgfpathmoveto { \pgfpoint { -0.01ex } { 0ex } }
-              \pgfpatharc { 150 } { 30 } { 0.08ex }
-              \pgfpatharc {-30} {-150} { 0.08ex }
-              \pgfusepathqfill
-            }
-          \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl 
-            { 
-              \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_tl ] 
-                (-0.8386,0+0.2pt) rectangle (0.8386, 1.42);
-            }{
-              \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_tl ] 
-                (-0.6998,0+0.2pt) rectangle (0.6998,0.68+0.6);
-            }
-        \pgflowlevel { \pgftransformscale { #1 + 0.02ex } }
+      \@@_set_scale_abs_tl:n {#1}
+      \fp_compare:nNnT {#1} < { 0 } { \bool_set_true:N \l_@@_scale_negative_bool }
+      \tl_set:Nn \l_tmpa_tl {#5}
+      \tl_use:N \c_@@_tikz_set_tl
+      \colorlet { @@_trunk } {#2}
+      \colorlet { @@_leaf ~ a } {#3}
+      \colorlet { @@_leaf ~ b } {#4}
+      \begin{tikzpicture}[ /@@ , x=1ex , y=1ex , line ~ width=0.07ex]
+        \pgfarrowsdeclare{leaf}{leaf}
+          { \pgfarrowsleftextend { -0.1ex } \pgfarrowsrightextend { -0.05ex } }
           {
-            \coordinate (root) [grow ~ cyclic , rotate=90] child 
-              {
-                child [line ~ cap=round] foreach \a in { 0 , 1 , 2 } 
-                  { 
-                    child ~ foreach \b in { 0 , 1 } 
-                      {
-                        child ~ foreach \c in { 0 , 1 , 2 } 
-                          { child ~ foreach \d in { 0 , 1 } 
-                            {
-                              child ~ foreach ~ \leafcolor in { @@_leaf ~ a , @@_leaf ~ b } 
-                              { edge ~ from ~ parent ~ [color=\leafcolor,-#5]}
+            \pgfpathmoveto { \pgfpoint { -0.01ex } { 0ex } }
+            \pgfpatharc { 150 } { 30 } { 0.08ex }
+            \pgfpatharc {-30} {-150} { 0.08ex }
+            \pgfusepathqfill
+          }
+        \tl_if_eq:NNTF \c_@@_leaf_tl \l_tmpa_tl 
+          { 
+            \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_tl ] 
+              (-0.8386,0+0.2pt) rectangle (0.8386, 1.42);
+          }{
+            \draw[transparent , scale=#1+0.02ex , line ~ width=0.4pt* \l_@@_scale_abs_tl ] 
+              (-0.6998,0+0.2pt) rectangle (0.6998,0.68+0.6);
+          }
+        \pgflowlevel { \pgftransformscale { #1 + 0.02ex } }
+            {
+              \coordinate (root) [grow ~ cyclic , rotate=90] child 
+                {
+                  child [line ~ cap=round] foreach \a in { 0 , 1 , 2 } 
+                    { 
+                      child ~ foreach \b in { 0 , 1 } 
+                        {
+                          child ~ foreach \c in { 0 , 1 , 2 } 
+                            { child ~ foreach \d in { 0 , 1 } 
+                              {
+                                child ~ foreach ~ \leafcolor in { @@_leaf ~ a , @@_leaf ~ b } 
+                                { edge ~ from ~ parent ~ [color=\leafcolor,-#5]}
+                              }
                             }
-                          }
-                      }
-                  } 
-                edge ~ from ~ parent [shorten ~ >=-0.05ex, serif ~ cm- , line ~ cap=butt]
-              };
-         }
-       \end{tikzpicture}
-       \bool_set_false:N \l_@@_scale_negative_bool
-      }
+                        }
+                    } 
+                  edge ~ from ~ parent [shorten ~ >=-0.05ex, serif ~ cm- , line ~ cap=butt]
+                };
+           }
+      \end{tikzpicture}
+      \bool_set_false:N \l_@@_scale_negative_bool
     \group_end:
   }
 %    \end{macrocode}
