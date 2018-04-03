@@ -1606,6 +1606,11 @@ for the details of that license.
 %    \end{macrocode}
 %
 %    \begin{macrocode}
+\tl_new:N \l_@@_symbol_name_tl
+\tl_new:N \l_@@_symbol_options_clist
+%    \end{macrocode}
+%
+%    \begin{macrocode}
 \fp_new:N \l_@@_global_scale_fp
 \fp_set:Nn \l_@@_global_scale_fp { 1.0 }
 %    \end{macrocode}
@@ -1681,13 +1686,10 @@ for the details of that license.
 % \end{macro}
 %
 %
-% \begin{macro}{\l_@@_tmpa_tl ,  \l_@@_tmpa_clist }
+% \begin{macro}{\l_@@_tmpa_tl  }
 % Some scratch variables
 %    \begin{macrocode}
-\dim_new:N \l_@@_tmpa_dim
-\dim_new:N \l_@@_tmpb_dim
 \tl_new:N \l_@@_tmpa_tl
-\clist_new:N \l_@@_tmpa_clist
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2068,11 +2070,11 @@ for the details of that license.
             { 1 } { \bool_gset_true:N \g_@@_if_opt_draft_bool }
             { 2 } { \bool_gset_false:N \g_@@_if_opt_draft_bool }
             { 3 } 
-              { 
-                \msg_error:nnnn { tikzsymbols } { obsolete-option } 
-                  { draft = absolute } { draft = true } 
-                \bool_gset_true:N \g_@@_if_opt_draft_bool 
-              }
+            { 
+              \msg_error:nnnn { tikzsymbols } { obsolete-option } 
+                { draft = absolute } { draft = true } 
+              \bool_gset_true:N \g_@@_if_opt_draft_bool 
+            }
           }
       } ,
     draft .default:n= { false } ,
@@ -2285,8 +2287,8 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_parse_command_options:nn #1#2
   {
-    \clist_clear:N \l_tmpa_clist
-    \tl_set:Nn \l_tmpa_tl {#1}
+    \clist_clear:N \l_@@_symbol_options_clist
+    \tl_set:Nn \l_@@_symbol_name_tl {#1}
     \@@_parse_command_options:N #2
       \q_recursion_tail \q_recursion_tail \q_recursion_tail \q_recursion_stop
   }
@@ -2305,7 +2307,7 @@ for the details of that license.
       { \@@_parse_option_type_O:w #1 }
       { 
         \tl_if_eq:NNTF #1 S
-          { \@@_parse_option_type_S:Vw \l_tmpa_tl #1 }
+          { \@@_parse_option_type_S:Vw \l_@@_symbol_name_tl #1 }
           { \@@_parse_option_type:w #1 }
       }
   }
@@ -2322,7 +2324,7 @@ for the details of that license.
         { m } { }
       }
       { \msg_error:nnn { tikzsymbols } { internal-message } { internal-parsing } }
-    \clist_put_right:Nn \l_tmpa_clist {#1}
+    \clist_put_right:Nn \l_@@_symbol_options_clist {#1}
     \@@_parse_command_options:N
   }
 %    \end{macrocode}
@@ -2334,7 +2336,8 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_parse_option_type_O:w #1#2
   {
-    \clist_put_right:Nn \l_tmpa_clist { >{ \@@_if_empty:Tn {#2} } O{#2}  }
+    \clist_put_right:Nn \l_@@_symbol_options_clist 
+      { >{ \@@_if_empty:Tn {#2} } O{#2}  }
     \@@_parse_command_options:N
   }
 %    \end{macrocode}
@@ -2345,7 +2348,8 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_parse_option_type_S:nw #1#2
   {
-    \clist_put_right:Nn \l_tmpa_clist { >{ \@@_scale_if_empty:nTn {#1} { 1 } } O{ 1 }  }
+    \clist_put_right:Nn \l_@@_symbol_options_clist 
+      { >{ \@@_scale_if_empty:nTn {#1} { 1 } } O{ 1 }  }
     \@@_parse_command_options:N
   }
 \cs_generate_variant:Nn \@@_parse_option_type_S:nw { Vw }
@@ -2356,7 +2360,7 @@ for the details of that license.
 % \begin{macro}{ \@@_Declare_Document_Command:nnn }
 %   Main Command to define the command of this package. It runs
 %   through the second input (argument specifications), stores the
-%   arguments in a \verb|\l_tmpa_clist| and adds
+%   arguments in a \verb|\l_@@_symbol_options_clist| and adds
 %   \verb|>{ \@@_if_empty:Tn {#2} }| if an optional argument is
 %   found. Yeah. I think the rest is self-explaining.
 %    \begin{macrocode}
@@ -2367,7 +2371,7 @@ for the details of that license.
     \@@_parse_command_options:nn {#1} {#2}
     \exp_args:Ncx \DeclareDocumentCommand 
       { \g_@@_command_prefix_tl #1 } 
-      { \clist_use:Nn \l_tmpa_clist {} } 
+      { \clist_use:Nn \l_@@_symbol_options_clist { } } 
       { 
         \cs_if_exist:NT \tikzsymbolsaftersymbolinput 
           {
@@ -2477,7 +2481,6 @@ for the details of that license.
   {
     \group_begin:
     \@@_set_scale_abs_fp:n { #1pt + 0.02ex }
-%    \dim_set:Nn \l_tmpa_dim { \dim_abs:n { #1pt + 0.02ex } }
     \tl_set:Nn \l_tmpa_tl {#5}
     \bool_if:NTF \g_@@_if_opt_draft_bool
       {
