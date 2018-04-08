@@ -1,0 +1,2908 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Cooking ~symbols~sizes
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Kochtopf_6.2_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Kochtopf_6.2_box=\box...
+\Kochtopf [2] Width
+  65.93577575683594pt
+  65.93533325195312pt
+\Kochtopf [2] Height
+  42.09762573242188pt
+  42.09700012207031pt
+\Kochtopf [2] Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Kochtopf_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Kochtopf_3.1_box=\box...
+\pot  Width
+  32.96797180175781pt
+  32.96766662597656pt
+\pot  Height
+  21.04885864257812pt
+  21.04850769042969pt
+\pot  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Bratpfanne_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Bratpfanne_3.1_box=\box...
+\Bratpfanne  Width
+  47.42892456054688pt
+  47.4290771484375pt
+\Bratpfanne  Height
+  19.38671875pt
+  19.38677978515625pt
+\Bratpfanne  Depth
+  0pt
+  0pt
+============================================================
+\fryingpan  Width
+  47.42892456054688pt
+  47.4290771484375pt
+\fryingpan  Height
+  19.38671875pt
+  19.38677978515625pt
+\fryingpan  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Schneebesen_6.2_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Schneebesen_6.2_box=\box...
+\Schneebesen [2] Width
+  15.20718383789062pt
+  15.20750427246094pt
+\Schneebesen [2] Height
+  42.17300415039062pt
+  42.17308044433594pt
+\Schneebesen [2] Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Schneebesen_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Schneebesen_3.1_box=\box...
+\eggbeater  Width
+  7.60357666015625pt
+  7.603759765625pt
+\eggbeater  Height
+  21.0865478515625pt
+  21.0865478515625pt
+\eggbeater  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Sieb_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Sieb_3.1_box=\box...
+\Sieb  Width
+  46.42115783691406pt
+  46.42135620117188pt
+\Sieb  Height
+  15.68325805664062pt
+  15.68307495117188pt
+\Sieb  Depth
+  0pt
+  0pt
+============================================================
+\sieve  Width
+  46.42115783691406pt
+  46.42135620117188pt
+\sieve  Height
+  15.68325805664062pt
+  15.68307495117188pt
+\sieve  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Purierstab_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Purierstab_3.1_box=\box...
+\Purierstab  Width
+  10.14401245117188pt
+  10.14385986328125pt
+\Purierstab  Height
+  21.02169799804688pt
+  21.02180480957031pt
+\Purierstab  Depth
+  0pt
+  0pt
+============================================================
+\blender  Width
+  10.14401245117188pt
+  10.14385986328125pt
+\blender  Height
+  21.02169799804688pt
+  21.02180480957031pt
+\blender  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Dreizack_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Dreizack_3.1_box=\box...
+\Dreizack  Width
+  3.537139892578125pt
+  3.537002563476562pt
+\Dreizack  Height
+  21.02165222167969pt
+  21.02180480957031pt
+\Dreizack  Depth
+  0pt
+  0pt
+============================================================
+\trident  Width
+  3.537139892578125pt
+  3.537002563476562pt
+\trident  Height
+  21.02165222167969pt
+  21.02180480957031pt
+\trident  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Backblech_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Backblech_3.1_box=\box...
+\Backblech  Width
+  30.904541015625pt
+  30.90472412109375pt
+\Backblech  Height
+  20.95535278320312pt
+  20.955078125pt
+\Backblech  Depth
+  0pt
+  0pt
+============================================================
+\bakingplate  Width
+  30.904541015625pt
+  30.90472412109375pt
+\bakingplate  Height
+  20.95535278320312pt
+  20.955078125pt
+\bakingplate  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Ofen_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Ofen_3.1_box=\box...
+\Ofen  Width
+  27.62876892089844pt
+  27.628662109375pt
+\Ofen  Height
+  20.95515441894531pt
+  20.955078125pt
+\Ofen  Depth
+  0pt
+  0pt
+============================================================
+\oven  Width
+  27.62876892089844pt
+  27.628662109375pt
+\oven  Height
+  20.95515441894531pt
+  20.955078125pt
+\oven  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Pfanne_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Pfanne_3.1_box=\box...
+\Pfanne  Width
+  40.49530029296875pt
+  40.49534606933594pt
+\Pfanne  Height
+  10.41082763671875pt
+  10.41079711914062pt
+\Pfanne  Depth
+  0pt
+  0pt
+============================================================
+\pan  Width
+  40.49530029296875pt
+  40.49534606933594pt
+\pan  Height
+  10.41082763671875pt
+  10.41079711914062pt
+\pan  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Herd_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Herd_3.1_box=\box...
+\Herd  Width
+  27.76216125488281pt
+  27.76213073730469pt
+\Herd  Height
+  21.08854675292969pt
+  21.08854675292969pt
+\Herd  Depth
+  0pt
+  0pt
+============================================================
+\cooker  Width
+  27.76216125488281pt
+  27.76213073730469pt
+\cooker  Height
+  21.08854675292969pt
+  21.08854675292969pt
+\cooker  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Saftpresse_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Saftpresse_3.1_box=\box...
+\Saftpresse  Width
+  24.95921325683594pt
+  24.959228515625pt
+\Saftpresse  Height
+  21.62254333496094pt
+  21.6224365234375pt
+\Saftpresse  Depth
+  0pt
+  0pt
+============================================================
+\squeezer  Width
+  24.95921325683594pt
+  24.959228515625pt
+\squeezer  Height
+  21.62254333496094pt
+  21.6224365234375pt
+\squeezer  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Schussel_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Schussel_3.1_box=\box...
+\Schussel  Width
+  30.96551513671875pt
+  30.9654541015625pt
+\Schussel  Height
+  19.62033081054688pt
+  19.620361328125pt
+\Schussel  Depth
+  0pt
+  0pt
+============================================================
+\bowl  Width
+  30.96551513671875pt
+  30.9654541015625pt
+\bowl  Height
+  19.62033081054688pt
+  19.620361328125pt
+\bowl  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Schaler_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Schaler_3.1_box=\box...
+\Schaler  Width
+  15.34954833984375pt
+  15.34925842285156pt
+\Schaler  Height
+  20.88822937011719pt
+  20.88833618164062pt
+\Schaler  Depth
+  0pt
+  0pt
+============================================================
+\peeler  Width
+  15.34954833984375pt
+  15.34925842285156pt
+\peeler  Height
+  20.88822937011719pt
+  20.88833618164062pt
+\peeler  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Reibe_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Reibe_3.1_box=\box...
+\Reibe  Width
+  14.41494750976562pt
+  14.41494750976562pt
+\Reibe  Height
+  21.08854675292969pt
+  21.08854675292969pt
+\Reibe  Depth
+  0pt
+  0pt
+============================================================
+\grater  Width
+  14.41494750976562pt
+  14.41494750976562pt
+\grater  Height
+  21.08854675292969pt
+  21.08854675292969pt
+\grater  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Flasche_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Flasche_3.1_box=\box...
+\Flasche  Width
+  10.41070556640625pt
+  10.41079711914062pt
+\Flasche  Height
+  21.08854675292969pt
+  21.08854675292969pt
+\Flasche  Depth
+  0pt
+  0pt
+============================================================
+\bottle  Width
+  10.41070556640625pt
+  10.41079711914062pt
+\bottle  Height
+  21.08854675292969pt
+  21.08854675292969pt
+\bottle  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Nudelholz_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Nudelholz_3.1_box=\box...
+\Nudelholz  Width
+  60.27593994140625pt
+  60.27586364746094pt
+\Nudelholz  Height
+  12.01252746582031pt
+  12.01246643066406pt
+\Nudelholz  Depth
+  0pt
+  0pt
+============================================================
+\rollingpin  Width
+  60.27593994140625pt
+  60.27586364746094pt
+\rollingpin  Height
+  12.01252746582031pt
+  12.01246643066406pt
+\rollingpin  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Knoblauchpresse_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Knoblauchpresse_3.1_box=\box...
+\Knoblauchpresse  Width
+  57.39309692382812pt
+  57.39286804199219pt
+\Knoblauchpresse  Height
+  21.35554504394531pt
+  21.35548400878906pt
+\Knoblauchpresse  Depth
+  0pt
+  0pt
+============================================================
+\garlicpress  Width
+  57.39309692382812pt
+  57.39286804199219pt
+\garlicpress  Height
+  21.35554504394531pt
+  21.35548400878906pt
+\garlicpress  Depth
+  0pt
+  0pt
+============================================================
+============================================================
+============================================================
+TEST 2: 2D ~Emoticons ~ Symbol~sizes
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Smiley_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Smiley_3.1_none_box=\box...
+\Smiley  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Smiley  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Smiley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Sadey_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Sadey_3.1_none_box=\box...
+\Sadey  Width
+  22.47671508789062pt
+  22.47665405273438pt
+\Sadey  Height
+  22.47671508789062pt
+  22.47665405273438pt
+\Sadey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Neutrey_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Neutrey_3.1_none_box=\box...
+\Neutrey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Neutrey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Neutrey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Changey_3.1_white_1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Changey_3.1_white_1_box=\box...
+\Changey {1} Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Changey {1} Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Changey {1} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_cChangey_3.1_red_yellow_green_1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_cChangey_3.1_red_yellow_green_1_box=\box...
+\cChangey {1} Width
+  22.7435302734375pt
+  22.74359130859375pt
+\cChangey {1} Height
+  22.7435302734375pt
+  22.74359130859375pt
+\cChangey {1} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Annoey_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Annoey_3.1_none_box=\box...
+\Annoey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Annoey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Annoey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Laughey_3.1_none_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Laughey_3.1_none_none_box=\box...
+\Laughey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Laughey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Laughey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Winkey_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Winkey_3.1_none_box=\box...
+\Winkey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Winkey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Winkey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_oldWinkey_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_oldWinkey_3.1_none_box=\box...
+\oldWinkey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\oldWinkey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\oldWinkey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Sey_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Sey_3.1_none_box=\box...
+\Sey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Sey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Sey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Xey_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Xey_3.1_none_box=\box...
+\Xey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Xey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Xey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Innocey_3.1_none_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Innocey_3.1_none_yellow_box=\box...
+\Innocey  Width
+  23.09091186523438pt
+  23.09062194824219pt
+\Innocey  Height
+  25.47940063476562pt
+  25.47962951660156pt
+\Innocey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Innocey_14.415_none_white_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Innocey_14.415_none_white_box=\box...
+\wInnocey [1.5] Width
+  107.3727111816406pt
+  107.3713836669922pt
+\wInnocey [1.5] Height
+  118.4790191650391pt
+  118.4803009033203pt
+\wInnocey [1.5] Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Cooley_3.1_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Cooley_3.1_none_box=\box...
+\Cooley  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Cooley  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Cooley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Tongey_3.1_none_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Tongey_3.1_none_none_box=\box...
+\Tongey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Tongey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Tongey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Nursey_3.1_none_none__box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Nursey_3.1_none_none__box=\box...
+\Nursey  Width
+  20.0208740234375pt
+  20.02076721191406pt
+\Nursey  Height
+  29.23054504394531pt
+  29.23033142089844pt
+\Nursey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Vomey_3.1_none_opacity=0_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Vomey_3.1_none_opacity=0_box=\box...
+\Vomey  Width
+  40.48684692382812pt
+  40.48666381835938pt
+\Vomey  Height
+  23.26431274414062pt
+  23.26412963867188pt
+\Vomey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Walley_3.1_none_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Walley_3.1_none_none_box=\box...
+\Walley  Width
+  31.24569702148438pt
+  31.24574279785156pt
+\Walley  Height
+  22.3431396484375pt
+  22.34318542480469pt
+\Walley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_rWalley_3.1_none_none_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_rWalley_3.1_none_none_box=\box...
+\rWalley  Width
+  31.24569702148438pt
+  31.24574279785156pt
+\rWalley  Height
+  22.3431396484375pt
+  22.34318542480469pt
+\rWalley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Cat_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Cat_3.1_box=\box...
+\Cat  Width
+  25.34588623046875pt
+  25.34616088867188pt
+\Cat  Height
+  26.12051391601562pt
+  26.12043762207031pt
+\Cat  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_SchrodingersCat_3.1_1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_SchrodingersCat_3.1_1_box=\box...
+\SchrodingersCat {1} Width
+  25.34588623046875pt
+  25.34616088867188pt
+\SchrodingersCat {1} Height
+  26.12051391601562pt
+  26.12043762207031pt
+\SchrodingersCat {1} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_SchrodingersCat_3.1_0_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_SchrodingersCat_3.1_0_box=\box...
+\SchrodingersCat {0} Width
+  25.34588623046875pt
+  25.34616088867188pt
+\SchrodingersCat {0} Height
+  26.12051391601562pt
+  26.12043762207031pt
+\SchrodingersCat {0} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_SchrodingersCat_3.1_-1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_SchrodingersCat_3.1_-1_box=\box...
+\SchrodingersCat {-1} Width
+  25.34588623046875pt
+  25.34616088867188pt
+\SchrodingersCat {-1} Height
+  26.12051391601562pt
+  26.12043762207031pt
+\SchrodingersCat {-1} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Ninja_3.1_black_red_white_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Ninja_3.1_black_red_white_box=\box...
+\Ninja  Width
+  28.68295288085938pt
+  28.68309020996094pt
+\Ninja  Height
+  22.91722106933594pt
+  22.9171142578125pt
+\Ninja  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Sleepey_3.1_none_none_black_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Sleepey_3.1_none_none_black_box=\box...
+\Sleepey  Width
+  27.82713317871094pt
+  27.82708740234375pt
+\Sleepey  Height
+  21.23782348632812pt
+  21.238037109375pt
+\Sleepey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_NiceReapey_3.1_black!20!white_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_NiceReapey_3.1_black!20!white_box=\box...
+\NiceReapey  Width
+  35.24122619628906pt
+  35.24111938476562pt
+\NiceReapey  Height
+  22.41751098632812pt
+  22.41732788085938pt
+\NiceReapey  Depth
+  0pt
+  0pt
+============================================================
+============================================================
+============================================================
+TEST 3: 3D~Emoticons ~ Symbol~sizes
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dSmiley_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dSmiley_3.1_yellow_box=\box...
+\dSmiley  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dSmiley  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dSmiley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dSadey_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dSadey_3.1_yellow_box=\box...
+\dSadey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dSadey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dSadey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Neutrey_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Neutrey_3.1_yellow_box=\box...
+\dNeutrey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dNeutrey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dNeutrey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dChangey_3.1_yellow_1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dChangey_3.1_yellow_1_box=\box...
+\dChangey {1} Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dChangey {1} Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dChangey {1} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dcChangey_3.1_red_yellow_green_1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dcChangey_3.1_red_yellow_green_1_box=\box...
+\dcChangey {1} Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dcChangey {1} Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dcChangey {1} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dAnnoey_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dAnnoey_3.1_yellow_box=\box...
+\dAnnoey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dAnnoey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dAnnoey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dLaughey_3.1_yellow_red_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dLaughey_3.1_yellow_red_box=\box...
+\dLaughey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dLaughey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dLaughey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dWinkey_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dWinkey_3.1_yellow_box=\box...
+\dWinkey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dWinkey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dWinkey  Depth
+  0pt
+  0pt
+============================================================
+! Undefined control sequence.
+<argument> \doldWinkey 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Undefined control sequence.
+<argument> \doldWinkey 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Undefined control sequence.
+<write> \doldWinkey 
+                     Width
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+ Width
+  0pt
+  0pt
+! Undefined control sequence.
+<write> \doldWinkey 
+                     Height
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+ Height
+  0pt
+  0pt
+! Undefined control sequence.
+<write> \doldWinkey 
+                     Depth
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+ Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dSey_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dSey_3.1_yellow_box=\box...
+\dSey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dSey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dSey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dXey_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dXey_3.1_yellow_box=\box...
+\dXey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dXey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dXey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dInnocey_3.1_yellow_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dInnocey_3.1_yellow_yellow_box=\box...
+\dInnocey  Width
+  23.09091186523438pt
+  23.09062194824219pt
+\dInnocey  Height
+  24.67861938476562pt
+  24.67866516113281pt
+\dInnocey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dCooley_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dCooley_3.1_yellow_box=\box...
+\dCooley  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dCooley  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dCooley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dTongey_3.1_yellow_red_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dTongey_3.1_yellow_red_box=\box...
+\dTongey  Width
+  21.1419677734375pt
+  21.14193725585938pt
+\dTongey  Height
+  21.1419677734375pt
+  21.14193725585938pt
+\dTongey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dNursey_3.1_yellow_white_red_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dNursey_3.1_yellow_white_red_box=\box...
+\dNursey  Width
+  18.4193115234375pt
+  18.41911315917969pt
+\dNursey  Height
+  26.42779541015625pt
+  26.42755126953125pt
+\dNursey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dVomey_3.1_yellow_brown!10!olive_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dVomey_3.1_yellow_brown!10!olive_box=\box...
+\dVomey  Width
+  39.28567504882812pt
+  39.28555297851562pt
+\dVomey  Height
+  22.06314086914062pt
+  22.06288146972656pt
+\dVomey  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dWalley_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dWalley_3.1_yellow_box=\box...
+\dWalley  Width
+  32.41731262207031pt
+  32.41749572753906pt
+\dWalley  Height
+  21.36631774902344pt
+  21.36616516113281pt
+\dWalley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_drWalley_3.1_yellow_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_drWalley_3.1_yellow_box=\box...
+\drWalley  Width
+  32.41731262207031pt
+  32.41749572753906pt
+\drWalley  Height
+  21.36631774902344pt
+  21.36616516113281pt
+\drWalley  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dNinja_3.1_black_red_white_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dNinja_3.1_black_red_white_box=\box...
+\dNinja  Width
+  28.69357299804688pt
+  28.69377136230469pt
+\dNinja  Height
+  22.92784118652344pt
+  22.92778015136719pt
+\dNinja  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dSleepey_3.1_yellow_blue_black_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dSleepey_3.1_yellow_blue_black_box=\box...
+\dSleepey  Width
+  27.14640808105469pt
+  27.1463623046875pt
+\dSleepey  Height
+  19.87637329101562pt
+  19.87637329101562pt
+\dSleepey  Depth
+  0pt
+  0pt
+============================================================
+============================================================
+============================================================
+TEST 4: 3D~Emoticons ~ Symbol~sizes
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Strichmaxerl_3.1_-22_22_27_-27_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Strichmaxerl_3.1_-22_22_27_-27_box=\box...
+\Strichmaxerl  Width
+  10.62301635742188pt
+  10.62284851074219pt
+\Strichmaxerl  Height
+  21.11468505859375pt
+  21.1148681640625pt
+\Strichmaxerl  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Strichmaxerl_3.41_45_45_45_45_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Strichmaxerl_3.41_45_45_45_45_box=\box...
+\Strichmaxerl [1.1][45][45][45][45] Width
+  10.31065368652344pt
+  10.31069946289062pt
+\Strichmaxerl [1.1][45][45][45][45] Height
+  21.98681640625pt
+  21.987060546875pt
+\Strichmaxerl [1.1][45][45][45][45] Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Candle_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Candle_3.1_box=\box...
+\Candle  Width
+  8.541885375976562pt
+  8.5418701171875pt
+\Candle  Height
+  23.57061767578125pt
+  23.57070922851562pt
+\Candle  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Fire_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Fire_3.1_box=\box...
+\Fire  Width
+  21.17007446289062pt
+  21.17022705078125pt
+\Fire  Height
+  22.06161499023438pt
+  22.06156921386719pt
+\Fire  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Coffeecup_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Coffeecup_3.1_box=\box...
+\Coffeecup  Width
+  24.29171752929688pt
+  24.2918701171875pt
+\Coffeecup  Height
+  22.7568359375pt
+  22.75694274902344pt
+\Coffeecup  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Chair_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Chair_3.1_box=\box...
+\Chair  Width
+  12.94673156738281pt
+  12.94676208496094pt
+\Chair  Height
+  22.55662536621094pt
+  22.55673217773438pt
+\Chair  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Bed_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Bed_3.1_box=\box...
+\Bed  Width
+  41.10935974121094pt
+  41.10931396484375pt
+\Bed  Height
+  22.42332458496094pt
+  22.42326354980469pt
+\Bed  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Moai_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Moai_3.1_box=\box...
+\Moai  Width
+  13.82804870605469pt
+  13.82795715332031pt
+\Moai  Height
+  22.67755126953125pt
+  22.67739868164062pt
+\Moai  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Tribar_3.1_opacity=0_opacity=0_opacity=0_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Tribar_3.1_opacity=0_opacity=0_opacity=0_box=\box...
+\Tribar  Width
+  22.92332458496094pt
+  22.92324829101562pt
+\Tribar  Height
+  22.48970031738281pt
+  22.48959350585938pt
+\Tribar  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Snowman_3.1_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Snowman_3.1_box=\box...
+\Snowman  Width
+  20.621337890625pt
+  20.62139892578125pt
+\Snowman  Height
+  23.64555358886719pt
+  23.64546203613281pt
+\Snowman  Depth
+  0pt
+  0pt
+============================================================
+============================================================
+============================================================
+TEST 5: Tree ~ Symbol~sizes
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_3.1_white_white_white_leaf_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_3.1_white_white_white_leaf_box=\box...
+\BasicTree {white}{white}{white}{leaf} Width
+  24.24746704101562pt
+  24.18099975585938pt
+\BasicTree {white}{white}{white}{leaf} Height
+  20.082275390625pt
+  20.01579284667969pt
+\BasicTree {white}{white}{white}{leaf} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_3.1_white_white_white__box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_3.1_white_white_white__box=\box...
+\BasicTree {white}{white}{white}{} Width
+  20.43954467773438pt
+  20.37297058105469pt
+\BasicTree {white}{white}{white}{} Height
+  18.1617431640625pt
+  18.09535217285156pt
+\BasicTree {white}{white}{white}{} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_6.2_white_white_white_leaf_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_6.2_white_white_white_leaf_box=\box...
+\BasicTree [2]{white}{white}{white}{leaf} Width
+  47.87298583984375pt
+  47.70845031738281pt
+\BasicTree [2]{white}{white}{white}{leaf} Height
+  39.65519714355469pt
+  39.49061584472656pt
+\BasicTree [2]{white}{white}{white}{leaf} Depth
+  0pt
+  0pt
+============================================================
+\BasicTree {white}{white}{white}{} Width
+  20.43954467773438pt
+  20.37297058105469pt
+\BasicTree {white}{white}{white}{} Height
+  18.1617431640625pt
+  18.09535217285156pt
+\BasicTree {white}{white}{white}{} Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_3.1_brown!70!black_green!90!black_green!80!black_leaf_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_3.1_brown!70!black_green!90!black_green!80!black_leaf_box=\box...
+\Springtree  Width
+  24.24746704101562pt
+  24.18099975585938pt
+\Springtree  Height
+  20.082275390625pt
+  20.01579284667969pt
+\Springtree  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_3.1_brown!50!black_green!80!black_red!80!green_leaf_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_3.1_brown!50!black_green!80!black_red!80!green_leaf_box=\box...
+\Summertree  Width
+  24.24746704101562pt
+  24.18099975585938pt
+\Summertree  Height
+  20.082275390625pt
+  20.01579284667969pt
+\Summertree  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_3.1_red!30!black_red!75!black_orange_leaf_box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_3.1_red!30!black_red!75!black_orange_leaf_box=\box...
+\Autumntree  Width
+  24.24746704101562pt
+  24.18099975585938pt
+\Autumntree  Height
+  20.082275390625pt
+  20.01579284667969pt
+\Autumntree  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_3.1_black!80!white_black!50_black!25__box=\box...
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+\g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_3.1_black!80!white_black!50_black!25__box=\box...
+\Wintertree  Width
+  20.43954467773438pt
+  20.37297058105469pt
+\Wintertree  Height
+  18.1617431640625pt
+  18.09535217285156pt
+\Wintertree  Depth
+  0pt
+  0pt
+============================================================
+============================================================

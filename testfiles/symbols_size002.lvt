@@ -1,0 +1,168 @@
+
+\documentclass{article}
+\input{regression-test}
+
+
+
+\RequirePackage[local-scale={Schneebesen=1.5, Strichmaxerl=2}]{tikzsymbols}
+
+\OMIT
+\tikzsymbolsset{after-symbol={}}
+\ExplSyntaxOn
+\clist_clear:N \l_tmpa_clist
+\cs_new:Npn \__sizes:nn #1#2
+  {
+        \fp_set:Nn \l_tmpa_fp { \use:c { box_ #1 :N } \l_tmpa_box }
+        \fp_set:Nn \l_tmpb_fp { \use:c { box_ #1 :N } \l_tmpb_box }
+        \TYPE { \space\space \fp_to_dim:N \l_tmpa_fp }
+        \TYPE { \space\space \fp_to_dim:N \l_tmpb_fp }
+  }
+
+\NewDocumentCommand \SizeTests { m }
+  {
+    \hbox_set:Nn \l_tmpa_box {#1}
+    \tikzsymbolsset{draft=true}
+    \hbox_set:Nn \l_tmpb_box {#1}
+    \tikzsymbolsset{draft=false}
+    \TYPE { #1 ~ Width }
+    \__sizes:nn { wd } {#1}
+    \TYPE { #1 ~ Height }
+    \__sizes:nn { ht } {#1}
+    \TYPE { #1 ~ Depth }
+    \__sizes:nn { dp } {#1}
+   \SEPARATOR
+  }
+\ExplSyntaxOff
+\TIMO
+
+\begin{document}
+\START
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Cooking ~symbols~sizes}{
+  \SizeTests{\Kochtopf}
+  \SizeTests{\pot}
+  \SizeTests{\Bratpfanne}
+  \SizeTests{\fryingpan}
+  \SizeTests{\Schneebesen}
+  \SizeTests{\eggbeater}
+  \SizeTests{\Sieb}
+  \SizeTests{\sieve}
+  \SizeTests{\Purierstab}
+  \SizeTests{\blender}
+  \SizeTests{\Dreizack}
+  \SizeTests{\trident}
+  \SizeTests{\Backblech}
+  \SizeTests{\bakingplate}
+  \SizeTests{\Ofen}
+  \SizeTests{\oven}
+  \SizeTests{\Pfanne}
+  \SizeTests{\pan}
+  \SizeTests{\Herd}
+  \SizeTests{\cooker}
+  \SizeTests{\Saftpresse}
+  \SizeTests{\squeezer}
+  \SizeTests{\Schussel}
+  \SizeTests{\bowl}
+  \SizeTests{\Schaler}
+  \SizeTests{\peeler}
+  \SizeTests{\Reibe}
+  \SizeTests{\grater}
+  \SizeTests{\Flasche}
+  \SizeTests{\bottle}
+  \SizeTests{\Nudelholz}
+  \SizeTests{\rollingpin}
+  \SizeTests{\Knoblauchpresse}
+  \SizeTests{\garlicpress}
+}
+
+\TEST{2D ~Emoticons ~ Symbol~sizes}{
+  \SizeTests{\Smiley}
+  \SizeTests{\Sadey}
+  \SizeTests{\Neutrey}
+  \SizeTests{\Changey{1}}
+  \SizeTests{\cChangey{1}}
+  \SizeTests{\Annoey}
+  \SizeTests{\Laughey}
+  \SizeTests{\Winkey}
+  \SizeTests{\oldWinkey}
+  \SizeTests{\Sey}
+  \SizeTests{\Xey}
+  \SizeTests{\Innocey}
+  \SizeTests{\wInnocey}
+  \SizeTests{\Cooley}
+  \SizeTests{\Tongey}
+  \SizeTests{\Nursey}
+  \SizeTests{\Vomey}
+  \SizeTests{\Walley}
+  \SizeTests{\rWalley}
+  \SizeTests{\Cat}
+  \SizeTests{\SchrodingersCat{1}}
+  \SizeTests{\SchrodingersCat{0}}
+  \SizeTests{\SchrodingersCat{-1}}
+  \SizeTests{\Ninja}
+  \SizeTests{\Sleepey}
+  \SizeTests{\NiceReapey}
+}
+
+\TEST{3D~Emoticons ~ Symbol~sizes}{
+  \SizeTests{\dSmiley}
+  \SizeTests{\dSadey}
+  \SizeTests{\dNeutrey}
+  \SizeTests{\dChangey{1}}
+  \SizeTests{\dcChangey{1}}
+  \SizeTests{\dAnnoey}
+  \SizeTests{\dLaughey}
+  \SizeTests{\dWinkey}
+  \SizeTests{\doldWinkey}
+  \SizeTests{\dSey}
+  \SizeTests{\dXey}
+  \SizeTests{\dInnocey}
+  \SizeTests{\dCooley}
+  \SizeTests{\dTongey}
+  \SizeTests{\dNursey}
+  \SizeTests{\dVomey}
+  \SizeTests{\dWalley}
+  \SizeTests{\drWalley}
+  \SizeTests{\dNinja}
+  \SizeTests{\dSleepey}
+}
+
+
+
+
+
+\TEST{3D~Emoticons ~ Symbol~sizes}{
+  \SizeTests{\Strichmaxerl}
+  \SizeTests{\Strichmaxerl[][45][45][45][45]}
+  \SizeTests{\Candle}
+  \SizeTests{\Fire}
+  \SizeTests{\Coffeecup}
+  \SizeTests{\Chair}
+  \SizeTests{\Bed}
+  \SizeTests{\Moai}
+  \SizeTests{\Tribar}
+  \SizeTests{\Snowman}
+}
+
+\TEST{Tree ~ Symbol~sizes}{
+  \SizeTests{\BasicTree{white}{white}{white}{leaf}}
+  \SizeTests{\BasicTree{white}{white}{white}{}}
+  \tikzsymbolsset{tree=off}
+  \SizeTests{\BasicTree{white}{white}{white}{leaf}}
+  \SizeTests{\BasicTree{white}{white}{white}{}}
+  \tikzsymbolsset{tree=on}
+  \SizeTests{\Springtree}
+  \SizeTests{\Summertree}
+  \SizeTests{\Autumntree}
+  \SizeTests{\Wintertree}
+}
+
+
+%\OMIT
+%\ExplSyntaxOn
+%\clist_show:N \l_tmpa_clist
+%\ExplSyntaxOff
+%\TIMO
+
+\END
