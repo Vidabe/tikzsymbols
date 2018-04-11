@@ -2040,8 +2040,7 @@ for the details of that license.
 % To make this package \pkg{todonotes} safe:
 %    \begin{macrocode}
 \pgfkeys{ /@@/baseline /.style= { baseline=default } }
-\pgfkeys{ /@@/remember-picture /.code= { remember~picture={#1} } }
-\pgfkeys{ /@@/.style= { /@@/baseline , /@@/remember-picture=false  } }
+\pgfkeys{ /@@/.style= { /@@/baseline } }
 %    \end{macrocode}
 %
 % 
@@ -2189,8 +2188,8 @@ for the details of that license.
 % \begin{macro}{ remember-picture }
 %    \begin{macrocode}
     remember-picture .choice: ,
-    remember-picture / true .meta:n = { append-style = { /@@/remember-picture = true } } ,
-    remember-picture / false .meta:n = { append-style = { /@@/remember-picture = false } } ,
+    remember-picture / true .meta:n = { append-style = { /tikz/remember~picture = true } } ,
+    remember-picture / false .meta:n = { append-style = { /tikz/remember~picture = false } } ,
     remember-picture .default:n = { false } ,
 %    \end{macrocode}
 % \end{macro}
