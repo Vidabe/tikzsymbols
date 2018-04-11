@@ -74,6 +74,7 @@ Changes
   - Internal change: `baseline`.
   - Deleted invisible sign.
   - New symbolpair: `\Knoblauchpresse` and `\garlicpress`.
+  - Option `draft` and `final` now set the internal draft boolean locally.
 
 Requirements
 ------------
