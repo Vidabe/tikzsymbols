@@ -168,7 +168,7 @@ for the details of that license.
 \fi
 %</internal>
 %<*driver> 
-\documentclass[onlydoc,11pt,english,draft=true]{l3doc} 
+\documentclass[onlydoc,11pt,english]{l3doc} 
 %: documentclass
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -561,6 +561,8 @@ for the details of that license.
 %   the symbols\footnote{At least I hope.}) which are faster to
 %   create.
 %
+%  You can also set this option during the document (to either \opt{true}\ or \opt{false}).
+%
 %   The old option \Option{draft=absolute} is 
 %   obsolete and should therefore not be used.
 %
@@ -700,7 +702,7 @@ for the details of that license.
 % \begin{mynote}
 %  The style is called \verb|__tikzsymbols| and while the name
 %  will probably not change, you are discouraged to use it directly
-%  unless it is \emph{really} necessary).
+%  unless it is \emph{really} necessary, e.g.\ if I did something wrong).
 % \end{mynote}
 % \end{function}
 %
@@ -1338,8 +1340,8 @@ for the details of that license.
 %
 % Furthermore, \pkg{tikz} allows to reference pictures using e.g.\
 % \opt{remember picture}. This also influences the symbols
-% of \pkg{tikzsymbols}. As those symbols are stored and exact
-% copies are printed, labels attached to the symbols get repeated.
+% of \pkg{tikzsymbols}. As those symbols are stored and 
+% copied for printing, labels attached to the symbols get repeated.
 % In this case, also try using \opt{usebox=false}
 %
 %^^A Another problem is that if a label is added to a symbol 
@@ -1349,7 +1351,7 @@ for the details of that license.
 %^^A as a copy of the symbol without the label is used. If it is used the first time,
 %^^A then the label is also stored and repeated every time the symbol is used later.
 %^^A This behavior can also be fixed by \opt{usebox=false} or adding
-%^^A a \pkg{tiikz} style by \opt{append-style}.
+%^^A a \pkg{tikz} style by \opt{append-style}.
 %
 %
 % \subsection{Are the symbols created with the environment \texttt{tikzpicture}?}
@@ -1376,6 +1378,9 @@ for the details of that license.
 % and it helps me to recognize those mails faster.
 % This can also be the reason why I may need some time to answer 
 % the mail.
+%
+% As I am also new to GitHub, I also may take longer to answer, at least until I
+% figured out how to get a mail if a new issue is created.
 %
 % Suggestions are also welcome.
 %
@@ -1496,6 +1501,7 @@ for the details of that license.
 % \changes{vNEWv}{vDATEv}{Change how \opt{baseline} works (internal).}
 % \changes{vNEWv}{vDATEv}{Delete invisible sign (I \emph{hate} those).}
 % \changes{vNEWv}{vDATEv}{New symbolpair: \cs{Knoblauchpresse} and \cs{garlicpress}.}
+% \changes{vNEWv}{vDATEv}{Option \opt{draft} and \opt{final} are local now.}
 %
 % The first lines are always the same: What do I need, what is the
 % package named.
@@ -1515,8 +1521,8 @@ for the details of that license.
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2017/09/05}
-  {4.07} %% 4.07
+  {2017/09/05} % vDATEv
+  {4.07} % vNEWv
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
