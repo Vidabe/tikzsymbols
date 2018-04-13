@@ -1,0 +1,24 @@
+
+\documentclass{article}
+\input{regression-test}
+
+
+
+\RequirePackage{tikzsymbols}
+\RequirePackage{todonotes}
+\RequirePackage{lipsum}
+
+\showoutput
+
+\tikzsymbolsset{baseline=true}
+
+\begin{document}
+\START
+
+\lipsum[1-4]
+Good stuff.\todo{hello \dWinkey how are you?}
+\lipsum[5-8]
+
+\newpage
+
+\END
