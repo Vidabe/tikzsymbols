@@ -14,7 +14,7 @@ tikzsymbols
 Overview
 --------
 
-The *tiksymbols* package vNEWv (vDATEv) contains symbols created using tikz.
+The *tiksymbols* package v4.10 (2018/04/11) contains symbols created using tikz.
 
 This package provides: 
  * various emoticons
@@ -76,7 +76,7 @@ Changes
   - `\tikzsymbolsset` now raises a warning if a load-time option is used.
   - Some minor fixes.
 * v4.07 Option `usebox` is now usable during the document.
-* vNEWv 
+* v4.10 
   - Added FAQ.
   - All files are now derived from the .dtx file.
   - New option: `append-style`.
@@ -214,6 +214,11 @@ for the details of that license.
 \newcommand{\makrouse}[1]{\use:c{#1}}
 \newcommand{\Meta}[1]{\meta{#1}}
 
+\colorlet{mybracegreen}{green!50!black}
+\renewcommand\marg[1]{\textcolor{mybracegreen}{\texttt{\char`\{}}%
+  \meta{#1}%
+  \textcolor{mybracegreen}{\texttt{\char`\}}}%
+}
 
 
 \hfuzz=500pt
@@ -395,8 +400,7 @@ for the details of that license.
 % The package should behave the same way as the \enquote{old} \LaTeXe\ release.
 %
 % \begin{description}
-%  \item[2018] Option \opt{draft} and \opt{final} set the internal draft boolean
-%    locally.
+%  \item[2018] Option \opt{draft} and \opt{final} are now local.
 %  \item[2017] Option \Option{usebox} can be used during the document.
 %  \item[old]  The horribly named command
 % \Makro{tikzsymbolsaftersymbolinput} is not defined anymore by this
@@ -558,11 +562,11 @@ for the details of that license.
 %   While  working on the document it is recommended to set this option
 %   to \Option{true} because creating many symbols may takes some time
 %   to compile and by setting this option to \Option{true} the symbols
-%   are replaced by plain vanilla rectangles (with the same height and width as
-%   the symbols\footnote{At least I hope.}) which are faster to
+%   are replaced by plain vanilla rectangles (with approximately the same height and width as
+%   the symbols) which are faster to
 %   create.
 %
-%  You can also set this option during the document (to either \opt{true}\ or \opt{false}).
+%  You can also set this option during the document.
 %
 %   The old option \Option{draft=absolute} is 
 %   obsolete and should therefore not be used.
@@ -703,9 +707,28 @@ for the details of that license.
 % \begin{mynote}
 %  The style is called \verb|__tikzsymbols| and while the name
 %  will probably not change, you are discouraged to use it directly
-%  unless it is \emph{really} necessary, e.g.\ if I did something wrong).
+%  unless it is \emph{really} necessary (e.g.\ if I did something wrong).
 % \end{mynote}
 % \end{function}
+%
+%
+% \subsubsection{usebox (true/false)}
+% \label{sec:usebox}
+% 
+% \begin{function}{usebox}
+%   \begin{syntax}
+%     usebox = \marg{true/false}
+%   \end{syntax}
+% In \Package{tikzsymbols} all symbols are stored inside boxes
+% (\Makro{sbox}) and while I still have no idea what exactly happens,
+% it shortens the compilation time of the document. By
+% default this option is \Option{true}. 
+%
+% The drawback is that \LaTeX\ has only a limited number of box
+% registers. If you come across an error message regarding boxes try setting \Option{usebox=false}. 
+% \end{function}
+%
+%
 %
 % \subsubsection{baseline (true/false)}
 % \label{sec:baseline}
@@ -731,27 +754,11 @@ for the details of that license.
 %   
 %   Adds to each symbol created by this package the \pkg{tikz}
 %   option \opt{remember picture=\meta{true/false}}. 
-%  It is set to \opt{false} by default.
+%  It is not added by default.
 %
 % \end{function}
 %
 %
-%
-% \subsubsection{usebox (true/false)}
-% \label{sec:usebox}
-% 
-% \begin{function}{usebox}
-%   \begin{syntax}
-%     usebox = \marg{true/false}
-%   \end{syntax}
-% In \Package{tikzsymbols} all symbols are stored inside boxes
-% (\Makro{sbox}) and while I still have no idea what exactly happens,
-% it shortens the compilation time of the document. By
-% default this option is \Option{true}. 
-%
-% The drawback is that \LaTeX\ has only a limited number of box
-% registers. If you come across an error message regarding boxes try setting \Option{usebox=false}. 
-% \end{function}
 %
 %
 %
@@ -1498,19 +1505,19 @@ for the details of that license.
 % \changes{v4.03}{2017/08/08}{New symbols: \cs{Sleepey} and \cs{dSleepey}.}
 % \changes{v4.04}{2017/08/08}{New symbol: \cs{SchrodingersCat}.}
 %
-% \changes{vNEWv}{vDATEv}{New option: \opt{append-style}.}
-% \changes{vNEWv}{vDATEv}{New option: \opt{remember-picture}.}
-% \changes{vNEWv}{vDATEv}{Change how \opt{baseline} works (internal).}
-% \changes{vNEWv}{vDATEv}{Delete invisible sign (I \emph{hate} those).}
-% \changes{vNEWv}{vDATEv}{New symbolpair: \cs{Knoblauchpresse} and \cs{garlicpress}.}
-% \changes{vNEWv}{vDATEv}{Option \opt{draft} and \opt{final} are local now.}
+% \changes{v4.10}{2018/04/11}{New option: \opt{append-style}.}
+% \changes{v4.10}{2018/04/11}{New option: \opt{remember-picture}.}
+% \changes{v4.10}{2018/04/11}{Change how \opt{baseline} works (internal).}
+% \changes{v4.10}{2018/04/11}{Delete invisible sign (I \emph{hate} those).}
+% \changes{v4.10}{2018/04/11}{New symbolpair: \cs{Knoblauchpresse} and \cs{garlicpress}.}
+% \changes{v4.10}{2018/04/11}{Option \opt{draft} and \opt{final} are local now.}
 %
 % The first lines are always the same: What do I need, what is the
 % package named.
 %    \begin{macrocode} 
 \@ifpackageloaded{xparse}{}{\RequirePackage{xparse}}
 \@ifpackageloaded{expl3}{}{\RequirePackage{expl3}}
-\@ifpackagelater{expl3}{2017/04/01}
+\@ifpackagelater{expl3}{2018/02/21}
   {}
   {%
     \PackageError { tikzsymbols }{ Support~package~expl3~too~old }
@@ -1523,8 +1530,8 @@ for the details of that license.
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2017/09/05} % vDATEv
-  {4.07} % vNEWv
+  {2018/04/11}
+  {4.10} % v4.10
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }

@@ -5,7 +5,7 @@ tikzsymbols
 Overview
 --------
 
-The *tiksymbols* package vNEWv (vDATEv) contains symbols created using tikz.
+The *tiksymbols* package v4.10 (2018/04/11) contains symbols created using tikz.
 
 This package provides:
  * various emoticons
@@ -66,7 +66,7 @@ Changes
   - `\tikzsymbolsset` now raises a warning if a load-time option is used.
   - Some minor fixes.
 * v4.07 Option `usebox` is now usable during the document.
-* vNEWv
+* v4.10
   - Added FAQ.
   - All files are now derived from the .dtx file.
   - New option: `append-style`.
