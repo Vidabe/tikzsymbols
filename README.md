@@ -5,7 +5,7 @@ tikzsymbols
 Overview
 --------
 
-The *tikzsymbols* package v4.10 (2018/04/11) contains symbols created using tikz.
+The *tikzsymbols* package v4.10a (2018/05/16) contains symbols created using tikz.
 
 This package provides:
  * various emoticons
@@ -76,6 +76,7 @@ Changes
   - New symbolpair: `\Knoblauchpresse` and `\garlicpress`.
   - Option `draft` and `final` now set the internal draft boolean locally.
   - Reworked sizes of the plain vanilla draft boxes.
+* v4.10a Bugfix: Forgot to remove colors from `\Strichmaxerl`
 
 Requirements
 ------------
