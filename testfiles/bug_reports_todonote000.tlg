@@ -3070,9 +3070,8 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 e
 ....\glue(\rightskip) 0.0
-...\penalty 150
 ...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set 256.22205fil
+...\hbox(6.94444+1.94444)x345.0, glue set 0.7453
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
@@ -3096,13 +3095,7 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 .
-....\penalty 10000
-....\glue(\parfillskip) 0.0 plus 1.0fil
-....\glue(\rightskip) 0.0
-...\glue(\parskip) 0.0 plus 1.0
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set 0.07625
-....\hbox(0.0+0.0)x15.0
+....\glue 4.44444 plus 4.99997 minus 0.37036
 ....\OT1/cmr/m/n/10 G
 ....\OT1/cmr/m/n/10 o
 ....\kern0.27779
@@ -3124,19 +3117,6 @@ Completed box being shipped out [1]
 ......\pdfliteral{0 g }
 ......\pdfliteral{0.3985 w }
 ......\hbox(0.0+0.0)x0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
-.......\glue 0.0
 .......\pdfliteral{q }
 .......\glue 0.0
 .......\hbox(0.0+0.0)x0.0
@@ -3144,6 +3124,8 @@ Completed box being shipped out [1]
 .........\pdfliteral{q }
 .........\glue 0.0
 .........\pdfliteral{Q }
+.......\glue 0.0
+.......\glue 0.0
 .......\pdfliteral{Q }
 .......\hbox(0.0+0.0)x0.0
 ........\pdfsavepos
@@ -3152,6 +3134,7 @@ Completed box being shipped out [1]
 ......\pdfliteral{n }
 ......\pdfliteral{Q }
 ......\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 4.44444 plus 4.99997 minus 0.37036
 ....\OT1/cmr/m/n/10 F
 ....\kern-0.83334
 ....\OT1/cmr/m/n/10 u
@@ -3162,8 +3145,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 m
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
@@ -3177,8 +3158,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 b
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 m
@@ -3186,8 +3165,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 c
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -3199,33 +3176,6 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 t
-....\glue 3.33333 plus 1.66666 minus 1.11111
-....\OT1/cmr/m/n/10 l
-....\OT1/cmr/m/n/10 e
-....\OT1/cmr/m/n/10 c
-....\discretionary
-.....\OT1/cmr/m/n/10 -
-....\OT1/cmr/m/n/10 t
-....\OT1/cmr/m/n/10 u
-....\OT1/cmr/m/n/10 s
-....\OT1/cmr/m/n/10 .
-....\glue 4.44444 plus 4.99997 minus 0.37036
-....\OT1/cmr/m/n/10 S
-....\OT1/cmr/m/n/10 e
-....\OT1/cmr/m/n/10 d
-....\glue 3.33333 plus 1.66666 minus 1.11111
-....\OT1/cmr/m/n/10 b
-....\OT1/cmr/m/n/10 i
-....\OT1/cmr/m/n/10 b
-....\kern0.27779
-....\OT1/cmr/m/n/10 e
-....\OT1/cmr/m/n/10 n
-....\discretionary
-.....\OT1/cmr/m/n/10 -
-....\OT1/cmr/m/n/10 d
-....\OT1/cmr/m/n/10 u
-....\OT1/cmr/m/n/10 m
-....\OT1/cmr/m/n/10 ,
 ....\glue(\rightskip) 0.0
 ...\kern -1.94444
 ...\hbox(0.0+0.0)x345.0, glue set - 76.0fil
@@ -3245,19 +3195,6 @@ Completed box being shipped out [1]
 ..........\pdfliteral{0 g }
 ..........\pdfliteral{0.3985 w }
 ..........\hbox(0.0+0.0)x0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
 ...........\pdfliteral{q }
 ...........\glue 0.0
 ...........\hbox(0.0+0.0)x0.0
@@ -3279,10 +3216,16 @@ Completed box being shipped out [1]
 .................\pdfliteral{0 G }
 .................\pdfliteral{0 g }
 .................\hbox(6.83331+0.0)x0.0
+..................\hbox(6.83331+0.0)x0.0
+.................\glue 0.0
 ...............\pdfliteral{Q }
+...............\glue 0.0
 ..............\glue 0.0 plus 1.0fil minus 1.0fil
 .............\pdfliteral{Q }
+.............\glue 0.0
+.............\glue 0.0
 .............\pdfliteral{Q }
+...........\glue 0.0
 ...........\glue 0.0
 ...........\glue 0.0
 ...........\pdfliteral{S }
@@ -3292,7 +3235,6 @@ Completed box being shipped out [1]
 .............\pdfliteral{0 G }
 .............\pdfliteral{1 0.5 0 rg }
 .............\pdfliteral{0.49814 w }
-.............\glue 0.0
 .............\glue 0.0
 .............\glue 0.0
 .............\glue 0.0
@@ -3313,6 +3255,7 @@ Completed box being shipped out [1]
 .............\pdfliteral{h }
 .............\pdfliteral{-31.88086 -20.99965 m }
 .............\pdfliteral{B }
+.............\glue 0.0
 .............\pdfliteral{Q }
 .............\pdfliteral{q }
 .............\hbox(0.0+0.0)x0.0
@@ -3322,317 +3265,143 @@ Completed box being shipped out [1]
 ...............\pdfliteral{q }
 ...............\hbox(0.0+0.0)x0.0
 ................\hbox(6.94444+13.94444)x57.11111
-.................\vbox(6.94444+13.94444)x57.11111
-..................\hbox(6.94444+0.0)x57.11111, glue set 0.27847
-...................\hbox(0.0+0.0)x0.0
-...................\hbox(0.0+0.0)x0.0
-...................\pdfliteral{0 G }
-...................\pdfliteral{0 g }
-...................\OT1/cmr/m/n/10 h
-...................\OT1/cmr/m/n/10 e
-...................\OT1/cmr/m/n/10 l
-...................\OT1/cmr/m/n/10 l
-...................\OT1/cmr/m/n/10 o
-...................\glue(\spaceskip) 3.33298
-...................\hbox(6.81998+0.0)x6.81998
-....................\pdfcolorstack 0 push {0 g 0 G}
+.................\pdfliteral{0 G }
+.................\pdfliteral{0 g }
+.................\hbox(6.94444+13.94444)x57.11111
+..................\vbox(6.94444+13.94444)x57.11111
+...................\hbox(6.94444+0.0)x57.11111, glue set 0.27847
+....................\hbox(0.0+0.0)x0.0
+....................\hbox(0.0+0.0)x0.0
+....................\OT1/cmr/m/n/10 h
+....................\OT1/cmr/m/n/10 e
+....................\OT1/cmr/m/n/10 l
+....................\OT1/cmr/m/n/10 l
+....................\OT1/cmr/m/n/10 o
+....................\glue(\spaceskip) 3.33298
 ....................\hbox(6.81998+0.0)x6.81998
-.....................\glue 3.40999
-.....................\hbox(0.0+0.0)x0.0, shifted -3.40999
-......................\pdfliteral{q }
-......................\pdfliteral{0 G }
-......................\pdfliteral{0 g }
-......................\pdfliteral{0.3985 w }
-......................\hbox(0.0+0.0)x0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
+.....................\pdfcolorstack 0 push {0 g 0 G}
+.....................\hbox(6.81998+0.0)x6.81998
+......................\glue 3.40999
+......................\hbox(0.0+0.0)x0.0, shifted -3.40999
 .......................\pdfliteral{q }
-.......................\pdfliteral{0.5147 w }
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\pdfliteral{q }
-.......................\pdfliteral{0.0 0.0 m }
-.......................\pdfliteral{3.39728 0.0 m }
-.......................\pdfliteral{3.39728 1.87628 1.87628 3.39728 0.0 3.39728 c }
-.......................\pdfliteral{-1.87628 3.39728 -3.39728 1.87628 -3.39728 0.0 c }
-.......................\pdfliteral{-3.39728 -1.87628 -1.87628 -3.39728 0.0 -3.39728 c }
-.......................\pdfliteral{1.87628 -3.39728 3.39728 -1.87628 3.39728 0.0 c }
-.......................\pdfliteral{h }
-.......................\pdfliteral{0.0 0.0 m }
-.......................\pdfliteral{W }
+.......................\pdfliteral{0 G }
+.......................\pdfliteral{0 g }
+.......................\pdfliteral{0.3985 w }
+.......................\hbox(0.0+0.0)x0.0
+........................\pdfliteral{q }
+........................\pdfliteral{0.5147 w }
+........................\glue 0.0
+........................\glue 0.0
+........................\pdfliteral{q }
+........................\pdfliteral{0.0 0.0 m }
+........................\pdfliteral{3.39728 0.0 m }
+........................\pdfliteral{3.39728 1.87628 1.87628 3.39728 0.0 3.39728 c }
+........................\pdfliteral{-1.87628 3.39728 -3.39728 1.87628 -3.39728 0.0 c }
+........................\pdfliteral{-3.39728 -1.87628 -1.87628 -3.39728 0.0 -3.39728 c }
+........................\pdfliteral{1.87628 -3.39728 3.39728 -1.87628 3.39728 0.0 c }
+........................\pdfliteral{h }
+........................\pdfliteral{0.0 0.0 m }
+........................\pdfliteral{W }
+........................\pdfliteral{n }
+........................\pdfliteral{1 0 0 1 0.0 0.0 cm }
+........................\pdfliteral{0.1359 0 0 0.1359 0.0 0.0 cm }
+........................\pdfliteral{1.0 0.0 0.0 1.0 0.0 0.0 cm }
+........................\pdfliteral{q }
+........................\hbox(0.0+0.0)x0.0
+.........................\hbox(50.1875+50.1875)x50.1875
+..........................\glue -50.1875
+..........................\hbox(100.375+0.0)x100.375, shifted 50.1875
+...........................\hbox(100.375+0.0)x100.375
+............................\pdfrefxform(100.375+0.0)x100.375
+........................\pdfliteral{Q }
+........................\glue 0.0
+........................\pdfliteral{Q }
+........................\glue 0.0
+........................\glue 0.0
+........................\pdfliteral{q }
+........................\pdfcolorstack 0 push {0 g 0 G}
+........................\pdfliteral{1.75008 1.02953 m }
+........................\pdfliteral{0.51476 1.02953 l }
+........................\pdfliteral{S }
+........................\glue 0.0
+........................\pdfcolorstack 0 pop
+........................\pdfliteral{Q }
+........................\glue 0.0
+........................\glue 0.0
+........................\pdfliteral{q }
+........................\pdfliteral{-1.02953 1.02953 m }
+........................\pdfliteral{-0.51476 1.02953 m }
+........................\pdfliteral{-0.51476 1.31383 -0.74524 1.5443 -1.02953 1.5443 c }
+........................\pdfliteral{-1.31383 1.5443 -1.5443 1.31383 -1.5443 1.02953 c }
+........................\pdfliteral{-1.5443 0.74524 -1.31383 0.51476 -1.02953 0.51476 c }
+........................\pdfliteral{-0.74524 0.51476 -0.51476 0.74524 -0.51476 1.02953 c }
+........................\pdfliteral{h }
+........................\pdfliteral{-1.02953 1.02953 m }
+........................\pdfliteral{W }
+........................\pdfliteral{n }
+........................\pdfliteral{1 0 0 1 -1.02953 1.02953 cm }
+........................\pdfliteral{0.02058 0 0 0.02058 0.0 0.0 cm }
+........................\pdfliteral{1.0 0.0 0.0 1.0 0.0 0.0 cm }
+........................\pdfliteral{q }
+........................\hbox(0.0+0.0)x0.0
+.........................\hbox(50.1875+50.1875)x50.1875
+..........................\glue -50.1875
+..........................\hbox(100.375+0.0)x100.375, shifted 50.1875
+...........................\hbox(100.375+0.0)x100.375
+............................\pdfrefxform(100.375+0.0)x100.375
+........................\pdfliteral{Q }
+........................\glue 0.0
+........................\pdfliteral{Q }
+........................\glue 0.0
+........................\pdfliteral{q }
+........................\pdfcolorstack 0 push {0 g 0 G}
+........................\pdfliteral{-1.54414 -1.54414 m }
+........................\pdfliteral{-0.51476 -2.05891 1.54414 -2.05891 1.95601 0.0 c }
+........................\pdfliteral{S }
+........................\glue 0.0
+........................\pdfcolorstack 0 pop
+........................\pdfliteral{Q }
+........................\glue 0.0
+........................\pdfliteral{Q }
+........................\hbox(0.0+0.0)x0.0
+.........................\pdfsavepos
+.........................\write1{\noexpand \pgfsyspdfmark {pgfid3}{\the \pdflastxpos }{\the \pdflastypos \ETC.}
+........................\glue 0.0 plus 1.0fil minus 1.0fil
 .......................\pdfliteral{n }
-.......................\pdfliteral{1 0 0 1 0.0 0.0 cm }
-.......................\pdfliteral{0.1359 0 0 0.1359 0.0 0.0 cm }
-.......................\pdfliteral{1.0 0.0 0.0 1.0 0.0 0.0 cm }
-.......................\pdfliteral{q }
-.......................\hbox(0.0+0.0)x0.0
-........................\hbox(50.1875+50.1875)x50.1875
-.........................\glue -50.1875
-.........................\hbox(100.375+0.0)x100.375, shifted 50.1875
-..........................\hbox(100.375+0.0)x100.375
-...........................\pdfrefxform(100.375+0.0)x100.375
 .......................\pdfliteral{Q }
-.......................\pdfliteral{Q }
-.......................\glue 0.0
-.......................\pdfliteral{q }
-.......................\pdfcolorstack 0 push {0 g 0 G}
-.......................\pdfliteral{1.75008 1.02953 m }
-.......................\pdfliteral{0.51476 1.02953 l }
-.......................\pdfliteral{S }
-.......................\pdfcolorstack 0 pop
-.......................\pdfliteral{Q }
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\pdfliteral{q }
-.......................\pdfliteral{-1.02953 1.02953 m }
-.......................\pdfliteral{-0.51476 1.02953 m }
-.......................\pdfliteral{-0.51476 1.31383 -0.74524 1.5443 -1.02953 1.5443 c }
-.......................\pdfliteral{-1.31383 1.5443 -1.5443 1.31383 -1.5443 1.02953 c }
-.......................\pdfliteral{-1.5443 0.74524 -1.31383 0.51476 -1.02953 0.51476 c }
-.......................\pdfliteral{-0.74524 0.51476 -0.51476 0.74524 -0.51476 1.02953 c }
-.......................\pdfliteral{h }
-.......................\pdfliteral{-1.02953 1.02953 m }
-.......................\pdfliteral{W }
-.......................\pdfliteral{n }
-.......................\pdfliteral{1 0 0 1 -1.02953 1.02953 cm }
-.......................\pdfliteral{0.02058 0 0 0.02058 0.0 0.0 cm }
-.......................\pdfliteral{1.0 0.0 0.0 1.0 0.0 0.0 cm }
-.......................\pdfliteral{q }
-.......................\hbox(0.0+0.0)x0.0
-........................\hbox(50.1875+50.1875)x50.1875
-.........................\glue -50.1875
-.........................\hbox(100.375+0.0)x100.375, shifted 50.1875
-..........................\hbox(100.375+0.0)x100.375
-...........................\pdfrefxform(100.375+0.0)x100.375
-.......................\pdfliteral{Q }
-.......................\pdfliteral{Q }
-.......................\pdfliteral{q }
-.......................\pdfcolorstack 0 push {0 g 0 G}
-.......................\pdfliteral{-1.54414 -1.54414 m }
-.......................\pdfliteral{-0.51476 -2.05891 1.54414 -2.05891 1.95601 0.0 c }
-.......................\pdfliteral{S }
-.......................\pdfcolorstack 0 pop
-.......................\pdfliteral{Q }
-.......................\pdfliteral{Q }
-.......................\hbox(0.0+0.0)x0.0
-........................\pdfsavepos
-........................\write1{\noexpand \pgfsyspdfmark {pgfid3}{\the \pdflastxpos }{\the \pdflastypos \ETC.}
 .......................\glue 0.0 plus 1.0fil minus 1.0fil
-......................\pdfliteral{n }
-......................\pdfliteral{Q }
-......................\glue 0.0 plus 1.0fil minus 1.0fil
-....................\pdfcolorstack 0 pop
-...................\glue(\spaceskip) 3.33298
-...................\OT1/cmr/m/n/10 h
-...................\OT1/cmr/m/n/10 o
-...................\kern-0.27779
-...................\OT1/cmr/m/n/10 w
-...................\glue(\rightskip) 0.0 plus 20.00003
-..................\penalty 300
-..................\glue(\baselineskip) 5.05556
-..................\hbox(6.94444+1.94444)x57.11111, glue set 20.13918fil
-...................\OT1/cmr/m/n/10 a
-...................\OT1/cmr/m/n/10 r
-...................\OT1/cmr/m/n/10 e
-...................\glue(\spaceskip) 3.33298
-...................\OT1/cmr/m/n/10 y
-...................\kern-0.27779
-...................\OT1/cmr/m/n/10 o
-...................\OT1/cmr/m/n/10 u
-...................\OT1/cmr/m/n/10 ?
-...................\penalty 10000
-...................\glue(\parfillskip) 0.0 plus 1.0fil
-...................\glue(\rightskip) 0.0 plus 20.00003
+.....................\pdfcolorstack 0 pop
+....................\glue(\spaceskip) 3.33298
+....................\OT1/cmr/m/n/10 h
+....................\OT1/cmr/m/n/10 o
+....................\kern-0.27779
+....................\OT1/cmr/m/n/10 w
+....................\glue(\rightskip) 0.0 plus 20.00003
+...................\penalty 300
+...................\glue(\baselineskip) 5.05556
+...................\hbox(6.94444+1.94444)x57.11111, glue set 20.13918fil
+....................\OT1/cmr/m/n/10 a
+....................\OT1/cmr/m/n/10 r
+....................\OT1/cmr/m/n/10 e
+....................\glue(\spaceskip) 3.33298
+....................\OT1/cmr/m/n/10 y
+....................\kern-0.27779
+....................\OT1/cmr/m/n/10 o
+....................\OT1/cmr/m/n/10 u
+....................\OT1/cmr/m/n/10 ?
+....................\penalty 10000
+....................\glue(\parfillskip) 0.0 plus 1.0fil
+....................\glue(\rightskip) 0.0 plus 20.00003
+.................\glue 0.0
 ...............\pdfliteral{Q }
+...............\glue 0.0
 ..............\glue 0.0 plus 1.0fil minus 1.0fil
 .............\pdfliteral{Q }
+.............\glue 0.0
+.............\glue 0.0
 .............\pdfliteral{Q }
 ...........\glue 0.0
 ...........\glue 0.0
-...........\pdfliteral{S }
-...........\hbox(0.0+0.0)x0.0
-............\hbox(0.0+0.0)x0.0
-.............\pdfliteral{q }
-.............\pdfliteral{0 G }
-.............\pdfliteral{1 0.5 0 rg }
-.............\pdfliteral{0.49814 w }
-.............\glue 0.0
-.............\glue 0.0
-.............\glue 0.0
-.............\glue 0.0
-.............\glue 0.0
-.............\pdfliteral{q }
-.............\pdfliteral{0 G }
-.............\pdfliteral{1 0.5 0 rg }
-.............\pdfliteral{0.49814 w }
-.............\pdfliteral{27.89575 6.67468 m }
-.............\pdfliteral{-27.89575 6.67468 l }
-.............\pdfliteral{-30.09668 6.67468 -31.88086 4.89052 -31.88086 2.68958 c }
-.............\pdfliteral{-31.88086 -17.01454 l }
-.............\pdfliteral{-31.88086 -19.21548 -30.09668 -20.99965 -27.89575 -20.99965 c }
-.............\pdfliteral{27.89575 -20.99965 l }
-.............\pdfliteral{30.09668 -20.99965 31.88086 -19.21548 31.88086 -17.01454 c }
-.............\pdfliteral{31.88086 2.68958 l }
-.............\pdfliteral{31.88086 4.89052 30.09668 6.67468 27.89575 6.67468 c }
-.............\pdfliteral{h }
-.............\pdfliteral{-31.88086 -20.99965 m }
-.............\pdfliteral{B }
-.............\pdfliteral{Q }
-.............\pdfliteral{q }
-.............\hbox(0.0+0.0)x0.0
-..............\glue -28.55556
-..............\hbox(0.0+0.0)x0.0, shifted 3.68925
-...............\pdfliteral{1.0 0.0 0.0 1.0 0.0 0.0 cm }
-...............\pdfliteral{q }
-...............\hbox(0.0+0.0)x0.0
-................\hbox(6.94444+13.94444)x57.11111
-.................\vbox(6.94444+13.94444)x57.11111
-..................\hbox(6.94444+0.0)x57.11111, glue set 0.27847
-...................\hbox(0.0+0.0)x0.0
-...................\hbox(0.0+0.0)x0.0
-...................\pdfliteral{0 G }
-...................\pdfliteral{0 g }
-...................\OT1/cmr/m/n/10 h
-...................\OT1/cmr/m/n/10 e
-...................\OT1/cmr/m/n/10 l
-...................\OT1/cmr/m/n/10 l
-...................\OT1/cmr/m/n/10 o
-...................\glue(\spaceskip) 3.33298
-...................\hbox(6.81998+0.0)x6.81998
-....................\pdfcolorstack 0 push {0 g 0 G}
-....................\hbox(6.81998+0.0)x6.81998
-.....................\glue 3.40999
-.....................\hbox(0.0+0.0)x0.0, shifted -3.40999
-......................\pdfliteral{q }
-......................\pdfliteral{0 G }
-......................\pdfliteral{0 g }
-......................\pdfliteral{0.3985 w }
-......................\hbox(0.0+0.0)x0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\pdfliteral{q }
-.......................\pdfliteral{0.5147 w }
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\pdfliteral{q }
-.......................\pdfliteral{0.0 0.0 m }
-.......................\pdfliteral{3.39728 0.0 m }
-.......................\pdfliteral{3.39728 1.87628 1.87628 3.39728 0.0 3.39728 c }
-.......................\pdfliteral{-1.87628 3.39728 -3.39728 1.87628 -3.39728 0.0 c }
-.......................\pdfliteral{-3.39728 -1.87628 -1.87628 -3.39728 0.0 -3.39728 c }
-.......................\pdfliteral{1.87628 -3.39728 3.39728 -1.87628 3.39728 0.0 c }
-.......................\pdfliteral{h }
-.......................\pdfliteral{0.0 0.0 m }
-.......................\pdfliteral{W }
-.......................\pdfliteral{n }
-.......................\pdfliteral{1 0 0 1 0.0 0.0 cm }
-.......................\pdfliteral{0.1359 0 0 0.1359 0.0 0.0 cm }
-.......................\pdfliteral{1.0 0.0 0.0 1.0 0.0 0.0 cm }
-.......................\pdfliteral{q }
-.......................\hbox(0.0+0.0)x0.0
-........................\hbox(50.1875+50.1875)x50.1875
-.........................\glue -50.1875
-.........................\hbox(100.375+0.0)x100.375, shifted 50.1875
-..........................\hbox(100.375+0.0)x100.375
-...........................\pdfrefxform(100.375+0.0)x100.375
-.......................\pdfliteral{Q }
-.......................\pdfliteral{Q }
-.......................\glue 0.0
-.......................\pdfliteral{q }
-.......................\pdfcolorstack 0 push {0 g 0 G}
-.......................\pdfliteral{1.75008 1.02953 m }
-.......................\pdfliteral{0.51476 1.02953 l }
-.......................\pdfliteral{S }
-.......................\pdfcolorstack 0 pop
-.......................\pdfliteral{Q }
-.......................\glue 0.0
-.......................\glue 0.0
-.......................\pdfliteral{q }
-.......................\pdfliteral{-1.02953 1.02953 m }
-.......................\pdfliteral{-0.51476 1.02953 m }
-.......................\pdfliteral{-0.51476 1.31383 -0.74524 1.5443 -1.02953 1.5443 c }
-.......................\pdfliteral{-1.31383 1.5443 -1.5443 1.31383 -1.5443 1.02953 c }
-.......................\pdfliteral{-1.5443 0.74524 -1.31383 0.51476 -1.02953 0.51476 c }
-.......................\pdfliteral{-0.74524 0.51476 -0.51476 0.74524 -0.51476 1.02953 c }
-.......................\pdfliteral{h }
-.......................\pdfliteral{-1.02953 1.02953 m }
-.......................\pdfliteral{W }
-.......................\pdfliteral{n }
-.......................\pdfliteral{1 0 0 1 -1.02953 1.02953 cm }
-.......................\pdfliteral{0.02058 0 0 0.02058 0.0 0.0 cm }
-.......................\pdfliteral{1.0 0.0 0.0 1.0 0.0 0.0 cm }
-.......................\pdfliteral{q }
-.......................\hbox(0.0+0.0)x0.0
-........................\hbox(50.1875+50.1875)x50.1875
-.........................\glue -50.1875
-.........................\hbox(100.375+0.0)x100.375, shifted 50.1875
-..........................\hbox(100.375+0.0)x100.375
-...........................\pdfrefxform(100.375+0.0)x100.375
-.......................\pdfliteral{Q }
-.......................\pdfliteral{Q }
-.......................\pdfliteral{q }
-.......................\pdfcolorstack 0 push {0 g 0 G}
-.......................\pdfliteral{-1.54414 -1.54414 m }
-.......................\pdfliteral{-0.51476 -2.05891 1.54414 -2.05891 1.95601 0.0 c }
-.......................\pdfliteral{S }
-.......................\pdfcolorstack 0 pop
-.......................\pdfliteral{Q }
-.......................\pdfliteral{Q }
-.......................\hbox(0.0+0.0)x0.0
-........................\pdfsavepos
-........................\write1{\noexpand \pgfsyspdfmark {pgfid3}{\the \pdflastxpos }{\the \pdflastypos \ETC.}
-.......................\glue 0.0 plus 1.0fil minus 1.0fil
-......................\pdfliteral{n }
-......................\pdfliteral{Q }
-......................\glue 0.0 plus 1.0fil minus 1.0fil
-....................\pdfcolorstack 0 pop
-...................\glue(\spaceskip) 3.33298
-...................\OT1/cmr/m/n/10 h
-...................\OT1/cmr/m/n/10 o
-...................\kern-0.27779
-...................\OT1/cmr/m/n/10 w
-...................\glue(\rightskip) 0.0 plus 20.00003
-..................\penalty 300
-..................\glue(\baselineskip) 5.05556
-..................\hbox(6.94444+1.94444)x57.11111, glue set 20.13918fil
-...................\OT1/cmr/m/n/10 a
-...................\OT1/cmr/m/n/10 r
-...................\OT1/cmr/m/n/10 e
-...................\glue(\spaceskip) 3.33298
-...................\OT1/cmr/m/n/10 y
-...................\kern-0.27779
-...................\OT1/cmr/m/n/10 o
-...................\OT1/cmr/m/n/10 u
-...................\OT1/cmr/m/n/10 ?
-...................\penalty 10000
-...................\glue(\parfillskip) 0.0 plus 1.0fil
-...................\glue(\rightskip) 0.0 plus 20.00003
-...............\pdfliteral{Q }
-..............\glue 0.0 plus 1.0fil minus 1.0fil
-.............\pdfliteral{Q }
-.............\pdfliteral{Q }
 ...........\pdfliteral{Q }
 ...........\hbox(0.0+0.0)x0.0
 ............\pdfsavepos
@@ -3650,19 +3419,6 @@ Completed box being shipped out [1]
 ..........\pdfliteral{0 g }
 ..........\pdfliteral{0.3985 w }
 ..........\hbox(0.0+0.0)x0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
-...........\glue 0.0
 ...........\pdfliteral{q }
 ...........\glue 0.0
 ...........\glue 0.0
@@ -3671,12 +3427,16 @@ Completed box being shipped out [1]
 ...........\pdfliteral{0.79701 w }
 ...........\pdfliteral{1 0.5 0 RG }
 ...........\pdfliteral{0.0 -5.66927 m }
+...........\pdfliteral{0.0 -5.66927 l }
+...........\pdfliteral{0.0 -5.66927 l }
 ...........\pdfliteral{-37.7992 -5.66927 l }
 ...........\pdfliteral{-37.7992 -7.16248 l }
 ...........\pdfliteral{-32.12993 -7.16248 l }
 ...........\pdfliteral{-32.12993 -7.16248 l }
 ...........\pdfliteral{S }
+...........\glue 0.0
 ...........\pdfliteral{Q }
+...........\glue 0.0
 ...........\pdfliteral{Q }
 ...........\hbox(0.0+0.0)x0.0
 ............\pdfsavepos
@@ -3693,9 +3453,31 @@ Completed box being shipped out [1]
 ....\rule(0.0+1.94444)x0.0
 ...\penalty 0
 ...\penalty 10000
-...\penalty 150
 ...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set - 0.13298
+...\hbox(6.94444+1.94444)x345.0, glue set 0.8824
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 c
+....\OT1/cmr/m/n/10 t
+....\OT1/cmr/m/n/10 u
+....\OT1/cmr/m/n/10 s
+....\OT1/cmr/m/n/10 .
+....\glue 4.44444 plus 4.99997 minus 0.37036
+....\OT1/cmr/m/n/10 S
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 i
+....\OT1/cmr/m/n/10 b
+....\kern0.27779
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 n
+....\OT1/cmr/m/n/10 d
+....\OT1/cmr/m/n/10 u
+....\OT1/cmr/m/n/10 m
+....\OT1/cmr/m/n/10 ,
+....\glue 3.33333 plus 2.08331 minus 0.88889
 ....\OT1/cmr/m/n/10 n
 ....\kern-0.27779
 ....\OT1/cmr/m/n/10 u
@@ -3708,8 +3490,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 f
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 b
@@ -3719,8 +3499,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 m
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 p
 ....\kern0.27779
 ....\OT1/cmr/m/n/10 e
@@ -3740,8 +3518,6 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 l
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 i
@@ -3753,8 +3529,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 l
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -3762,16 +3536,14 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 2.08331 minus 0.88889
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 c
-....\glue 3.33333 plus 1.66666 minus 1.11111
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 0.62766
 ....\OT1/cmr/m/n/10 v
 ....\kern-0.27779
 ....\OT1/cmr/m/n/10 e
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 n
 ....\OT1/cmr/m/n/10 e
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 n
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 t
@@ -3798,9 +3570,7 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 .
-....\glue(\rightskip) 0.0
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set - 0.01898
+....\glue 4.44444 plus 4.99997 minus 0.37036
 ....\OT1/cmr/m/n/10 V
 ....\kern-0.83334
 ....\OT1/cmr/m/n/10 e
@@ -3809,8 +3579,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 b
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 m
@@ -3824,8 +3592,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 A
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 i
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 q
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 a
@@ -3835,13 +3601,8 @@ Completed box being shipped out [1]
 ....\kern0.27779
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 l
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 e
-....\discretionary replacing 2
-.....\OT1/cmr/m/n/10 n
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 n
 ....\kern-0.27779
 ....\OT1/cmr/m/n/10 t
@@ -3854,12 +3615,12 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 2.08331 minus 0.88889
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 e
-....\glue 3.33333 plus 1.66666 minus 1.11111
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 0.82027
 ....\OT1/cmr/m/n/10 q
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 i
@@ -3870,8 +3631,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 t
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
@@ -3879,8 +3638,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 p
 ....\kern0.27779
 ....\OT1/cmr/m/n/10 o
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 e
@@ -3897,12 +3654,6 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 a
-....\discretionary
-....\OT1/cmr/m/n/10 -
-....\glue(\rightskip) 0.0
-...\penalty 100
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set - 0.47188
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -3926,8 +3677,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 h
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 n
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 d
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 e
@@ -3950,11 +3699,11 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 t
-....\glue 3.33333 plus 1.66666 minus 1.11111
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 0.98074
 ....\OT1/cmr/m/n/10 f
 ....\OT1/cmr/m/n/10 e
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
@@ -3963,12 +3712,8 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 M
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 e
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 e
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 n
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 s
@@ -3992,14 +3737,10 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 n
-....\glue(\rightskip) 0.0
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set - 0.7084
+....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 m
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 t
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
@@ -4009,12 +3750,8 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 o
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 t
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 i
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 o
 ....\OT1/cmr/m/n/10 r
@@ -4028,8 +3765,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 b
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 m
@@ -4039,17 +3774,15 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 o
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 t
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 i
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 o
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 .
-....\glue 4.44444 plus 4.99997 minus 0.37036
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 0.25127
 ....\OT1/cmr/m/n/10 N
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 l
@@ -4058,13 +3791,9 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 f
 ....\OT1/cmr/m/n/10 a
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 l
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 i
@@ -4088,8 +3817,6 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 a
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -4097,12 +3824,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 o
 ....\OT1/cmr/m/n/10 m
-....\discretionary
-....\OT1/cmr/m/n/10 -
-....\glue(\rightskip) 0.0
-...\penalty 100
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set 0.15863
 ....\OT1/cmr/m/n/10 m
 ....\OT1/cmr/m/n/10 o
 ....\kern0.27779
@@ -4111,16 +3832,10 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 f
 ....\OT1/cmr/m/n/10 a
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 l
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 i
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
@@ -4150,32 +3865,25 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 n
-....\glue 3.33333 plus 1.66666 minus 1.11111
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 0.21881
 ....\OT1/cmr/m/n/10 d
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 g
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 n
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 m
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 i
-....\discretionary replacing 2
-.....\OT1/cmr/m/n/10 n
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 n
 ....\kern-0.27779
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 r
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 d
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 m
@@ -4190,8 +3898,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 c
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -4201,14 +3907,10 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 t
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
-....\glue(\rightskip) 0.0
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set 0.57332
+....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 d
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 i
@@ -4220,13 +3922,9 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 v
 ....\kern-0.27779
 ....\OT1/cmr/m/n/10 e
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 h
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 c
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 a
@@ -4246,8 +3944,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 r
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -4256,12 +3952,12 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 .
-....\glue 4.44444 plus 4.99997 minus 0.37036
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 0.42393
 ....\OT1/cmr/m/n/10 M
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
@@ -4269,8 +3965,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 m
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 p
 ....\kern0.27779
 ....\OT1/cmr/m/n/10 o
@@ -4289,8 +3983,6 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 a
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -4300,14 +3992,10 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 s
-....\glue(\rightskip) 0.0
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set 0.37103
+....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 r
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -4322,8 +4010,6 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 e
@@ -4343,7 +4029,9 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 n
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 .
-....\glue 4.44444 plus 4.99997 minus 0.37036
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 0.57155
 ....\OT1/cmr/m/n/10 C
 ....\OT1/cmr/m/n/10 r
 ....\OT1/cmr/m/n/10 a
@@ -4367,8 +4055,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 s
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 s
@@ -4377,17 +4063,13 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 C
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 r
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 b
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 r
-....\glue(\rightskip) 0.0
-...\glue(\baselineskip) 3.11111
-...\hbox(6.94444+1.94444)x345.0, glue set 0.48703
+....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 a
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 l
@@ -4407,8 +4089,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 s
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 s
@@ -4429,7 +4109,10 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 n
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 .
-....\glue 4.44444 plus 4.99997 minus 0.37036
+....\glue(\rightskip) 0.0
+...\penalty 150
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set 124.19408fil
 ....\OT1/cmr/m/n/10 N
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 m
@@ -4437,8 +4120,6 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 f
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 u
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 g
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 a
@@ -4446,8 +4127,6 @@ Completed box being shipped out [1]
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 a
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 s
@@ -4465,23 +4144,16 @@ Completed box being shipped out [1]
 ....\OT1/cmr/m/n/10 C
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 r
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 a
 ....\OT1/cmr/m/n/10 b
 ....\OT1/cmr/m/n/10 i
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 u
 ....\OT1/cmr/m/n/10 r
-....\glue(\rightskip) 0.0
-...\penalty 150
-...\glue(\baselineskip) 3.90477
-...\hbox(6.15079+0.0)x345.0, glue set 288.24992fil
+....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\OT1/cmr/m/n/10 c
 ....\OT1/cmr/m/n/10 o
 ....\OT1/cmr/m/n/10 n
-....\discretionary
-.....\OT1/cmr/m/n/10 -
 ....\OT1/cmr/m/n/10 s
 ....\OT1/cmr/m/n/10 e
 ....\OT1/cmr/m/n/10 c
@@ -4495,31 +4167,8 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
-...\glue 0.0
-...\glue 0.0 plus 0.0001fil
-..\glue(\baselineskip) 23.55556
-..\hbox(6.44444+0.0)x345.0
-...\pdfcolorstack 0 push {0 g 0 G}
-...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
-....\glue 0.0 plus 1.0fil
-....\OT1/cmr/m/n/10 1
-....\glue 0.0 plus 1.0fil
-...\pdfcolorstack 0 pop
-Completed box being shipped out [2]
-\vbox(633.0+0.0)x407.0
-.\hbox(0.0+0.0)x0.0
-.\glue 16.0
-.\vbox(617.0+0.0)x345.0, shifted 62.0
-..\vbox(12.0+0.0)x345.0, glue set 12.0fil
-...\glue 0.0 plus 1.0fil
-...\hbox(0.0+0.0)x345.0
-....\pdfcolorstack 0 push {0 g 0 G}
-....\hbox(0.0+0.0)x345.0
-....\pdfcolorstack 0 pop
-..\glue 25.0
-..\glue(\lineskip) 0.0
-..\vbox(550.0+0.0)x345.0, glue set 251.97308fil
-...\glue(\topskip) 3.05556
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\baselineskip) 3.11111
 ...\hbox(6.94444+1.94444)x345.0, glue set 1.03598
 ....\hbox(0.0+0.0)x15.0
 ....\OT1/cmr/m/n/10 S
@@ -4607,8 +4256,31 @@ Completed box being shipped out [2]
 ....\OT1/cmr/m/n/10 t
 ....\OT1/cmr/m/n/10 ,
 ....\glue(\rightskip) 0.0
-...\penalty 150
-...\glue(\baselineskip) 3.11111
+...\glue -1.94444
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\pdfcolorstack 0 push {0 g 0 G}
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+...\pdfcolorstack 0 pop
+Completed box being shipped out [2]
+\vbox(633.0+0.0)x407.0
+.\hbox(0.0+0.0)x0.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\pdfcolorstack 0 push {0 g 0 G}
+....\hbox(0.0+0.0)x345.0
+....\pdfcolorstack 0 pop
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 263.9718fil
+...\glue(\topskip) 3.05556
 ...\hbox(6.94444+1.94444)x345.0, glue set 0.15697
 ....\OT1/cmr/m/n/10 l
 ....\OT1/cmr/m/n/10 a
