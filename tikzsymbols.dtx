@@ -3540,17 +3540,17 @@ for the details of that license.
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \fp_compare:nNnT {#5} < { \c_zero }
+              \fp_compare:nNnT {#5} < { 0 }
                 {
                   \@@_cChangey:nnn {#5} {#2} {#3}
                   (0,0) circle [radius=0.33];
                 }
-              \fp_compare:nNnT {#5} > { \c_zero }
+              \fp_compare:nNnT {#5} > { 0 }
                 {
                   \@@_cChangey:nnn {#5} {#4} {#3} 
                   (0,0) circle [radius=0.33];
                 }
-              \fp_compare:nNnT {#5} = { \c_zero }
+              \fp_compare:nNnT {#5} = { 0 }
                 {
                   \filldraw [fill=#3] (0,0) circle [radius=0.33];
                 }
@@ -3601,17 +3601,17 @@ for the details of that license.
                 /@@ ,
                 x=2.4ex, y=2.4ex, line ~ width=0.12ex* \l_@@_scale_abs_tl ,scale=#1
               ]
-              \fp_compare:nNnT {#5} < { \c_zero }
+              \fp_compare:nNnT {#5} < { 0 }
                 {
                   \@@_dcChangey:nnn {#5} {#2} {#3}
                   (0,0) circle [radius=0.33];
                 }
-              \fp_compare:nNnT {#5} > { \c_zero }
+              \fp_compare:nNnT {#5} > { 0 }
                 {
                   \@@_dcChangey:nnn {#5} {#4} {#3} 
                   (0,0) circle [radius=0.33];
                 }
-              \fp_compare:nNnT {#5} = { \c_zero }
+              \fp_compare:nNnT {#5} = { 0 }
                 {
                   \shade[ball ~ color=#3] (0,0) circle [radius=0.33];
                 }
