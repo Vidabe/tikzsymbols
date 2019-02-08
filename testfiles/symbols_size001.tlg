@@ -1010,10 +1010,10 @@ TEST 4: 3D~Emoticons ~ Symbol~sizes~global-scale
 \g__tikzsymbols_savebox_T_0 g 0 G_10_Candle_1.4_box=\box...
 \Candle  Width
   3.857574462890625pt
-  3.857620239257812pt
+  3.857650756835938pt
 \Candle  Height
-  10.64469909667969pt
-  10.64483642578125pt
+  10.57859802246094pt
+  10.57867431640625pt
 \Candle  Depth
   0pt
   0pt
@@ -1021,11 +1021,11 @@ TEST 4: 3D~Emoticons ~ Symbol~sizes~global-scale
 \g__tikzsymbols_savebox_F_0 g 0 G_10_Fire_1.4_box=\box...
 \g__tikzsymbols_savebox_T_0 g 0 G_10_Fire_1.4_box=\box...
 \Fire  Width
-  9.560714721679688pt
-  9.560745239257812pt
+  9.499664306640625pt
+  9.499740600585938pt
 \Fire  Height
-  9.963333129882812pt
-  9.963287353515625pt
+  9.891204833984375pt
+  9.891204833984375pt
 \Fire  Depth
   0pt
   0pt
