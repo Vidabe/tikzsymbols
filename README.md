@@ -5,7 +5,7 @@ tikzsymbols
 Overview
 --------
 
-The *tikzsymbols* package v4.10b (2019/02/07) contains symbols created using tikz.
+The *tikzsymbols* package v4.10c (2019/02/08) contains symbols created using tikz.
 
 This package provides:
  * various emoticons
@@ -78,6 +78,7 @@ Changes
   - Reworked sizes of the plain vanilla draft boxes.
 * v4.10a Bugfix: Forgot to remove colors from `\Strichmaxerl`
 * v4.10b Bugfix: Replace deprecated `\c_zero` by `0`
+* v4.10c Bugfix: Added dimension to `xshift` and `yshift` for `\Fire`, `\Candle` and `\(d)Laughey`
 
 Requirements
 ------------

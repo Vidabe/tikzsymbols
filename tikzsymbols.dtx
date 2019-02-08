@@ -14,7 +14,7 @@ tikzsymbols
 Overview
 --------
 
-The *tikzsymbols* package v4.10b (2019/02/07) contains symbols created using tikz.
+The *tikzsymbols* package v4.10c (2019/02/08) contains symbols created using tikz.
 
 This package provides: 
  * various emoticons
@@ -88,6 +88,7 @@ Changes
   - Reworked sizes of the plain vanilla draft boxes.
 * v4.10a Bugfix: Forgot to remove colors from `\Strichmaxerl`
 * v4.10b Bugfix: Replace deprecated `\c_zero` by `0`
+* v4.10c Bugfix: Added dimension to `xshift` and `yshift` for `\Fire`, `\Candle` and `\(d)Laughey`
   
 Requirements 
 ------------
@@ -129,7 +130,7 @@ for the details of that license.
 \askforoverwritefalse
 \preamble
 
- Copyright (C) 2013--2018 by Ben Vitecek (current Maintainer)
+ Copyright (C) 2013--2019 by Ben Vitecek (current Maintainer)
  
  This work may be distributed and/or modified under the
  conditions of the LaTeX Project Public License, either version 1.3c
@@ -1535,8 +1536,8 @@ for the details of that license.
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2019/02/07}
-  {4.10b} 
+  {2019/02/08}
+  {4.10c} 
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
