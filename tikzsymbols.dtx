@@ -247,7 +247,7 @@ for the details of that license.
     \clist_use:Nn \printclist { }
   }
 
-\clist_set_eq:NN \printclist \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist
+\clist_gset_eq:NN \printclist \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist
 
 \clist_if_exist:NF \printclist { \ERROR }
 
@@ -1621,7 +1621,7 @@ for the details of that license.
 % Setting the default value and yes, I know that you maybe should not
 % use \Makro{xspace}, but I do it anyway:
 %    \begin{macrocode}
-\tl_gset:Nn \l_@@_tikzsymbols_after_symbol_tl { \xspace }
+\tl_set:Nn \l_@@_tikzsymbols_after_symbol_tl { \xspace }
 %    \end{macrocode}
 %
 %    \begin{macrocode}
@@ -2413,7 +2413,7 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new:Npn \@@_Declare_Document_Commands:nnnn #1#2#3#4
   {
-    \clist_put_right:Nn 
+    \clist_gput_right:Nn 
     \g_tikzsymbols_list_of_printing_cooking_with_argument_commands_clist 
       {
         \cs{#1} & \cs{#2} & \oarg{scale} & \tikzsymbolsuse{#1} \\
