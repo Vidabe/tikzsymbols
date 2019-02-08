@@ -1,0 +1,10 @@
+\input{regression-test}
+\RequirePackage[enable-debug=true]{expl3}
+\ExplSyntaxOn
+\debug_on:n { all }
+\ExplSyntaxOff
+
+\documentclass {article}
+\START
+\usepackage {tikzsymbols}
+\END
