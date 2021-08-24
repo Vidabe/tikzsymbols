@@ -5379,6 +5379,65 @@ for the details of that license.
 %
 %
 %
+%\begin{macro}{ \Heart }
+%    \begin{macrocode}
+\@@_Declare_Document_Command:nnn { Heart } { S O{none} }
+  {
+    \@@_provide_savebox_and_use:nn { Heart_#1_#2 }
+      {
+        \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \l_@@_if_opt_draft_bool
+          {
+            \@@_create_draftbox:nn 
+              { 1.93ex * \l_@@_scale_abs_tl } 
+              { 1.93ex * \l_@@_scale_abs_tl } 
+          }{
+            \begin{tikzpicture}
+              [
+                /@@ ,
+                x=0.185ex,y=0.185ex, scale=#1, line ~ width=0.08ex* \l_@@_scale_abs_tl 
+              ]
+              \draw[fill=#2] (0,0) .. controls (-0.2,4) and (5,4) .. (5,0)
+                .. controls (5,-3) and (1,-6) .. (0,-6) 
+                .. controls (-1,-6) and (-5,-3) .. (-5,0) 
+                .. controls (-5,4) and (0.2,4) .. cycle
+                ;
+            \end{tikzpicture}%
+          }
+      }
+  }
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{ \dHeart }
+%    \begin{macrocode}
+\@@_Declare_Document_Command:nnn { dHeart } { S O{red} }
+  {
+    \@@_provide_savebox_and_use:nn { dHeart_#1_#2 }
+      {
+        \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \l_@@_if_opt_draft_bool
+          {
+            \@@_create_draftbox:nn 
+              { 1.93ex * \l_@@_scale_abs_tl } 
+              { 1.93ex * \l_@@_scale_abs_tl } 
+          }{
+            \begin{tikzpicture}
+              [
+                /@@ ,
+                x=0.185ex,y=0.185ex, scale=#1 
+              ]
+              \draw[ball color=#2] (0,0)     
+                .. controls (-0.62,4.2) and (5.2,4.2) .. (5.2,0)
+                .. controls (5.2,-3.2) and (1.2,-6.2) .. (0,-6.2) 
+                .. controls (-1.2,-6.2) and (-5.2,-3.2) .. (-5.2,0) 
+                .. controls (-5.2,4.2) and (0.62,4.2) .. cycle
+                ;
+            \end{tikzpicture}%
+          }
+      }
+  }
+%    \end{macrocode}
+%\end{macro}
 %
 %
 %\begin{macro}{ \Candle }
