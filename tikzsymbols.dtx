@@ -5440,6 +5440,38 @@ for the details of that license.
 %\end{macro}
 %
 %
+%\begin{macro}{ \HeartBroken }
+%    \begin{macrocode}
+\@@_Declare_Document_Command:nnn { HeartBroken } { S O{none} }
+  {
+    \@@_provide_savebox_and_use:nn { HeartBroken_#1_#2 }
+      {
+        \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \l_@@_if_opt_draft_bool
+          {
+            \@@_create_draftbox:nn 
+              { 1.93ex * \l_@@_scale_abs_tl } 
+              { 1.93ex * \l_@@_scale_abs_tl } 
+          }{
+            \begin{tikzpicture}
+              [
+                /@@ ,
+                x=0.185ex,y=0.185ex, scale=#1, line ~ width=0.08ex* \l_@@_scale_abs_tl 
+              ]
+              \draw[fill=#2] (0,0) .. controls (-0.2,4) and (5,4) .. (5,0)
+                .. controls (5,-3) and (1,-6) .. (0,-6) 
+                .. controls (-1,-6) and (-5,-3) .. (-5,0) 
+                .. controls (-5,4) and (0.2,4) .. (0,0)
+                -- (0.5,-1) -- (-0.5,-2) -- (0.5,-3) -- (-0.5,-4) -- (0.5,-5) -- (0,-6);
+                ;
+            \end{tikzpicture}%
+          }
+      }
+  }
+%    \end{macrocode}
+%\end{macro}
+%
+%
 %\begin{macro}{ \Candle }
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Candle } { S }
