@@ -99,9 +99,9 @@ This file contains
 
 License
 -------
-This ma­te­rial is sub­ject to the LATEX Project Public Li­cense 1.3c. See
+This material is subject to the LATEX Project Public License 1.3c. See
 
-  http://www.ctan.org/tex-archive/help/Catalogue/licenses.lppl.html
+  https://www.latex-project.org/lppl/
 
 for the details of that license.
 
