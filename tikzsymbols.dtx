@@ -209,6 +209,12 @@ for the details of that license.
   }
 
 
+\let\tikzsymbolscs\cs
+\renewcommand\cs[1]
+  {
+    \tikzsymbolscs { \textcolor {blue} {#1} }
+  }
+
 \newcommand{\Package}{\pkg}
 \newcommand{\Option}{\texttt}
 \newcommand{\opt}{\texttt}
@@ -237,7 +243,7 @@ for the details of that license.
         \char_set_catcode_other:N \}
       }
       {#2}
-    \Makro{#1\l_tmpa_tl} \space \use:c {#1}#2
+    \Makro{#1\textcolor{black}{\l_tmpa_tl}} \space \use:c {#1}#2
   }
 
 \clist_new:N \printclist
@@ -927,6 +933,7 @@ for the details of that license.
 %   \Makro{SchrodingersCat}& \oarg{scale}\marg{case}& \SchrodingersCat{0} \\
 %   \Makro{Ninja}& \oarg{scale}\oarg{color}\oarg{headband color}\oarg{eye color}& \Ninja \\
 %   \Makro{Sleepey}& \oarg{scale}\oarg{color}\oarg{cap color}\oarg{star color}& \Sleepey \\
+%   \Makro{Maskey}& \oarg{scale}\oarg{color}\oarg{mask color}& \Maskey \\
 %   \Makro{NiceReapey} & \oarg{scale} & \NiceReapey \\
 %    \bottomrule
 % \end{longtable}
@@ -1095,6 +1102,8 @@ for the details of that license.
 % \begin{function}
 %   {
 %     \Strichmaxerl,
+%     \Heart,
+%     \dHeart,
 %     \Candle,
 %     \Fire,
 %     \Coffeecup,
@@ -1124,6 +1133,8 @@ for the details of that license.
 %  \bottomrule\endfoot
 %
 %   \Makro{Strichmaxerl} & \oarg{scale}\oarg{left arm}\oarg{right arm}\oarg{left leg}\oarg{right leg}  &\Strichmaxerl\\
+%   \Makro{Heart}& \oarg{scale}\oarg{color}& \Heart \\
+%   \Makro{dHeart}& \oarg{scale}\oarg{color}& \dHeart \\
 %   \Makro{Candle} & \oarg{scale} & \Candle\\
 %   \Makro{Fire} & \oarg{scale} & \Fire\\
 %   \Makro{Coffeecup} & \oarg{scale} & \Coffeecup\\
@@ -1285,7 +1296,339 @@ for the details of that license.
 %
 %
 %
+% \section{Create your own tikzsymbol}
 %
+% Suppose you have your own symbol, created in a tikzpicture. This package offers you some commands
+% with whom you can create your own tikzsymbol 
+% (including the benefits of using \opt{symbol-scale} and \opt{global-scale}).
+%
+% \subsection{tikzsymbols style}
+%
+% \begin{function}{/tikzsymbolsstyle}
+%   \begin{syntax}
+%    /tikzsymbolsstyle
+%   \end{syntax}
+% \pkg{tikzsymbols} defines it own \pkg{tikz}-style. A public version of it is available
+% \emph{via} \emph{/tikzsymbolsstyle}.
+%
+% (Note: To change the internal style version use the option \Option{append-style}.)
+% \end{function}
+%
+%
+% \subsection{Symbol Definition}
+% \begin{function}{\tikzsymbolsdefinesymbol}
+%    \begin{syntax}
+%      \cs{tikzsymbolsdefinesymbol} \marg{symbol-name} \marg{argument-types} \marg{code}
+%    \end{syntax}
+%    This is the main command to define your symbol. \meta{symbol-name} is the name (without backslash)
+%    of your symbol and to-be command. 
+%   \meta{code} is the place to put your |tikzpicture| inside.
+%    \meta{argument-types} uses a similar of \pkg{xparse}'s system with some changes
+%    and only three argument types available.
+%    \begin{itemize}
+%    \item |m| is for mandatory arguments (given in curly braces). 
+%    \item |B{<default>}| is similar to |O{<default>}|, an optional argument that inserts |<default>| 
+%    if the optional argument (in square-brackets)
+%    is not given \emph{or empty}.
+%    \item |S| is the argument for scaling the symbol; the argument \oarg{scale} is created by it.
+%    It creates an optional argument. The absolute value of the scaling can be accessed by \cs{tikzsymbolssetscaleabs}.
+%    \end{itemize}
+% \end{function}
+% 
+%\paragraph{Example} Assume you have created the following picture:
+%
+% 
+% \begin{verbatim}
+%    \begin{tikzpicture}[/tikzsymbolsstyle]
+%      \fill[fill=none] (0,1) -- (0.5,1.5) -- (1,1);
+%      \filldraw[fill=none] (0,0) rectangle (1,1);
+%      \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%      \draw[fill=none] (0.5,0)  rectangle (0.8,0.6);
+%      \fill (0.72,0.3) circle [radius=0.02];
+%    \end{tikzpicture}%
+% \end{verbatim}
+%
+% Which prints:
+%        \begin{tikzpicture}[/tikzsymbolsstyle]
+%          \fill[fill=none] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=none] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=none] (0.5,0)  rectangle (0.8,0.6);
+%          \fill (0.72,0.3) circle [radius=0.02];
+%        \end{tikzpicture}%
+%
+% Now you want three different parts to be filles with color: The house itself, the roof
+% and the door, let's say in the colors orange, red and teal:
+%
+% \begin{verbatim}
+%    \begin{tikzpicture}[/tikzsymbolsstyle]
+%      \fill[fill=none] (0,1) -- (0.5,1.5) -- (1,1);
+%      \filldraw[fill=none] (0,0) rectangle (1,1);
+%      \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%      \draw[fill=none] (0.5,0)  rectangle (0.8,0.6);
+%      \fill (0.72,0.3) circle [radius=0.02];
+%    \end{tikzpicture}%
+% \end{verbatim}
+%
+%        \begin{tikzpicture}[/tikzsymbolsstyle]
+%          \fill[fill=red] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=orange] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=teal] (0.5,0)  rectangle (0.8,0.6);
+%          \fill (0.72,0.3) circle [radius=0.02];
+%        \end{tikzpicture}%
+% Satisfied with this you put it into \cs{tikzsymbolsdefinesymbol} and make it to
+% have three optional arguments (using the |B| argument) to change the colors. 
+% The default colors themselves are put into the argument of |B|:
+%  \begin{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { B{orange} B{red} B{teal} }
+%      {%
+%        \begin{tikzpicture}[/tikzsymbolsstyle]
+%          \fill[fill=#2] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#1] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=#3] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.75,0.25) circle [radius=0.02];
+%        \end{tikzpicture}%
+%      }
+%  \end{verbatim}
+%\tikzsymbolsdefinesymbol {myHouse} { B{orange} B{red} B{teal} }
+%  {%
+%    \begin{tikzpicture}[/tikzsymbolsstyle]
+%      \fill[fill=#2] (0,1) -- (0.5,1.5) -- (1,1);
+%      \filldraw[fill=#1] (0,0) rectangle (1,1);
+%      \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%      \draw[fill=#3] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%      \fill (0.75,0.25) circle [radius=0.02];
+%    \end{tikzpicture}%
+%  }
+%
+% \CreateExample{myHouse}{}
+% \CreateExample{myHouse}{[blue]}
+% \CreateExample{myHouse}{[][][green]}
+%
+% Although it looks good, the ability to scale it would be nice. Furthermore, if it were
+% a bit smaller by default would be useful. Scaling with the text size
+% and having a thicker line width would also be nice.
+% Looking at the  \pkg{tikz} manual we can get the options necessary: |scale|, |line width|
+% |x| and |y|. Let's start with |x| and |y| and make the house around the same size
+% as a big letter. Let's start with |x=1ex, y=1ex|
+%  \begin{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { B{orange} B{red} B{teal} }
+%      {%
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1ex,y=1ex]
+%          \fill[fill=#2] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#1] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=#3] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.75,0.25) circle [radius=0.02];
+%        \end{tikzpicture}%
+%      }
+%  \end{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { B{orange} B{red} B{teal} }
+%      {^^A
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1ex,y=1ex]^^A
+%          \fill[fill=#2] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#1] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=#3] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.75,0.25) circle [radius=0.02];
+%        \end{tikzpicture}^^A
+%      }
+% A \myHouse. Well a bit small maybe, but around the size of the letter \enquote{A}.
+% Increasing |x| and |y| to |1.1ex| should be good. Now add the scaling option |S|
+% to the command. This will be the new |#1| so the others should be increased by 1 each.
+%  \begin{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {%
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.75,0.25) circle [radius=0.02];
+%        \end{tikzpicture}%
+%      }
+%  \end{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {^^A
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.75,0.25) circle [radius=0.02];
+%        \end{tikzpicture}^^A
+%     }
+% Now we can scale the symbol: \CreateExample{myHouse}{[2]} \CreateExample{myHouse}{[5][][][green]}.
+%
+% Something you may not note now, but becomes apparent once you increase the symbol
+% to a large scale is that the line width does not scale with the symbol. The line width
+% can be set \emph{via} |line width|. For the border of the emoticons I generally use 
+% a line width  of |0.12ex|. Multiplying it with the scaling allows the symbol to keep
+% the line width even at larger (or smaller) scales. Let's try it:
+%  \begin{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {%
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, 
+%            scale=#1, line width=0.12ex*#1]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.75,0.25)circle [radius=0.02];
+%        \end{tikzpicture}%
+%      }
+%  \end{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {^^A
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1, line width=0.12ex*#1]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.75,0.25) circle [radius=0.02];
+%        \end{tikzpicture}^^A
+%     }
+% A \myHouse. \CreateExample{myHouse}{[2]} \CreateExample{myHouse}{[5]}\CreateExample{myHouse}{[10]}
+%
+% Not sure if |0.12ex| looks good for large scales. Let's use |0.07ex| and put the doorknob
+% a bit to the left (and make it larger). Furthermore, parts of the house clip through the 
+% ceiling so let's change
+% some coordinates there too.
+%  \begin{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {%
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, 
+%            scale=#1, line width=0.07ex*#1]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.72,0.25) circle [radius=0.03];
+%        \end{tikzpicture}%
+%      }
+%  \end{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {^^A
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1, line width=0.07ex*#1]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.72,0.25) circle [radius=0.03];
+%        \end{tikzpicture}^^A
+%      }
+% A \myHouse. \CreateExample{myHouse}{[2]} \CreateExample{myHouse}{[5]}\CreateExample{myHouse}{[10]} \CreateExample{myHouse}{[-10]}
+%
+% Ups, looks like for negative scaling the line width does not work quite well.
+% For this reason \cs{tikzsymbolssetscaleabs} exists, whoch stores the absolute
+% value of the scaling. Replacing |#1| with \cs{tikzsymbolssetscaleabs} for the line widths
+% yields:
+%  \begin{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {%
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1,
+%             line width=0.07ex*\tikzsymbolssetscaleabs]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.72,0.25) circle [radius=0.03];
+%        \end{tikzpicture}%
+%      }
+%  \end{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {^^A
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1, line width=0.07ex*\tikzsymbolsscaleabs]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.72,0.25) circle [radius=0.03];
+%        \end{tikzpicture}^^A
+%      }
+% A \myHouse. \CreateExample{myHouse}{[2]} \CreateExample{myHouse}{[5]}\CreateExample{myHouse}{[10][][blue]} \CreateExample{myHouse}{[-10][][blue]}
+%
+% Now it works.
+%
+% \subsection{Using usebox}
+%
+% Now in order to not create the symbol everytime one can use the following command
+% create a box.
+% \begin{function}{\tikzsymbolsprovideandusesavebox}
+%  \begin{syntax}
+%    \cs{tikzsymbolsprovideandusesavebox}\marg{box-name}\marg{box-code}
+%  \end{syntax}
+% \meta{box-name} should be an unique name and should include the name of
+% the symbol and the arguments it can take (and seperate them by a sign) 
+% (see example below). Everything
+% inside \meta{box-code} is to be used if the box is used.
+% \end{function}
+%
+% \paragraph{Example}
+%  \begin{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {%
+%        \tikzsymbolsprovideandusesavebox {myHouse;#1;#2;#3;#4} {%
+%          \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1,
+%               line width=0.07ex*\tikzsymbolssetscaleabs]
+%            \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%            \filldraw[fill=#2] (0,0) rectangle (1,1);
+%            \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
+%            \draw[fill=#4] (0.5,0) -- (0.5,0.5) 
+%              -- (0.8,0.5) -- (0.8,0) -- cycle;
+%            \fill (0.72,0.25) circle [radius=0.03];
+%          \end{tikzpicture}%
+%        }%
+%      }
+%  \end{verbatim}
+%    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
+%      {^^A
+%        \tikzsymbolsprovideandusesavebox {myHouse;#1;#2;#3;#4} {^^A
+%        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1, line width=0.07ex*\tikzsymbolsscaleabs]
+%          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
+%          \filldraw[fill=#2] (0,0) rectangle (1,1);
+%          \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
+%          \draw[fill=#4] (0.5,0) -- (0.5,0.5) 
+%            -- (0.8,0.5) -- (0.8,0) -- cycle;
+%          \fill (0.72,0.25) circle [radius=0.03];
+%        \end{tikzpicture}^^A
+%      }}
+%
+% Now it is put in a box. If the same conditions are met as the first time the symbol
+% was used, a box is used isntead of creating the symbol a-new. \textbf{Keep in mind:}
+% It is important to give \cs{tikzsymbolsprovideandusesavebox} \emph{all} arguments
+% your symbol has. If you add or remove one option you need to update the 
+% \meta{box-name} accordingly.
+% 
+%
+% \CreateExample{myHouse}{} \CreateExample{myHouse}{[10]} \CreateExample{myHouse}{[3][][blue]}
+%
+% This concludes this example.
+%
+% \subsection{Some other commands and variable(s)}
+% Here some other commands which may be useful
+% \begin{function}{\tikzsymbolssetscaleabs, \tikzsymbolscreatedraftbox,\tikzsymbolscreatesquareddraftbox, \l_tikzsymbols_if_opt_draft_bool}
+%    \begin{syntax}
+%      \cs{tikzsymbolssetscaleabs}\marg{scale-dimension}
+%      \cs{tikzsymbolscreatedraftbox}\marg{x-dimension}\marg{y-dimension}
+%      \cs{tikzsymbolscreatesquareddraftbox}\marg{dimension}
+%      \cs{l_tikzsymbols_if_opt_draft_bool}
+%    \end{syntax}
+% \cs{tikzsymbolssetscaleabs} set the value of |\tikzsymbolsscaleabs| equal to
+% the absolute value of \meta{scale-dimension}.
+%
+% \cs{tikzsymbolscreatedraftbox} creates the boxes used in draft-mode 
+% (option \Option{draft=true}) with dimension \meta{x-dimension} and \meta{y-dimension}.
+%
+%\cs{tikzsymbolscreatesquareddraftbox} does the same thing, it takes just one argument
+% and creates a square.
+%
+% \cs{l_tikzsymbols_if_opt_draft_bool} needs to be used inside the 
+% |\ExplSyntaxOn| and |\ExplSyntaxOff| environment. It is a public variable that stores
+% the value of the \Option{draft} option.
+% \end{function}
 %
 %
 % \section{FAQ (Known errors and problems)}
@@ -1569,6 +1912,7 @@ for the details of that license.
 \bool_new:N \l_@@_if_scale_negative_bool 
 \bool_new:N \g_@@_if_opt_tree_print_bool 
 \bool_new:N \l_@@_if_opt_draft_bool
+\bool_new:N \l_tikzsymbols_if_opt_draft_bool
 \bool_new:N \g_@@_if_opt_marvosym_bool 
 %    \end{macrocode}
 % \end{macro}
@@ -1945,7 +2289,8 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new:Npn \@@_set_scale_abs_tl:n #1 
   {
-    \tl_set:Nn \l_@@_scale_abs_tl { \fp_abs:n {#1} }
+    \tl_set:Nf \l_@@_scale_abs_tl { \fp_abs:n {#1} }
+    \tl_set_eq:NN \tikzsymbolsscaleabs \l_@@_scale_abs_tl
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2055,7 +2400,9 @@ for the details of that license.
 % To make this package \pkg{todonotes} safe:
 %    \begin{macrocode}
 \pgfkeys{ /@@/baseline /.style= { baseline=default } }
-\pgfkeys{ /@@/.style= { /@@/baseline } }
+\pgfkeys{ /@@/arrows /.style= { arrows=- } }
+\pgfkeys{ /@@/.style= { /@@/baseline , /@@/arrows } }
+\pgfkeys{ /tikzsymbolsstyle/.style= { /@@ } }
 %    \end{macrocode}
 %
 % 
@@ -2073,7 +2420,15 @@ for the details of that license.
 % \begin{macro}{ final }
 %   Its the final option, deddepi, deedidbtutp. Nothing special.
 %    \begin{macrocode}
-    final .bool_set_inverse:N = \l_@@_if_opt_draft_bool ,
+    final .choices:nn =
+      { true , false }
+      {
+        \int_case:nn { \l_keys_choice_int }
+          { 1 } { \bool_set_false:N \l_@@_if_opt_draft_bool }
+          { 2 } { \bool_set_true:N \l_@@_if_opt_draft_bool }
+        \bool_set_eq:NN \l_tikzsymbols_if_opt_draft_bool \l_@@_if_opt_draft_bool
+      } ,
+%    final .bool_set_inverse:N = \l_@@_if_opt_draft_bool ,
     final .default:n = { true } ,
 %    \end{macrocode}
 % \end{macro}
@@ -2099,6 +2454,7 @@ for the details of that license.
               \bool_set_true:N \l_@@_if_opt_draft_bool 
             }
           }
+        \bool_set_eq:NN \l_tikzsymbols_if_opt_draft_bool \l_@@_if_opt_draft_bool
       } ,
     draft .default:n= { false } ,
 %    \end{macrocode}
@@ -2113,6 +2469,7 @@ for the details of that license.
         \msg_error:nnnn { tikzsymbols } { obsolete-option } 
           { draftabsolute } { draft = true }
         \bool_set_true:N \l_@@_if_opt_draft_bool
+        \bool_set_eq:NN \l_tikzsymbols_if_opt_draft_bool \l_@@_if_opt_draft_bool
       } , 
 %    \end{macrocode}
 % \end{macro}
@@ -2429,7 +2786,7 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new:Npn \@@_Declare_Document_Command:nnn #1#2#3
   {
-    \fp_new:c { l_@@_#1_scale_fp }
+    \fp_zero_new:c { l_@@_#1_scale_fp }
     \fp_set:cn { l_@@_#1_scale_fp } { 1.0 }
     \@@_parse_command_options:nn {#1} {#2}
     \exp_args:Ncx \DeclareDocumentCommand 
@@ -2446,6 +2803,25 @@ for the details of that license.
   }
 %    \end{macrocode}
 % \end{macro}
+%
+%    \begin{macrocode}
+\tl_new:N \tikzsymbolsscaleabs
+\cs_new:Npn \tikzsymbolsdefinesymbol #1#2#3
+  {
+    \exp_args:Nx
+    \@@_Declare_Document_Command:nnn { \tl_trim_spaces:n {#1} } {#2}  {#3}
+  }
+\cs_new:Npn \tikzsymbolsprovideandusesavebox #1#2
+  {
+    \@@_provide_savebox_and_use:nn {#1} {#2}
+  }
+\cs_new:Npn \tikzsymbolssetscaleabs #1
+  { \@@_set_scale_abs_tl:n {#1} }
+\cs_new:Npn \tikzsymbolscreatedraftbox #1#2
+  { \@@_create_draftbox:nn {#1} {#2} }
+\cs_new:Npn \tikzsymbolscreatesquareddraftbox #1
+  { \@@_create_squared_draftbox:n {#1} }
+%    \end{macrocode}
 %
 %
 % \begin{macro}{ \@@_Declare_Document_Commands:nnnn }
