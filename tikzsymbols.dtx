@@ -2270,9 +2270,9 @@ for the details of that license.
 % be able to write \Makro{Command}[] (note the empty brackets, you
 % don't need to insert a '1' inside, it is done automatically).
 %
-% \begin{macro}{ \@@_if_empty:Tn , \@@_scale_if_empty:nTn }
+% \begin{macro}{ \@@_process_O_argument:n , \@@_process_S_argument:nn  }
 %   This command is used in \Makro{DeclareDocumentCommand} to help
-%   setting the options with \verb|>{ \@@_if_empty:Tn } O{1}|. If the
+%   setting the options with \verb|>{ \@@_process_O_argument:nn } O{1}|. If the
 %   brackets are empty the value of the option is inserted. Example:
 %   The option has been defined by 'O{none}', so the value inserted if
 %   no brackets are given is 'none'. If empty brackets are given,
@@ -2281,26 +2281,60 @@ for the details of that license.
 %   safes some error messages. \Makro{ProcessedArgument} is defined in
 %   the manual of \Package{xparse}.
 %    \begin{macrocode}
-\cs_new:Npn \@@_if_empty:Tn #1#2
+\cs_new:Npn \@@_process_O_argument:nn #1#2
   {
-    \tl_if_empty:nTF {#2} 
+    \tl_if_empty:nTF {#2}
       { \tl_set:Nn \ProcessedArgument {#1} }
       { \tl_set:Nn \ProcessedArgument {#2} }
   }
-\cs_new:Npn \@@_scale_if_empty:nTn #1#2#3
+\cs_new:Npn \@@_process_S_argument:nn #1#2
   {
     \tl_set:Nx \ProcessedArgument
       {
         \fp_eval:n
           {
-            \tl_if_empty:nTF {#3} {#2} {#3}
+            \tl_if_empty:nTF {#2} { 1 } {#2}
             * \l_@@_global_scale_fp 
             * \use:c { l_@@_#1_scale_fp }
           }
       }
+    \@@_set_scale_abs_tl:n { \ProcessedArgument }
   }
 %    \end{macrocode}
 % \end{macro}
+%
+%% \begin{macro}{ \@@_if_empty:Tn , \@@_scale_if_empty:nTn }
+%%   This command is used in \Makro{DeclareDocumentCommand} to help
+%%   setting the options with \verb|>{ \@@_if_empty:Tn } O{1}|. If the
+%%   brackets are empty the value of the option is inserted. Example:
+%%   The option has been defined by 'O{none}', so the value inserted if
+%%   no brackets are given is 'none'. If empty brackets are given,
+%%   normally nothing is inserted (and not 'none'). Using this command
+%%   if empty brackets are given 'none' is inserted automatically. This
+%%   safes some error messages. \Makro{ProcessedArgument} is defined in
+%%   the manual of \Package{xparse}.
+%%    \begin{macrocode}
+%%\cs_new:Npn \@@_if_empty:Tn #1#2
+%%  {
+%%    \tl_if_empty:nTF {#2} 
+%%      { \tl_set:Nn \ProcessedArgument {#1} }
+%%      { \tl_set:Nn \ProcessedArgument {#2} }
+%%  }
+%%\cs_new:Npn \@@_scale_if_empty:nTn #1#2#3
+%%  {
+%%    \tl_set:Nx \ProcessedArgument
+%%      {
+%%        \fp_eval:n
+%%          {
+%%            \tl_if_empty:nTF {#3} {#2} {#3}
+%%            * \l_@@_global_scale_fp 
+%%            * \use:c { l_@@_#1_scale_fp }
+%%          }
+%%      }
+%%    \@@_set_scale_abs_tl:n { \ProcessedArgument }
+%%  }
+%%    \end{macrocode}
+%% \end{macro}
 %
 % \begin{macro}{ \@@_parse_command_options:n }
 %   This command helps setting the default value if empty brackets are
@@ -2310,6 +2344,7 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_parse_command_options:nn #1#2
   {
+    \tl_clear:N \l_@@_process_arguments_tl
     \clist_clear:N \l_@@_symbol_options_clist
     \tl_set:Nn \l_@@_symbol_name_tl {#1}
     \@@_parse_command_options:N #2
@@ -2329,9 +2364,13 @@ for the details of that license.
     \tl_if_eq:NNTF #1 O
       { \@@_parse_option_type_O:w #1 }
       { 
-        \tl_if_eq:NNTF #1 S
-          { \@@_parse_option_type_S:Vw \l_@@_symbol_name_tl #1 }
-          { \@@_parse_option_type:w #1 }
+        \tl_if_eq:NNTF #1 B
+          { \@@_parse_option_type_O:w #1 }
+          {
+            \tl_if_eq:NNTF #1 S
+              { \@@_parse_option_type_S:Vw \l_@@_symbol_name_tl #1 }
+              { \@@_parse_option_type:w #1 }
+          }
       }
   }
 %    \end{macrocode}
@@ -2360,7 +2399,7 @@ for the details of that license.
 \cs_new_protected:Npn \@@_parse_option_type_O:w #1#2
   {
     \clist_put_right:Nn \l_@@_symbol_options_clist 
-      { >{ \@@_if_empty:Tn {#2} } O{#2}  }
+      { >{ \@@_process_O_argument:nn {#2} } O{#2}  }
     \@@_parse_command_options:N
   }
 %    \end{macrocode}
@@ -2372,7 +2411,7 @@ for the details of that license.
 \cs_new_protected:Npn \@@_parse_option_type_S:nw #1#2
   {
     \clist_put_right:Nn \l_@@_symbol_options_clist 
-      { >{ \@@_scale_if_empty:nTn {#1} { 1 } } O{ 1 }  }
+      { >{ \@@_process_S_argument:nn {#1} } O{ 1 }  }
     \@@_parse_command_options:N
   }
 \cs_generate_variant:Nn \@@_parse_option_type_S:nw { Vw }
@@ -2384,7 +2423,7 @@ for the details of that license.
 %   Main Command to define the command of this package. It runs
 %   through the second input (argument specifications), stores the
 %   arguments in a \verb|\l_@@_symbol_options_clist| and adds
-%   \verb|>{ \@@_if_empty:Tn {#2} }| if an optional argument is
+%   \verb|>{ \@@_process_O_argument:nn {#2} }| if an optional argument is
 %   found. Yeah. I think the rest is self-explaining.
 %    \begin{macrocode}
 \cs_new:Npn \@@_Declare_Document_Command:nnn #1#2#3
@@ -2556,7 +2595,7 @@ for the details of that license.
 \cs_new:Npn \@@_Basic_Tree_on:nnnnn #1#2#3#4#5
   {
     \group_begin:
-      \@@_set_scale_abs_tl:n {#1}
+%      % \@@_set_scale_abs_tl:n {#1}
       \fp_compare:nNnT {#1} < { 0 } { \bool_set_true:N \l_@@_scale_negative_bool }
       \tl_set:Nn \l_tmpa_tl {#5}
       \tl_use:N \c_@@_tikz_set_tl
@@ -2601,7 +2640,7 @@ for the details of that license.
                 };
            }
       \end{tikzpicture}
-      \bool_set_false:N \l_@@_scale_negative_bool
+%      \bool_set_false:N \l_@@_scale_negative_bool
     \group_end:
   }
 %    \end{macrocode}
@@ -2632,7 +2671,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Kochtopf_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -2683,7 +2722,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Bratpfanne_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -2731,7 +2770,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Schneebesen_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -2771,7 +2810,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sieb_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -2896,7 +2935,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Purierstab_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -2930,7 +2969,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Dreizack_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -2964,7 +3003,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Backblech_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3000,7 +3039,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Ofen_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3035,7 +3074,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Pfanne_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3079,7 +3118,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Herd_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3114,7 +3153,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Saftpresse_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3159,7 +3198,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Schussel_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3192,7 +3231,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Schaler_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3226,7 +3265,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Reibe_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn
@@ -3260,7 +3299,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Flasche_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3275,8 +3314,6 @@ for the details of that license.
               ]
               \draw (0, 1.5) -- (0,1.2) -- (-0.15,0.8) -- (-0.15,0) --++ 
                 (0.6,0) --++ (0,0.8) --++ (-0.15,0.4) --++ (0,0.3) -- cycle;
-%               \draw (-0.15,0.8) -- (0.45,0.8);
-%               \draw (-0.15,0.3) -- (0.45,0.3);
               \draw[transparent] (-0.2,0) --++ (0.7,0);
             \end{tikzpicture}%
           }
@@ -3298,7 +3335,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Nudelholz_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3338,7 +3375,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Knoblauchpresse_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -3385,7 +3422,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sadey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.684ex * \l_@@_scale_abs_tl } 
@@ -3414,7 +3451,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSadey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3447,7 +3484,7 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#3) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3484,7 +3521,7 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#3) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { Changey-number-too-large } {#3}  }
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3534,7 +3571,7 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#5) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { cChangey-number-too-large } {#5}  }
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3595,7 +3632,7 @@ for the details of that license.
       {
         \fp_compare:nNnT { abs(#5) } > { 2 } 
           { \msg_error:nnn { tikzsymbols } { cChangey-number-too-large } {#5}  }
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3646,7 +3683,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Annoey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3676,7 +3713,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dAnnoey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3712,7 +3749,7 @@ for the details of that license.
       {
         \@@_provide_savebox_and_use:nn { Smiley_#1_#2 }
           {
-            \@@_set_scale_abs_tl:n {#1}
+%            % \@@_set_scale_abs_tl:n {#1}
             \bool_if:NTF \l_@@_if_opt_draft_bool
               {
                 \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3742,7 +3779,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSmiley_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3775,7 +3812,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Laughey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3805,7 +3842,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dLaughey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3843,7 +3880,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3871,7 +3908,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3903,7 +3940,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Winkey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3931,7 +3968,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { oldWinkey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -3959,7 +3996,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dWinkey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -3986,7 +4023,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { olddWinkey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -4018,7 +4055,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -4047,7 +4084,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -4079,7 +4116,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Xey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -4107,7 +4144,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dXey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -4141,7 +4178,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Innocey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4199,7 +4236,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dInnocey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4244,7 +4281,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Cooley_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -4276,7 +4313,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dCooley_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -4314,7 +4351,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Tongey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
@@ -4349,7 +4386,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dTongey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_squared_draftbox:n { 1.584ex * \l_@@_scale_abs_tl } 
@@ -4364,7 +4401,7 @@ for the details of that license.
               \shade[ball ~ color=black] (0.1,0.1) circle [radius=0.05];
               \shadedraw
                 [
-                  ball ~ color=#3, draw=black,line ~ width=0.058ex* \l_@@_scale_abs_tl , 
+                  ball ~ color=#3, draw=black, line ~ width=0.058ex* \l_@@_scale_abs_tl , 
                   rounded ~ corners=0.12ex* \l_@@_scale_abs_tl 
                 ] 
                  (0,-0.09) -- (0.05,-0.2) -- (0.16,-0.23) -- (0.2,-0.15) -- (0.19,-0.03);
@@ -4388,7 +4425,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Nursey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+%        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4425,7 +4462,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dNursey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4471,7 +4508,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Vomey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4515,7 +4552,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dVomey_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4564,7 +4601,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Walley_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4611,7 +4648,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { rWalley_#1_#2_#3 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4649,7 +4686,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dWalley_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4691,7 +4728,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { drWalley_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4821,7 +4858,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Cat_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4850,7 +4887,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { SchrodingersCat_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4887,7 +4924,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Ninja_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -4948,7 +4985,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dNinja_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5012,7 +5049,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Sleepey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5073,7 +5110,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dSleepey_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5128,6 +5165,41 @@ for the details of that license.
 %\end{macro}
 %
 %
+% \begin{macro}{ \Maskey }
+% It is sleeping.
+%    \begin{macrocode}
+\@@_Declare_Document_Command:nnn { Maskey } { S O{none} O{none} }
+  {
+    \@@_provide_savebox_and_use:nn { Maskey_#1_#2_#3 }
+      {
+        % \@@_set_scale_abs_tl:n {#1}
+        \bool_if:NTF \l_@@_if_opt_draft_bool
+          {
+            \@@_create_squared_draftbox:n { 1.704ex * \l_@@_scale_abs_tl } 
+          }{
+            \begin{tikzpicture}
+              [
+                /@@, 
+                x=2.4ex, y=2.4ex, line ~ width=0.12ex*\l_@@_scale_abs_tl , scale=\l_@@_scale_abs_tl
+              ]
+                \filldraw[fill=#2] (0,0) circle [radius=0.33];
+                \fill (-0.1,0.1) circle [radius=0.05];
+                \fill (0.1,0.1) circle [radius=0.05];
+                \filldraw[fill=#3] (-0.18,-0.19)  .. controls (-0.08,-0.23) and (0.08,-0.23) .. (0.18,-0.19)
+                  .. controls (0.22,-0.15) and (0.24,-0.05) .. (0.24,-0.00)
+                  .. controls (0.1,0.03) and (-0.1,0.03) .. (-0.24,-0.00)
+                  .. controls (-0.24,-0.05) and (-0.22,-0.15) .. cycle
+                ;
+                \draw (0.24,-0.0) -- (0.33,0.06);
+                \draw (-0.24,-0.0) -- (-0.33,0.06);
+                \draw (-0.18,-0.19) -- (-0.25,-0.24);
+                \draw (0.18,-0.19) -- (0.25,-0.24);
+              \end{tikzpicture}%
+          }
+      }
+  }
+%    \end{macrocode}
+%\end{macro}
 %
 % \begin{macro}{ \NiceReapey }
 % I wasn't able to create a good Grim Reaper. Well.
@@ -5136,7 +5208,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { NiceReapey_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5222,7 +5294,7 @@ for the details of that license.
     \@@_provide_savebox_and_use:nn 
       { Strichmaxerl_#1_#2_#3_#4_#5 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
 %    \end{macrocode}
@@ -5381,30 +5453,33 @@ for the details of that license.
 %
 %\begin{macro}{ \Heart }
 %    \begin{macrocode}
+\bool_if:NF \g_@@_if_opt_marvosym_bool
+  {
 \@@_Declare_Document_Command:nnn { Heart } { S O{none} }
   {
     \@@_provide_savebox_and_use:nn { Heart_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
-              { 1.93ex * \l_@@_scale_abs_tl } 
-              { 1.93ex * \l_@@_scale_abs_tl } 
+              { 1.97ex * \l_@@_scale_abs_tl } 
+              { 1.97ex * \l_@@_scale_abs_tl } 
           }{
             \begin{tikzpicture}
               [
                 /@@ ,
-                x=0.185ex,y=0.185ex, scale=#1, line ~ width=0.08ex* \l_@@_scale_abs_tl 
+                x=0.185ex,y=0.185ex, scale=#1, line ~ width=0.12ex* \l_@@_scale_abs_tl 
               ]
-              \draw[fill=#2] (0,0) .. controls (-0.2,4) and (5,4) .. (5,0)
+              \filldraw[fill=#2] (0,-0.1) .. controls (-0.1,4) and (5,4) .. (5,0)
                 .. controls (5,-3) and (1,-6) .. (0,-6) 
                 .. controls (-1,-6) and (-5,-3) .. (-5,0) 
-                .. controls (-5,4) and (0.2,4) .. cycle
+                .. controls (-5,4) and (0.1,4) .. cycle
                 ;
             \end{tikzpicture}%
           }
       }
+  }
   }
 %    \end{macrocode}
 %\end{macro}
@@ -5414,7 +5489,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { dHeart_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5426,7 +5501,7 @@ for the details of that license.
                 /@@ ,
                 x=0.185ex,y=0.185ex, scale=#1 
               ]
-              \draw[ball color=#2] (0,0)     
+              \fill[ball ~ color=#2] (0,0)     
                 .. controls (-0.62,4.2) and (5.2,4.2) .. (5.2,0)
                 .. controls (5.2,-3.2) and (1.2,-6.2) .. (0,-6.2) 
                 .. controls (-1.2,-6.2) and (-5.2,-3.2) .. (-5.2,0) 
@@ -5446,7 +5521,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { HeartBroken_#1_#2 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5478,7 +5553,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Candle_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5516,7 +5591,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Fire_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5573,7 +5648,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Coffeecup_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5616,7 +5691,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Chair_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5655,7 +5730,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Bed_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5692,7 +5767,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Tribar_#1_#2_#3_#4 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5736,7 +5811,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Moai_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \fp_compare:nNnTF { \l_@@_scale_abs_tl } < { 2 }
           {
             \dim_set:Nn \l_@@_Moai_thickness_dim { 0.05ex }
@@ -5797,7 +5872,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { Snowman_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
@@ -5900,7 +5975,7 @@ for the details of that license.
   {
     \@@_provide_savebox_and_use:nn { WorstTree_#1 }
       {
-        \@@_set_scale_abs_tl:n {#1}
+        % \@@_set_scale_abs_tl:n {#1}
         \bool_if:NTF \l_@@_if_opt_draft_bool
           {
             \@@_create_draftbox:nn 
