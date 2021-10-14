@@ -14,13 +14,14 @@ tikzsymbols
 Overview
 --------
 
-The *tikzsymbols* package v4.10c (2019/02/08) contains symbols created using tikz.
+The *tikzsymbols* package v4.12 (2021/10/14) contains symbols created using tikz.
 
 This package provides: 
  * various emoticons
  * cooking symbols
  * trees
  * other symbols (e.g. Penrose-Triangle (Triban), chair, coffeecup, etc.)
+ * some tools to create your own tikzsymbol
 
 FAQ
 -------
@@ -89,6 +90,12 @@ Changes
 * v4.10a Bugfix: Forgot to remove colors from `\Strichmaxerl`
 * v4.10b Bugfix: Replace deprecated `\c_zero` by `0`
 * v4.10c Bugfix: Added dimension to `xshift` and `yshift` for `\Fire`, `\Candle` and `\(d)Laughey`
+* v4.12
+  - New (public) command to define symbols: `\tikzsymbolsdefinesymbol`
+  - Some other auxiliary functions `\tikzsymbolsprovideandusesavebox`, `\tikzsymbolssetscaleabs`, `\tikzsymbolsscaleabs`.
+  - Continuing with `\tikzsymbols_create_draftbox:nn`, `\tikzsymbols_create_squared_draftbox:n` and `\l_tikzsymbols_if_opt_draft_bool`
+  - New symbols: `\Heart` and `\dHeart`
+  - New symbol: `\Maskey`
   
 Requirements 
 ------------
@@ -517,7 +524,7 @@ for the details of that license.
 % For example:
 %
 % \begin{center}
-%   \Makro{usepackage[prefix=tikzsym]\{tikzsymbols\}}
+%   \Makro{usepackage}[prefix=tikzsym]\{tikzsymbols\}
 % \end{center}
 %
 % defines \Makro{Smiley} as \Makro{tikzsymSmiley}, \Makro{Kochtopf} as
@@ -541,15 +548,15 @@ for the details of that license.
 %
 %
 %   \begin{myexample}
-%   \Makro{tikzsymbolsuse\{Smiley\}[2]} \tikzsymbolsuse{Smiley}[2]
 %
-%   \Makro{tikzsymbolsuse\{BasicTree\}[1.2]\{black\}\{red!50!black\}\{red\}\{leaf\}}
-%   \tikzsymbolsuse{BasicTree}[1.2]{black}{red!50!black}{red}{leaf}
+%  \CreateExample{tikzsymbolsuse}{{Smiley}[2]}
 %
+%  \CreateExample{tikzsymbolsuse}{{BasicTree}[1.2]{black}{red!50!black}{red}{leaf}}
 %
-%   \Makro{tikzsymbolsuse\{Ofen\}} \tikzsymbolsuse{Ofen}
+%  \CreateExample{tikzsymbolsuse}{{Ofen}}
 %
-%   \Makro{tikzsymbolsuse\{Fire\}[-1.3]} \tikzsymbolsuse{Fire}[-1.3]
+%  \CreateExample{tikzsymbolsuse}{{Fire}[-1.3]}
+%
 %
 %   etc.
 %   \end{myexample}
@@ -1298,9 +1305,10 @@ for the details of that license.
 %
 % \section{Create your own tikzsymbol}
 %
-% Suppose you have your own symbol, created in a tikzpicture. This package offers you some commands
+% Suppose you have your own symbol, created in a tikzpicture (or something else). 
+% This package offers some commands
 % with whom you can create your own tikzsymbol 
-% (including the benefits of using \opt{symbol-scale} and \opt{global-scale}).
+% (including the benefits of using \opt{symbol-scale}, \opt{global-scale}, etc.).
 %
 % \subsection{tikzsymbols style}
 %
@@ -1311,7 +1319,8 @@ for the details of that license.
 % \pkg{tikzsymbols} defines it own \pkg{tikz}-style. A public version of it is available
 % \emph{via} \emph{/tikzsymbolsstyle}.
 %
-% (Note: To change the internal style version use the option \Option{append-style}.)
+% (Note: To change the internal style version use the option \Option{append-style}.
+% Everything added to the internal version is also added to the public version.)
 % \end{function}
 %
 %
@@ -1320,18 +1329,21 @@ for the details of that license.
 %    \begin{syntax}
 %      \cs{tikzsymbolsdefinesymbol} \marg{symbol-name} \marg{argument-types} \marg{code}
 %    \end{syntax}
-%    This is the main command to define your symbol. \meta{symbol-name} is the name (without backslash)
-%    of your symbol and to-be command. 
-%   \meta{code} is the place to put your |tikzpicture| inside.
-%    \meta{argument-types} uses a similar of \pkg{xparse}'s system with some changes
-%    and only three argument types available.
+%    This is the main command to define your symbol. 
+%    \meta{symbol-name} is the name 
+%    of your symbol (without backslash) and to-be command. 
+%   \meta{code} is the place to put your |tikzpicture|.
+%    \meta{argument-types} is somewhat similar to \pkg{xparse}'s 
+%    system with some changes
+%    and only three argument types available:
 %    \begin{itemize}
 %    \item |m| is for mandatory arguments (given in curly braces). 
-%    \item |B{<default>}| is similar to |O{<default>}|, an optional argument that inserts |<default>| 
-%    if the optional argument (in square-brackets)
+%    \item |B{<default>}| specifies an optional argument that inserts |<default>| 
+%    if the optional argument (given in square-brackets)
 %    is not given \emph{or empty}.
-%    \item |S| is the argument for scaling the symbol; the argument \oarg{scale} is created by it.
-%    It creates an optional argument. The absolute value of the scaling can be accessed by \cs{tikzsymbolssetscaleabs}.
+%    \item |S| (for |S|cale) is the argument for scaling the symbol; 
+%      the optional argument \oarg{scale} for each symbol is created by it.
+%      The absolute value of the scaling can be accessed by \cs{tikzsymbolsscaleabs}.
 %    \end{itemize}
 % \end{function}
 % 
@@ -1357,15 +1369,15 @@ for the details of that license.
 %          \fill (0.72,0.3) circle [radius=0.02];
 %        \end{tikzpicture}%
 %
-% Now you want three different parts to be filles with color: The house itself, the roof
-% and the door, let's say in the colors orange, red and teal:
+% Now you want three different parts to be filled with color: The house itself, the roof
+% and the door, let's  use orange, red and teal:
 %
 % \begin{verbatim}
 %    \begin{tikzpicture}[/tikzsymbolsstyle]
-%      \fill[fill=none] (0,1) -- (0.5,1.5) -- (1,1);
-%      \filldraw[fill=none] (0,0) rectangle (1,1);
+%      \fill[fill=red] (0,1) -- (0.5,1.5) -- (1,1);
+%      \filldraw[fill=orange] (0,0) rectangle (1,1);
 %      \draw (-0.11,0.9) -- (0.5,1.5) -- (1.11,0.9);
-%      \draw[fill=none] (0.5,0)  rectangle (0.8,0.6);
+%      \draw[fill=teal] (0.5,0)  rectangle (0.8,0.6);
 %      \fill (0.72,0.3) circle [radius=0.02];
 %    \end{tikzpicture}%
 % \end{verbatim}
@@ -1378,7 +1390,7 @@ for the details of that license.
 %          \fill (0.72,0.3) circle [radius=0.02];
 %        \end{tikzpicture}%
 % Satisfied with this you put it into \cs{tikzsymbolsdefinesymbol} and make it to
-% have three optional arguments (using the |B| argument) to change the colors. 
+% have three optional arguments (using the |B| type) to change the colors. 
 % The default colors themselves are put into the argument of |B|:
 %  \begin{verbatim}
 %    \tikzsymbolsdefinesymbol {myHouse} { B{orange} B{red} B{teal} }
@@ -1407,12 +1419,12 @@ for the details of that license.
 % \CreateExample{myHouse}{[blue]}
 % \CreateExample{myHouse}{[][][green]}
 %
-% Although it looks good, the ability to scale it would be nice. Furthermore, if it were
-% a bit smaller by default would be useful. Scaling with the text size
-% and having a thicker line width would also be nice.
-% Looking at the  \pkg{tikz} manual we can get the options necessary: |scale|, |line width|
-% |x| and |y|. Let's start with |x| and |y| and make the house around the same size
-% as a big letter. Let's start with |x=1ex, y=1ex|
+% Although it looks good, you also want the ability to scale it. 
+% Furthermore, you want the symbol to be a bit smaller by default. Scaling with the text size
+% and having a thicker line width would also be not bad.
+% Looking at the  \pkg{tikz} manual we can get the options necessary: |scale|, |line width|,
+% |x| and |y|. Let's start with |x| and |y| to make the house around the same size
+% as an uppercase letter. Let's start with |x=1ex, y=1ex|
 %  \begin{verbatim}
 %    \tikzsymbolsdefinesymbol {myHouse} { B{orange} B{red} B{teal} }
 %      {%
@@ -1437,7 +1449,8 @@ for the details of that license.
 %      }
 % A \myHouse. Well a bit small maybe, but around the size of the letter \enquote{A}.
 % Increasing |x| and |y| to |1.1ex| should be good. Now add the scaling option |S|
-% to the command. This will be the new |#1| so the others should be increased by 1 each.
+% to the command, which will be the new first argument. As it will be the new |#1|, 
+% the other arguments should be increased by 1 each.
 %  \begin{verbatim}
 %    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
 %      {%
@@ -1460,9 +1473,11 @@ for the details of that license.
 %          \fill (0.75,0.25) circle [radius=0.02];
 %        \end{tikzpicture}^^A
 %     }
-% Now we can scale the symbol: \CreateExample{myHouse}{[2]} \CreateExample{myHouse}{[5][][][green]}.
+% Now we can scale the symbol: \CreateExample{myHouse}{[2]} \CreateExample{myHouse}{[5][][][green]}  \CreateExample{myHouse}{[][][][green]}. 
+% { \CreateExample{tikzsymbolsset}{{symbol-scale={myHouse=2}}}\CreateExample{myHouse}{}}
 %
-% Something you may not note now, but becomes apparent once you increase the symbol
+% Something you may not notice currently, 
+% but becomes apparent once you increase the symbol
 % to a large scale is that the line width does not scale with the symbol. The line width
 % can be set \emph{via} |line width|. For the border of the emoticons I generally use 
 % a line width  of |0.12ex|. Multiplying it with the scaling allows the symbol to keep
@@ -1521,15 +1536,15 @@ for the details of that license.
 %      }
 % A \myHouse. \CreateExample{myHouse}{[2]} \CreateExample{myHouse}{[5]}\CreateExample{myHouse}{[10]} \CreateExample{myHouse}{[-10]}
 %
-% Ups, looks like for negative scaling the line width does not work quite well.
-% For this reason \cs{tikzsymbolssetscaleabs} exists, whoch stores the absolute
-% value of the scaling. Replacing |#1| with \cs{tikzsymbolssetscaleabs} for the line widths
+% Well, looks like for negative scaling the line width does not feel so good.
+% For this reason \cs{tikzsymbolsscaleabs} exists, which stores the absolute
+% value of the scaling. Replacing |#1| with \cs{tikzsymbolsscaleabs} for the line widths
 % yields:
 %  \begin{verbatim}
 %    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
 %      {%
 %        \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1,
-%             line width=0.07ex*\tikzsymbolssetscaleabs]
+%             line width=0.07ex*\tikzsymbolsscaleabs]
 %          \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
 %          \filldraw[fill=#2] (0,0) rectangle (1,1);
 %          \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
@@ -1552,27 +1567,32 @@ for the details of that license.
 %
 % Now it works.
 %
-% \subsection{Using usebox}
+% \subsection{Using a box}
 %
-% Now in order to not create the symbol everytime one can use the following command
-% create a box.
+%^^A Now, in order to not draw the symbol every time from scratch it is used,
+% If your symbol is a more complex, using it often may slow down the compilation
+% process. In order to mitigate this we can store the symbol in a box and reuse the
+% box instead of redrawing the symbol every time. To store the symbol, one can use
+% the following command.
+% 
 % \begin{function}{\tikzsymbolsprovideandusesavebox}
 %  \begin{syntax}
 %    \cs{tikzsymbolsprovideandusesavebox}\marg{box-name}\marg{box-code}
 %  \end{syntax}
-% \meta{box-name} should be an unique name and should include the name of
-% the symbol and the arguments it can take (and seperate them by a sign) 
-% (see example below). Everything
-% inside \meta{box-code} is to be used if the box is used.
+%
+% The name of the box \meta{box-name} (without backslash) should contain the name
+% of the symbol and its arguments (separated by a sign). 
+% Everything inside \meta{box-code} is stored in the box and repated if used again.
 % \end{function}
 %
 % \paragraph{Example}
 %  \begin{verbatim}
 %    \tikzsymbolsdefinesymbol {myHouse} { S B{orange} B{red} B{teal} }
 %      {%
+%        % Putting every argument in the name is important!
 %        \tikzsymbolsprovideandusesavebox {myHouse;#1;#2;#3;#4} {%
 %          \begin{tikzpicture}[/tikzsymbolsstyle, x=1.1ex, y=1.1ex, scale=#1,
-%               line width=0.07ex*\tikzsymbolssetscaleabs]
+%               line width=0.07ex*\tikzsymbolsscaleabs]
 %            \fill[fill=#3] (0,1) -- (0.5,1.5) -- (1,1);
 %            \filldraw[fill=#2] (0,0) rectangle (1,1);
 %            \draw (-0.12,0.92) -- (0.5,1.5) -- (1.12,0.92);
@@ -1596,8 +1616,11 @@ for the details of that license.
 %        \end{tikzpicture}^^A
 %      }}
 %
-% Now it is put in a box. If the same conditions are met as the first time the symbol
-% was used, a box is used isntead of creating the symbol a-new. \textbf{Keep in mind:}
+% Now the first time the symbol is used it is stored in a box. 
+%^^A  If the same conditions are met as the first time the symbol
+%^^A was used, a box is used instead of creating the symbol a-new. 
+% Using the symbol again in the same conditions resues the content of the box.
+% \textbf{Keep in mind:}
 % It is important to give \cs{tikzsymbolsprovideandusesavebox} \emph{all} arguments
 % your symbol has. If you add or remove one option you need to update the 
 % \meta{box-name} accordingly.
@@ -1609,24 +1632,34 @@ for the details of that license.
 %
 % \subsection{Some other commands and variable(s)}
 % Here some other commands which may be useful
-% \begin{function}{\tikzsymbolssetscaleabs, \tikzsymbolscreatedraftbox,\tikzsymbolscreatesquareddraftbox, \l_tikzsymbols_if_opt_draft_bool}
+
+% \begin{function}{\tikzsymbolssetscaleabs, \tikzsymbolsscaleabs}
 %    \begin{syntax}
-%      \cs{tikzsymbolssetscaleabs}\marg{scale-dimension}
-%      \cs{tikzsymbolscreatedraftbox}\marg{x-dimension}\marg{y-dimension}
-%      \cs{tikzsymbolscreatesquareddraftbox}\marg{dimension}
+%      \cs{tikzsymbolssetscaleabs}\marg{dimension}
+%      \cs{tikzsymbolsscaleabs}
+%    \end{syntax}
+%
+% \cs{tikzsymbolssetscaleabs} sets the value of |\tikzsymbolsscaleabs| equal to
+% the absolute value of \meta{dimension}.
+% \end{function}
+%
+% Other public functions and variables which need to be used inside the 
+% |\ExplSyntaxOn| and |\ExplSyntaxOff| environment.
+% \begin{function}{\tikzsymbols_create_draftbox:nn, \tikzsymbols_create_squared_draftbox:n, \l_tikzsymbols_if_opt_draft_bool}
+%    \begin{syntax}
+%      \cs{tikzsymbols_create_draftbox:nn} \marg{x-dim} \marg{y-dim}
+%      \cs{tikzsymbols_create_squared_draftbox:n} \marg{dimension}
 %      \cs{l_tikzsymbols_if_opt_draft_bool}
 %    \end{syntax}
-% \cs{tikzsymbolssetscaleabs} set the value of |\tikzsymbolsscaleabs| equal to
-% the absolute value of \meta{scale-dimension}.
 %
-% \cs{tikzsymbolscreatedraftbox} creates the boxes used in draft-mode 
-% (option \Option{draft=true}) with dimension \meta{x-dimension} and \meta{y-dimension}.
+% \cs{tikzsymbols_create_draftbox:nn} creates draft-box 
+% (option \Option{draft=true}) with length \meta{x-dim} and height \meta{y-dim}.
 %
-%\cs{tikzsymbolscreatesquareddraftbox} does the same thing, it takes just one argument
-% and creates a square.
+%\cs{tikzsymbols_create_squared_draftbox:n} does the same thing, 
+% it  just takes one argument and creates a square.
 %
-% \cs{l_tikzsymbols_if_opt_draft_bool} needs to be used inside the 
-% |\ExplSyntaxOn| and |\ExplSyntaxOff| environment. It is a public variable that stores
+% \cs{l_tikzsymbols_if_opt_draft_bool}  
+% is a public variable that stores
 % the value of the \Option{draft} option.
 % \end{function}
 %
@@ -1862,12 +1895,17 @@ for the details of that license.
 % \changes{v4.10b}{2019/02/07}{Replaced \cs{c_zero} by \texttt{0}.}
 % \changes{v4.10c}{2019/02/08}{Fixed \texttt{xshift} and \texttt{yshift} by adding dimensions. Fixes \cs{Fire}, \cs{Candle} and \cs{(d)Laughey}.}
 %
+% \changes{v4.12}{2021/10/14}{New commands: \cs{tikzsymbolsdefinesymbol}, \cs{tikzsymbolsprovideandusesavebox}, \cs{tikzsymbolssetscaleabs}, \cs{tikzsymbolsscaleabs}, \cs{tikzsymbols_create_draftbox:nn}, \cs{tikzsymbols_create_squared_draftbox:n} and \cs{l_tikzsymbols_if_opt_draft_bool}}
+% \changes{v4.12}{2021/10/14}{New symbols: \cs{Heart} and \cs{dHeart}.}
+% \changes{v4.12}{2021/10/14}{New symbol: \cs{Maskey} }
+%
+%
 % The first lines are always the same: What do I need, what is the
 % package named.
 %    \begin{macrocode} 
 \@ifpackageloaded{xparse}{}{\RequirePackage{xparse}}
 \@ifpackageloaded{expl3}{}{\RequirePackage{expl3}}
-\@ifpackagelater{expl3}{2018/02/21}
+\@ifpackagelater{expl3}{2021/08/27}
   {}
   {%
     \PackageError { tikzsymbols }{ Support~package~expl3~too~old }
@@ -1880,8 +1918,8 @@ for the details of that license.
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2019/02/08}
-  {4.10c} 
+  {2021/10/14}
+  {4.12} 
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
@@ -1903,6 +1941,7 @@ for the details of that license.
 %   \g_@@_if_opt_tree_print_bool ,
 %   \l_@@_if_opt_draft_bool ,
 %   \g_@@_if_opt_marvosym_bool , 
+%   \l_@@_argument_parser_error_bool ,
 %  }
 % Booleans we later need, \cs{l_@@_if_scale_negative_bool} is set true
 % in symbols which need some extra code if the scaling is negative
@@ -1914,6 +1953,7 @@ for the details of that license.
 \bool_new:N \l_@@_if_opt_draft_bool
 \bool_new:N \l_tikzsymbols_if_opt_draft_bool
 \bool_new:N \g_@@_if_opt_marvosym_bool 
+\bool_new:N \l_@@_argument_parser_error_bool
 %    \end{macrocode}
 % \end{macro}
 %  
@@ -2186,7 +2226,7 @@ for the details of that license.
 \msg_new:nnnn { tikzsymbols } { SchrodingersCat  } 
   {  
     \SchrodingersCat\ only \ accepts \ '-1' \ (dead), \ '0'\ (unknown)\ or \ '1'\
-    (alive) \ for \ its \ mandatroy \ argument. \ You \ have \ given \ '#1'.
+    (alive) \ for \ its \ mandatory \ argument. \ You \ have \ given \ '#1'.
   }{
     Your \ input \ number \ is \ not \ allowed.
     \msg_see_documentation_text:n { tikzsymbols } 
@@ -2205,6 +2245,34 @@ for the details of that license.
     is \ '#1'.
   }{
     I \ apologize \ for \ that.
+    \msg_see_documentation_text:n { tikzsymbols } 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ unknown-argument-type  }
+% \changes{v4.05}{2021/09/29}{New}
+%    \begin{macrocode}
+\msg_new:nnnn { tikzsymbols } { unknown-argument-type  } 
+  {  
+    The \ argument \ type ~ '#1' ~ is ~ not ~ known ~ by ~ this ~ 
+    package. ~ Perhaps ~ you ~ misspelled ~ it? ~ The  ~ allowed  ~ 
+    argument ~ types ~ are ~ 'm',  ~ 'B'  ~ and ~ 'S'. 
+  }{
+    You ~ cannot ~ use ~ '#1' ~ as  ~ an ~ argument ~ type.
+    \msg_see_documentation_text:n { tikzsymbols } 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ unknown-argument-type  }
+% \changes{v4.05}{2021/09/29}{New}
+%    \begin{macrocode}
+\msg_new:nnnn { tikzsymbols } { bad-argument-spec }
+  { Bad ~ argument ~ specification ~ '#2' ~ for ~ symbol ~ #1 . }
+  {
+    The ~ argument ~ specification~provided~was~not~valid:~
+    one~or~more~mandatory~pieces~of~information~were~missing.
     \msg_see_documentation_text:n { tikzsymbols } 
   }
 %    \end{macrocode}
@@ -2274,8 +2342,8 @@ for the details of that license.
       {
         \fp_set:cn { l_@@_ \l_tmpa_tl _scale_fp } {#2}
       }{
-        \fp_if_exist:cTF { l_@@_#1_scale_fp }
-          { \fp_set:cn { l_@@_#1_scale_fp } {#2} }
+        \fp_if_exist:cTF { l_@@_ #1 _scale_fp }
+          { \fp_set:cn { l_@@_ #1 _scale_fp } {#2} }
           { \msg_error:nnn { tikzsymbols} { symbol-name-unknown } {#1} }
       }
   }
@@ -2419,6 +2487,7 @@ for the details of that license.
 %
 % \begin{macro}{ final }
 %   Its the final option, deddepi, deedidbtutp. Nothing special.
+%  Also set the public version of this bool.
 %    \begin{macrocode}
     final .choices:nn =
       { true , false }
@@ -2438,7 +2507,8 @@ for the details of that license.
 %   This option can be set to three values: true, false and absolute. I
 %   decided that \Option{draft=absolute} is obsolete and that
 %   \Option{draft=true} replaces this option. Of course, the 'absolute' is
-%   still available, but gives a warning when used.
+%   still available, but gives a warning when used. Also sets the public version of
+%   this bool.
 %    \begin{macrocode}
     draft .choices:nn =
       { true , false , absolute }
@@ -2628,18 +2698,22 @@ for the details of that license.
 % be able to write \Makro{Command}[] (note the empty brackets, you
 % don't need to insert a '1' inside, it is done automatically).
 %
-% \begin{macro}{ \@@_process_O_argument:n , \@@_process_S_argument:nn  }
-%   This command is used in \Makro{DeclareDocumentCommand} to help
-%   setting the options with \verb|>{ \@@_process_O_argument:nn } O{1}|. If the
+% \begin{macro}{ \@@_process_B_argument:n , \@@_process_S_argument:nn  }
+%   These commands are used in \Makro{DeclareDocumentCommand} to help
+%   setting the options with \verb|>{ \@@_process_B_argument:nn {#1} } O{#1}|
+%   and |>{ \@@_process_S_argument:nn {<symbol_name>} } O{1}|. If the
 %   brackets are empty the value of the option is inserted. Example:
-%   The option has been defined by 'O{none}', so the value inserted if
+%   The option has been defined by 'B{none}', so the value inserted if
 %   no brackets are given is 'none'. If empty brackets are given,
 %   normally nothing is inserted (and not 'none'). Using this command
 %   if empty brackets are given 'none' is inserted automatically. This
-%   safes some error messages. \Makro{ProcessedArgument} is defined in
+%   safes some error messages. The same goes for |\@@_process_S_argument:nn|,
+%   which also calculates the current scale of the symbol 
+%   (taking symbol-scaling and global-scaling into account).
+%   \Makro{ProcessedArgument} is defined in
 %   the manual of \Package{xparse}.
 %    \begin{macrocode}
-\cs_new:Npn \@@_process_O_argument:nn #1#2
+\cs_new:Npn \@@_process_B_argument:nn #1#2
   {
     \tl_if_empty:nTF {#2}
       { \tl_set:Nn \ProcessedArgument {#1} }
@@ -2661,40 +2735,7 @@ for the details of that license.
 %    \end{macrocode}
 % \end{macro}
 %
-%% \begin{macro}{ \@@_if_empty:Tn , \@@_scale_if_empty:nTn }
-%%   This command is used in \Makro{DeclareDocumentCommand} to help
-%%   setting the options with \verb|>{ \@@_if_empty:Tn } O{1}|. If the
-%%   brackets are empty the value of the option is inserted. Example:
-%%   The option has been defined by 'O{none}', so the value inserted if
-%%   no brackets are given is 'none'. If empty brackets are given,
-%%   normally nothing is inserted (and not 'none'). Using this command
-%%   if empty brackets are given 'none' is inserted automatically. This
-%%   safes some error messages. \Makro{ProcessedArgument} is defined in
-%%   the manual of \Package{xparse}.
-%%    \begin{macrocode}
-%%\cs_new:Npn \@@_if_empty:Tn #1#2
-%%  {
-%%    \tl_if_empty:nTF {#2} 
-%%      { \tl_set:Nn \ProcessedArgument {#1} }
-%%      { \tl_set:Nn \ProcessedArgument {#2} }
-%%  }
-%%\cs_new:Npn \@@_scale_if_empty:nTn #1#2#3
-%%  {
-%%    \tl_set:Nx \ProcessedArgument
-%%      {
-%%        \fp_eval:n
-%%          {
-%%            \tl_if_empty:nTF {#3} {#2} {#3}
-%%            * \l_@@_global_scale_fp 
-%%            * \use:c { l_@@_#1_scale_fp }
-%%          }
-%%      }
-%%    \@@_set_scale_abs_tl:n { \ProcessedArgument }
-%%  }
-%%    \end{macrocode}
-%% \end{macro}
-%
-% \begin{macro}{ \@@_parse_command_options:n }
+% \begin{macro}{ \@@_parse_command_options:nn }
 %   This command helps setting the default value if empty brackets are
 %   given. The code is copied from the \Package{xparse} package and
 %   edited to fit my purpose. This command gets the input from the
@@ -2702,77 +2743,101 @@ for the details of that license.
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_parse_command_options:nn #1#2
   {
-    \tl_clear:N \l_@@_process_arguments_tl
+    \bool_set_false:N \l_@@_argument_parser_error_bool
     \clist_clear:N \l_@@_symbol_options_clist
     \tl_set:Nn \l_@@_symbol_name_tl {#1}
-    \@@_parse_command_options:N #2
+    \@@_parse_command_options_parse:n #2
       \q_recursion_tail \q_recursion_tail \q_recursion_tail \q_recursion_stop
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{ \@@_parse_command_options:N }
+% \begin{macro}{ \@@_parse_command_options_parse:n }
 %   This command (also copied) goes through the option-definitions (in
 %   my case only 'm' and 'O\{...\}') character for character. If 'O'
 %   is found a (somehow) special command is used. 
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_parse_command_options:N #1
+\cs_new_protected:Npn \@@_parse_command_options_parse:n #1
   {
-    \quark_if_recursion_tail_stop:N #1
-    \tl_if_eq:NNTF #1 O
-      { \@@_parse_option_type_O:w #1 }
-      { 
-        \tl_if_eq:NNTF #1 B
-          { \@@_parse_option_type_O:w #1 }
-          {
-            \tl_if_eq:NNTF #1 S
-              { \@@_parse_option_type_S:Vw \l_@@_symbol_name_tl #1 }
-              { \@@_parse_option_type:w #1 }
-          }
-      }
-  }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{ \@@_parse_option_type:w }
-%   Just saves the input in a clist. Does nothing more.
-%    \begin{macrocode}
-\cs_new_protected:Npn \@@_parse_option_type:w #1
-  {
-    \str_case:nnF {#1}
+    \quark_if_recursion_tail_stop:n {#1}
+    \cs_if_exist_use:cF { @@_check_option_type_ \tl_to_str:n {#1} : }
       {
-        { m } { }
+        \msg_error:nnn { tikzsymbols } { unknown-argument-type } {#1}
+        \bool_set_true:N \l_@@_argument_parser_error_bool
+        \use_none_delimit_by_q_recursion_stop:w
       }
-      { \msg_error:nnn { tikzsymbols } { internal-message } { internal-parsing } }
-    \clist_put_right:Nn \l_@@_symbol_options_clist {#1}
-    \@@_parse_command_options:N
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{ \@@_parse_option_type_O:w }
-%   Used if an optional argument is found. Saves the default value of
-%   the optional argument in \Makro{@@_if_empty:nn}. 
+% \begin{macro} { \@@_check_option_type_m: , \@@_check_option_type_B: , \@@_check_option_type_S: }
+% Some wrapper macros. They are needed to check if the argument type is valid.
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_parse_option_type_O:w #1#2
+\cs_new:Npn \@@_check_option_type_m:
+  { 
+    \int_incr:c { l_@@_ \l_@@_symbol_name_tl _nr_arguments_int }
+    \@@_parse_option_type_m: 
+  }
+\cs_new:Npn \@@_check_option_type_B:
+  { 
+    \int_incr:c { l_@@_ \l_@@_symbol_name_tl _nr_arguments_int }
+    \@@_parse_option_type_B:n 
+  }
+\cs_new:Npn \@@_check_option_type_S:
+  { 
+    \int_incr:c { l_@@_ \l_@@_symbol_name_tl _nr_arguments_int }
+    \@@_parse_option_type_S:V \l_@@_symbol_name_tl 
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ \@@_parse_option_type_m: }
+%   Just saves \enquote{m} in a clist. Does nothing more.
+%    \begin{macrocode}
+\cs_new:Npn \@@_parse_option_type_m: 
   {
+    \clist_put_right:Nn \l_@@_symbol_options_clist { m }
+    \@@_parse_command_options_parse:n
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{ \@@_parse_option_type_B:n }
+%   Used if the \enquote{B} argument is found. Saves the default value of
+%   the argument in \Makro{@@_process_B_argument:nn}. 
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_parse_option_type_B:n #1
+  {
+    \quark_if_recursion_tail_stop_do:nn {#1}
+      {
+        \msg_error:nnxx { tikzsymbols } { bad-argument-spec } 
+          { \l_@@_symbol_name_tl }{ \tl_to_str:n {#1} }
+        \bool_set_true:N \l_@@_argument_parser_error_bool
+        \use_none_delimit_by_q_recursion_stop:w
+      }
     \clist_put_right:Nn \l_@@_symbol_options_clist 
-      { >{ \@@_process_O_argument:nn {#2} } O{#2}  }
-    \@@_parse_command_options:N
+      { >{ \@@_process_B_argument:nn {#1} } O{#1}  }
+    \@@_parse_command_options_parse:n
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{ \@@_parse_option_type_S:w }
-%   The |S|  stands for \enquote{Scale}.
+% \begin{macro}{ \@@_parse_option_type_S:n , \@@_parse_option_type_S:V }
+%   The |S| stands for \enquote{Scale}. Does somehting similar to \enquote{B}.
+%   The difference is that it gets the symbol-name as |#1|. 
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_parse_option_type_S:nw #1#2
+\cs_new_protected:Npn \@@_parse_option_type_S:n #1
   {
+    \quark_if_recursion_tail_stop_do:nn {#1}
+      {
+        \msg_error:nnn { tikzsymbols } { internal-message } 
+         { S-type-wrong-argument }
+      }
     \clist_put_right:Nn \l_@@_symbol_options_clist 
       { >{ \@@_process_S_argument:nn {#1} } O{ 1 }  }
-    \@@_parse_command_options:N
+    \@@_parse_command_options_parse:n
   }
-\cs_generate_variant:Nn \@@_parse_option_type_S:nw { Vw }
+\cs_generate_variant:Nn \@@_parse_option_type_S:n { V }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2781,24 +2846,28 @@ for the details of that license.
 %   Main Command to define the command of this package. It runs
 %   through the second input (argument specifications), stores the
 %   arguments in a \verb|\l_@@_symbol_options_clist| and adds
-%   \verb|>{ \@@_process_O_argument:nn {#2} }| if an optional argument is
+%   \verb|>{ \@@_process_B_argument:nn {#2} }| if an optional argument is
 %   found. Yeah. I think the rest is self-explaining.
 %    \begin{macrocode}
 \cs_new:Npn \@@_Declare_Document_Command:nnn #1#2#3
   {
-    \fp_zero_new:c { l_@@_#1_scale_fp }
-    \fp_set:cn { l_@@_#1_scale_fp } { 1.0 }
+    \fp_zero_new:c { l_@@_ #1 _scale_fp }
+    \fp_set:cn { l_@@_ #1 _scale_fp } { 1.0 }
+    \int_zero_new:c { l_@@_ #1 _nr_arguments_int }
     \@@_parse_command_options:nn {#1} {#2}
-    \exp_args:Ncx \DeclareDocumentCommand 
-      { \g_@@_command_prefix_tl #1 } 
-      { \clist_use:Nn \l_@@_symbol_options_clist { } } 
-      { 
-        \cs_if_exist:NT \tikzsymbolsaftersymbolinput 
-          {
-            \msg_error:nn { tikzsymbols } { tikzsymbolsaftersymbolinput }
+    \bool_if:NF \l_@@_argument_parser_error_bool
+      {
+        \exp_args:Ncx \DeclareDocumentCommand 
+          { \g_@@_command_prefix_tl #1 } 
+          { \clist_use:Nn \l_@@_symbol_options_clist { } } 
+          { 
+            \cs_if_exist:NT \tikzsymbolsaftersymbolinput 
+              {
+                \msg_error:nn { tikzsymbols } { tikzsymbolsaftersymbolinput }
+              }
+            #3 
+           \tl_use:N \l_@@_tikzsymbols_after_symbol_tl
           }
-        #3 
-       \tl_use:N \l_@@_tikzsymbols_after_symbol_tl
       }
   }
 %    \end{macrocode}
@@ -2817,9 +2886,9 @@ for the details of that license.
   }
 \cs_new:Npn \tikzsymbolssetscaleabs #1
   { \@@_set_scale_abs_tl:n {#1} }
-\cs_new:Npn \tikzsymbolscreatedraftbox #1#2
+\cs_new:Npn \tikzsymbols_create_draftbox:nn #1#2
   { \@@_create_draftbox:nn {#1} {#2} }
-\cs_new:Npn \tikzsymbolscreatesquareddraftbox #1
+\cs_new:Npn \tikzsymbols_create_squared_draftbox:n #1
   { \@@_create_squared_draftbox:n {#1} }
 %    \end{macrocode}
 %
@@ -3795,7 +3864,7 @@ for the details of that license.
 % \begin{macro}{ \Sadey }
 %   I don't know why Sadey is the first and not Smiley, probably for reasons.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Sadey } { S O{none} }
+\@@_Declare_Document_Command:nnn { Sadey } { S B{none} }
   {
     \@@_provide_savebox_and_use:nn { Sadey_#1_#2 }
       {
@@ -3824,7 +3893,7 @@ for the details of that license.
 % \begin{macro}{ \dSadey }
 %   Coding the \enquote{3D} Sadey. Again, nothing special.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSadey } { S O{yellow} }
+\@@_Declare_Document_Command:nnn { dSadey } { S B{yellow} }
   {
     \@@_provide_savebox_and_use:nn { dSadey_#1_#2 }
       {
@@ -3855,7 +3924,7 @@ for the details of that license.
 % \changes{v0.95}{2016/03/20}{New.}
 % Thanks to Marcel for the request.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Changey } { S O{white} m }
+\@@_Declare_Document_Command:nnn { Changey } { S B{white} m }
   {
     \@@_provide_savebox_and_use:nn { Changey_#1_#2_#3 }
       {
@@ -3892,7 +3961,7 @@ for the details of that license.
 % \changes{v3.95}{2016/03/20}{New.}
 % Thanks to Marcel for the request.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dChangey } { S O{yellow} m }
+\@@_Declare_Document_Command:nnn { dChangey } { S B{yellow} m }
   {
     \@@_provide_savebox_and_use:nn { dChangey_#1_#2_#3 }
       {
@@ -3941,7 +4010,7 @@ for the details of that license.
     \filldraw[fill=#2!#1!#3]
   }
 \cs_generate_variant:Nn \@@_cChangey_aux:nnn { x }
-\@@_Declare_Document_Command:nnn { cChangey } { S O{red} O{yellow} O{green} m }
+\@@_Declare_Document_Command:nnn { cChangey } { S B{red} B{yellow} B{green} m }
   {
     \@@_provide_savebox_and_use:nn 
       { cChangey_#1_#2_#3_#4_#5 }
@@ -4002,7 +4071,7 @@ for the details of that license.
     \shade [ball ~ color=#2!#1!#3]
   }
 \cs_generate_variant:Nn \@@_dcChangey_aux:nnn { x }
-\@@_Declare_Document_Command:nnn { dcChangey } { S O{red} O{yellow} O{green} m }
+\@@_Declare_Document_Command:nnn { dcChangey } { S B{red} B{yellow} B{green} m }
   {
     \@@_provide_savebox_and_use:nn 
       { dcChangey_#1_#2_#3_#4_#5 }
@@ -4056,7 +4125,7 @@ for the details of that license.
 %\begin{macro}{ \Annoey }
 % An annoyed Smiley. It's annoyed.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Annoey } { S O{none} }
+\@@_Declare_Document_Command:nnn { Annoey } { S B{none} }
   {
     \@@_provide_savebox_and_use:nn { Annoey_#1_#2 }
       {
@@ -4086,7 +4155,7 @@ for the details of that license.
 %\begin{macro}{ \dAnnoey }
 % It's annoyed about 3D.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dAnnoey } { S O{yellow} }
+\@@_Declare_Document_Command:nnn { dAnnoey } { S B{yellow} }
   {
     \@@_provide_savebox_and_use:nn { dAnnoey_#1_#2 }
       {
@@ -4122,7 +4191,7 @@ for the details of that license.
 %    \begin{macrocode}
 \bool_if:NF \g_@@_if_opt_marvosym_bool
   {
-    \@@_Declare_Document_Command:nnn { Smiley } { S O{none} }
+    \@@_Declare_Document_Command:nnn { Smiley } { S B{none} }
       {
         \@@_provide_savebox_and_use:nn { Smiley_#1_#2 }
           {
@@ -4152,7 +4221,7 @@ for the details of that license.
 %\begin{macro}{ \dSmiley }
 % Again in \enquote{3D}. 
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSmiley } { S O{yellow} }
+\@@_Declare_Document_Command:nnn { dSmiley } { S B{yellow} }
   {
     \@@_provide_savebox_and_use:nn { dSmiley_#1_#2 }
       {
@@ -4185,7 +4254,7 @@ for the details of that license.
 % \begin{macro}{ \Laughey }
 % It's laughing.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Laughey } { S O{none} O{none} }
+\@@_Declare_Document_Command:nnn { Laughey } { S B{none} B{none} }
   {
     \@@_provide_savebox_and_use:nn { Laughey_#1_#2_#3 }
       {
@@ -4215,7 +4284,7 @@ for the details of that license.
 %\begin{macro}{ \dLaughey }
 % Also in \emph{3D}!
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dLaughey } { S O{yellow} O{red} }
+\@@_Declare_Document_Command:nnn { dLaughey } { S B{yellow} B{red} }
   {
     \@@_provide_savebox_and_use:nn { dLaughey_#1_#2_#3 }
       {
@@ -4253,7 +4322,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Neutrey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Neutrey } { S O{none}  }
+\@@_Declare_Document_Command:nnn { Neutrey } { S B{none}  }
   {
     \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
@@ -4281,7 +4350,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dNeutrey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dNeutrey } { S O{yellow}  }
+\@@_Declare_Document_Command:nnn { dNeutrey } { S B{yellow}  }
   {
     \@@_provide_savebox_and_use:nn { Neutrey_#1_#2 }
       {
@@ -4313,7 +4382,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Winkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Winkey } { S O{none}  }
+\@@_Declare_Document_Command:nnn { Winkey } { S B{none}  }
   {
     \@@_provide_savebox_and_use:nn { Winkey_#1_#2 }
       {
@@ -4341,7 +4410,7 @@ for the details of that license.
 %
 %\begin{macro}{ \oldWinkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { oldWinkey } { S O{none}  }
+\@@_Declare_Document_Command:nnn { oldWinkey } { S B{none}  }
   {
     \@@_provide_savebox_and_use:nn { oldWinkey_#1_#2 }
       {
@@ -4369,7 +4438,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dWinkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dWinkey } { S O{yellow}  }
+\@@_Declare_Document_Command:nnn { dWinkey } { S B{yellow}  }
   {
     \@@_provide_savebox_and_use:nn { dWinkey_#1_#2 }
       {
@@ -4396,7 +4465,7 @@ for the details of that license.
 %
 %\begin{macro}{ \olddWinkey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { olddWinkey } { S O{yellow}  }
+\@@_Declare_Document_Command:nnn { olddWinkey } { S B{yellow}  }
   {
     \@@_provide_savebox_and_use:nn { olddWinkey_#1_#2 }
       {
@@ -4428,7 +4497,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Sey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Sey } { S O{none}  }
+\@@_Declare_Document_Command:nnn { Sey } { S B{none}  }
   {
     \@@_provide_savebox_and_use:nn { Sey_#1_#2 }
       {
@@ -4457,7 +4526,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dSey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSey } { S O{yellow}  }
+\@@_Declare_Document_Command:nnn { dSey } { S B{yellow}  }
   {
     \@@_provide_savebox_and_use:nn { dSey_#1_#2 }
       {
@@ -4489,7 +4558,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Xey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Xey } { S O{none}  }
+\@@_Declare_Document_Command:nnn { Xey } { S B{none}  }
   {
     \@@_provide_savebox_and_use:nn { Xey_#1_#2 }
       {
@@ -4517,7 +4586,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dXey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dXey } { S O{yellow}  }
+\@@_Declare_Document_Command:nnn { dXey } { S B{yellow}  }
   {
     \@@_provide_savebox_and_use:nn { dXey_#1_#2 }
       {
@@ -4551,7 +4620,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Innocey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Innocey } { S O{none} O{yellow} }
+\@@_Declare_Document_Command:nnn { Innocey } { S B{none} B{yellow} }
   {
     \@@_provide_savebox_and_use:nn { Innocey_#1_#2_#3 }
       {
@@ -4609,7 +4678,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dInnocey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dInnocey } { S O{yellow} O{yellow}  }
+\@@_Declare_Document_Command:nnn { dInnocey } { S B{yellow} B{yellow}  }
   {
     \@@_provide_savebox_and_use:nn { dInnocey_#1_#2_#3 }
       {
@@ -4654,7 +4723,7 @@ for the details of that license.
 %\begin{macro}{ \Cooley }
 %  It's the coolest Smiley around.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Cooley } { S O{none}  }
+\@@_Declare_Document_Command:nnn { Cooley } { S B{none}  }
   {
     \@@_provide_savebox_and_use:nn { Cooley_#1_#2 }
       {
@@ -4686,7 +4755,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dCooley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dCooley } { S O{yellow}  }
+\@@_Declare_Document_Command:nnn { dCooley } { S B{yellow}  }
   {
     \@@_provide_savebox_and_use:nn { dCooley_#1_#2 }
       {
@@ -4724,7 +4793,7 @@ for the details of that license.
 % Habe mir vorgenommen das hier zu verbessern, wird aber wohl noch
 % etwas brauchen.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Tongey } { S O{none} O{none} }
+\@@_Declare_Document_Command:nnn { Tongey } { S B{none} B{none} }
   {
     \@@_provide_savebox_and_use:nn { Tongey_#1_#2_#3 }
       {
@@ -4759,7 +4828,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dTongey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dTongey } { S O{yellow} O{red} }
+\@@_Declare_Document_Command:nnn { dTongey } { S B{yellow} B{red} }
   {
     \@@_provide_savebox_and_use:nn { dTongey_#1_#2_#3 }
       {
@@ -4798,7 +4867,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Nursey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Nursey } { S O{none} O{none} O{} }
+\@@_Declare_Document_Command:nnn { Nursey } { S B{none} B{none} B{} }
   {
     \@@_provide_savebox_and_use:nn { Nursey_#1_#2_#3_#4 }
       {
@@ -4835,7 +4904,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dNursey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dNursey } { S O{yellow} O{white} O{red} }
+\@@_Declare_Document_Command:nnn { dNursey } { S B{yellow} B{white} B{red} }
   {
     \@@_provide_savebox_and_use:nn { dNursey_#1_#2_#3_#4 }
       {
@@ -4881,7 +4950,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Vomey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Vomey } { S O{none} O{opacity=0} }
+\@@_Declare_Document_Command:nnn { Vomey } { S B{none} B{opacity=0} }
   {
     \@@_provide_savebox_and_use:nn { Vomey_#1_#2_#3 }
       {
@@ -4925,7 +4994,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dVomey }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dVomey } { S O{yellow} O{brown!10!olive}  }
+\@@_Declare_Document_Command:nnn { dVomey } { S B{yellow} B{brown!10!olive}  }
   {
     \@@_provide_savebox_and_use:nn { dVomey_#1_#2_#3 }
       {
@@ -4974,7 +5043,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Walley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Walley } { S O{none} O{none} }
+\@@_Declare_Document_Command:nnn { Walley } { S B{none} B{none} }
   {
     \@@_provide_savebox_and_use:nn { Walley_#1_#2_#3 }
       {
@@ -5021,7 +5090,7 @@ for the details of that license.
 %
 %\begin{macro}{ \rWalley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { rWalley } { S O{none} O{none} }
+\@@_Declare_Document_Command:nnn { rWalley } { S B{none} B{none} }
   {
     \@@_provide_savebox_and_use:nn { rWalley_#1_#2_#3 }
       {
@@ -5059,7 +5128,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dWalley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dWalley } { S O{yellow} }
+\@@_Declare_Document_Command:nnn { dWalley } { S B{yellow} }
   {
     \@@_provide_savebox_and_use:nn { dWalley_#1_#2 }
       {
@@ -5101,7 +5170,7 @@ for the details of that license.
 %
 %\begin{macro}{ \drWalley }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { drWalley } { S O{yellow} }
+\@@_Declare_Document_Command:nnn { drWalley } { S B{yellow} }
   {
     \@@_provide_savebox_and_use:nn { drWalley_#1_#2 }
       {
@@ -5297,7 +5366,7 @@ for the details of that license.
 % \begin{macro}{ \Ninja }
 % It can hide.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Ninja } { S O{black} O{red} O{white} }
+\@@_Declare_Document_Command:nnn { Ninja } { S B{black} B{red} B{white} }
   {
     \@@_provide_savebox_and_use:nn { Ninja_#1_#2_#3_#4 }
       {
@@ -5358,7 +5427,7 @@ for the details of that license.
 %
 %\begin{macro}{ \dNinja }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dNinja } { S O{black} O{red} O{white} }
+\@@_Declare_Document_Command:nnn { dNinja } { S B{black} B{red} B{white} }
   {
     \@@_provide_savebox_and_use:nn { dNinja_#1_#2_#3_#4 }
       {
@@ -5422,7 +5491,7 @@ for the details of that license.
 % \begin{macro}{ \Sleepey }
 % It is sleeping.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Sleepey } { S O{none} O{none} O{black} }
+\@@_Declare_Document_Command:nnn { Sleepey } { S B{none} B{none} B{black} }
   {
     \@@_provide_savebox_and_use:nn { Sleepey_#1_#2_#3_#4 }
       {
@@ -5483,7 +5552,7 @@ for the details of that license.
 % \begin{macro}{ \dSleepey }
 % It is sleeping.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dSleepey } { S O{yellow} O{blue} O{black} }
+\@@_Declare_Document_Command:nnn { dSleepey } { S B{yellow} B{blue} B{black} }
   {
     \@@_provide_savebox_and_use:nn { dSleepey_#1_#2_#3_#4 }
       {
@@ -5545,7 +5614,7 @@ for the details of that license.
 % \begin{macro}{ \Maskey }
 % It is sleeping.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Maskey } { S O{none} O{none} }
+\@@_Declare_Document_Command:nnn { Maskey } { S B{none} B{none} }
   {
     \@@_provide_savebox_and_use:nn { Maskey_#1_#2_#3 }
       {
@@ -5581,7 +5650,7 @@ for the details of that license.
 % \begin{macro}{ \NiceReapey }
 % I wasn't able to create a good Grim Reaper. Well.
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { NiceReapey } { S O{black!20!white} }
+\@@_Declare_Document_Command:nnn { NiceReapey } { S B{black!20!white} }
   {
     \@@_provide_savebox_and_use:nn { NiceReapey_#1_#2 }
       {
@@ -5666,7 +5735,7 @@ for the details of that license.
 %\begin{macro}{ \Strichmaxerl }
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Strichmaxerl } 
-  { S O{-22} O{22} O{27} O{-27} }
+  { S B{-22} B{22} B{27} B{-27} }
   {
     \@@_provide_savebox_and_use:nn 
       { Strichmaxerl_#1_#2_#3_#4_#5 }
@@ -5813,7 +5882,7 @@ for the details of that license.
 %
 %\begin{macro}{ \Person }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { Person } { S O{-22} O{22} O{27} O{-27} }
+\@@_Declare_Document_Command:nnn { Person } { S B{-22} B{22} B{27} B{-27} }
   {
     \msg_error:nnnn 
       { tikzsymbols } 
@@ -5832,7 +5901,7 @@ for the details of that license.
 %    \begin{macrocode}
 \bool_if:NF \g_@@_if_opt_marvosym_bool
   {
-\@@_Declare_Document_Command:nnn { Heart } { S O{none} }
+\@@_Declare_Document_Command:nnn { Heart } { S B{none} }
   {
     \@@_provide_savebox_and_use:nn { Heart_#1_#2 }
       {
@@ -5862,7 +5931,7 @@ for the details of that license.
 %\end{macro}
 %\begin{macro}{ \dHeart }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { dHeart } { S O{red} }
+\@@_Declare_Document_Command:nnn { dHeart } { S B{red} }
   {
     \@@_provide_savebox_and_use:nn { dHeart_#1_#2 }
       {
@@ -5894,7 +5963,7 @@ for the details of that license.
 %
 %\begin{macro}{ \HeartBroken }
 %    \begin{macrocode}
-\@@_Declare_Document_Command:nnn { HeartBroken } { S O{none} }
+\@@_Declare_Document_Command:nnn { HeartBroken } { S B{none} }
   {
     \@@_provide_savebox_and_use:nn { HeartBroken_#1_#2 }
       {
@@ -6140,7 +6209,7 @@ for the details of that license.
 %\begin{macro}{ \Tribar }
 %    \begin{macrocode}
 \@@_Declare_Document_Command:nnn { Tribar } 
-  { S O{opacity=0} O{opacity=0} O{opacity=0} }
+  { S B{opacity=0} B{opacity=0} B{opacity=0} }
   {
     \@@_provide_savebox_and_use:nn { Tribar_#1_#2_#3_#4 }
       {
