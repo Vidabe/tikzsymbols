@@ -2873,25 +2873,6 @@ for the details of that license.
 %    \end{macrocode}
 % \end{macro}
 %
-%    \begin{macrocode}
-\tl_new:N \tikzsymbolsscaleabs
-\cs_new:Npn \tikzsymbolsdefinesymbol #1#2#3
-  {
-    \exp_args:Nx
-    \@@_Declare_Document_Command:nnn { \tl_trim_spaces:n {#1} } {#2}  {#3}
-  }
-\cs_new:Npn \tikzsymbolsprovideandusesavebox #1#2
-  {
-    \@@_provide_savebox_and_use:nn {#1} {#2}
-  }
-\cs_new:Npn \tikzsymbolssetscaleabs #1
-  { \@@_set_scale_abs_tl:n {#1} }
-\cs_new:Npn \tikzsymbols_create_draftbox:nn #1#2
-  { \@@_create_draftbox:nn {#1} {#2} }
-\cs_new:Npn \tikzsymbols_create_squared_draftbox:n #1
-  { \@@_create_squared_draftbox:n {#1} }
-%    \end{macrocode}
-%
 %
 % \begin{macro}{ \@@_Declare_Document_Commands:nnnn }
 %   Needed for cooking-symbols. Automatically defines the english name
@@ -2930,6 +2911,40 @@ for the details of that license.
 %    \end{macrocode}
 % \end{macro}
 %
+%
+%
+% \subsection{Public commands}
+%
+%
+% \begin{macro}{\tikzsymbolsscaleabs,\tikzsymbolssetscaleabs}
+% The public version of |\@@_set_scale_abs_tl:n| and |\l_@@_scale_abs_tl|.
+%    \begin{macrocode}
+\tl_new:N \tikzsymbolsscaleabs
+\cs_new_protected:Npn \tikzsymbolssetscaleabs #1
+  { \@@_set_scale_abs_tl:n {#1} }
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\tikzsymbolsdefinesymbol}
+% A wrapper around |\@@_Declare_Document_Command:nnn|. 
+%    \begin{macrocode}
+\cs_new:Npn \tikzsymbolsdefinesymbol #1#2#3
+  {
+    \exp_args:Nx
+    \@@_Declare_Document_Command:nnn { \tl_trim_spaces:n {#1} } {#2} {#3}
+  }
+%    \end{macrocode}
+% \end{macro}  
+% \begin{macro}{\tikzsymbolsprovideandusesavebox, \tikzsymbols_create_draftbox:nn, \tikzsymbols_create_squared_draftbox:n}
+% Some more wrappers
+%    \begin{macrocode}
+\cs_new:Npn \tikzsymbolsprovideandusesavebox #1#2
+  { \@@_provide_savebox_and_use:nn {#1} {#2} }
+\cs_new:Npn \tikzsymbols_create_draftbox:nn #1#2
+  { \@@_create_draftbox:nn {#1} {#2} }
+\cs_new:Npn \tikzsymbols_create_squared_draftbox:n #1
+  { \@@_create_squared_draftbox:n {#1} }
+%    \end{macrocode}
+% \end{macro}
 %
 %
 %
