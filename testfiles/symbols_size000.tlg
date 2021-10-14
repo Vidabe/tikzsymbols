@@ -873,6 +873,21 @@ TRUE
   0pt
   0pt
 ============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Maskey_1_none_none_box=\box...
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Maskey_1_none_none_box=\box...
+\Maskey  Width
+TRUE
+  7.33660888671875pt
+  7.336639404296875pt
+\Maskey  Height
+TRUE
+  7.33660888671875pt
+  7.336639404296875pt
+\Maskey  Depth
+TRUE
+  0pt
+  0pt
+============================================================
 ============================================================
 ============================================================
 TEST 3: 3D~Emoticons ~ Symbol~sizes
@@ -1368,6 +1383,40 @@ TRUE
   7.627593994140625pt
   7.6275634765625pt
 \Snowman  Depth
+TRUE
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Heart_1_none_box=\box...
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Heart_1_none_box=\box...
+\Heart  Width
+FALSE
+  8.481719970703125pt
+  8.481918334960938pt
+ -0.000198364257813pt
+\Heart  Height
+FALSE
+  8.481719970703125pt
+  8.481918334960938pt
+ -0.000198364257813pt
+\Heart  Depth
+TRUE
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dHeart_1_red_box=\box...
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dHeart_1_red_box=\box...
+\dHeart  Width
+FALSE
+  8.283660888671875pt
+  8.3096923828125pt
+ -0.026031494140625pt
+\dHeart  Height
+FALSE
+  8.283660888671875pt
+  8.3096923828125pt
+ -0.026031494140625pt
+\dHeart  Depth
 TRUE
   0pt
   0pt

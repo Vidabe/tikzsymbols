@@ -697,6 +697,18 @@ TEST 2: 2D ~Emoticons ~ Symbol~sizes
   0pt
   0pt
 ============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Maskey_3.1_none_none_box=\box...
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Maskey_3.1_none_none_box=\box...
+\Maskey  Width
+  22.7435302734375pt
+  22.74359130859375pt
+\Maskey  Height
+  22.7435302734375pt
+  22.74359130859375pt
+\Maskey  Depth
+  0pt
+  0pt
+============================================================
 ============================================================
 ============================================================
 TEST 3: 3D~Emoticons ~ Symbol~sizes
@@ -1106,6 +1118,30 @@ TEST 4: 3D~Emoticons ~ Symbol~sizes
   0pt
   0pt
 ============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_Heart_3.1_none_box=\box...
+\g__tikzsymbols_savebox_T_0 g 0 G_10_Heart_3.1_none_box=\box...
+\Heart  Width
+  26.29336547851562pt
+  26.2939453125pt
+\Heart  Height
+  26.29336547851562pt
+  26.2939453125pt
+\Heart  Depth
+  0pt
+  0pt
+============================================================
+\g__tikzsymbols_savebox_F_0 g 0 G_10_dHeart_3.1_red_box=\box...
+\g__tikzsymbols_savebox_T_0 g 0 G_10_dHeart_3.1_red_box=\box...
+\dHeart  Width
+  25.67938232421875pt
+  25.76005554199219pt
+\dHeart  Height
+  25.67938232421875pt
+  25.76005554199219pt
+\dHeart  Depth
+  0pt
+  0pt
+============================================================
 ============================================================
 ============================================================
 TEST 5: Tree ~ Symbol~sizes
@@ -1137,10 +1173,10 @@ TEST 5: Tree ~ Symbol~sizes
 \g__tikzsymbols_savebox_F_0 g 0 G_10_BasicTree_6.2_white_white_white_leaf_box=\box...
 \g__tikzsymbols_savebox_T_0 g 0 G_10_BasicTree_6.2_white_white_white_leaf_box=\box...
 \BasicTree [2]{white}{white}{white}{leaf} Width
-  47.87298583984375pt
+  47.90744018554688pt
   47.70845031738281pt
 \BasicTree [2]{white}{white}{white}{leaf} Height
-  39.65519714355469pt
+  39.68965148925781pt
   39.49061584472656pt
 \BasicTree [2]{white}{white}{white}{leaf} Depth
   0pt

@@ -125,6 +125,7 @@
   \SizeTests{\Ninja}
   \SizeTests{\Sleepey}
   \SizeTests{\NiceReapey}
+  \SizeTests{\Maskey}
 }
 
 \TEST{3D~Emoticons ~ Symbol~sizes}{
@@ -165,6 +166,8 @@
   \SizeTests{\Moai}
   \SizeTests{\Tribar}
   \SizeTests{\Snowman}
+  \SizeTests{\Heart}
+  \SizeTests{\dHeart}
 }
 
 \TEST{Tree ~ Symbol~sizes}{
