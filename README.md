@@ -5,13 +5,14 @@ tikzsymbols
 Overview
 --------
 
-The *tikzsymbols* package v4.10c (2019/02/08) contains symbols created using tikz.
+The *tikzsymbols* package v4.12 (2021/10/14) contains symbols created using tikz.
 
 This package provides:
  * various emoticons
  * cooking symbols
  * trees
  * other symbols (e.g. Penrose-Triangle (Triban), chair, coffeecup, etc.)
+ * some tools to create your own tikzsymbol
 
 FAQ
 -------
@@ -79,6 +80,12 @@ Changes
 * v4.10a Bugfix: Forgot to remove colors from `\Strichmaxerl`
 * v4.10b Bugfix: Replace deprecated `\c_zero` by `0`
 * v4.10c Bugfix: Added dimension to `xshift` and `yshift` for `\Fire`, `\Candle` and `\(d)Laughey`
+* v4.12
+  - New (public) command to define symbols: `\tikzsymbolsdefinesymbol`
+  - Some other auxiliary functions `\tikzsymbolsprovideandusesavebox`, `\tikzsymbolssetscaleabs`, `\tikzsymbolsscaleabs`.
+  - Continuing with `\tikzsymbols_create_draftbox:nn`, `\tikzsymbols_create_squared_draftbox:n` and `\l_tikzsymbols_if_opt_draft_bool`
+  - New symbols: `\Heart` and `\dHeart`
+  - New symbol: `\Maskey`
 
 Requirements
 ------------
@@ -104,4 +111,5 @@ This material is subject to the LATEX Project Public License 1.3c. See
   https://www.latex-project.org/lppl/
 
 for the details of that license.
+
 
