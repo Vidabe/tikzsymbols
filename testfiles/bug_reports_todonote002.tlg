@@ -3563,7 +3563,6 @@ Completed box being shipped out [1]
 ....................\OT1/cmr/m/n/10 u
 ....................\OT1/cmr/m/n/10 ?
 ....................\pdfcolorstack 0 pop
-....................\kern 0.0
 ....................\penalty 10000
 ....................\glue(\parfillskip) 0.0 plus 1.0fil
 ....................\glue(\rightskip) 0.0 plus 20.00003
@@ -3618,7 +3617,6 @@ Completed box being shipped out [1]
 ..........\pdfliteral{n }
 ..........\pdfliteral{Q }
 ..........\glue 0.0 plus 1.0fil minus 1.0fil
-........\kern 0.0
 ........\penalty 10000
 ........\glue(\parfillskip) 0.0 plus 1.0fil
 ........\glue(\rightskip) 0.0

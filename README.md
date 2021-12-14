@@ -5,7 +5,7 @@ tikzsymbols
 Overview
 --------
 
-The *tikzsymbols* package v4.12 (2021/10/14) contains symbols created using tikz.
+The *tikzsymbols* package v4.12a (2021/12/14) contains symbols created using tikz.
 
 This package provides:
  * various emoticons
@@ -86,6 +86,8 @@ Changes
   - Continuing with `\tikzsymbols_create_draftbox:nn`, `\tikzsymbols_create_squared_draftbox:n` and `\l_tikzsymbols_if_opt_draft_bool`
   - New symbols: `\Heart` and `\dHeart`
   - New symbol: `\Maskey`
+* v4.12a
+  - Fixing `final` option.
 
 Requirements
 ------------

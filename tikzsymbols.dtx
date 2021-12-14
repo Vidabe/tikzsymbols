@@ -14,7 +14,7 @@ tikzsymbols
 Overview
 --------
 
-The *tikzsymbols* package v4.12 (2021/10/14) contains symbols created using tikz.
+The *tikzsymbols* package v4.12a (2021/12/14) contains symbols created using tikz.
 
 This package provides: 
  * various emoticons
@@ -96,7 +96,9 @@ Changes
   - Continuing with `\tikzsymbols_create_draftbox:nn`, `\tikzsymbols_create_squared_draftbox:n` and `\l_tikzsymbols_if_opt_draft_bool`
   - New symbols: `\Heart` and `\dHeart`
   - New symbol: `\Maskey`
-  
+* v4.12a
+  - Fixing `final` option.
+
 Requirements 
 ------------
 
@@ -186,7 +188,7 @@ for the details of that license.
 \usepackage{lmodern} 
 \usepackage{babel}
 \usepackage{marvosym} 
-\usepackage{microtype}
+%\usepackage{microtype}
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{mathtools}
@@ -1899,6 +1901,8 @@ for the details of that license.
 % \changes{v4.12}{2021/10/14}{New symbols: \cs{Heart} and \cs{dHeart}.}
 % \changes{v4.12}{2021/10/14}{New symbol: \cs{Maskey} }
 %
+% \changes{v4.12a}{2021/12/14}{Fixing \enquote{final} option!}
+%
 %
 % The first lines are always the same: What do I need, what is the
 % package named.
@@ -1918,8 +1922,8 @@ for the details of that license.
   }
 \ProvidesExplPackage
   {tikzsymbols}
-  {2021/10/14}
-  {4.12} 
+  {2021/12/14}
+  {4.12a} 
   {Some symbols created using tikz and LaTeX3.}
 \@ifpackageloaded { tikz } {} { \RequirePackage { tikz } }
 \@ifpackageloaded { xcolor } {} { \RequirePackage { xcolor } }
@@ -2493,8 +2497,10 @@ for the details of that license.
       { true , false }
       {
         \int_case:nn { \l_keys_choice_int }
-          { 1 } { \bool_set_false:N \l_@@_if_opt_draft_bool }
-          { 2 } { \bool_set_true:N \l_@@_if_opt_draft_bool }
+          {
+            { 1 } { \bool_set_false:N \l_@@_if_opt_draft_bool }
+            { 2 } { \bool_set_true:N \l_@@_if_opt_draft_bool }
+          }
         \bool_set_eq:NN \l_tikzsymbols_if_opt_draft_bool \l_@@_if_opt_draft_bool
       } ,
 %    final .bool_set_inverse:N = \l_@@_if_opt_draft_bool ,
